@@ -6,13 +6,7 @@ export interface RedTextProps {
 
 const RedText: React.FC<RedTextProps> = (props) => {
   return (
-    <div
-      style={{
-        color: "red",
-        fontStyle: "italic",
-        border: "1px solid red",
-      }}
-    >
+    <div className="border-red-500 border-2 rounded-lg p-4 italic text-red-500">
       {props.children}
     </div>
   );

@@ -37,7 +37,7 @@ export function IndexListItem(props: Props): JSX.Element {
   if (!slug) throw new Error("No slug provided for " + title);
 
   return (
-    <div className="flex flex-col p-2 lg:p-4">
+    <div className="flex flex-col py-2 lg:py-4">
       <h2 className="pb-2 text-lg lg:text-3xl">
         <Link href={addSlashPrefix(slug)}>
           <a className="hover:bg-blue-400 hover:text-white p-2 rounded">
@@ -45,7 +45,7 @@ export function IndexListItem(props: Props): JSX.Element {
           </a>
         </Link>
       </h2>
-      <div className="text-sm font-light">
+      <div className="px-2 text-sm font-light">
         {isInvalidDate(dateString) ? date : dateString} &mdash; {timeToRead}
       </div>
       <div className="pt-2">{excerpt}</div>

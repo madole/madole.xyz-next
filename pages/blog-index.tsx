@@ -44,9 +44,7 @@ const BlogIndex: React.FC<BlogIndexProps> = (props) => {
           />
         ))}
         <div className="flex justify-center">
-          <Link href={"/blog-index-all"}>
-            <a>More articles... (Total: {blogPostsMetadata.length})</a>
-          </Link>
+          Post count: {blogPostsMetadata.length}
         </div>
       </section>
     </Layout>
@@ -65,7 +63,6 @@ export const getStaticProps = () => {
         "utf8"
       );
       const data = frontmatter<Post>(file);
-      console.log({ data });
       const timeToRead = readingTime(data.body);
       return {
         ...(data.attributes as {}),

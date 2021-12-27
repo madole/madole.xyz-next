@@ -10,6 +10,12 @@ import { MDXRemote } from "next-mdx-remote";
 import RedText from "../../components/mdx/RedText";
 import rehypePrism from "@mapbox/rehype-prism";
 import "prismjs/themes/prism-tomorrow.css";
+import Code from "../../components/mdx/Code";
+import Paragraph from "../../components/mdx/Paragraph";
+import MeetTheTeamBackup from "../../components/mdx/MeetTheTeamBackup";
+import { H1, H2, H3, H4, H5 } from "../../components/mdx/Headings";
+import { Ul } from "../../components/mdx/Lists";
+import Hyperlink from "../../components/mdx/Hyperlink";
 
 interface Props {
   data: {
@@ -23,6 +29,20 @@ interface Props {
     body: string;
   };
 }
+
+const components = {
+  RedText,
+  inlineCode: Code,
+  p: Paragraph,
+  MeetTheTeamBackup,
+  h1: H1,
+  h2: H2,
+  h3: H3,
+  h4: H4,
+  h5: H5,
+  ul: Ul,
+  a: Hyperlink,
+};
 
 export default function BlogPost(props: Props): JSX.Element {
   const {
@@ -47,7 +67,7 @@ export default function BlogPost(props: Props): JSX.Element {
         </div>
         <article className="post">
           {/* @ts-ignore */}
-          <MDXRemote {...body} components={{ RedText }} />
+          <MDXRemote {...body} components={components} />
         </article>
       </section>
     </Layout>
