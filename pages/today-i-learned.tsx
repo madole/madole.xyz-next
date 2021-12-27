@@ -55,25 +55,27 @@ export function getStaticProps() {
   const filenames = fs.readdirSync(
     path.join(process.cwd(), "content/today-i-learned")
   );
-  const postsMetadata = filenames.map((filename) => {
-    // use frontmatter to read the titles of each blog post
-    const file = fs.readFileSync(
-      path.join(process.cwd(), "content/today-i-learned", filename),
-      "utf8"
-    );
-    const data = frontmatter<{
-      title: string;
-      date: Date;
-      timeToRead: number;
-    }>(file);
-    const timeToRead = readingTime(data.body).text;
-    return {
-      ...data.attributes,
-      timeToRead,
-      filename,
-      slug: filename.replace(".md", ""),
-      date: data.attributes.date.toString(),
-    };
-  });
+  const postsMetadata = filenames
+    .map((filename) => {
+      // use frontmatter to read the titles of each blog post
+      const file = fs.readFileSync(
+        path.join(process.cwd(), "content/today-i-learned", filename),
+        "utf8"
+      );
+      const data = frontmatter<{
+        title: string;
+        date: Date;
+        timeToRead: number;
+      }>(file);
+      const timeToRead = readingTime(data.body).text;
+      return {
+        ...data.attributes,
+        timeToRead,
+        filename,
+        slug: filename.replace(".md", ""),
+        date: data.attributes.date.toString(),
+      };
+    })
+    .sort((a, b) => (new Date(a.date) < new Date(b.date) ? 1 : -1));
   return { props: { postsMetadata } };
 }

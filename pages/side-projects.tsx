@@ -127,11 +127,15 @@ const SideProjects = () => {
               />
             </a>
             <div className="text-white md:mx-20 mt-10 md:mt-10 w-4/5 lg:w-1/3">
-              <h2 className="text-3xl font-bold">{title}</h2>
-              <p>{description}</p>
+              <h2 className="prose prose-lg text-white text-3xl font-bold">
+                {title}
+              </h2>
+              <p className="prose prose-lg text-white">{description}</p>
               <a href={link} target="_blank" rel="noopener noreferrer">
                 <span>🔗 </span>
-                <span className="underline">Click for a demo</span>
+                <span className="prose prose-lg text-white underline">
+                  Click for a demo
+                </span>
               </a>
             </div>
           </div>
