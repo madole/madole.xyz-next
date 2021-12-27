@@ -1,0 +1,54 @@
+---
+title: 'Mocking relative dependencies in Jest with jest.mock()'
+date: '2016-12-07T15:31:07.000Z'
+slug: mocking-relative-dependencies-in-jest-with-jest-mock
+tags: ['code']
+---
+
+If you're like me and have just entered the world of Jest for testing your React application. You might be familiar with a mocking library called Proxyquire.
+
+**Proxyquire -** _"nodejs require in order to allow overriding dependencies during testing."_
+
+
+
+An example of using proxyquire to mock an import would be something like this.
+
+```javascript
+/* Source File - src/doSomething.js */
+import dependencyOne from '../utils/dependencyOne';
+
+export default () => dependencyOne();
+
+/* Test File - test/doSomething.spec.js */
+import proxyquire from 'proxyquire';
+
+const doSomething = proxyquire('../src/doSomething', {
+    '../utils/dependencyOne': cb => cb(),
+});
+
+doSomething(); //calls our mocked dependencyOne instead of the real one
+```
+
+You can see here that when we mock `dependencyOne`, we use the _same exact path that the source file uses_ to import the relative dependency.
+
+In Jest however, this same functionality is delivered with a slight change in usage.
+
+Lets take the above example now in Jest's syntax.
+
+```javascript
+/* Source File - src/doSomething.js */
+import dependencyOne from '../utils/dependencyOne';
+
+export default () => dependencyOne();
+
+/* Test File - test/doSomething.spec.js */
+import doSomething from '../src/doSomething';
+
+jest.mock('../src/utils/dependencyOne', cb => cb());
+
+doSomething(); //calls our mocked dependencyOne instead of the real one
+```
+
+You can see that we use the _path relative to the test file_ this time to mock the dependency. The mock gets hoisted so it's evaluated before the import statement so this allows us to have the same functionality and control the dependencies of the file we're trying to test.
+
+This isn't well documented so I thought I'd write this down to save someone else the headache I had trying to figure this out.

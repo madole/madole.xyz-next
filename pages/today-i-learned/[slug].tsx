@@ -1,16 +1,22 @@
 import Head from "next/head";
-import React, { Fragment, useEffect, useState } from "react";
+import React from "react";
 import fs from "fs";
 import path from "path";
 import frontmatter from "front-matter";
 import readingTime from "reading-time";
-import { compile, run } from "@mdx-js/mdx";
 import Link from "next/link";
-import * as runtime from "react/jsx-runtime";
 import { Layout } from "../../components/Layout";
+import { serialize } from "next-mdx-remote/serialize";
+import { MDXRemote } from "next-mdx-remote";
+import RedText from "../../components/mdx/RedText";
+import rehypePrism from "@mapbox/rehype-prism";
+import "prismjs/themes/prism-tomorrow.css";
 
 export interface TodayILearnedProps extends PostAttributes {
-  data: {};
+  data: {
+    attributes: PostAttributes;
+    body: string;
+  };
 }
 
 const TodayILearned: React.FC<TodayILearnedProps> = (props) => {
@@ -18,17 +24,7 @@ const TodayILearned: React.FC<TodayILearnedProps> = (props) => {
     attributes: { title, date, url, timeToRead },
     body,
   } = props.data;
-  console.log(props);
 
-  const [mdxModule, setMdxModule] = useState();
-  // @ts-ignore
-  const Content = mdxModule ? mdxModule.default : Fragment;
-
-  useEffect(() => {
-    (async () => {
-      setMdxModule(await run(body, runtime));
-    })();
-  }, [body]);
   return (
     <Layout>
       <Head>
@@ -39,7 +35,8 @@ const TodayILearned: React.FC<TodayILearnedProps> = (props) => {
         <h2>{new Date(date).toLocaleDateString()}</h2>
         <i>{timeToRead}</i>
         <article className="mt-10 break-words w-full md:w-2/3">
-          <Content />
+          {/* @ts-ignore */}
+          <MDXRemote {...body} components={{ RedText }} />
         </article>
         {url && (
           <a
@@ -92,11 +89,11 @@ export async function getStaticProps({ params }: { params: { slug: string } }) {
   );
   const data = frontmatter<PostAttributes>(content);
   const timeToRead = readingTime(data.body).text;
-  const compiledBody = String(
-    await compile(data.body, {
-      outputFormat: "function-body" /* …otherOptions */,
-    })
-  );
+  const compiledBody = await serialize(data.body, {
+    mdxOptions: {
+      rehypePlugins: [rehypePrism],
+    },
+  });
   const newData = {
     ...data,
     attributes: {

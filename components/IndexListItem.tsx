@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import Link from "next/link";
 
 interface Props {
@@ -40,7 +40,9 @@ export function IndexListItem(props: Props): JSX.Element {
     <div className="flex flex-col p-2 lg:p-4">
       <h2 className="pb-2 text-lg lg:text-3xl">
         <Link href={addSlashPrefix(slug)}>
-          <a>{title}</a>
+          <a className="hover:bg-blue-400 hover:text-white p-2 rounded">
+            {title}
+          </a>
         </Link>
       </h2>
       <div className="text-sm font-light">

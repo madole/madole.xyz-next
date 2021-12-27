@@ -1,0 +1,76 @@
+---
+title: 'Putting Yarn Package Manager to the test'
+date: '2016-11-22T17:26:37.000Z'
+slug: yarn-package-manager
+tags: ['code']
+---
+
+### What is Yarn?
+
+> FAST, RELIABLE, AND SECURE DEPENDENCY MANAGEMENT. - [https://yarnpkg.com/](https://yarnpkg.com/)
+
+
+### How does it achieve all of this?
+
+It uses caching to speed up installs by only ever downloading them once and parallelizes operations to maximise resource utilisation.
+
+It uses checksums to verify every package before installing.
+
+It is deterministic so if you check in your lockfile, you can guarantee every developer who yarn installs will get the exact same dependencies as you.
+
+### How do I get Yarn?
+
+According to the [yarn installation website](https://yarnpkg.com/en/docs/install) you can install yarn with the standard OS package managers. I use a mac so I tried to install it with brew (`brew update && brew install yarn`) but I had issues with this particular installation.
+
+I then discovered you can install yarn via npm, which on some level feels like cheating on npm but anyway... `$ npm i -g yarn` will install yarn globally. You can check this was successful by `$ yarn --version` and making sure you get a version number back. This time the installation was fine and I was ready to get down to testing.
+
+### Is this really as good as they say?
+
+I wanted to test against a well known project so I cloned the [React](https://github.com/facebook/react) git repository.
+
+Before each test I ran `$ rm -rf node_modules` to remove my node modules and start with a clean slate each time. And just to be fair and make sure I really start the yarn installs with a cold cache, I ran `$ yarn cache clean` before starting the yarn tests.
+
+---
+
+### #Test one - NPM
+
+`$ time npm install`
+
+First time round:
+
+`npm i 48.39s user 15.08s system 106% cpu 59.727 total`
+
+Second time round:
+
+`npm install 44.50s user 13.40s system 106% cpu 54.331 total`
+
+---
+
+### #Test Two - Yarn
+
+`yarn install`
+
+First time round - _cold cache_
+
+`✨ Done in 29.48s.`
+
+Second time round - _warm cache_
+
+`✨ Done in 14.05s.`
+
+---
+
+### Conclusion
+
+With a warm cache, yarn installs are around 3 times faster than npm on average from my tests. That's an incredible savings when you have a project with a huge dependency list.
+
+I've started using Yarn on the project I work on. It's brought the local install time down from ~123s to ~40s with a warm cache.
+
+I've not put it into production just yet but I think there are a lot of gains to be made using Yarn as your package manager.
+
+A cool feature of yarn is `yarn upgrade-interactive`, just merged in last week. It allows you to interactively upgrade packages in a nice command line tool.
+
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Yay, it’s live 😍 Thanks to <a href="https://twitter.com/cpojer">@cpojer</a> for suggesting me to create a PR 👍🏽 <a href="https://t.co/6BKkyWUH8j">pic.twitter.com/6BKkyWUH8j</a></p>&mdash; Rifat Nabi 👻 (@rifat) <a href="https://twitter.com/rifat/status/798398099693703169">November 15, 2016</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+**\*Bonus coolness:** They have managed to get [/u/Shitty_Watercolour](https://www.reddit.com/user/Shitty_Watercolour) from Reddit to do all the illustrations for the yarnpkg website [https://shittywatercolour.com/](https://shittywatercolour.com/)\*

@@ -1,0 +1,115 @@
+---
+title: 'Migrating data from Ghost to GatsbyJS'
+date: '2018-06-18T10:28:07.097Z'
+slug: migrating-data-from-ghost-to-gatsby
+tags: ['code']
+---
+
+## What is Gatsby?
+
+> 🔥 Blazing-fast static site generator for React
+
+It's is perfect for a static blog, it reads markdown and gives you a GraphQL API to query it and a React front end.
+
+Coupled with https://www.netlify.com/, it is a fantastic solution from development to deployment.
+
+I've used Ghost for my blogs for years but I decided to migrate across recently. So how did I do it?
+
+Ghost allows your to export your data in a big JSON blob. So the question is _how do you turn this into something that Gatsby can consume?_
+
+### Parse that shiz
+
+I wrote a small node app to take the data exported by Ghost and parse it into the markdown files/folders that Gatsby expects.
+
+First of all, you have to look at the fomat of a gastby blog post.
+
+```markdown
+---
+title: Hello world
+date: 2016-04-15T14:32:57.000Z
+slug: /hello-world/
+---
+
+### I'm a blog title
+
+And I'm some text
+```
+
+Then have a look at what Ghost exports.
+
+I was using an older version of Ghost so the exact format might have changed but here was the gist of my output.
+
+```javascript
+{
+	"db": [
+		"data": {
+			"posts": [
+				{
+					published_at: "2018-06-18T10:09:09",
+					slug: "hello-world",
+					markdown: "# I'm a blog title\n And I'm some text",
+					title: "Hello world"
+				}
+			]
+		}
+	]
+}
+```
+
+So to begin parsing, I first made an ES6 template string in the shape of the output format.
+
+```javascript
+const template = `---
+title: "${title}"
+date: "${published_at}"
+slug: "/${slug}/"
+---
+${markdown}
+`;
+```
+
+Then I realised that the published_at date is in the wrong format so I had to parse that into the correct format so
+
+```javascript
+date: '${published_at}';
+```
+
+becomes
+
+```javascript
+date: '${new Date(published_at).toISOString()}';
+```
+
+I want to put these in a folder which I've already made called _blog-posts_
+
+```bash
+$ mkdir blog-posts
+```
+
+And I want each blog post to go into a folder named in the format `{year}-{month}-{day}-{slug}` as I'll be calling the markdown files `index.md`.
+
+So to do this, I've used `fs.mkdirSync`. I'm not too worried about speed here so I've opted for the simpler synchronous implementation version of `fs.mkdir`.
+
+```javascript
+const publishedAt = new Date(published_at);
+const day = publishedAt.getDate();
+const month = publishedAt.getMonth() + 1; // months go from 0 (jan) to 11 (dec) so pad by 1
+const year = publishedAt.getFullYear();
+const folderName = `${year}-${month}-${day}-${slug}`;
+
+fs.mkdirSync(`./blog-posts/${folderName}`);
+```
+
+All that's left to do now is to write the filled template to file within our new folder. Again, I've opted for the syncronous version of `fs.writeFile` for simplicity.
+
+```javascript
+fs.writeFileSync(`./blog-posts/${folderName}/index.md`, template, 'utf8');
+```
+
+I put all of this inside a function called `parseBlogPost` and passed it into the `forEach` on the posts.
+
+```javascript
+blog.db[0].data.posts.forEach(parseBlogPost);
+```
+
+The code is available in [Github](https://github.com/madole/ghost-to-gatsby-parser), feel free to fork it and update it for future versions of Ghost if you want.

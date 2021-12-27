@@ -1,0 +1,62 @@
+---
+title: 'Serverside CSS Modules with babel'
+date: '2016-08-21T21:09:38.000Z'
+slug: serverside-css-modules-with-babel
+tags: ['code']
+---
+
+I had a requirement to use CSS modules with serverside rendering, it took me a while to figure out so I thought I'd write the process down.
+
+In order to set css modules, we need babel to turn our generic classnames (`.container`) into localised class names like this `.style__container___fK43b`. There is a module called [babel plugin css modules transform](https://github.com/michalkvasnicak/babel-plugin-css-modules-transform) to help us with this task.
+
+`npm install -D babel-plugin-css-modules-transform`
+
+You can set this module up in your `.babelrc` file by adding it to the `plugins` array.
+
+```javascript
+{
+    "plugins": [
+        ["css-modules-transform"]: {
+            "generateScopedName": "[name]__[local]___[hash:base64:5]
+        }
+    ]
+}
+```
+
+I've added this to my .babelrc plugins array, and I've added a custom `generateScopedName` attribute which will add the filename, the local classname and a hash of the contents to create the new localised classname.
+
+You can specify extensions that it should look out for, `.css` is the obvious one but what if you want to use a preprocesser like SCSS or Stylus?
+
+I'll show you how to set up the config to preprocess Stylus files so they can be used by the CSS modules transform.
+
+```javascript
+{
+    "plugins": [
+        [["css-modules-transform", {
+            "generateScopedName": "[name]__[local]___[hash:base64:5]",
+            "extensions": [".styl"],
+            "preprocessCss": "./stylus-require-hook.js",
+            "context": process.cwd()
+        }]
+    ],
+    "ignore": ["./stylus-require-hook.js"]
+}
+```
+
+**IMPORTANT** - Set your `context` to whatever your `webpack context` is set to so that babel can generate the exact same classnames as webpack.
+
+I've added `.styl` to the `extensions` attribute so it knows to look for my stylus files. And I've added a `preprocessCss` attribute which points to a file I've called `stylus-require-hook.js`. I've also added this file to the ignore list of babel because I don't want to babel it.
+
+The stylus require hook is needed to preprocess the Stylus into CSS so it can be used by the CSS modules transform. Its a simple hook which takes raw stylus code and uses the `stylus` module to convert it to css.
+
+```javascript
+/* stylus-require-hook.js */
+const stylus = require('stylus');
+
+module.exports = (styl, filename) =>
+    stylus(styl)
+        .set('filename', filename)
+        .render();
+```
+
+That's it, you're now set up for babel to process your css classnames into localised css classnames allowing you to use CSS modules in your project. On the client side, if you're using Webpack, you can set up the `css-loader` to hash the classnames in the same way so the browser can then pick up your css module on the client side and use it.

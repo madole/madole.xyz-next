@@ -1,0 +1,58 @@
+---
+title: Analysing codebase metadata to make refactoring more impactful
+date: 2020-11-11T23:31:20.823Z
+description: Using CRAP score and hotspots to find high value refactors
+tags:
+  - testing
+  - refactoring
+  - codebase analysis
+slug: analysing-codebase-metadata-to-make-refactoring-more-impactful
+---
+Let's say you've inherited a codebase that is in a bit of a dire state. The business wants to continue to add features to this codebase for the next X years. You attempt to write some code to implement a feature. In doing so, you introduce 4 bugs due to the spaghetti code in the codebase.
+
+Your team does not have the capacity to do a complete rewrite. The business can't wait around while you reach feature parity with a clean new codebase. So you've bargained for 2 sprint cycles to make some high impact refactors to make your life easier.
+
+So you ask yourself "where can I have the most impact?". 
+
+You think "If I was to implement a feature, where would I spend most of my time?". 
+
+You take this question and being an engineer, you set about using data to help you answer it. 
+
+You think things like:
+- "I'd spend a lot of time in this file because it has big functions and lots of business logic". 
+- "This file has zero tests so I'd have to figure out what its doing so that I don't break anything by adding my code in".
+
+You boil it down to a few things of interest which would point you towards high impact refactors:
+- **Complex code** (big functions, lots of code branches)
+- **Untested code** (you have no idea what you're breaking)
+- **Hot spots** (code that changes often)
+
+Now how do you go about marrying these together?
+
+There's a nice tool on npm called `code-complexity`. (https://www.npmjs.com/package/code-complexity). This prints out a complexity score for your code and the churn rate which is how often your code changes.
+
+`npx code-complexity /path/to/git/directory`
+
+It is good for a first pass to get an indicative view on areas of high complexity and high change. For many cases, this will be enough.
+
+If you're stapped for time you might prefer to focus on areas of the codebase that are complex, change often and have zero tests covering them. Its not ideal but you can live with complex code as long as some tests have your back.
+
+To do this, you can lean on an old google testing blog about CRAP code. https://testing.googleblog.com/2011/02/this-code-is-crap.html
+
+This uses the formula:
+
+`CRAP1(m) = comp(m)^2 * (1 – cov(m)/100)^3 + comp(m)`
+
+where
+- `comp` - complexity
+- `cov` - coverage
+
+This outputs a score where the more complex the code is, and the less test coverage it has, the higher the CRAP score. 
+
+There are many tools that can give you a complexity score of your codebase.`scc` is a really fast tool that can output this data and much more and can be configured to output JSON which makes it easy to script. (https://github.com/boyter/scc)
+
+Your testing framework will likely have a coverage output. I've used Jest's istanbul `summary-json` output to pull in the coverage.
+
+You can then script a quick `git log --oneline <<file_path>> | wc -l` to count the number of commits per file. You can use this as a secondary sorting mechanism.
+
+With this information, you can now focus on code that has a high CRAP score and a high change frequency to have a high impact with your refactors.

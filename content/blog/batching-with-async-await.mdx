@@ -1,0 +1,77 @@
+---
+title: 'Using Async/Await to batch asynchronous requests'
+date: '2018-06-24T10:28:07.097Z'
+slug: batching-with-async-await
+tags: ['code']
+---
+
+Lets say you have written a file uploader app and your users might upload 100s of files at a time. You could just loop the files and send off a request per file. This might overload your server, interrupt downloads or just fail due to hitting a maximum simultaneous open http connections. Whatever you issue, lets say batching your uploads is the solution.
+How do we get there?
+
+We'll use a combination of `async/await` and `for of` to send off batches of requests in parallel.
+
+In my example, I'll do some set up by creating an upload simulator and an array of fake files.
+
+```javascript
+const allFiles = Array.from(Array(200)).map((_, i) => `file-${i + 1}`);
+
+async function upload(files) {
+    const uploadingPromises = files.map(file => {
+        const url = `https://myuploadurl.com/${file}`;
+        return new Promise(resolve => {
+            setTimeout(() => {
+                console.log(`Uploaded file: ${url}`);
+                resolve();
+            }, 3000);
+        });
+    });
+    return Promise.all(uploadingPromises);
+}
+```
+
+Here the upload function takes an array of 'files', uses those to create upload urls and then we simulate the request by setting a timeout of 3 seconds before resolving the promise.
+
+Now, lets take the array of files, and chunk those up into a 2D array (an array of arrays). We want to batch by 20 in this example, so we want to end up with an array of arrays which have 20 items in them. I use lodash's `chunk` method to do this.
+
+```bash
+$ yarn add lodash
+```
+
+```javascript
+import { chunk } from 'lodash';
+
+const BATCH_SIZE = 20;
+const chunks = chunk(files, BATCH_SIZE);
+```
+
+Now we want to create an async function which will iterate the chunks and call upload but we want it to block at each chunk until it's finished.
+
+```javascript
+const batchUploads = async files => {
+    const chunks = chunk(files, BATCH_SIZE);
+
+    for (let c of chunks) {
+        await upload(c);
+    }
+};
+```
+
+Then we just have to call our new `batchUploads` function and wait for it to finish.
+
+```javascript
+batchUploads(allFiles)
+    .then(() => {
+        console.info('Finished iterating');
+    })
+    .catch(err => {
+        console.error('Error:', err);
+    });
+```
+
+You can try this in the [REPL](https://repl.it) below.
+
+You should see the batches of 20 getting "uploaded" until there are no more files left.
+
+<iframe height="400px" width="100%" src="https://repl.it/@madoliole/batching-with-async-await?lite=true" scrolling="no" frameborder="no" allowtransparency="true" allowfullscreen="true" sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals"></iframe>
+
+Or fork it and modify it yourself [https://repl.it/@madoliole/batching-with-async-await](https://repl.it/@madoliole/batching-with-async-await)

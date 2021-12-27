@@ -1,0 +1,86 @@
+---
+title: 'Using webpack to set up polyfills in your site'
+date: '2016-04-03T21:40:03.000Z'
+slug: using-webpack-to-set-up-polyfills-in-your-site
+tags: ['code']
+---
+
+Webpack's Provide Plugin allows you to set up variables that get injected into your code when they are used in your codebase.
+
+This means that if I want to polyfill the new ES6 native promise for older browsers, I can do it at build time.
+
+
+
+Two polyfills you'll want to have set up in your site is the fetch and promise polyfills.
+
+`bower install --save es6-promise fetch`
+
+or
+
+`npm install --save es6-promise whatwg-fetch`
+
+(notice the fetch npm package is named differently to the bower package, this is important for later on)
+
+Fetch is the new browser api replacing XHR requests, or \$.ajax() requests.
+
+For the polyfills you'll need to install the imports-loader and the exports-loader.
+
+`npm install --save-dev imports-loader exports-loader`
+
+Now we have our loaders installed, we can go to our webpack config and down to the plugins section.
+
+Here we'll create a new instance of `webpack.ProvidePlugin` and set up our variables to be injected into the module when (and only when) it's used.
+
+```javascript
+plugins: [
+    new webpack.ProvidePlugin({
+          Promise: 'imports-loader?this=>global!exports-loader?global.Promise!es6-promise',
+          fetch: 'imports-loader?this=>global!exports-loader?global.fetch!fetch'
+     })
+]
+
+```
+
+NOTE: The name of `fetch` at the end of the line corresponds to the version you're using, if you installed via npm, you should use the following config:
+
+```javascript
+plugins: [
+    new webpack.ProvidePlugin({
+          Promise: 'imports-loader?this=>global!exports-loader?global.Promise!es6-promise',
+          fetch: 'imports-loader?this=>global!exports-loader?global.fetch!whatwg-fetch'
+     })
+]
+
+```
+
+---
+
+**IMPORTANT**: _As `mumu` in the comments pointed out, if you're using Webpack 2, you need to include the `-loader` in the name of your loaders now. e.g. `imports-loader`_
+
+---
+
+When you webpack up your build, if you're now using fetch or promise somewhere in your code, you'll see it included in your bundle.
+
+A way to test this is to go to a modern browser, load up your site and type `fetch` or `Promise`.
+
+You should see the following output:
+
+```javascript
+function Promise() { [native code] }
+
+function fetch() { [native code] }
+```
+
+Then go to an older browser that doesn't support these features and you'll see something like this:
+
+```javascript
+> fetch
+> function(input, init) {...
+
+> Promise
+> function lib$es6$promise$promise$$Promise(resolver) {...
+```
+
+You know the polyfills are working now as they didn't kick in when the browser supported the feature but they have kicked in when the browser doesn't support the features.
+
+Remember that they only kick in if you use the feature within your codebase, I spent a while trying to test the polyfills without using the feature in my code before realising how ProvidePlugin works.

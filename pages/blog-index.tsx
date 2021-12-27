@@ -57,15 +57,22 @@ export default BlogIndex;
 
 export const getStaticProps = () => {
   const filenames = fs.readdirSync(path.join(process.cwd(), "content/blog"));
-  const blogPostsMetadata = filenames.map((filename) => {
-    // use frontmatter to read the titles of each blog post
-    const file = fs.readFileSync(
-      path.join(process.cwd(), "content/blog", filename),
-      "utf8"
-    );
-    const data = frontmatter(file);
-    const timeToRead = readingTime(data.body);
-    return { ...(data.attributes as {}), timeToRead };
-  });
+  const blogPostsMetadata = filenames
+    .map((filename) => {
+      // use frontmatter to read the titles of each blog post
+      const file = fs.readFileSync(
+        path.join(process.cwd(), "content/blog", filename),
+        "utf8"
+      );
+      const data = frontmatter<Post>(file);
+      const timeToRead = readingTime(data.body);
+      return {
+        ...(data.attributes as {}),
+        timeToRead,
+        date: data.attributes.date.toString(),
+        slug: filename.split(".mdx")[0],
+      };
+    })
+    .sort((a, b) => (new Date(a.date) < new Date(b.date) ? 1 : -1));
   return { props: { blogPostsMetadata } };
 };

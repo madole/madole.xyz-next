@@ -1,0 +1,604 @@
+---
+title: "Javascript Interview Questions"
+date: "2015-11-01T00:29:11.000Z"
+slug: javascript-interview-questions
+tags: ['code']
+---
+
+I was asked recently by a friend of mine to come up with a list of interview questions that you can get asked during
+a Javascript interview. I looked by to my last interview and came up with a few topics for him to brush up on.
+I thought I'd write them down so others might make use of them. If you were asked anything I've not included, let me
+know in the comments section.
+
+We'll start easy...
+
+###What is Javascript?
+Mozilla Developer Network describes Javascript as:
+
+> JavaScript® (often shortened to JS) is a lightweight, interpreted, object-oriented language with first-class functions,
+> most known as the scripting language for Web pages, but used in many non-browser environments as well such as node.js
+> or Apache CouchDB. It is a prototype-based, multi-paradigm scripting language that is dynamic,and supports
+> object-oriented, imperative, and functional programming styles.
+
+The standards for Javascript are written in the ECMAScript documents. Currently we're on ES5 but ES6 has just been
+locked down so I'm looking forward to checking out some of the goodies it has to offer such as native promises and
+modules and classes.
+
+###What is variable scoping?
+Variable scoping in Javascript can get complicated so lets do some examples.
+
+####Globally scoped variable
+
+```javascript
+var a = 1;
+
+function test() {
+    console.log(a); //1
+}
+```
+
+####Locally scoped variable
+
+```javascript
+function test() {
+    var a = 1;
+    console.log(a); //1
+}
+```
+
+####Closure
+
+The return function still has access to the internal variable by trapping it in the closure.
+This is one of the great features of closures. More on this later.
+
+```javascript
+var close = (function() {
+    var a = 1;
+    return function() {
+        console.log(a); //1
+    };
+})();
+
+close();
+```
+
+####Implicit Globals _WATCH OUT FOR THESE_
+
+This is where you don't declare a variable but then set it, these automatically go into the global scope.
+It is worth while checking for implicit globally scoped variables every now and again in your javascript
+because they can cause issues where things don't seem to act like they should.
+
+```javascript
+function test() {
+    a = 1;
+}
+
+console.log(a); //1
+```
+
+##What does variable hoisting mean in Javascript?
+Javascript has a way of hoisting variable declarations to the top of the function. This can produce some unexpected
+results if you are not aware of it them.
+
+```javascript
+(function() {
+    if (true) {
+        var x = 5;
+    }
+    console.log(x); //5
+})();
+```
+
+The above example is interpreted exactly the same as this
+
+```javascript
+(function() {
+    var x;
+    if (true) {
+        x = 5;
+    }
+    console.log(x); //5
+})();
+```
+
+Where this gets confusing is in an example like this
+
+```javascript
+var x = 100;
+
+function test() {
+    if (false) {
+        var x = 199;
+    }
+    console.log(x); //undefined
+}
+
+test();
+```
+
+What's going on here? Well we've declared x outside the function text and set it to 100.
+Inside the test function, the interpreter has seen there's a variable declaration, ignored the fact that it
+is inside a code block and hoisted it to the top of the function scope. The condition is not met so x  
+ has not been set to 199 and remains to have a value of 'undefined'
+
+It is the same as writing
+
+```javascript
+var x = 100;
+
+function test() {
+    var x;
+    if (false) {
+        x = 199;
+    }
+    console.log(x); //undefined
+}
+
+test();
+```
+
+##What is the difference between `==` and `===` in Javascript?
+
+Double equals checks equality whereas triple equals checks equality and type. What does this mean?
+
+```javascript
+//==
+
+3 == 3; //true
+"3" == 3; //true
+3 == "3"; //true
+
+//===
+3 === 3; //true
+"3" === 3; //false
+3 === "3"; //false
+```
+
+##What kind of conditional statements are available in Javascript
+
+####if statement
+
+```javascript
+if (x === 1) {
+    //...
+}
+```
+
+####if else statement
+
+```javascript
+if (x === 1) {
+    //...
+} else {
+    //...
+}
+```
+
+####if else if statement
+
+```javascript
+if (x === 1) {
+    //...
+} else if (y === 1) {
+    //...
+}
+```
+
+####switch statement
+
+```javascript
+switch (x) {
+    case 1:
+        console.log("one");
+        break;
+    case 2:
+        console.log("two");
+        break;
+    case 3:
+        console.log("three");
+        break;
+    default:
+        console.log("This is the default condition");
+        break;
+}
+```
+
+##What would the following if condition example check for
+
+```javascript
+if (!condition) {
+    //...
+}
+```
+
+This would satisfy if
+
+```
+condition==='undefined' or
+condition===null  or
+condition===0     or
+condition===""    or
+condition===NaN   or
+condition===false.
+```
+
+This is a common way of checking for null or undefined but you have to double check that your variable
+would not ever be set to false or 0 because it will also satisfy.
+
+##What kind of loops are available in Javascript?
+####for loop
+You can see in the second loop, we cache the length of the array so we don't need to calculate the length of the
+array each iteration. Micro-performance improvement that can add up over time, although newer Javascript engines like
+V8 will more than likely JIT compile for loops automatically into their most efficient form.
+
+```javascript
+for (var i = 0; i < arr.length; i++) {
+    //do stuff
+}
+
+for (var i = 0, l = arr.length; i < l; i++) {
+    //do stuff
+}
+```
+
+####for in loop
+
+```javascript
+for (var x in arr) {
+    //do stuff
+}
+```
+
+####while loop
+
+```javascript
+while (x === true) {
+    //do stuff
+}
+```
+
+####do while loop
+NOTE: This does one full iteration before checking the condition
+
+```javascript
+do {
+    //do stuff
+} while (x === true);
+```
+
+##What different ways can you create an Array in Javascript?
+The following examples show you different ways to create an array in Javascript
+
+```javascript
+var arr1 = new Array();
+arr1.push("Me");
+arr1.push("You");
+arr1.push("Them");
+
+var arr2 = new Array();
+arr2[0] = "Me";
+arr2[1] = "You";
+arr2[2] = "Them";
+
+var arr3 = new Array("Me", "You", "Them");
+
+var arr4 = [];
+arr4.push("Me");
+arr4.push("You");
+arr4.push("Them");
+
+var arr5 = [];
+arr5[0] = "Me";
+arr5[1] = "You";
+arr5[2] = "Them";
+
+var arr6 = ["Me", "You", "Them"];
+```
+
+###How do you write an immediately invoked function?
+If you were to write the following code, it would assign the function to the var addFirstFiveNumbers.
+In order to access the return value, you would have to execute the function.
+
+```javascript
+var addFirstFiveNumbers = function() {
+    var count = 0;
+    for (var i = 0; i <= 5; i++) {
+        count += i;
+    }
+    return count;
+};
+
+console.log(addFirstFiveNumbers()); //15
+```
+
+If you wanted the function to execute immediately and store the return value in the var instead of the function,
+you use an immediately invoked function. To do this, wrap your function in parenthesis and put a set of empty
+parenthesis after it
+
+```javascript
+var addFirstSixNumbers = (function() {
+    var count = 0;
+    for (var j = 0; j <= 6; j++) {
+        count += j;
+    }
+    return count;
+})();
+
+console.log(addFirstSixNumbers); //21
+```
+
+##How can you handle errors in Javascript?
+####Try Catch statements
+These allow you to throw errors inside the try and catch them in the catch block
+
+```javascript
+try {
+    //do stuff
+    throw "My Error";
+} catch (e) {
+    console.log(e);
+}
+```
+
+####Try Finally statements
+These allow your code to fail gracefully by performing some clean up task after your code has finished executing or failing.
+
+```javascript
+openMyFile();
+try {
+    //tie up the resource
+    writeTofile();
+} finally {
+    //release the resource
+    closeMyFile();
+}
+```
+
+####Try Catch Conditional statements - THESE ARE NON STANDARD (and do not work in V8)
+
+```javascript
+try {
+    //do stuff
+    myRoutine(); //may throw three exceptions
+} catch(e if e instanceof TypeError) {
+    //handle type errors
+} catch(e if e instanceof RangeError) {
+    //handle range errors
+} catch(e if e instanceof EvalError) {
+    //handle eval errors
+} catch (e) {
+    logMyErrors(e);
+}
+```
+
+##How would you execute a function in 30 seconds time?
+
+####Set Timeout
+
+```javascript
+var timeout = setTimeout(function() {
+    //code to be executed in 30 seconds
+}, 30000);
+
+//To cancel this timeout
+clearTimeout(timeout);
+```
+
+##How would you execute a piece of code every 10 seconds?
+
+####Set Interval
+
+```javascript
+var interval = setInterval(function() {
+    //Code to be executed every 10 seconds
+}, 10000);
+
+//To remove this setInterval
+clearInterval(interval);
+```
+
+##Explain Inheritance in Javascript
+
+MDN explains:
+
+> Inheritance is a way to create a class as a specialized version of one or more classes (JavaScript only supports
+> single inheritance). The specialized class is commonly called the child, and the other class is commonly called the
+> parent. In JavaScript you do this by assigning an instance of the parent class to the child class, and then
+> specializing it. In modern browsers you can also use Object.create to implement inheritance.
+
+### Difference between Object.create and the new operator
+
+Both are ways to inherit from a base class, but Object.create inherits from the prototype. What does this mean? Well lets
+do an example.
+
+```javascript
+function Person() {
+    this.species = "human";
+}
+
+Person.prototype.speak = function() {
+    console.log("Hello");
+};
+
+Person.prototype.sleep = function() {
+    console.log("Snore...zzz");
+};
+
+var andrew = new Person();
+console.log(andrew.species); //human
+andrew.speak(); //Hello
+andrew.sleep(); //Snore...zzz
+
+var andy = Object.create(Person.prototype);
+console.log(andy.species); //undefined
+andy.speak(); //Hello
+andy.sleep(); //Snore...zzz
+```
+
+Here, Andrew is an instance of the Person class and so has species set on it. Andy on the other hand has inherited
+from the Person class's prototype _only_ and so has access to the prototype functions of the Person class but
+none of the attributes set on the class.
+
+##What is the difference between .call() and .apply()
+
+At first you might think they do the same thing. Take a _this_ arg and pass it to a function, lets see that
+in action
+
+```javascript
+var car1 = { make: "Vauxhall", model: "Corsa", year: "2005" };
+var car2 = { make: "Bugatti", model: "Veyron", year: "2014" };
+
+var printMake = function() {
+    console.log(this.make);
+};
+
+var printModel = function() {
+    console.log(this.model);
+};
+
+printMake.call(car1); //Vauxhall
+printMake.apply(car1); //Vauxhall
+
+printMake.call(car2); //Bugatti
+printMake.apply(car2); //Bugatti
+
+printModel.call(car1); //Corsa
+printModel.apply(car1); //Corsa
+
+printModel.call(car2); //Veyron
+printModel.apply(car2); //Veyron
+```
+
+Where .call() and .apply() differ is the arguments you pass after the _this_ arg.
+
+In a .call(), you pass your _this_ arg
+then followed by the args the function is expecting.
+
+In a .apply(), you pass your _this_ arg followed by an array containing the arguments to be passed which then get split
+out into the function params.
+
+Lets see these in action
+
+```javascript
+var car1 = { make: "Vauxhall", model: "Corsa", year: "2005" };
+var car2 = { make: "Bugatti", model: "Veyron", year: "2014" };
+
+var udpateCar = function(make, model, year) {
+    this.make = make;
+    this.model = model;
+    this.year = year;
+};
+
+udpateCar.call(car1, "Vauxhall", "Astra", "2014");
+udpateCar.apply(car2, ["Mini", "Cooper", "2014"]);
+
+console.log(car1); //{ make: 'Vauxhall', model: 'Astra', year: '2014' }
+console.log(car2); //{ make: 'Mini', model: 'Cooper', year: '2014' }
+```
+
+##How would you go about dealing with an asynchronous request?
+
+####Deferred promises
+jQuery and Q both provide a way to do promises and ECMAScript6 will provide a way to do native Javascript promises.
+
+Lets look at the jQuery Deferred object.
+
+```javascript
+function asyncFunction() {
+    var defer = $.Deferred();
+    $.ajax({
+        url: 'https://getPerson.com/?gender=female'
+        context: this
+    }).done(function (returnObj) {
+        defer.resolve(returnObj);
+    }).fail(function () {
+        defer.reject();
+    });
+    return defer.promise();
+}
+
+function myFunction() {
+    var personPromise = asyncFunction();
+    personPromise.done(function (returnObj) { //executes when promise is resolved
+            console.log(returnObj.name)
+        });
+    personPromise.fail(function () { //executes when promise is rejected
+            console.log('Failed to get the person');
+        });
+}
+
+myFunction();
+```
+
+myFunction is calling the asyncFunction and getting a deferred promise back. When the promise
+gets resolved after the ajax request returns, the done function will get executed. If the promise gets rejected, the fail
+function will get executed.
+
+These are useful when you are making calls out to a webservice for data.
+
+##Some Javascript shortcuts/hacks
+
+####Ternary operators
+
+These are great for situations where you want to assign a var based on a condition.
+
+test ? expression1 : expression2
+
+You can play with these here at [JSFiddle](https://jsfiddle.net/madole404/KdnJ7/)
+
+```javascript
+function returnTrueIfLessThanTen(checkVal) {
+    var returnVal = checkVal < 10 ? true : false;
+    return returnVal;
+}
+console.log(returnTrueIfLessThanTen(9)); //true
+console.log(returnTrueIfLessThanTen(29)); //false
+```
+
+###Using bitwise operators in place of Math.floor
+
+You can have a play with these and see them in action at [JSFiddle](https://jsfiddle.net/madole404/g34mL/)
+
+#####Why use them?
+They are marginally faster than Math.floor as we can see from this [JSPerf](https://jsperf.com/math-floor-vs-math-round-vs-parseint/70)
+
+#####Why not to use them?
+
+-   They reduce clarity in your coding
+-   They only work 32-bit signed integers
+-   They work by truncating the decimal rather than working out what the floor is
+-   You might not get the outcome you are expecting
+    -   `Math.floor(NaN) === NaN`
+    -   `(NaN >> 0) === 0`
+
+---
+
+####Using bitwise operators in place of Math.floor
+
+You can have a play with these and see them in action at [JSFiddle.net](https://jsfiddle.net/madole404/g34mL/)
+
+```javascript
+var result = 84.3 / 12.5;
+console.log(result); //6.744
+
+var round = Math.round(84.3 / 12.5);
+console.log(round); //7
+
+var floor = Math.floor(84.3 / 12.5);
+console.log(floor); //6
+
+var doubleNeg = ~~(84.3 / 12.5);
+console.log(doubleNeg); //6
+
+var bitwiseRight = (84.3 / 12.5) >> 0;
+console.log(bitwiseRight); //6
+
+var bitwiseLeft = (84.3 / 12.5) << 0;
+console.log(bitwiseLeft); //6
+
+var bitwiseOr = (84.3 / 12.5) | 0;
+console.log(bitwiseOr); //6
+
+var parseInteger = parseInt(84.3 / 12.5);
+console.log(parseInteger); //6
+```

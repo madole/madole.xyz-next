@@ -1,0 +1,88 @@
+---
+title: "Whitelisting multiple domains with kcors in Koa"
+date: "2017-02-17T12:16:22.000Z"
+slug: whitelisting-multiple-domains-with-kcors-in-koa
+---
+import RedText from '../../components/mdx/RedText';
+
+# [Kcors](https://www.npmjs.com/package/kcors)
+
+The Koa CORs library `kcors` has documentation which is a bit light on how to actually whitelist more than one domain for your node server.
+
+It has a decent JSDoc which tells you the the `origin` option can be a string, function or generator function. But it doesn't tell you how to use this to whitelist more than one origin.
+
+```js
+/**
+ * CORS middleware
+ *
+ * @param {Object} [options]
+ *  - {String|Function(ctx)|GeneratorFunction(ctx)} origin `Access-Control-Allow-Origin`, default is '*'
+ *  - {String|Array} allowMethods `Access-Control-Allow-Methods`, default is 'GET,HEAD,PUT,POST,DELETE,PATCH'
+ *  - {String|Array} exposeHeaders `Access-Control-Expose-Headers`
+ *  - {String|Array} allowHeaders `Access-Control-Allow-Headers`
+ *  - {String|Number} maxAge `Access-Control-Max-Age` in seconds
+ *  - {Boolean} credentials `Access-Control-Allow-Credentials`
+ *  - {Boolean} keepHeadersOnError Add set headers to `err.header` if an error is thrown
+ * @return {Function}
+ * @api public
+ */
+```
+
+The normal way to use this function when only whitelisting one domain is something like this:
+
+```js
+app.use(cors({ origin: "https://mysafeorigin.com" }));
+```
+
+But what if you want to connect to your API from two origins? Well the function overload on this module option is how to do it.
+
+First we create an array of origins you want to whitelist.
+
+```js
+const whitelist = ["https://mysafeorigin.com", "https://myothersafeorigin.com"];
+```
+
+Then we create a function which takes the the koa context as a param, plucks the origin off the request and compares it to the whitelist, if it's not in the whitelist, chuck an error.
+
+```js
+ function checkOriginAgainstWhitelist(ctx) {
+ 	const requestOrigin = ctx.accept.headers.origin;
+ 	if (!whitelist.includes(requestOrigin) {
+ 		return ctx.throw(`🙈 ${requestOrigin} is not a valid origin`);
+ 	}
+ 	return requestOrigin;
+ }
+```
+
+Then just hook it up to your cors call, I'm using koa2 so I'll use `koa-convert` to convert it from the koa1 syntax to koa2.
+
+```js
+app.use(convert(cors({ origin: checkOriginAgainstWhitelist })));
+```
+
+Altogether that should look like:
+
+```js
+const whitelist = ['https://mysafeorigin.com', 'https://myothersafeorigin.com'];
+
+function checkOriginAgainstWhitelist(ctx) {
+    const requestOrigin = ctx.accept.headers.origin;
+    if (!whitelist.includes(requestOrigin) {
+        return ctx.throw(`🙈 ${requestOrigin} is not a valid origin`);
+    }
+    return requestOrigin;
+ }
+app.use(convert(cors({ origin: checkOriginAgainstWhitelist })));
+```
+
+Now any request coming from an origin in your whitelist will pass it's pre-flight request and your browser will allow the request to take place, any that don't satisfy the whitelist check will chuck and error to be handled by your error handler middleware and your browser will give you feedback similar to this:
+
+<RedText> 
+    Fetch API cannot load https://myunsafeorigin.com/stuff
+    <br />
+    Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+    <br />
+    Origin 'https://myunsafeorigin.com' is therefore not allowed access.
+    <br />
+    The response had HTTP status code 500. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
+</RedText>

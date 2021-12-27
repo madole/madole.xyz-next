@@ -1,0 +1,171 @@
+---
+title: 'Asset hashing with webpack'
+date: '2016-04-15T14:32:57.000Z'
+slug: asset-hashing-with-webpack
+tags: ['code']
+---
+
+### Why would you hash your assets?
+If you're creating a website that has a caching layer sitting in front of it, you're going to need a way to bust the cache every time you make a release so your cache doesn't continue to serve up your old files.
+
+### What does a hashed asset look like?
+Your assets without being hashed could look something like
+
+```bash
+bundle.js
+vendor.js
+bundle.css
+```
+
+When they are hashed, they will look something like
+
+```bash
+bundle-18734678.js
+vendor-32422342.js
+bundle-86866786.css
+```
+
+The hash will change every time you create a build so the old files will never get served up as the browser will be asking for the files with the new hash.
+
+### Vendor bundling
+Vendor bundling is when you split up your vendor packages and your own code.
+
+You can create separate bundles for each. The advantage of this is that the browser can cache the files. If you change your code but not any of the dependencies, the browser only has to download the changed file. The vendor bundle will serve from the browser cache and your website will load faster.
+
+### Kinds of hashing
+With webpack, there are 2 kinds of hashing available to you.
+
+-   Build hashing - `hash` - where the hash is specific to the total build.
+-   Chunk Hashing - `chunkhash` - where the hash is specific to the contents of the file.
+
+I prefer to use chunk hashing when doing vendor bundling.
+
+If you make a code change, you will get a new hash for the bundle but the vendor's hash will remain the same.
+
+### How to achieve this in webpack?
+
+To achieve vendor bundling, I usually create an array of packages that are unlikely to change and add these as one entry point and then point another entry point to my index.js file.
+
+```js
+const vendorPackages = [
+    'jquery',
+    'lodash',
+    'fetch',
+    'es6-promise'
+];
+const webpackConfig = {
+	entry: {
+		bundle: './src/client/index.js',
+		vendor: vendorPackages
+	}
+	//...
+}
+```
+
+We'll need to tell webpack where to look for these modules so the `webpack.resolverPlugin` is be needed to do this. In this case, our vendor packages are from bower.
+
+```js
+plugins: [
+       new webpack.ResolverPlugin(
+            new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin('bower.json', ['main'])
+        )
+]
+```
+
+Now we set up the output section of the config. We want webpack to output a bundle and a vendor file so we use the name of the entry points and we attach our chunk hash to them.
+
+```js
+output: {
+        filename: '[name]-[chunkhash:8].js',
+        slug: 'build/public',
+        pathinfo: false,
+        libraryTarget: 'umd'
+    }
+```
+
+What we've done here is to tell it to output a file with the names of the entry points (bundle, vendor) with a chunk hash truncated to 8 places.
+
+We want the files to be built to `build/public` directory so I've added that to the path and we don't want verbose comments in the code so I've set `pathinfo` to false
+
+And I want it all to be built to [UMD](https://github.com/umdjs/umd) so I've set the library target to be `umd`. This means that we can write code in commonJS style modules or even es6 style modules with babel and they'll be transpiled to UMD.
+
+The output of this will look like
+
+```bash
+$ ls build/public
+$ bundle-5bd5318c.js vendor-9c7274b2.js
+```
+
+Now you have bundled your code into hashed assets. How do you require those into your site? The website can't just require `bundle.js` anymore because the filename changes every time you do a build.
+
+### Enter webpack-manifest-plugin
+
+We need a way to map our assets dynamically to our hashed assets. You can create a build manifest file which contains exactly that mapping.
+
+Install [webpack-manifest-plugin](https://www.npmjs.com/package/webpack-plugin-manifest) from npm.
+
+`npm i -D webpack-manifest-plugin`
+
+\import it at the top of your config file
+
+`import ManifestPlugin from 'webpack-manifest-plugin';`
+
+and then in the plugins section, hook it up.
+
+```js
+plugins: [
+    new webpack.ResolverPlugin(
+        new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin('bower.json', ['main'])
+    ),
+    new ManifestPlugin({
+         fileName: 'build-manifest.json'
+    })
+]
+```
+
+This creates a file that looks like this:
+`build-manifest.json`
+
+```json
+{
+  "bundle.js": "bundle-5bd5318c.js",
+  "vendor.js": "vendor-9c7274b2.js"
+}
+```
+
+Now we have a file that we can import and pull the correct filepaths from in your javascript works.
+
+Instead of statically referencing your files in your index template, pass them into the template as a variable. I do this with `readFileSync` from the `jsonfile` npm package.
+
+```js
+import { readFileSync } from 'jsonfile';
+const manifestPath = `${process.cwd()}/build/public/build-manifest.json`;
+const manifest = readFileSync(manifestPath);
+```
+
+Now you've read in the manifest, you can map this to an object and pass it into your template.
+
+```js
+const jsBundle = manifest['bundle.js'];
+/* /public/bundle-5bd5318c.js */
+
+const vendorBundle = manifest['vendor.js']
+/* /public/vendor-9c7274b2.js */
+```
+
+We can now pass these into our template and use them to pull in the correct bundles into the page.
+
+```js
+res.render('index', { vendorBundle, jsBundle });
+```
+
+```js
+//index.jade
+head
+	script(src=vendorBundle)
+	script(src=jsBundle)
+```
+
+There are a million different ways to solve this problem but this has been the most effective for us so far.
+
+> ([Photo](https://www.flickr.com/photos/mikecogh/5941302441/in/photolist-a41JdZ-7nyaHz-5y2dNd-4z9NVY-dPHefe-eQRfa7-ejxjR6-5rZAFL-CYAcGz-rpPRWC-7Rj978-4z9LEf-a66QPh-4JGcPu-8rEnBR-dknLmo-4ta9eD-nkcBk3-qKvfUP-9QAqEd-8QM2bE-dkUhSg-2CDkoD-686QAz-6nGrS-9QxETZ-6EqCBj-4dv9K-wNn8E-q69aLi-61ybyS-a641ax-qae7-4duyB-eQDSGX-4dtNz-6nH2y-9RNH65-6EqCF3-qJZUsH-a2w22o-4dnh5-8g7yBo-4hNPwo-eQDSnX-7Xv9dk-a2tdfV-bo2vaA-DZSpEr-68b1XW) / [CC BY](https://creativecommons.org/licenses/by/2.0/))

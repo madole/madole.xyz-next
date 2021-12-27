@@ -1,0 +1,65 @@
+---
+title: "babel-loader's hidden feature - babelrc:false"
+date: '2016-08-21T19:59:31.000Z'
+slug: babel-loaders-hidden-feature-babelrc-false
+tags: ['code']
+---
+
+I've spent 3 days configuring Webpack and babel to deal with CSS Modules while doing server-side rendering. I've just discovered an undocumented setting in Webpack's babel-loader that solves the mystery of disappearing css.
+
+
+
+On the server, I've got a `.babelrc` file which uses [babel-plugin-css-modules-transform](https://github.com/michalkvasnicak/babel-plugin-css-modules-transform).
+
+```javascript
+{
+    "presets": ["es2015-node4", "react"],
+    "plugins": [
+        "add-module-exports",
+        "syntax-async-functions",
+        "transform-async-to-generator",
+        "transform-class-properties",
+        "transform-object-rest-spread",
+        ["css-modules-transform", {
+            "generateScopedName": "[name]__[local]___[hash:base64:5]",
+            "extensions": [".styl", ".css"],
+            "preprocessCss": "./stylus-require-hook.js"
+        }]
+    ],
+    "ignore": ["./stylus-require-hook.js"]
+}
+```
+
+On the client side, I've got webpack building my code, I'm using the babel-loader to transform my JavaScript and I've set up a regex to catch all the `.styl` files and push them through the `stylus loader`, then the `css loader` with the `css modules` configuration and finally to the style loader.
+
+I could get the server side code to correctly create the hashed module names, but on the client, I couldn't get Webpack to pick up the stylus file that I created so I could transform it into css modules. I checked out the regex's multiple times and every other setting I could find. I'd rewritten my Webpack config at least twice from scratch and still I was getting this issue. My build output wouldn't contain any css files despite using the `Extract Text Plugin`.
+
+I eventually checked out the javascript created from my build and discovered that it contained a lot of css attribute names and this is when it clicked. My babel-loader config was picking up my server side `.babelrc` and running my stylus files through the css module transform.
+
+I'd checked the documentation a few times but I couldn't see anything about the default functionality of picking up the `.babelrc` file. This is a weird default because we compile to different targets with different features for server and web.
+
+I discovered the settings `babelrc: false` in one of the github issues and gave it a go. It has to be supplied as an attribute on the `query` object passed to babel-loader.
+
+It should look like this:
+
+```
+    {
+                test: /\.js/,
+                exclude: /(node_modules|bower_components)/,
+                loader: 'babel',
+                query: {
+                    babelrc: false,
+                    presets: ['es2015', 'react'],
+                    plugins: [
+                        'transform-class-properties',
+                        ['transform-es2015-classes', { loose: true }],
+                        'add-module-exports',
+                        'transform-async-to-generator',
+                        'syntax-async-functions',
+                        'transform-object-rest-spread',
+                        'transform-runtime'
+                    ]
+                }
+```
+
+This means that the babel-loader will only use the settings you've provided to it in the `query` object allowing you to have entirely different babel configurations for both client and server.

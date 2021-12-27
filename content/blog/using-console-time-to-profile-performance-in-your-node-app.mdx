@@ -1,0 +1,79 @@
+---
+title: 'Using console.time to profile performance in your node application'
+date: '2016-06-09T15:27:36.000Z'
+slug: using-console-time-to-profile-performance-in-your-node-app
+tags: ['code']
+---
+
+I was writing an express application, when I started to notice one of the routes was taking quite a while to respond to a request. The route was doing some heavy lifting shaping data from an API .
+
+
+
+I needed to figure out where the bottleneck was and optimise it.
+
+**How do I start to figure out how and where to optimise?**
+
+I could run the V8 profiler (https://nodejs.org/en/docs/guides/simple-profiling/), pipe the result into a file, load that into Chrome and look at the metric table and flame graph. But I find this to be too low level when I know roughly the area that the bottleneck is happening in.
+
+Node provides two api's to deal with this. (https://nodejs.org/api/console.html)
+
+> `console.time(label)`
+
+> Starts a timer that can be used to compute the duration of an operation. Timers are identified by a unique label. Use the same label when you call console.timeEnd() to stop the timer and output the elapsed time in milliseconds to stdout. Timer durations are accurate to the sub-millisecond.
+
+> `console.timeEnd(label)`
+
+> Stops a timer that was previously started by calling console.time() and prints the result to stdout
+
+To use these, put a `console.time('label')` before the function you want to profile and a `console.timeEnd('label')` after it and then run your app.
+
+Here's an example of profiling native `Array.prototype.map` and `Array.prototype.filter` against their lodash counterparts on an array of a million values:
+
+```javascript
+const _ = require('lodash');
+const dataset = [];
+for (let i = 0; i < 1000000; i++) {
+    dataset.push(i);
+}
+
+console.time('map');
+const squared = dataset.map(x => x * x);
+console.timeEnd('map');
+
+console.time('lodash map');
+const lodashSquared = _.map(dataset, x => x * x);
+console.timeEnd('lodash map');
+
+console.time('filter');
+const filtered = dataset.filter(x => x % 2 === 0);
+console.timeEnd('filter');
+
+console.time('lodash filter');
+const lodashFiltered = _.filter(dataset, x => x % 2 === 0);
+console.timeEnd('lodash filter');
+
+
+```
+
+The output to the console looks like this:
+
+```bash
+$ map: 199.207ms
+$ lodash map: 16.889ms
+$ filter: 123.355ms
+$ lodash filter: 21.634ms
+```
+
+That's a pretty insane time savings on Node v6.1.0. And this could help you squeeze a bit more performance out of your application.
+
+If you're in the browser, some of them have built in similar tools to give you more information. (https://github.com/DeveloperToolsWG/console-object/blob/master/api.md#consoleprofilelabel)
+
+> `console.profile(label)`
+
+> Calling this function initiates a JavaScript CPU profile with an optional label. To complete the profile, call console.profileEnd().
+
+> `console.profileEnd(label)`
+
+> Stops the current JavaScript CPU profiling session, if one is in progress, and prints the report to the Profiles panel.
+
+([Photo](https://www.flickr.com/photos/dkalo/2909921582/in/photolist-5r97iL-nkc4GF-arAPMg-7UTmVK-8pPvi9-wFSbEE-5WgcMT-smjEQ7-54R5E1-gXvhUX-7CBSbv-fKm5e6-dZrrr-dtgLMo-hKgkTV-FkRMPS-88G64K-rqW93q-pELvqg-srLvJp-9VYb6N-5DVfVF-8Luk2K-7gYhP-oeXqzE-7Q9sio-5ZvVMf-co64gJ-srCwVE-qNUG9X-7svqiD-pn5hmK-5eqYC3-94iuSL-dzFnp3-skDmxU-9grNy-ruZkBB-Bz6AT-5qhemo-4rFABb-2qCXZf-HmAzJ-8B9xrH-c3sm2W-2TtdZm-Qnti6-p6MCC5-9SWqmg-7vQ99J) / [CC BY](https://creativecommons.org/licenses/by/2.0/))

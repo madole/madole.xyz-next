@@ -1,0 +1,407 @@
+---
+title: 'My favourite VSCode plugins'
+date: '2016-11-06T14:35:03.000Z'
+slug: my-favourite-vscode-plugins
+tags: ['code']
+---
+
+A while ago I published a comprehensive list of my favourite Atom Editor plugins, I've since moved to VSCode for the majority of my development so I thought I'd gather together a similar list for it.
+
+
+
+---
+
+###[Auto-close-tag](https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-close-tag)
+Automatically add HTML/XML close tag, same as Visual Studio IDE does.
+
+**Installation**
+
+Launch VS Code Quick Open (⌘+P), paste the following command, and press enter.
+
+`ext install auto-close-tag`
+
+**Features**
+
+-   Automatically add closing tag when you type in the closing bracket of the opening tag
+-   After closing tag is inserted, the cursor is between the opening and closing tag
+-   Set the tag list that would not be auto closed
+-   Automatically close self-closing tag
+-   Support auto close tag as Sublime Text 3
+-   Use Keyboard Shortcut or Command Palette to add close tag manually
+
+![auto-close-tag](https://raw.githubusercontent.com/formulahendry/vscode-auto-close-tag/master/images/usage.gif)
+
+---
+
+###[Autoimport](https://marketplace.visualstudio.com/items?itemName=steoates.autoimport)
+
+Automatically finds, parses and provides code actions and code completion for all available imports. Works with Typescript and TSX.
+
+**Installation**
+
+Launch VS Code Quick Open (⌘+P), paste the following command, and press enter.
+
+`ext install autoimport`
+
+![autoimport](https://i.imgur.com/Ot6l4LL.gif)
+
+---
+
+###[Code Settings Sync](https://marketplace.visualstudio.com/items?itemName=Shan.code-settings-sync)
+**Installation**
+
+Launch VS Code Quick Open (⌘+P), paste the following command, and press enter.
+
+`ext install code-settings-sync`
+
+**Features**
+
+-   Use your github account token and GIST.
+-   Easy to Upload and Download on one click.
+-   Upload Key : Shift + Alt + U
+-   Download Key : Shift + Alt + D
+-   Use Other User's Public GIST to completely sync your settings with them.
+-   Show a summary page at the end with details.
+-   Auto Download Latest Settings on Startup.
+-   Auto upload Settings on file change.
+
+**It Syncs**
+
+-   Settings File
+-   Keybinding File
+-   Launch File
+-   Snippets Folder
+-   VSCode Extensions
+
+---
+
+###[Document This](https://marketplace.visualstudio.com/items?itemName=joelday.docthis)
+
+"Document This" is a Visual Studio Code extension that automatically generates detailed JSDoc comments for both TypeScript and JavaScript files.
+
+**Installation**
+
+Launch VS Code Quick Open (⌘+P), paste the following command, and press enter.
+
+`ext install docthis`
+
+![Document This](https://github.com/joelday/vscode-docthis/raw/master/images/demo.gif)
+
+---
+
+###[Flow Language Support](https://marketplace.visualstudio.com/items?itemName=flowtype.flow-for-vscode)
+
+This extension adds Flow support for VS Code. Flow is a static type checker, designed to find type errors in JavaScript programs.
+
+**Installation**
+
+Launch VS Code Quick Open (⌘+P), paste the following command, and press enter.
+
+`ext install flow-for-vscode`
+
+---
+
+###[Git Blame](https://marketplace.visualstudio.com/items?itemName=waderyan.gitblame)
+
+See Git Blame information in the status bar for the currently selected line.
+
+**Installation**
+
+Launch VS Code Quick Open (⌘+P), paste the following command, and press enter.
+
+`ext install gitblame`
+
+![git blame](https://github.com/wadeanderson7/vscode-gitblame/raw/master/images/GitBlamePreview.gif)
+
+---
+
+###[Git Lens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens)
+
+Provides Git information (most recent commit, # of authors) in CodeLens, on-demand inline blame annotations, a blame explorer, and commands to compare changes w/ the working tree or previous versions
+
+**Installation**
+
+Launch VS Code Quick Open (⌘+P), paste the following command, and press enter.
+
+`ext install gitlens`
+
+GitLens
+
+Provides Git information (most recent commit, # of authors) in CodeLens, on-demand inline blame annotations, status bar blame information, a blame explorer, and commands to compare changes with the working tree or previous versions.
+
+**Features**
+
+-   Provides CodeLens on code blocks: - Recent Change - author and date of the most recent check-in for that block > Clicking on the CodeLens opens a Blame history explorer with the commits and changed lines in the right pane and the commit (file) contents on the left
+
+        	- Authors - number of authors of a block and the most prominent author (if there are more than one)
+        	> Clicking on the CodeLens toggles Git blame annotations on/off
+
+-   Provides on-demand inline blame annotations with multiple styles
+-   Provides Git blame information about the selected line in the status bar
+-   Provides a Git blame history explorer to visualize the history of a file or block
+-   Provides ability to compare diffs with the working tree as well as with previous versions
+-   Provides many configuration settings to allow the customization of almost all Features
+
+![git lens](https://raw.githubusercontent.com/eamodio/vscode-git-codelens/master/images/preview-gitlens.gif)
+
+---
+
+###[Git History](https://marketplace.visualstudio.com/items?itemName=donjayamanne.githistory)
+
+View git log, file or line History
+
+**Installation**
+
+Launch VS Code Quick Open (⌘+P), paste the following command, and press enter.
+
+`ext install githistory`
+
+**Features**
+
+-   View Git History with graph and details (latest feature)
+-   View the details of a commit, such as author name, email, date, committer name, email, date and comments.
+-   View a previous copy of the file or compare it against the local workspace version or a previous version.
+-   View the changes to the active line in the editor (Git Blame).
+-   Configure the information displayed in the list
+-   Use keyboard shortcuts to view history of a file or line
+
+![git history](https://raw.githubusercontent.com/DonJayamanne/gitHistoryVSCode/master/images/gitLogv2.gif)
+
+---
+
+###[Go](https://marketplace.visualstudio.com/items?itemName=lukehoban.Go)
+
+Rich Go language support for Visual Studio Code
+
+**Installation**
+
+Launch VS Code Quick Open (⌘+P), paste the following command, and press enter.
+
+`ext install Go`
+
+**Features**
+This extension adds rich language support for the Go language to VS Code, including:
+
+-   Completion Lists (using gocode)
+-   Signature Help (using godoc)
+-   Snippets
+-   Quick Info (using godef)
+-   Goto Definition (using godef)
+-   Find References (using guru)
+-   File outline (using go-outline)
+-   Workspace symbol search (using go-symbols)
+-   Rename (using gorename)
+-   Build-on-save (using go build and go test)
+-   Lint-on-save (using golint or gometalinter)
+-   Format (using goreturns or goimports or gofmt)
+-   Generate unit tests squeleton (using gotests)
+-   Add Imports (using gopkgs)
+-   [partially implemented] Debugging (using delve)
+
+![go](https://i.giphy.com/xTiTndDHV3GeIy6aNa.gif)
+
+---
+
+###[Javascript ES6 Snippets](https://marketplace.visualstudio.com/items?itemName=xabikos.JavaScriptSnippets)
+
+Code snippets for JavaScript in ES6 syntax
+
+**Installation**
+
+Launch VS Code Quick Open (⌘+P), paste the following command, and press enter.
+
+`ext install JavaScriptSnippets`
+
+**Supported languages (file extensions)**
+JavaScript (.js)
+TypeScript (.ts)
+JavaScript React (.jsx)
+TypeScript React (.tsx)
+
+---
+
+###[Language Stylus](https://marketplace.visualstudio.com/items?itemName=sysoev.language-stylus)
+
+Stylus language support
+
+**Installation**
+
+Launch VS Code Quick Open (⌘+P), paste the following command, and press enter.
+
+`ext install language-stylus`
+
+**Features**
+
+-   Syntax highlighting
+-   Symbols provider
+-   Completion for selectors, properties, values, variables, functions etc.
+
+![stylus](https://github.com/d4rkr00t/language-stylus/raw/master/assets/completion.gif)
+
+---
+
+###[NPM Intellisense](https://marketplace.visualstudio.com/items?itemName=christian-kohler.npm-intellisense)
+
+Visual Studio Code plugin that autocompletes npm modules in import statements
+
+**Installation**
+
+Launch VS Code Quick Open (⌘+P), paste the following command, and press enter.
+
+`ext install npm-intellisense`
+
+## ![npm intellisense](https://github.com/ChristianKohler/NpmIntellisense/raw/master/images/auto_complete.gif)
+
+###[Path Intellisense](ext install path-intellisense)
+
+Visual Studio Code plugin that autocompletes filenames
+
+**Installation**
+
+Launch VS Code Quick Open (⌘+P), paste the following command, and press enter.
+
+`ext install path-intellisense`
+
+![Path Intellisense](https://i.giphy.com/iaHeUiDeTUZuo.gif)
+
+---
+
+###[React Code Snippets](https://marketplace.visualstudio.com/items?itemName=xabikos.ReactSnippets)
+
+Code snippets for Reactjs development in ES6 syntax
+
+**Installation**
+
+Launch VS Code Quick Open (⌘+P), paste the following command, and press enter.
+
+`ext install ReactSnippets`
+
+**Supported languages (file extensions)**
+
+-   JavaScript (.js)
+-   TypeScript (.ts)
+-   JavaScript React (.jsx)
+-   TypeScript React (.tsx)
+-   JSX after installing the corresponding extension
+
+![React Code Snippets](https://github.com/xabikos/vscode-react/raw/master/images/component.gif)
+
+---
+
+###[Seti icons](https://marketplace.visualstudio.com/items?itemName=qinjia.seti-icons)
+
+Icons for VS Code
+
+**Installation**
+
+Launch VS Code Quick Open (⌘+P), paste the following command, and press enter.
+
+`ext install seti-icons`
+
+![seti icons](https://github.com/hellopao/vscode-seti-icons/raw/master/screenshot.png)
+
+---
+
+###[Sort Lines](https://marketplace.visualstudio.com/items?itemName=Tyriar.sort-lines)
+
+Sorts lines of text
+
+**Installation**
+
+Launch VS Code Quick Open (⌘+P), paste the following command, and press enter.
+
+`ext install sort-lines`
+
+**Features**
+
+Sort lines of text in Visual Studio Code. The following types of sorting are supported:
+
+-   Sort lines - Regular character code based sort (F9)
+-   Sort lines (case insensitive) - Case insensitive sort
+-   Sort lines (reverse) - Reverse character code based sort
+-   Sort lines (unique) - Regular character code keeping only unique items
+
+![Sort Lines](https://github.com/Tyriar/vscode-sort-lines/raw/master/images/install-animation.gif)
+
+---
+
+###[Firewatch Theme](https://marketplace.visualstudio.com/items?itemName=ulthes.theme-firewatch)
+
+A Firewatch theme for Visual Studio Code ported from Sublime Text Port
+
+**Installation**
+
+Launch VS Code Quick Open (⌘+P), paste the following command, and press enter.
+
+`ext install theme-firewatch`
+
+![Firewatch](https://gitlab.com/ulthes/firewatch-theme-vscode/raw/master/screenshot_js_react.PNG)
+
+---
+
+###[Babel ES6/ES7](https://marketplace.visualstudio.com/items?itemName=dzannotti.vscode-babel-coloring)
+
+Adds JS Babel es6/es7 syntax coloring
+
+**Installation**
+
+Launch VS Code Quick Open (⌘+P), paste the following command, and press enter.
+
+`ext install vscode-babel-coloring`
+
+![Babel ES6/ES7](https://raw.githubusercontent.com/dzannotti/vscode-babel/master/images/screenshot.png)
+
+---
+
+###[Color Highlight](https://marketplace.visualstudio.com/items?itemName=naumovs.color-highlight)
+
+Highlight web colors in your editor
+
+**Installation**
+
+Launch VS Code Quick Open (⌘+P), paste the following command, and press enter.
+
+`ext install color-highlight`
+
+![Color highlight](https://naumovs.gallerycdn.vsassets.io/extensions/naumovs/color-highlight/1.2.1/1474455668114/Microsoft.VisualStudio.Services.Icons.Default)
+
+---
+
+###[ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+
+Integrates ESLint into VS Code.
+
+**Installation**
+
+Launch VS Code Quick Open (⌘+P), paste the following command, and press enter.
+
+`ext install vscode-eslint`
+
+---
+
+###[Jumpy](https://marketplace.visualstudio.com/items?itemName=wmaurer.vscode-jumpy)
+
+Jumpy provides fast cursor movement, inspired by Atom's package of the same name.
+
+**Installation**
+
+Launch VS Code Quick Open (⌘+P), paste the following command, and press enter.
+
+`ext install vscode-jumpy`
+
+![jumpy](https://cloud.githubusercontent.com/assets/2899448/19660934/0481c44c-9a32-11e6-87cc-1f8913922ccb.gif)
+
+---
+
+###[SVGViewer](https://marketplace.visualstudio.com/items?itemName=cssho.vscode-svgviewer)
+
+SVG Viewer for VSCode.
+
+**Installation**
+
+Launch VS Code Quick Open (⌘+P), paste the following command, and press enter.
+
+`ext install vscode-svgviewer`
+
+![SVGViewer](https://github.com/cssho/vscode-svgviewer/raw/master/img/palette.png)
+![SVGViewer2](https://github.com/cssho/vscode-svgviewer/raw/master/img/preview.png)

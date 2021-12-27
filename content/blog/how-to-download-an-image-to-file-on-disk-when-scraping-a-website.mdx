@@ -1,0 +1,21 @@
+---
+title: 'How to download an image to file on disk when scraping a website'
+date: '2019-02-07T07:59:56.344Z'
+slug: how-to-download-an-image-to-file-on-disk-when-scraping-a-website
+tags: ['code', 'scraping']
+---
+
+Recently I was recovering data from one of my websites that had been unceremoniously taken down while I was on holidays when I got stomped for a little while on how to scrape an image and save it to file using NodeJS.
+
+Let’s say you are using puppeteer and you have the image URL for the image you want to save to disk.
+
+I knew I could use the `fs.writeFile`but I was trying to figure out how to get it from a http response to something that I could write to file. I tried to parse it into a blob, but then I discovered you can just pipe the response body directly into `fs.createWriteStream`. My code ended up looking like this:
+
+```javascript
+const imageUrl = 'https://images.unsplash.com/photo-1601143240380-10dfad37660d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60';
+const imageDirAndName = './downloaded-img.jpg';
+
+fetch(imageUrl)
+    .then(response => response.body.pipe(fs.createWriteStream(imageDirAndName)).on('close', () => console.log('image downloaded')))
+    .catch(err => console.error(err.stack));
+```

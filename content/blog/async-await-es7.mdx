@@ -1,0 +1,166 @@
+---
+title: 'ASYNC/AWAIT ES7'
+date: '2016-03-12T21:56:32.000Z'
+slug: async-await-es7
+tags: ['code']
+---
+
+Async/Await is a JavaScript ES7/ES2016 language feature that allows you to write asynchronous code that looks synchronous.
+
+
+
+This feature has been available in other languages like C# and Visual Basic for a while.
+
+It allows you to write your function declaration prefixed with `async` and then inside your function, use the `await` keyword to pause your function in a non-blocking way while you make your asynchronous function call that returns a promise. When it returns, the function continues on with the return value from the promise.
+
+```js
+import fetch from ‘node-fetch’;
+
+async function getGithubData() {
+  const response = await fetch('https://api.github.com/users/madole');
+  const githubData = response.json();
+}
+```
+
+You can read more about them in the [TC39 Proposal here](https://tc39.github.io/ecmascript-asyncawait/).
+
+## Why would you want to write code like this?
+
+-   You never have to write another `Promise.then` to get the value out of a promise.
+-   No more context issues with `then` statements.
+-   No more nested promises, caching variables to simulate an async waterfall.
+-   No more callback hell to deal with asynchronous calls.
+
+## Using babel to transpile Async/Await
+
+You have a few options to transpile Async/Await.
+
+The first option transpiles it back to ES5. This is compatible with most browsers and uses [Facebook's Regenerator library](https://github.com/facebook/regenerator).
+You can find the [babel-plugin-transform-regenerator
+here](https://www.npmjs.com/package/babel-plugin-transform-regenerator).
+
+This option requires you to specify it in the plugins section of your .babelrc
+
+```json
+{
+    "plugins": ["transform-regenerator"]
+}
+```
+
+This will bloat the transpiled code massively by sticking regenerator throughout your code where you've used async await.
+
+[Babel transform runtime](https://www.npmjs.com/package/babel-plugin-transform-runtime) claims to stop this by externalising the references and polyfills so that might be an option to clean this up.
+
+I prefer to transpile the async/await statements into [Bluebird Coroutines](https://bluebirdjs.com/docs/api/promise.coroutine.html) as it makes even the transpiled code much cleaner. This will help in debugging should you have to dig into an environment with no source maps available or supported.
+
+To do this, you can use the babel plugin [async-to-module-method](https://www.npmjs.com/package/babel-plugin-transform-async-to-module-method).
+
+and configure like this in your .babelrc
+
+```json
+{
+    "plugins": [
+        [
+            "transform-async-to-module-method",
+            {
+                "module": "bluebird",
+                "method": "coroutine"
+            }
+        ]
+    ]
+}
+```
+
+Don't forget to install bluebird so your compiled code can require it.
+
+`npm install --save bluebird`
+
+---
+
+## Minimum requirements
+
+Generators are a minimum requirement for the `transform-async-to-module-method` option.
+
+Our target node version is 4.x.x.
+Node 4 is the Long Term Support (LTS) version and supports generators.
+
+There is a babel preset that fills in the ES2015 gaps that NodeJS@4 doesn't cover. Its called [babel-preset-es2015-node4](https://www.npmjs.com/package/babel-preset-es2015-node4).
+
+If you're not yet on Node4, you can use the regenerator method explained above to transpile the async/await back to ES5.
+
+---
+
+## Error Handling
+
+Promises come with their own error handling mechanism built in, the `catch` clause.
+
+What happens when the promise you're awaiting to be resolved actually gets rejected?
+
+```javascript
+const response = await Promise.reject();
+```
+
+Result:
+`Unhandled promise rejection`
+
+Or even if the function you're awaiting throws an error?
+
+```javascript
+function throwErr() {
+    throw new Error();
+}
+
+async function testError() {
+    const response = await throwErr();
+}
+testError();
+```
+
+Result:
+`Unhandled promise rejection Error`
+
+So how do we do error handling with async await? Time to bring out the old `try/catch` statements.
+
+This feels like it is a dirty option just to catch error from an asynchronous function but it is exactly the use case for try/catch statements.
+
+This gives us a great opportunity to do disaster recovery or graceful degradation depending on the scenario.
+
+So our new functions with error handling could look something like this.
+
+```js
+function getUserFromDb() {
+    throw new Error('No users in db');
+}
+
+async function testTryCatch() {
+    let response;
+    try {
+        response = await getUserFromDb();
+    } catch (err) {
+        console.log(err.message);
+        response = { user: 'default' };
+    }
+    const { user } = response;
+    return user;
+}
+
+testTryCatch();
+```
+
+---
+
+_But wait, doesn't V8 find it really hard to optimise code that's wrapped in a try/catch statement?_
+
+Well yes, there are performance impacts of wrapping all your code in try/catches but when you just wrap the function call itself, it has minimal impact.
+
+You can see for yourself in [this jsperf.](https://jsperf.com/try-catch-performance-overhead)
+
+---
+
+After playing with this for a few weeks, I'm willing to take the leap towards using this in production, it's a solid feature and a really nice way to write your asynchronous code in such a way that it looks synchronous. It eliminates some of my pet peeves with callbacks and promises due to scoping and I think it's really easy to wrap your head around.
+
+If you're already using babel, drop it in and give it a go.
+
+**UPDATE**: I've discovered a small edgecase with this and I've written about it and how to get around it [here](https://madole.xyz/babel-plugin-transform-async-to-module-method-gotcha/)
+
+https://madole.xyz/babel-plugin-transform-async-to-module-method-gotcha/

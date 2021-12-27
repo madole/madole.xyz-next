@@ -1,0 +1,100 @@
+---
+title: 'babel-plugin-transform-async-to-module-method gotcha'
+date: '2016-05-08T02:41:11.000Z'
+slug: babel-plugin-transform-async-to-module-method-gotcha
+tags: ['code']
+---
+
+We have been using ES7 Async/Await with `babel-plugin-transform-async-to-module-method` and bluebird co-routines for about a month now.
+
+This has been working great for us in most cases.
+
+
+
+Although we started noticing an issue when we've been using classes and extending upon them. The transpilation process affects the scope of an async class method and causes an error when you try to call super inside the method.
+
+Consider the following example.
+
+```javascript
+class Animal {
+    constructor(name) {
+        this.name = name;
+    }
+
+    async getAge() {
+        const age = await getAgeFromAPI();
+        return age;
+    }
+}
+
+class Dog extends Animal {
+    async getAge() {
+        const age = await super.getAge();
+        return age * 7;
+    }
+}
+```
+
+I'd expect when I call getAge on the Dog instance, it would call through to the getAge on the Animal prototype because of `super.getAge`.
+
+This actually throws an error saying `super.getAge` doesn't exist.
+
+This happens because the transpiler creates a co-routine inside the async class method. The code executes inside the co-routine closure and so the scope with super.getAge doesn't exist.
+
+The transpiled code looks like this.
+
+```javascript
+class Animal {
+    constructor(name) {
+        this.name = name;
+    }
+
+    getAge() {
+        return (0, _bluebird.coroutine)(function* () {
+            const age = yield getAgeFromAPI();
+            return age;
+        })();
+    }
+}
+
+class Dog extends Animal {
+    getAge() {
+        return (0, _bluebird.coroutine)(function* () {
+            const age = yield super.getAge();
+            return age * 7;
+        })();
+    }
+}
+```
+
+A workaround that we have been using is to call the parent class's prototype function and pass in the context via `Function.prototype.call`.
+
+```javascript
+class Dog extends Animal {
+    async getAge() {
+        const age = await Animal.prototype.getAge.call(this);
+        return age * 5;
+    }
+}
+```
+
+This now compiles to the following where we can see that the correct context is assigned to `_this` and passed into the parent's function of the same name.
+
+```javascript
+class Dog extends Animal {
+    getAge() {
+        var _this = this;
+
+        return (0, _bluebird.coroutine)(function* () {
+            const age = yield Animal.prototype.getAge.call(_this);
+            return age * 5;
+        })();
+    }
+}
+```
+
+Although not an ideal workaround, it does work perfectly.
+
+Maybe in the future `babel-plugin-transform-async-to-module-method` could detect the `super` keyword and swap it for the `Parent.prototype.function.call` and pass in the correct context.
+
+I've submitted this issue to the [Babel Phabricator bug list](https://phabricator.babeljs.io/T7346) and maybe sometime I'll dig into the plugin and submit a PR to solve this.

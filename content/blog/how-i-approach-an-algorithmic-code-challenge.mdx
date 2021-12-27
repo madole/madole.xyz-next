@@ -1,0 +1,30 @@
+---
+title: 'How I approach an algorithmic code challenge'
+date: '2019-07-12T05:59:56.344Z'
+slug: how-i-approach-an-algorithmic-code-challenge
+tags: ['code', 'thought process', 'methodology']
+---
+
+I approach different challenges in different ways. If it’s algorithmic, I’ll usually get the whiteboard out or if I’m not near a whiteboard, my iPad Pro is a good alternative. Before I put pen to ~~paper~~ whiteboard, I’ll do the necessary background work so I have some context around what I’m about to work on. 
+
+Then I’ll think about the steps that would need to happen to get from a set of inputs to an output and draw them out on the board. 
+
+When I’ve painted the broad brush strokes, having made a series of general steps in from A to B, I’ll start to thing about the detail. This usually takes the form of going through each step one by one and breaking them down into smaller steps, and loops. I’ll think about whats coming into the step and whats going out of the step. All the time writing English or at most pseudo-code. 
+
+Now that I have a whiteboard filled with scribbles, I’ll take a picture of it so its locked in. I’ve now got a good sense of how to implement the solution.
+
+At this point I’ll start to build out the individual functions. Depending on the context, I’ll probably use a bit of TDD here, where I know the inputs and outputs so I can write a test for them and then build the code to that contract. 
+
+I’ll do that for each of the steps and once that’s done, I write an integration test where I test each of the steps together. In reality, I’ll probably have run the code a few times in the context of the app I’m working in by this stage. But the integration test gives us a deterministic run of the code so we can make sure we’re doing the right things. 
+
+After this, I’ll make sure I’m covering not just the happy path, but the sad paths too. Is the code erroring in the way I expect it? Can it get into a state where there’s an unhandled error? 
+
+I’ll then run this inside the application, make sure I’m seeing everything that I should be seeing and give myself a pat of the back. ,
+
+When all of this is done, I’ll clean up my code in preparation for a code review. I usually commit a lot and push somewhat often. I’ll do a pull request but I wont put anyone on to review it just yet. I like to code review my own code as if it’s someone else’s code and when I’m happy with it, I’ll add reviewers to it. 
+
+This way, I’ve given the most amount of care to my code and hopefully given my colleagues an easier time with the code review as I’ve caught most of the silly mistakes up front by my pre-review process rather than have them have to point them out. 
+
+This is definitely the ideal case. Things like deadlines can mean that I don’t do all of these steps. 
+
+But when I am feeling overwhelmed with a task I’m trying to complete, I revert back to this process and I can move forward with my work methodically. 

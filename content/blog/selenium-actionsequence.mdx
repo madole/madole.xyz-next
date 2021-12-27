@@ -1,0 +1,56 @@
+---
+title: 'Selenium ActionSequence'
+date: '2015-11-07T12:34:54.000Z'
+slug: selenium-actionsequence
+tags: ['code']
+---
+
+## How to click outside the center of a div in a selenium test
+
+### Selenium test
+
+Should do something when an outer div, with an inner div placed in the middle in front, is clicked.
+
+### How to usually do this?
+
+```javascript
+
+driver.findElement(webdriver.By.className('outer')).then(function(element) {
+         element.click();
+    }
+```
+
+    Uncaught UnknownError: unknown error: Element is not clickable at point (170, 90).
+    Other element would receive the click: <div class="midde"></div>
+
+Say our test is trying to test that a video plays when an image is clicked.
+
+But our image has a play button overlay right in the center like below.
+
+![Imgur](https://i.imgur.com/YiEstuY.png)
+
+Selenium's default behaviour is to click right in the middle of your selected element.
+
+Because there is a "play" div over the top of it right in the middle, selenium complains that your element is not clickable.
+
+### How to get around this?
+
+[Selenium Docs: ActionSequence](https://selenium.googlecode.com/git/docs/api/javascript/class_webdriver_ActionSequence.html)
+
+Selenium's WebDriver ActionSequence provides a mouseMove function on its prototype
+
+```javascript
+WebDriver.ActionSequence.prototype.moveMouse();
+```
+
+We create an action sequence that moves the mouse to the outer div, but with an offset from its top left corner.
+
+```javascript
+new webdriver.ActionSequence(driver).moveMouse(outerElement, 10, 10).click(outerElement);
+```
+
+This will now click 10px in from the top of the outer element and 10px in from the left.
+
+By doing this we can now avoid clicking the middle div while clicking the outer div programmatically.
+
+> ([Photo](https://www.flickr.com/photos/plutor/847695350/in/photolist-2hUEi5-6NKGXj-6gpsdo-8xDr2F-5G3p2J-oYZ-gmwxeQ-8xGt8C-4G7dar-6fbi4T-c6riFs-bzioNc-cYeye5-aasa3P-cJ2Xr-sgtXjL-6LXtnm-oZpJHi-9nSqaq-cv4sP-5GQXzg-6fftNs-ucBuw-oZp17j-6jgdT-ay96hJ-6ffu6q-cLZgG-6hJ7Vv-8MnSeD-6fftVo-AzjEv-pLLvV-pTBeE-arJBfd-5XNWUb-5aJn1H-bHf3sn-GCY2o-8h3gj9-bukUqy-bHfDiD-oqLuqj-axjVop-bFMePa-31aUnn-bukguE-81nJ31-75yEJn-63mtum) / [CC](https://creativecommons.org/licenses/by/2.0/))

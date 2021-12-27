@@ -12,8 +12,6 @@ import styles from "../styles/side-projects.module.css";
 import { useMultiIntersectionObserver } from "../hooks/useMultiIntersectionObserver";
 import Head from "next/head";
 
-console.log({ styles });
-
 const data = [
   {
     image: threedcolors,

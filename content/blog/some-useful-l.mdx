@@ -1,0 +1,85 @@
+---
+title: 'Some useful everyday linux commands'
+date: '2015-11-07T12:22:16.000Z'
+slug: some-useful-l
+tags: ['code']
+---
+
+I decided to write down a list of every day commands that I use in the the Bash command line in Linux.
+This is by no means a definitive list and it will grow as I remember or come across commands that make
+my life easier
+
+### ls
+
+-       list information about files in the directory
+
+### ls -la
+
+-       list information about files in the directory
+-       *-l* means long listing format
+-       *-a* means list all files including ones that start with .
+
+### cd [directory]
+
+-       change directory to the specified directory
+
+### ps
+
+-       snapshot of the current processes
+
+### ps -ef
+
+-       *-e* select all processes
+-       *-f* full format listing
+
+### ps -ef | grep [processname]
+
+-       grep for the details of a specific process
+
+### alias (usually used in the bash profile to be persisted)
+
+-   _ll -> ls -la_
+-   Aliases for shortcuts to frequently visited directories
+-   Aliases to bash scripts I've written to automate things like sync'ing a github pages branch with master and pushing to the cloud
+
+### source [filename]
+
+-       source is a bash shell built-in command that executes the content of the file passed as argument, in the current shell. It has a synonym in '.' (period).
+
+### source ~/.bash_profile
+
+-       this has the effect of reloading the bash_profile so you don't have to kill & open the terminal to see changes
+
+### &&
+
+-       used for tying consecutive commands together
+-       example *$ cd Documents && ls -la*
+
+### &
+
+-   Can be used to run two tasks in parallel, the first tasks gets backgrounded
+
+### top
+
+-       Provides a real time summary of the processes running on your system.
+-       Can be used to see what's chewing up memory
+
+### Ctrl + R
+
+-       Reverse search through your bash command history
+
+### sudo
+
+-   run command as the superuser
+
+### sudo -u [user]
+
+-   run command as a different user
+
+### sudo !!
+
+-   run the last command as super user
+
+### vi [file]
+
+-       edit the file with vi text editor

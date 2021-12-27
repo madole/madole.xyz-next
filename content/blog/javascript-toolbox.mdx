@@ -1,0 +1,154 @@
+---
+title: 'Javascript Toolbox'
+date: '2015-11-01T00:27:54.000Z'
+slug: javascript-toolbox
+tags: ['code']
+---
+
+I write Javascript most days and have done so for a few years now. I still find new tools, websites, frameworks and
+ways to do things. I thought I'd write them down and get the list online as it may help other people discover some
+useful tools of the trade. If you have any suggestions, stick them in the comments section.
+
+##IDEs and editors
+
+###Sublime Text 2
+
+Your go to text editor. When you download it fresh, it won't feel like much but once you load it full of plugins
+that you can find at [Package Control](https://sublime.wbond.net/). It becomes a great tool for knocking up Javascript. I'll do another post on my sublime 2
+plugins later.
+
+[Sublime Text 2](https://www.sublimetext.com/)
+
+###Sublime Text 3
+
+The younger more unstable brother of Sublime Text 2. I use this even though it's still in beta because it allows
+JSGutter to run Node.js and jshint my code in real time instead of just on every save or load.
+
+[Sublime Text 3](https://www.sublimetext.com/3)
+
+###Webstorm
+
+I used Webstorm in a project in my previous job, and I'm not sure whether it was my laptop being substandard or Webstorm
+being a resource hungry beast but it was slow and sluggish for a JS IDE. But, fast forward a year, I'm not sure if it
+got more efficient or my machine upgrades provide it with the juice it needs but WHOAAA! I'm running it on both Fedora 20
+and OSX with i5 and i7 processors and 16Gb ram in each, it's the tool I was expecting it to be. Fast, great linting,
+unmatched intellisense. It's a great product. Sometimes you can get the feeling it's got too much on screen but it's
+just a case of finding the configuration that works for you. It is loaded with keyboard shortcuts so my advice is to
+print out a Webstorm cheatsheet and tack it to the wall beside your screen. When you start storing them in muscle
+memory, you'll barely even need a mouse in your life! Check out the [30 day trial](https://www.jetbrains.com/webstorm/download/)!
+
+[Webstorm](https://www.jetbrains.com/webstorm/)
+
+###Atom
+
+This is worth a mention and with a tagline of "The hackable text editor" its definitely one to keep an eye on. A Javascript
+editor written in Javascript! It's being developed by GitHub. Imagine Sublime Text that you can write your own plugins in
+Javascript! Cool...eh? I got on the beta trial a few months ago and it seemed a bit unstable but definitely a watch
+this space product! You can check out the [github page](https://github.com/atom) where the code is hosted, I was
+suprised to find it written in CoffeeScript. I'm quite happy about this as I've just made the move to CoffeeScript myself.
+
+[Atom.io](https://atom.io)
+
+##Online Javascript Playgrounds
+
+###Jsfiddle.net
+
+I like this webapp to test out exactly what happens in a particular scenario that you're not quite sure what way
+Javascript will react. Yesterday, I had a case during a code review I was doing where a setInterval as being assigned
+to a var and a clearInterval was being called a little later, but a deviation in the code path caused a second
+setInterval to be assigned to that same var. I had suspected then that the var would only hold reference to the
+last one and therefore keep the first one ticking on but just wanted to make sure. A few seconds later I confirmed
+it and dinged the commit explaining why. It's also useful that you can send your JSFiddle to the person to explain
+what you mean.
+
+[JSFiddle](https://jsfiddle.net)
+
+###JSbin.com
+
+Exactly the same idea as JSFiddle except I like the fact that it live reloads so you don't have to click a run button
+each time. Just write your JS and watch your logs appear in the console or output window
+
+[JSBin](https://jsbin.com)
+
+###Codepen.io
+
+A very clean interface that does much the same as the above two. I get the feeling this is more for mocking up full html
+pages rather than just knocking out a bit of Javascript though. Some very interesting demos on the "Picked Pens" section
+of the homepage
+
+[Codepen.io](https://codepen.io/)
+
+##Performance
+
+###JSPerf.com
+
+Great website for comparing the performance of different ways to do the same thing. For instance, whether an
+incrementing for loop is quicker than a decrementing for loop or while loop or a for in loop. My team mate did a
+blog post about this a few weeks ago
+([For Loop Performance](https://www.christopherlaughlin.co.uk/2014/06/29/Javascript-loop-performance/)).
+These are only micro-performance improvements, but in work, I write
+Javascript to run in a browser on embedded devices with limited resources so every little helps!
+
+[JSPerf](https://jsperf.com)
+
+##Podcasts
+
+###Javascript Jabber
+
+My favorite Javascript podcast. They do weekly shows and have people on who are either working for some of the top
+Javascript companies or are big contributors to the open source JS community.
+
+[Javascriptjabber.com/](https://Javascriptjabber.com/)
+
+###Frontside the podcast
+
+I've just started listening to this podcast and they seem to have a ton of interesting topics of discussion.
+Worth checking out.
+
+[Frontside the podcast](https://frontsidethepodcast.simplecast.fm/episodes)
+
+###Node up (& Node down)
+
+My teammate at CAM tech just told me about these podcasts, apparently NodeUp is an already established podcast and
+they're starting a NodeDown for the Southern Hemisphere. I'll be checking these out. You should too!
+
+[https://nodeup.com/](https://nodeup.com/)
+
+##Meetups
+
+I live in Sydney and there are many Javascript meetups. Just checkout [Meetup.com](https://www.meetup.com/).
+I've been meaning to get myself to [SydJS](https://www.sydjs.com/) and the Sydney NodeJs meetups.
+Someday I'll get there.
+
+###MongoDb Meetup
+MongoDb meetup is one I attend when I can. We use MongoDb in our side project so it's interesting to listen to case
+studies and experts talk about it. Also, Stennie ([@stennie](https://twitter.com/stennie)) and the rest of the Mongo
+crew are super friendly and always willing to help out if you have any issues with your Mongo implementation.
+
+[MongoDb Sydney User Group](https://www.google.com.au/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=0CBwQFjAA&url=http%3A%2F%2Fwww.meetup.com%2FSydney-MongoDB-User-Group%2F&ei=q0jGU8SNNYui8AWTuYDICA&usg=AFQjCNG382vYUazai3it5h71d3OhSurkVA&sig2=cI8e_dwfmgOW-cGpL2u4Ig)
+
+##Books
+
+###Javascript: The Good Parts - Douglas Crockford - O'Reilly
+
+The first Javascript book I ever read. Takes you through all the concepts and topics you need to know about to get
+on your way to being a great Javascript programmer.
+
+[Javascript: The Good Parts](https://shop.oreilly.com/product/9780596517748.do)
+
+###Clean Code - Robert C. Martin
+
+This is actually a book written about Java but I constantly refer to it no matter what language I write in which is
+why I'm including it in my list. It takes you through examples of bad code and explains why they are bad and how to
+make them better by transforming them into great looking, readable code. Because after all, 99% of the time, you're
+not writing code for you too look at, you're writing code which other people need to be able to maintain with ease.
+
+[Clean Code - Amazon](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882)
+
+###CoffeeScript Cookbook
+
+Just started reading through this online when I was learning CoffeeScript last week. Some great examples well laid
+out of all the different constructs and how they translate into Javascript. Along with the [CoffeeScript website](https://coffeescript.org/),
+you should be up and running in CoffeeScript in no time.
+
+[CoffeeScript Cookbook](https://coffeescriptcookbook.com/)

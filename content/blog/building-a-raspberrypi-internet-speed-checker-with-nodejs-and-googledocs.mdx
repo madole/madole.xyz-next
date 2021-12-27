@@ -1,0 +1,125 @@
+---
+title: 'Building a Raspberry Pi internet speed checker with NodeJS and GoogleDocs'
+date: '2017-03-18T16:25:23.000Z'
+slug: building-a-raspberrypi-internet-speed-checker-with-nodejs-and-googledocs
+tags: ['code']
+---
+
+I frequently experience periods of internet drop outs and wanted to build something to monitor my internet without any manual intervention. I wanted this to create an automated report for me so I could then email it off to my ISP and complain.
+
+So I set about looking on the internet for something that would do this. There are some options and there are a lot of home baked solutions in many different languages.
+
+After a while I remembered I had a Raspberry Pi gathering dust so I dug it out and set off.
+
+Here's how I did it...
+
+Things you'll need:
+
+-   Raspberry Pi
+-   SD card
+-   Ethernet cable
+-   Google account
+-   IFTTT account
+
+## Setting up your Raspberry Pi
+
+First of all, install Raspbian or some other linux disto on your Raspberry Pi. The simplist way to do this is using the NOOBS method which is described in detail [here. --> NOOBS](https://www.raspberrypi.org/downloads/noobs/)
+
+Make sure you've connected your Raspberry Pi to your router via ethernet cable to get the best results.
+
+Then make sure you've got NodeJS installed on the Pi.
+
+Open the terminal and type
+
+```bash
+$ node --version
+```
+
+If node is installed you should get a result with a version number similar to below.
+
+```bash
+v6.9.5
+```
+
+If you don't get a version number back, you can download and install NodeJs from [https://nodejs.org/en/download/](https://nodejs.org/en/download/).
+
+## Set up IFTTT trigger
+
+The results of each speed tests need to be pushed into the cloud, the easiest place for the results to end up is a google docs spreadsheet. We can leverage IFTTT's Maker Webhooks channel to get an endpoint which we can post to which will insert the results into a google doc.
+
+You should go to [https://ifttt.com/maker_webhooks](https://ifttt.com/maker_webhooks) and create a trigger and configure it to add a row to a spreadsheet.
+
+```
+If
+	Maker Event "speed-test",
+then
+	add row to spreadsheet in xxxxx@gmail.com’s Google Drive
+```
+
+This will create a unique key that looks something like `aslkjfadnadsknadsjknad`. Keep note of this, we'll use it soon.
+
+## Write your node app
+
+So now we've got the Raspberry Pi set up. We have to write the program which will run on a specified interval to do the speed test.
+
+We want this program to do 3 things.
+
+-   Run on a specified interval
+-   Do a internet speed test
+-   Post results to the cloud
+
+I'm going to use the [node-cron](https://www.npmjs.com/package/node-cron) package to run the speed test on a specified interval. For the speed test, I'm going to use [speedtest-net](https://www.npmjs.com/package/speedtest-net).
+
+Now, create a node application, and install the dependencies you'll need.
+(I've included isomorphic-fetch so we can easily make a request to our IFTTT endpoint)
+
+```bash
+$ mkdir node-speed-checker
+$ cd node-speed-checker
+$ npm init -y
+$ npm install node-cron speedtest-net isomorphic-fetch
+```
+
+Lets create a function that runs a speed test and then plucks the correct information from the returned data. We then want to create a querystring that we can append to our IFTTT trigger url. I've added an environment variable here called `IFTTT_KEY` so that we can push the key in when we run up the app.
+
+```javascript
+function runSpeedTest() {
+    speedTest({ maxTime: 5000 })
+        .on('data', data => {
+            console.dir(data);
+            const meta = {
+                client: data.client,
+                server: data.server,
+            };
+            const queryString = `value1=${data.speeds.download}&value2=${data.speeds.upload}&value3=${JSON.stringify(meta)}`;
+            const key = process.env.IFTTT_KEY;
+            fetch(`https://maker.ifttt.com/trigger/speed-test/with/key/${key}/?${queryString}`);
+        })
+        .on('error', err => {
+            console.error(err);
+        });
+}
+```
+
+Now that we have our function that will run the speed test, we need to set up the scheduler.
+
+```js
+cron.schedule('0 * * * *', runSpeedTest);
+```
+
+This will run `runSpeedTest` every hour on the hour.
+
+You can check out this full code at [https://github.com/madole/node-cron-speed-checker](https://github.com/madole/node-cron-speed-checker)
+
+Now, you just need to put your code onto your Raspberry Pi and run the app. The easiest way to do this is to push your code to a github repo, SSH into the Pi and clone the codebase.
+
+When you've done all this this, install the dependencies, set the IFTTT_KEY environment variable and run the app.
+
+```bash
+$ git clone https://github.com/madole/node-cron-speed-checker.git
+$ cd node-cron-speed-checker
+$ npm install
+$ IFTTT_KEY=aslkjfadnadsknadsjknad node index.js
+```
+
+This will now run a speed-test from your Raspberry Pi and log the results to your Google Spreadsheet. After a few days, you'll start to build up a result set and over a few weeks you'll have enough data to create some graphs and see your peak and low times.

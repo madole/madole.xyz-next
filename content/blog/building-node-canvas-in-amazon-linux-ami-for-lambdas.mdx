@@ -1,0 +1,61 @@
+---
+title: 'Building node-canvas in Amazon Linux AMI for Lambdas'
+date: '2017-10-08T18:06:13.000Z'
+slug: building-node-canvas-in-amazon-linux-ami-for-lambdas
+tags: ['code']
+---
+
+Building node-canvas for use inside an AWS Lambda is tricky as it requires some dependencies to be built by node-gyp against the target architecture. If you build these dependencies locally before deploying your lambda, they'll be built on against your computer's architecture.
+
+Amazon Lambdas run Amazon Linux AMI instances. Luckily this distro is available in docker the docker hub (https://hub.docker.com/_/amazonlinux/)
+
+You'll need to mount your app into this docker instance, build all the dependencies then deploy you app to Lambda.
+
+**Follow the steps ahead:**
+
+_Run up docker in interactive mode and mount your project directory into it._
+
+```bash
+$ docker run -it  -v $PWD:/opt/app  amazonlinux /bin/bash
+```
+
+_Install nvm_
+
+```bash
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.0/install.sh | bash
+```
+
+_Set up NVM and install the node version you want in your lambda_
+
+```bash
+. ~/.nvm/nvm.sh
+nvm install 6.10.0
+```
+
+_Install the node-canvas dependencies_
+
+```bash
+yum install cairo-devel libjpeg-turbo-devel giflib-devel -y
+```
+
+_Install the development tools with yum, this will give you g++ to run the make files needed to build with node-gyp_
+
+```bash
+yum groupinstall 'Development Tools'
+```
+
+_Install node-gyp and node-pre-gyp_
+
+```bash
+npm i -g node-gyp
+```
+
+_Install node-canvas_
+
+```bash
+npm i canvas
+```
+
+And you're done! This should get you round most of the issues when building node-canvas for lambdas.
+
+All that's left to do is deploy to lambda, set up your API Gateway and off you go!
