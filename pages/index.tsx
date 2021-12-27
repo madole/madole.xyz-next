@@ -30,7 +30,7 @@ const Index: React.FC<IndexProps> = (props) => {
   return (
     <>
       <Head>
-        <title>`Homepage | Madole.xyz`</title>
+        <title>Homepage | Madole.xyz</title>
       </Head>
       <div className="absolute inset-0 flex flex-col justify-between background">
         <a href="#main-content" className="sr-only">

@@ -33,7 +33,7 @@ export default function BlogPost(props: Props): JSX.Element {
   return (
     <Layout>
       <Head>
-        <title>{title} - Madole.xyz</title>
+        <title>{title} | Madole.xyz</title>
       </Head>
       <section
         id="main-content"
