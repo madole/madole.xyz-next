@@ -65,6 +65,7 @@ export const getStaticProps = () => {
         "utf8"
       );
       const data = frontmatter<Post>(file);
+      console.log({ data });
       const timeToRead = readingTime(data.body);
       return {
         ...(data.attributes as {}),
