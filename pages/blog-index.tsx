@@ -40,6 +40,7 @@ const BlogIndex: React.FC<BlogIndexProps> = (props) => {
             date={post.date}
             timeToRead={post.timeToRead.text}
             slug={"blog/" + post.slug ?? `${post.title.split(" ").join("-")}`}
+            tags={post.tags}
             key={post.title}
           />
         ))}
