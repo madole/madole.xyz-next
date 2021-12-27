@@ -37,7 +37,7 @@ const Index: React.FC<IndexProps> = (props) => {
           Skip to main content
         </a>
 
-        <div className="absolute bottom-0 right-0">
+        <div className="absolute bottom-8 md:bottom-0 right-0">
           <Image
             src="/bitmoji.png"
             alt="Me, a bitmoji"
