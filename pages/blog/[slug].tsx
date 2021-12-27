@@ -53,7 +53,7 @@ export default function BlogPost(props: Props): JSX.Element {
           <MDXRemote {...body} components={mdxComponents} />
         </article>
         <ul className="flex gap-1 flex-wrap justify-center mt-6">
-          {tags.map((tag) => (
+          {tags?.map((tag) => (
             <li
               key={tag}
               className="bg-purple-300 px-2 rounded uppercase hover:bg-blue-500 hover:text-white text-sm font-semibold"
