@@ -36,6 +36,7 @@ export default function BlogPost(props: Props): JSX.Element {
     <Layout>
       <Head>
         <title>{title} | Madole.xyz</title>
+        <meta name="description" content={`${title} blog post`} />
       </Head>
       <section
         id="main-content"

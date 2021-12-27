@@ -6,6 +6,7 @@ import Link from "next/link";
 import { IndexListItem } from "../components/IndexListItem";
 import readingTime from "reading-time";
 import { Layout } from "../components/Layout";
+import Head from "next/head";
 
 interface Post {
   title: string;
@@ -28,6 +29,10 @@ const BlogIndex: React.FC<BlogIndexProps> = (props) => {
   const { blogPostsMetadata } = props;
   return (
     <Layout>
+      <Head>
+        <title>Blog | Madole.xyz</title>
+        <meta name="description" content="Blog index for Madole.xyz" />
+      </Head>
       <section
         id="main-content"
         className="w-11/12 p-8 md:py-8 md:px-20 my-4 overflow-hidden bg-white rounded lg:w-4/6 lg:shadow-lg h-full mb-6 "

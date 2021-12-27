@@ -31,7 +31,7 @@ function Footer(): JSX.Element {
         GitHub Repository
       </a>
       <div>Last build: {process.env.CONFIG_BUILD_ID}</div>
-      <RssFeed />
+      {/*<RssFeed />*/}
     </div>
   );
 }
