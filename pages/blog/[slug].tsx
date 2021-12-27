@@ -10,6 +10,7 @@ import { MDXRemote } from "next-mdx-remote";
 import rehypePrism from "@mapbox/rehype-prism";
 import "prismjs/themes/prism-tomorrow.css";
 import { mdxComponents } from "../../components/mdx/mdx-components";
+import { parseMdxContent } from "../../utils/parseMdxContent";
 
 interface Props {
   data: {
@@ -51,6 +52,16 @@ export default function BlogPost(props: Props): JSX.Element {
           {/* @ts-ignore */}
           <MDXRemote {...body} components={mdxComponents} />
         </article>
+        <ul className="flex gap-1 flex-wrap justify-center mt-6">
+          {tags.map((tag) => (
+            <li
+              key={tag}
+              className="bg-purple-300 px-2 rounded uppercase hover:bg-blue-500 hover:text-white text-sm font-semibold"
+            >
+              {tag}
+            </li>
+          ))}
+        </ul>
       </section>
     </Layout>
   );
@@ -78,21 +89,6 @@ export async function getStaticProps({ params }: { params: { slug: string } }) {
     path.join(process.cwd(), "content/blog", slug),
     "utf8"
   );
-  const data = frontmatter<PostAttributes>(content);
-  const timeToRead = readingTime(data.body).text;
-  const compiledBody = await serialize(data.body, {
-    mdxOptions: {
-      rehypePlugins: [rehypePrism],
-    },
-  });
-  const newData = {
-    ...data,
-    attributes: {
-      ...data.attributes,
-      timeToRead,
-      date: data.attributes.date.toString(),
-    },
-    body: compiledBody,
-  };
-  return { props: { data: newData } };
+  const data = await parseMdxContent<PostAttributes>(content);
+  return { props: { data } };
 }

@@ -2,16 +2,12 @@ import Head from "next/head";
 import React from "react";
 import fs from "fs";
 import path from "path";
-import frontmatter from "front-matter";
-import readingTime from "reading-time";
 import Link from "next/link";
 import { Layout } from "../../components/Layout";
-import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote } from "next-mdx-remote";
-import RedText from "../../components/mdx/RedText";
-import rehypePrism from "@mapbox/rehype-prism";
 import "prismjs/themes/prism-tomorrow.css";
 import { mdxComponents } from "../../components/mdx/mdx-components";
+import { parseMdxContent } from "../../utils/parseMdxContent";
 
 export interface TodayILearnedProps extends PostAttributes {
   data: {
@@ -91,21 +87,6 @@ export async function getStaticProps({ params }: { params: { slug: string } }) {
     path.join(process.cwd(), "content/today-i-learned", slug),
     "utf8"
   );
-  const data = frontmatter<PostAttributes>(content);
-  const timeToRead = readingTime(data.body).text;
-  const compiledBody = await serialize(data.body, {
-    mdxOptions: {
-      rehypePlugins: [rehypePrism],
-    },
-  });
-  const newData = {
-    ...data,
-    attributes: {
-      ...data.attributes,
-      timeToRead,
-      date: data.attributes.date.toString(),
-    },
-    body: compiledBody,
-  };
-  return { props: { data: newData } };
+  const data = await parseMdxContent<PostAttributes>(content);
+  return { props: { data } };
 }
