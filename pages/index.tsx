@@ -3,6 +3,7 @@ import Head from "next/head";
 import Link from "next/link";
 import useInterval from "../hooks/useInterval";
 import Image from "next/image";
+import { Navigation } from "../components/Navigation";
 
 export interface IndexProps {}
 
@@ -46,39 +47,7 @@ const Index: React.FC<IndexProps> = (props) => {
           />
         </div>
 
-        <nav className="flex justify-between px-8 py-4">
-          <Link href="/">
-            <a
-              className="font-bold text-white no-underline uppercase"
-              rel="noreferrer"
-            >
-              MADOLE<span className="opacity-75 hover:opacity-100">.XYZ</span>
-            </a>
-          </Link>
-          <div className="flex justify-end py-1">
-            <Link href="/resume">
-              <a className="font-light text-white no-underline opacity-75 hover:opacity-100">
-                Resume
-              </a>
-            </Link>
-            <Link href="/blog-index">
-              <a className="ml-4 font-light text-white no-underline opacity-75 hover:opacity-100">
-                Blog
-              </a>
-            </Link>
-            <Link href="/today-i-learned">
-              <a className="ml-4 font-light text-white no-underline opacity-75 hover:opacity-100">
-                Today I learned
-              </a>
-            </Link>
-
-            <Link href="/side-projects">
-              <a className="ml-4 font-light text-white no-underline opacity-75 hover:opacity-100">
-                Side Projects
-              </a>
-            </Link>
-          </div>
-        </nav>
+        <Navigation />
 
         <main
           id="main-content"
