@@ -267,8 +267,8 @@ function Resume(): JSX.Element {
             and development cycle
             <Spacer />
             - Interview candidates for our frontend team
-            <Spacer />- Work with clients during engagements to make sure we're
-            delivering on their needs
+            <Spacer />- Work with clients during engagements to make sure
+            we&apos;re delivering on their needs
           </Card>
         </Column>
         <Column title="2016-December 2020">

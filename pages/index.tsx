@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import useInterval from "../hooks/useInterval";
+import Image from "next/image";
 
 export interface IndexProps {}
 
@@ -36,25 +37,24 @@ const Index: React.FC<IndexProps> = (props) => {
         </a>
 
         <div className="absolute bottom-0 right-0">
-          <picture>
-            <source srcSet="/bitmoji.webp" type="image/webp" />
-            <source srcSet="/bitmoji.png" type="image/png" />
-            <img
-              src="/bitmoji.png"
-              alt="Bitmoji"
-              className="animate-slowFadeIn h-48 lg:h-64 pb-12"
-            />
-          </picture>
+          <Image
+            src="/bitmoji.png"
+            alt="Me, a bitmoji"
+            className="animate-slowFadeIn h-48 lg:h-64 pb-12"
+            width={200}
+            height={200}
+          />
         </div>
 
         <nav className="flex justify-between px-8 py-4">
-          <a
-            href="/"
-            className="font-bold text-white no-underline uppercase"
-            rel="noopener"
-          >
-            MADOLE<span className="opacity-75 hover:opacity-100">.XYZ</span>
-          </a>
+          <Link href="/">
+            <a
+              className="font-bold text-white no-underline uppercase"
+              rel="noreferrer"
+            >
+              MADOLE<span className="opacity-75 hover:opacity-100">.XYZ</span>
+            </a>
+          </Link>
           <div className="flex justify-end py-1">
             <Link href="/resume">
               <a className="font-light text-white no-underline opacity-75 hover:opacity-100">
@@ -106,7 +106,7 @@ const Index: React.FC<IndexProps> = (props) => {
           <a
             href="https://github.com/madole"
             target="_blank"
-            rel="noopener"
+            rel="noreferrer"
             className="font-light text-white no-underline opacity-75 hover:opacity-100"
           >
             Github
@@ -115,7 +115,7 @@ const Index: React.FC<IndexProps> = (props) => {
             href="https://twitter.com/madole"
             target="_blank"
             className="font-light text-white no-underline opacity-75 hover:opacity-100"
-            rel="noopener"
+            rel="noreferrer"
           >
             Twitter
           </a>
@@ -123,7 +123,7 @@ const Index: React.FC<IndexProps> = (props) => {
             href="https://www.linkedin.com/in/andrew-mcdowell-0092649b/"
             target="_blank"
             className="font-light text-white no-underline opacity-75 hover:opacity-100"
-            rel="noopener"
+            rel="noreferrer"
           >
             Linkedin
           </a>

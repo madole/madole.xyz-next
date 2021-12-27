@@ -13,6 +13,7 @@ const Comment = (props: CommentProps) => {
   const { date, columnName } = props;
   return (
     <div className="flex items-center">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src="https://avatars1.githubusercontent.com/u/3341965?s=460&v=4"
         alt="avatar"
@@ -32,6 +33,7 @@ const Comment = (props: CommentProps) => {
 const Input = () => {
   return (
     <div className="flex items-center my-4">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src="https://avatars1.githubusercontent.com/u/3341965?s=460&v=4"
         alt="avatar"
