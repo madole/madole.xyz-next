@@ -11,7 +11,7 @@ import { MDXRemote } from "next-mdx-remote";
 import RedText from "../../components/mdx/RedText";
 import rehypePrism from "@mapbox/rehype-prism";
 import "prismjs/themes/prism-tomorrow.css";
-import { mdxComponents } from "../components/mdx/mdx-components";
+import { mdxComponents } from "../../components/mdx/mdx-components";
 
 export interface TodayILearnedProps extends PostAttributes {
   data: {

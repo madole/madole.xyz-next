@@ -1,6 +1,6 @@
-import RedText from "../../../components/mdx/RedText";
-import Code from "../../../components/mdx/Code";
-import MeetTheTeamBackup from "../../../components/mdx/MeetTheTeamBackup";
+import RedText from "./RedText";
+import Code from "./Code";
+import MeetTheTeamBackup from "./MeetTheTeamBackup";
 
 export const mdxComponents = {
   RedText,

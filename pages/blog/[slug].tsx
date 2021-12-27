@@ -9,7 +9,7 @@ import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote } from "next-mdx-remote";
 import rehypePrism from "@mapbox/rehype-prism";
 import "prismjs/themes/prism-tomorrow.css";
-import { mdxComponents } from "../components/mdx/mdx-components";
+import { mdxComponents } from "../../components/mdx/mdx-components";
 
 interface Props {
   data: {
