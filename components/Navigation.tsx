@@ -12,6 +12,7 @@ export const Navigation = withRouter(({ router }) => {
       <div className={`py-6 md:hidden ${isHomepage ? "hidden" : ""}`}>
         {/* Mobile menu */}
         <button
+          aria-label="Open navigation menu"
           onClick={() => {
             setMenuOpen(!menuOpen);
           }}
