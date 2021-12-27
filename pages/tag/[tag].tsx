@@ -85,7 +85,6 @@ export const getStaticProps = (context: { params: { tag: string } }) => {
 
   const blogPostsMetadata = filenames
     .map((filename) => {
-      // use frontmatter to read the titles of each blog post
       const file = fs.readFileSync(
         path.join(process.cwd(), "content/blog", filename),
         "utf8"
