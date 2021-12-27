@@ -37,7 +37,7 @@ const Index: React.FC<IndexProps> = (props) => {
           Skip to main content
         </a>
 
-        <div className="absolute bottom-7 md:bottom-0 right-0">
+        <div className="absolute bottom-7 xl:bottom-0 right-0 hidden sm:block">
           <Image
             src="/bitmoji.png"
             alt="Me, a bitmoji"
@@ -51,7 +51,7 @@ const Index: React.FC<IndexProps> = (props) => {
 
         <main
           id="main-content"
-          className="flex flex-col justify-center flex-grow px-10 md:px-20 lg:px-32"
+          className="flex flex-col justify-center flex-grow px-8 md:px-20 lg:px-32"
         >
           <div className="relative h-40 text-6xl leading-none text-white md:h-24 md:leading-tight">
             <span key={title} className="animate-slowFadeIn absolute top-0">
@@ -62,10 +62,10 @@ const Index: React.FC<IndexProps> = (props) => {
               className="animate-horizontalBounce absolute bottom-0 h-1 bg-white rounded md:h-2"
             />
           </div>
-          <div className="p-3 pl-0 text-3xl font-light text-white opacity-75">
+          <div className="p-3 pl-0 text-2xl md:text-3xl font-light text-white opacity-75">
             Work hard, play harder.
           </div>
-          <div className="text-3xl font-light text-white">
+          <div className="text-2xl md:text-3xl font-light text-white">
             Specialising in building rich, interactive web applications and
             leading software engineering teams.
           </div>
