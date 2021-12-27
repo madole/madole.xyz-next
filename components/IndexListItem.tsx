@@ -1,5 +1,6 @@
 import * as React from "react";
 import Link from "next/link";
+import { Tags } from "./Tags";
 
 interface Props {
   title: string;
@@ -49,16 +50,7 @@ export function IndexListItem(props: Props): JSX.Element {
         {isInvalidDate(dateString) ? date : dateString} &mdash; {timeToRead}
       </div>
       <div className="pt-2">{excerpt}</div>
-      <ul className="flex gap-1 flex-wrap justify-start">
-        {tags?.map((tag) => (
-          <li
-            key={tag}
-            className="px-2 rounded uppercase hover:bg-blue-500 hover:text-white text-sm font-light bg-gray-200"
-          >
-            {tag}
-          </li>
-        ))}
-      </ul>
+      <Tags tags={tags} />
     </div>
   );
 }

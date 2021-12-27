@@ -2,17 +2,19 @@ import React from "react";
 import * as fs from "fs";
 import path from "path";
 import frontmatter from "front-matter";
-import Link from "next/link";
-import { IndexListItem } from "../components/IndexListItem";
+import { IndexListItem } from "../../components/IndexListItem";
 import readingTime from "reading-time";
-import { Layout } from "../components/Layout";
+import { Layout } from "../../components/Layout";
+
+function dedupeArray<T>(arr: T[]) {
+  return Array.from(new Set(arr));
+}
 
 interface Post {
   title: string;
   date: string;
-  excerpt?: string;
-  tags?: string[];
   slug: string;
+  tags?: string[];
   timeToRead: {
     text: string;
     minutes: number;
@@ -20,12 +22,13 @@ interface Post {
   };
 }
 
-export interface BlogIndexProps {
+export interface TagPageProps {
   blogPostsMetadata: Post[];
+  tag: string;
 }
 
-const BlogIndex: React.FC<BlogIndexProps> = (props) => {
-  const { blogPostsMetadata } = props;
+const TagPage: React.FC<TagPageProps> = (props) => {
+  const { blogPostsMetadata, tag } = props;
   return (
     <Layout>
       <section
@@ -33,7 +36,7 @@ const BlogIndex: React.FC<BlogIndexProps> = (props) => {
         className="w-11/12 p-8 md:py-8 md:px-20 my-4 overflow-hidden bg-white rounded lg:w-4/6 lg:shadow-lg h-full mb-6 "
       >
         <h1 className="prose pb-1 text-2xl font-semibold text-center lg:text-4xl">
-          Latest Blog Posts
+          Tag: {tag}
         </h1>
         {blogPostsMetadata.map((post) => (
           <IndexListItem
@@ -53,10 +56,33 @@ const BlogIndex: React.FC<BlogIndexProps> = (props) => {
   );
 };
 
-export default BlogIndex;
+export default TagPage;
 
-export const getStaticProps = () => {
+export function getStaticPaths() {
   const filenames = fs.readdirSync(path.join(process.cwd(), "content/blog"));
+  const tags = dedupeArray<string>(
+    filenames.flatMap((filename) => {
+      // use frontmatter to read the titles of each blog post
+      const file = fs.readFileSync(
+        path.join(process.cwd(), "content/blog", filename),
+        "utf8"
+      );
+      const data = frontmatter<Post>(file);
+      return data.attributes.tags as string[];
+    })
+  );
+  return {
+    paths: tags.map((tag) => "/tag/" + tag?.split(" ").join("-")),
+    fallback: false,
+  };
+}
+
+export const getStaticProps = (context: { params: { tag: string } }) => {
+  const {
+    params: { tag },
+  } = context;
+  const filenames = fs.readdirSync(path.join(process.cwd(), "content/blog"));
+
   const blogPostsMetadata = filenames
     .map((filename) => {
       // use frontmatter to read the titles of each blog post
@@ -65,6 +91,14 @@ export const getStaticProps = () => {
         "utf8"
       );
       const data = frontmatter<Post>(file);
+      const lowercaseTags =
+        data.attributes.tags?.map((tag) => tag.toLowerCase()) ?? [];
+      if (
+        !lowercaseTags.includes(tag) &&
+        !lowercaseTags.includes(tag.split("-").join(" "))
+      ) {
+        return null;
+      }
       const timeToRead = readingTime(data.body);
       return {
         ...(data.attributes as {}),
@@ -73,6 +107,8 @@ export const getStaticProps = () => {
         slug: filename.split(".mdx")[0],
       };
     })
+    .filter((post) => post !== null)
+    // @ts-ignore -> Filtering out nulls above
     .sort((a, b) => (new Date(a.date) < new Date(b.date) ? 1 : -1));
-  return { props: { blogPostsMetadata } };
+  return { props: { blogPostsMetadata, tag } };
 };

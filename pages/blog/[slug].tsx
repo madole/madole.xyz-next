@@ -11,6 +11,7 @@ import rehypePrism from "@mapbox/rehype-prism";
 import "prismjs/themes/prism-tomorrow.css";
 import { mdxComponents } from "../../components/mdx/mdx-components";
 import { parseMdxContent } from "../../utils/parseMdxContent";
+import { Tags } from "../../components/Tags";
 
 interface Props {
   data: {
@@ -52,16 +53,7 @@ export default function BlogPost(props: Props): JSX.Element {
           {/* @ts-ignore */}
           <MDXRemote {...body} components={mdxComponents} />
         </article>
-        <ul className="flex gap-1 flex-wrap justify-center mt-6">
-          {tags?.map((tag) => (
-            <li
-              key={tag}
-              className="px-2 rounded uppercase hover:bg-blue-500 hover:text-white text-sm font-light bg-gray-200"
-            >
-              {tag}
-            </li>
-          ))}
-        </ul>
+        <Tags tags={tags} />
       </section>
     </Layout>
   );
