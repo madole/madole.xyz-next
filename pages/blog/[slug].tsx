@@ -54,7 +54,9 @@ export default function BlogPost(props: Props): JSX.Element {
           {/* @ts-ignore */}
           <MDXRemote {...body} components={mdxComponents} />
         </article>
-        <Tags tags={tags} />
+        <div className="m-6">
+          <Tags tags={tags} />
+        </div>
       </section>
     </Layout>
   );
