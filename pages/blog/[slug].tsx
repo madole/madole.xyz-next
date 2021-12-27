@@ -11,11 +11,7 @@ import RedText from "../../components/mdx/RedText";
 import rehypePrism from "@mapbox/rehype-prism";
 import "prismjs/themes/prism-tomorrow.css";
 import Code from "../../components/mdx/Code";
-import Paragraph from "../../components/mdx/Paragraph";
 import MeetTheTeamBackup from "../../components/mdx/MeetTheTeamBackup";
-import { H1, H2, H3, H4, H5 } from "../../components/mdx/Headings";
-import { Ul } from "../../components/mdx/Lists";
-import Hyperlink from "../../components/mdx/Hyperlink";
 
 interface Props {
   data: {
@@ -33,15 +29,15 @@ interface Props {
 const components = {
   RedText,
   inlineCode: Code,
-  p: Paragraph,
   MeetTheTeamBackup,
-  h1: H1,
-  h2: H2,
-  h3: H3,
-  h4: H4,
-  h5: H5,
-  ul: Ul,
-  a: Hyperlink,
+  // p: Paragraph,
+  // h1: H1,
+  // h2: H2,
+  // h3: H3,
+  // h4: H4,
+  // h5: H5,
+  // ul: Ul,
+  // a: Hyperlink,
 };
 
 export default function BlogPost(props: Props): JSX.Element {
@@ -57,15 +53,17 @@ export default function BlogPost(props: Props): JSX.Element {
       </Head>
       <section
         id="main-content"
-        className="w-full md:max-w-3xl 2xl:max-w-5xl p-8 my-4 overflow-hidden bg-white rounded lg:shadow-lg h-full"
+        className="w-full md:max-w-3xl 2xl:max-w-5xl p-8 my-4 overflow-hidden bg-white rounded lg:shadow-lg h-full flex flex-col justify-center items-center"
       >
         <div className="flex flex-col items-center pb-4">
-          <h1 className="pb-1 text-4xl font-semibold text-center">{title}</h1>
-          <div className="pt-2 text-lg font-light italic">
+          <h1 className="prose pb-1 text-4xl font-semibold text-center">
+            {title}
+          </h1>
+          <div className="prose pt-2 font-light">
             {new Date(date).toLocaleDateString()} &mdash; {timeToRead}
           </div>
         </div>
-        <article className="post">
+        <article className="prose prose-slate">
           {/* @ts-ignore */}
           <MDXRemote {...body} components={components} />
         </article>

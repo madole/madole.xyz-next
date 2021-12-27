@@ -29,9 +29,9 @@ const BlogIndex: React.FC<BlogIndexProps> = (props) => {
     <Layout>
       <section
         id="main-content"
-        className="w-11/12 p-8 my-4 overflow-hidden bg-white rounded lg:w-4/6 lg:shadow-lg h-full mb-6"
+        className="w-11/12 p-8 my-4 overflow-hidden bg-white rounded lg:w-4/6 lg:shadow-lg h-full mb-6 "
       >
-        <h1 className="pb-1 text-2xl font-semibold text-center lg:text-4xl">
+        <h1 className="prose pb-1 text-2xl font-semibold text-center lg:text-4xl">
           Latest Blog Posts
         </h1>
         {blogPostsMetadata.map((post) => (

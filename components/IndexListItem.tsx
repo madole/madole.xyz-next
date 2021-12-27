@@ -38,13 +38,13 @@ export function IndexListItem(props: Props): JSX.Element {
 
   return (
     <div className="flex flex-col py-2 lg:py-4">
-      <h2 className="pb-2 text-lg lg:text-3xl">
+      <div className="prose pb-2 text-lg lg:text-3xl prose-a:no-underline">
         <Link href={addSlashPrefix(slug)}>
           <a className="hover:bg-blue-400 hover:text-white p-2 rounded">
             {title}
           </a>
         </Link>
-      </h2>
+      </div>
       <div className="px-2 text-sm font-light">
         {isInvalidDate(dateString) ? date : dateString} &mdash; {timeToRead}
       </div>
