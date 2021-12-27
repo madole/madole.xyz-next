@@ -20,7 +20,6 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "reading-time": "^1.5.0",
-    "remark-gfm": "^3.0.1",
     "sharp": "^0.29.3"
   },
   "devDependencies": {

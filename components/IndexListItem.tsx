@@ -40,7 +40,7 @@ export function IndexListItem(props: Props): JSX.Element {
   return (
     <div className="flex flex-col py-2 lg:py-4">
       <Link href={addSlashPrefix(slug)}>
-        <a className="hover:text-white hover:bg-blue-400 prose pb-2 text-lg lg:text-3xl prose-a:no-underline md:p-1 rounded">
+        <a className="hover:text-white hover:bg-blue-400 prose pb-2 text-lg lg:text-3xl font-light prose-a:no-underline md:p-1 rounded">
           {title}
         </a>
       </Link>
