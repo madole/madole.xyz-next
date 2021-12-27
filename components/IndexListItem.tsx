@@ -19,6 +19,7 @@ function addSlashPrefix(slug: string) {
   }
   return `/${slug}`;
 }
+
 const dateStringOptions = {
   weekday: "long",
   year: "numeric",
@@ -38,14 +39,12 @@ export function IndexListItem(props: Props): JSX.Element {
 
   return (
     <div className="flex flex-col py-2 lg:py-4">
-      <div className="prose pb-2 text-lg lg:text-3xl prose-a:no-underline">
-        <Link href={addSlashPrefix(slug)}>
-          <a className="hover:bg-blue-400 hover:text-white p-2 rounded">
-            {title}
-          </a>
-        </Link>
-      </div>
-      <div className="px-2 text-sm font-light">
+      <Link href={addSlashPrefix(slug)}>
+        <a className="hover:text-white hover:bg-blue-400 prose pb-2 text-lg lg:text-3xl prose-a:no-underline md:p-1 rounded">
+          {title}
+        </a>
+      </Link>
+      <div className="md:px-2 text-sm font-light">
         {isInvalidDate(dateString) ? date : dateString} &mdash; {timeToRead}
       </div>
       <div className="pt-2">{excerpt}</div>

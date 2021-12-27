@@ -6,6 +6,7 @@ import frontmatter from "front-matter";
 import readingTime from "reading-time";
 import { useRouter } from "next/router";
 import { Layout } from "../components/Layout";
+import { IndexListItem } from "../components/IndexListItem";
 
 export interface TodayILearnedProps {
   postsMetadata: {
@@ -19,48 +20,30 @@ export interface TodayILearnedProps {
 
 const TodayILearned: React.FC<TodayILearnedProps> = (props) => {
   const { postsMetadata } = props;
-  const router = useRouter();
   return (
     <Layout>
-      <Head>
-        <title>Today I Learned | Madole.xyz</title>
-      </Head>
-      <section className="flex items-center flex-col w-full">
-        <h1 className="text-4xl text-white text-center m-5">Today I learned</h1>
-        <table
-          className="bg-white rounded-xl overflow-hidden mb-5 w-10/12"
-          cellPadding="20"
-        >
-          <thead>
-            <tr>
-              <th className="hidden md:table-cell">Title</th>
-              <th className="hidden md:table-cell">Time To Read</th>
-              <th className="hidden md:table-cell">Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            {postsMetadata.map((post) => {
-              const link = `/today-i-learned/${post.slug}`;
-              return (
-                <tr
-                  key={post.filename}
-                  className="hover:bg-gray-100 cursor-pointer"
-                  onClick={() => {
-                    router.push(link);
-                  }}
-                >
-                  <td className="border-2 md:border-0">{post.title}</td>
-                  <td className="hidden md:table-cell">
-                    {post.timeToRead} minute
-                  </td>
-                  <td className="hidden md:table-cell">
-                    {new Date(post.date).toLocaleDateString()}
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+      <section
+        id="main-content"
+        className="w-11/12 p-8 md:py-8 md:px-20 my-4 overflow-hidden bg-white rounded lg:w-4/6 lg:shadow-lg h-full mb-6 "
+      >
+        <h1 className="prose pb-1 text-2xl font-semibold text-center lg:text-4xl">
+          Today I learned
+        </h1>
+        {postsMetadata.map((post) => (
+          <IndexListItem
+            title={post.title}
+            date={post.date}
+            timeToRead={post.timeToRead}
+            slug={
+              "today-i-learned/" + post.slug ??
+              `${post.title.split(" ").join("-")}`
+            }
+            key={post.title}
+          />
+        ))}
+        <div className="flex justify-center">
+          Post count: {postsMetadata.length}
+        </div>
       </section>
     </Layout>
   );

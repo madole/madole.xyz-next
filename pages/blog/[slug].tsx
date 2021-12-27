@@ -7,11 +7,9 @@ import { Layout } from "../../components/Layout";
 import Head from "next/head";
 import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote } from "next-mdx-remote";
-import RedText from "../../components/mdx/RedText";
 import rehypePrism from "@mapbox/rehype-prism";
 import "prismjs/themes/prism-tomorrow.css";
-import Code from "../../components/mdx/Code";
-import MeetTheTeamBackup from "../../components/mdx/MeetTheTeamBackup";
+import { mdxComponents } from "../components/mdx/mdx-components";
 
 interface Props {
   data: {
@@ -25,20 +23,6 @@ interface Props {
     body: string;
   };
 }
-
-const components = {
-  RedText,
-  inlineCode: Code,
-  MeetTheTeamBackup,
-  // p: Paragraph,
-  // h1: H1,
-  // h2: H2,
-  // h3: H3,
-  // h4: H4,
-  // h5: H5,
-  // ul: Ul,
-  // a: Hyperlink,
-};
 
 export default function BlogPost(props: Props): JSX.Element {
   const {
@@ -56,7 +40,7 @@ export default function BlogPost(props: Props): JSX.Element {
         className="w-full md:max-w-3xl 2xl:max-w-5xl p-8 my-4 overflow-hidden bg-white rounded lg:shadow-lg h-full flex flex-col justify-center items-center"
       >
         <div className="flex flex-col items-center pb-4">
-          <h1 className="prose pb-1 text-4xl font-semibold text-center">
+          <h1 className="prose pb-1 text-4xl font-semibold text-center px-20">
             {title}
           </h1>
           <div className="prose pt-2 font-light">
@@ -65,7 +49,7 @@ export default function BlogPost(props: Props): JSX.Element {
         </div>
         <article className="prose prose-slate">
           {/* @ts-ignore */}
-          <MDXRemote {...body} components={components} />
+          <MDXRemote {...body} components={mdxComponents} />
         </article>
       </section>
     </Layout>
