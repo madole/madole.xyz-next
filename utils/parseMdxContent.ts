@@ -2,6 +2,7 @@ import frontmatter from "front-matter";
 import readingTime from "reading-time";
 import { serialize } from "next-mdx-remote/serialize";
 import rehypePrism from "@mapbox/rehype-prism";
+import remarkGfm from "remark-gfm";
 
 interface BaseMdxContent {
   title: string;
@@ -15,6 +16,8 @@ export async function parseMdxContent<T extends BaseMdxContent>(
   const compiledBody = await serialize(data.body, {
     mdxOptions: {
       rehypePlugins: [rehypePrism],
+      // @ts-ignore
+      remarkPlugins: [remarkGfm],
     },
   });
   return {

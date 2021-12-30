@@ -1,9 +1,11 @@
 import RedText from "./RedText";
 import Code from "./Code";
 import MeetTheTeamBackup from "./MeetTheTeamBackup";
+import ClickyThing from "./ClickyThing";
 
 export const mdxComponents = {
   RedText,
+  ClickyThing,
   inlineCode: Code,
   MeetTheTeamBackup,
   // p: Paragraph,

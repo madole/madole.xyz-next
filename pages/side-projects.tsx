@@ -43,7 +43,7 @@ const data = [
     title: "International Space Station banana tracker",
     description:
       "A cesium experiment where I track the ISS in real time with a banana and glowing tail",
-    link: "https://awesome-williams-79aa53.netlify.app/",
+    link: "https://banana-iss-tracker.madole.dev/",
   },
   {
     image: everyPlane,
@@ -51,7 +51,7 @@ const data = [
     title: "Every plane in the sky, but bananas",
     description:
       "A cesium experiment where I display one banana for every plane in the sky in real time",
-    link: "https://dazzling-sinoussi-fb995a.netlify.app/",
+    link: "https://banana-planes.madole.dev/",
   },
   {
     image: covidBananas,
@@ -71,7 +71,7 @@ const data = [
   },
   {
     image: greensDrivePano,
-    imageAlt: "A gallery of 360 degree images",
+    imageAlt: "A gallery of 360 degree blog-images",
     title: "House tour implementation of 360 degree panorama viewer",
     description:
       "A specific implementation of the above panorama viewer for a specific house tour",

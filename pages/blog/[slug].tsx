@@ -1,13 +1,9 @@
 import * as React from "react";
 import fs from "fs";
 import path from "path";
-import frontmatter from "front-matter";
-import readingTime from "reading-time";
 import { Layout } from "../../components/Layout";
 import Head from "next/head";
-import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote } from "next-mdx-remote";
-import rehypePrism from "@mapbox/rehype-prism";
 import "prismjs/themes/prism-tomorrow.css";
 import { mdxComponents } from "../../components/mdx/mdx-components";
 import { parseMdxContent } from "../../utils/parseMdxContent";
@@ -50,7 +46,7 @@ export default function BlogPost(props: Props): JSX.Element {
             {new Date(date).toLocaleDateString()} &mdash; {timeToRead}
           </div>
         </div>
-        <article className="prose prose-slate break-all">
+        <article className="prose prose-slate break-all md:break-normal">
           {/* @ts-ignore */}
           <MDXRemote {...body} components={mdxComponents} />
         </article>
