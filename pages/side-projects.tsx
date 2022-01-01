@@ -8,11 +8,20 @@ import covidBananas from "../images/covid-bananas.png";
 import issTracker from "../images/ISS-tracker.png";
 import pano360 from "../images/360-pano.png";
 import greensDrivePano from "../images/greens-drive-pano.png";
+import mourneWalks from "../images/mourne-walks.png";
 import styles from "../styles/side-projects.module.css";
 import { useMultiIntersectionObserver } from "../hooks/useMultiIntersectionObserver";
 import Head from "next/head";
 
 const data = [
+  {
+    image: mourneWalks,
+    title: "Mourne Walks",
+    imageAlt: "Mourne Walks",
+    description:
+      "A 3D tour of the famous walk of Slieve Donard in the Mourne Mountains in Northern Ireland. Written in Preact and using Mapbox, this project is entirely configurable through GeoJSON.",
+    link: "https://mourne-walks.madole.dev/",
+  },
   {
     image: threedcolors,
     imageAlt: "3D colors application",
