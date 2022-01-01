@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>http://madole.xyz/</id>
     <title>Madole.xyz Blog</title>
-    <updated>2022-01-01T10:33:45.238Z</updated>
+    <updated>2022-01-01T10:44:52.555Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Andrew McDowell</name>
@@ -110,10 +110,9 @@
         <link href="https://madole.xyz/blog/meet-the-team"/>
         <updated>2019-12-01T01:15:33.000Z</updated>
         <summary type="html"><![CDATA[Reading time: 1 min read]]></summary>
-        <content type="html"><![CDATA[<p>import MeetTheTeamBackup from &quot;../../components/mdx/MeetTheTeamBackup&quot;;</p>
-<p>I got interviewed for work, you can see it
-here [<a href="https://www.propelleraero.com/blog/meet-your-engineering-team-andrew-mcdowell/%5D">https://www.propelleraero.com/blog/meet-your-engineering-team-andrew-mcdowell/]</a>(<a href="https://www.propelleraero.com/blog/meet-your-eng">https://www.propelleraero.com/blog/meet-your-eng</a></p>
-]]></content>
+        <content type="html"><![CDATA[<p>I got interviewed for work, you can see it
+here <a href="https://www.propelleraero.com/blog/meet-your-engineering-team-andrew-mcdowell/">https://www.propelleraero.com/blog/meet-your-engineering-team-andrew-mcdowell/</a></p>
+<iframe src="https://www.propelleraero.c]]></content>
         <author>
             <name>Andrew McDowell</name>
             <email>me@madole.dev</email>
