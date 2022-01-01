@@ -7,6 +7,7 @@ import { IndexListItem } from "../components/IndexListItem";
 import readingTime from "reading-time";
 import { Layout } from "../components/Layout";
 import Head from "next/head";
+import RssIcon from "../components/RSSIcon";
 
 interface Post {
   title: string;
@@ -37,8 +38,11 @@ const BlogIndex: React.FC<BlogIndexProps> = (props) => {
         id="main-content"
         className="w-11/12 p-8 md:py-8 md:px-20 my-4 overflow-hidden bg-white rounded lg:w-4/6 lg:shadow-lg h-full mb-6 "
       >
-        <h1 className="prose pb-1 text-2xl font-semibold text-center lg:text-4xl">
+        <h1 className="prose pb-1 text-2xl font-semibold text-center lg:text-4xl flex justify-center items-center">
           Latest Blog Posts
+          <a href="feed://madole.xyz/rss.atom" className="pl-3">
+            <RssIcon />
+          </a>
         </h1>
         {blogPostsMetadata.map((post) => (
           <IndexListItem
