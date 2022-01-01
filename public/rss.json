@@ -84,7 +84,7 @@
         },
         {
             "id": "https://madole.xyz/blog/meet-the-team",
-            "content_html": "<p>import MeetTheTeamBackup from &quot;../../components/mdx/MeetTheTeamBackup&quot;;</p>\n<p>I got interviewed for work, you can see it\nhere [<a href=\"https://www.propelleraero.com/blog/meet-your-engineering-team-andrew-mcdowell/%5D\">https://www.propelleraero.com/blog/meet-your-engineering-team-andrew-mcdowell/]</a>(<a href=\"https://www.propelleraero.com/blog/meet-your-eng\">https://www.propelleraero.com/blog/meet-your-eng</a></p>\n",
+            "content_html": "<p>I got interviewed for work, you can see it\nhere <a href=\"https://www.propelleraero.com/blog/meet-your-engineering-team-andrew-mcdowell/\">https://www.propelleraero.com/blog/meet-your-engineering-team-andrew-mcdowell/</a></p>\n<iframe src=\"https://www.propelleraero.c",
             "url": "https://madole.xyz/blog/meet-the-team",
             "title": "Meet the team - Andrew McDowell",
             "summary": "Reading time: 1 min read",
