@@ -11,18 +11,6 @@
     },
     "items": [
         {
-            "id": "https://madole.xyz/blog/are-gatsby-and-nextjs-the-same-thing",
-            "content_html": "<h1 id=\"outline\">Outline</h1>\n<ul>\n<li>What are they?</li>\n<li>History of them both?</li>\n<li>Features<ul>\n<li>SSR</li>\n<li>SSG</li>\n<li>Serverless functions</li>\n</ul>\n</li>\n<li>Differences</li>\n<li>Why I chose Next over Gatsby?</li>\n</ul>\n<h2 id=\"what-are-they\">What are they?</h2>\n<h3 id=\"nextjs\">Next.js</h3>\n<blockquote>\n<p>The React Framework for Production\nNext.js gives you the best de</p>\n</blockquote>\n",
-            "url": "https://madole.xyz/blog/are-gatsby-and-nextjs-the-same-thing",
-            "title": "Are Gatsby and NextJS the same thing?",
-            "summary": "Reading time: 6 min read",
-            "date_modified": "2021-12-29T03:23:47.544Z",
-            "author": {
-                "name": "Andrew McDowell",
-                "url": "https://madole.xyz"
-            }
-        },
-        {
             "id": "https://madole.xyz/blog/finite-state-machines-and-xstate",
             "content_html": "<p><em>(This was originally posted on the <a href=\"https://engineering.kablamo.com.au/posts/2021/finite-state-machines-and-xstate\">Kablamo Engineering Blog</a>)</em></p>\n<p>Application state in front-end clients is a complexity that is at best managed, and at worst the reason </p>\n",
             "url": "https://madole.xyz/blog/finite-state-machines-and-xstate",
