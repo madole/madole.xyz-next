@@ -4,7 +4,7 @@
         <title>Madole.xyz Blog</title>
         <link>http://madole.xyz/</link>
         <description>Blog posts from madole.xyz</description>
-        <lastBuildDate>Sat, 01 Jan 2022 10:25:22 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 01 Jan 2022 10:33:45 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -14,34 +14,6 @@
             <link>http://madole.xyz/</link>
         </image>
         <copyright>All rights reserved 2022, Madole</copyright>
-        <item>
-            <title><![CDATA[Are Gatsby and NextJS the same thing?]]></title>
-            <link>https://madole.xyz/blog/are-gatsby-and-nextjs-the-same-thing</link>
-            <guid>https://madole.xyz/blog/are-gatsby-and-nextjs-the-same-thing</guid>
-            <pubDate>Wed, 29 Dec 2021 03:23:47 GMT</pubDate>
-            <description><![CDATA[Reading time: 6 min read]]></description>
-            <content:encoded><![CDATA[<h1 id="outline">Outline</h1>
-<ul>
-<li>What are they?</li>
-<li>History of them both?</li>
-<li>Features<ul>
-<li>SSR</li>
-<li>SSG</li>
-<li>Serverless functions</li>
-</ul>
-</li>
-<li>Differences</li>
-<li>Why I chose Next over Gatsby?</li>
-</ul>
-<h2 id="what-are-they">What are they?</h2>
-<h3 id="nextjs">Next.js</h3>
-<blockquote>
-<p>The React Framework for Production
-Next.js gives you the best de</p>
-</blockquote>
-]]></content:encoded>
-            <author>me@madole.dev (Andrew McDowell)</author>
-        </item>
         <item>
             <title><![CDATA[How to model application flows in React with finite state machines and XState]]></title>
             <link>https://madole.xyz/blog/finite-state-machines-and-xstate</link>
