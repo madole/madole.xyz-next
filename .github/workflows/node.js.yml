@@ -4,13 +4,11 @@
 name: Node.js CI
 
 on:
-  push:
-    branches: [ main ]
   pull_request:
     branches: [ main ]
 
 jobs:
-  build:
+  rss:
 
     runs-on: ubuntu-latest
 
@@ -34,3 +32,24 @@ jobs:
         # Commit message
         commit_message: RSS feeds updated
         push_options: '--force'
+        
+#   lighthouse:
+
+#       runs-on: ubuntu-latest
+
+#       strategy:
+#         matrix:
+#           node-version: [16.x]
+#           # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+#       steps:
+#         - name: Lighthouse Check
+#           # You may pin to the exact commit or the version.
+#           # uses: foo-software/lighthouse-check-action@e9777a4dd4c8854778c7e8a6eea8cf4e84f28a3e
+#           uses: foo-software/lighthouse-check-action@v7.1.0
+#           with:
+#             # Legacy field (use "gitHubAccessToken"): Access token of a user to post PR comments.
+#             accessToken:  ${{ secrets.GITHUB_TOKEN }}
+
+
+
