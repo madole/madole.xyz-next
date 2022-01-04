@@ -125,7 +125,7 @@ Now our JSON looks like this:
 ```
 
 ## Converting to GeoJSON
-Time to hop into the frontend. We'll read in this JSON file and use the [Geojson library](https://www.npmjs.com/package/geojson) to create a GeoJSON FeatureCollection object filled with points.
+Time to hop into the frontend. We'll read in this JSON file and use the [Geojson library](https://www.npmjs.com/package/geojson) to create a GeoJSON `FeatureCollection` object filled with points.
 
 We'll tell it that we want to parse the JSON as a collection of Points and that it can find the coordinates under the `lat` and `lng` keys.
 
@@ -190,6 +190,8 @@ We can now add this GeoJSON to our mapbox map as a layer and style it with a sim
 
 ```tsx
 import weatherStationData from './weatherStationData'; //<-- our GeoJSON
+import map from './mapbox-map' // <- the mapbox instance
+
 map.addLayer({
   source: {
     type: "geojson",
