@@ -11,6 +11,18 @@
     },
     "items": [
         {
+            "id": "https://madole.xyz/blog/how-to-visualise-weather-stations-on-a-map",
+            "content_html": "<h2 id=\"tech-well-be-using\">Tech we&#39;ll be using</h2>\n<ul>\n<li><a href=\"https://www.mapbox.com/mapbox-gl-js/\">Mapbox GL JS</a><ul>\n<li>A fantastic library for creating maps</li>\n</ul>\n</li>\n<li><a href=\"https://www.npmjs.com/package/geojson\">GeoJSON NPM package</a><ul>\n<li>A package for working with GeoJSON</li>\n</ul>\n</li>\n<li>[csvtojson NPM package</li>\n</ul>\n",
+            "url": "https://madole.xyz/blog/how-to-visualise-weather-stations-on-a-map",
+            "title": "How to visualise Australia's weather stations on a map",
+            "summary": "Reading time: 6 min read",
+            "date_modified": "2022-01-04T04:40:33.179Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
             "id": "https://madole.xyz/blog/finite-state-machines-and-xstate",
             "content_html": "<p><em>(This was originally posted on the <a href=\"https://engineering.kablamo.com.au/posts/2021/finite-state-machines-and-xstate\">Kablamo Engineering Blog</a>)</em></p>\n<p>Application state in front-end clients is a complexity that is at best managed, and at worst the reason </p>\n",
             "url": "https://madole.xyz/blog/finite-state-machines-and-xstate",
