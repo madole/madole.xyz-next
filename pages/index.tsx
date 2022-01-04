@@ -59,7 +59,7 @@ const Index: React.FC<IndexProps> = (props) => {
             id="main-content"
             className="flex flex-col justify-center flex-grow px-8 md:px-20 lg:px-32"
           >
-            <div className="relative h-40 text-6xl leading-none text-white md:h-24 md:leading-tight">
+            <div className="relative h-40 text-6xl leading-none text-white md:h-24 md:leading-tight w-3/4 md:w-full">
               <span key={title} className="animate-slowFadeIn absolute top-0">
                 {title}
               </span>
