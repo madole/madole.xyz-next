@@ -7,7 +7,7 @@ export const Navigation = withRouter(({ router }) => {
   const { pathname } = router;
   const [menuOpen, setMenuOpen] = useState(false);
   const isHomepage = pathname === "/";
-  
+
   return (
     <>
       <div className={`py-6 md:hidden ${isHomepage ? "hidden" : ""}`}>
@@ -33,28 +33,31 @@ export const Navigation = withRouter(({ router }) => {
               </div>
             )}
             <div
-              className={`px-2 py-1 rounded ${pathname.includes("/blog") ? "bg-blue-600 shadow-lg" : ""
-                }`}
+              className={`px-2 py-1 rounded ${
+                pathname.includes("/blog") ? "bg-blue-600 shadow-lg" : ""
+              }`}
             >
               <Link href="/blog-index">
                 <a className="text-white">Blog</a>
               </Link>
             </div>
             <div
-              className={`px-2 py-1 rounded ${pathname.includes("/today-i-learned")
-                ? "bg-blue-600 shadow-lg"
-                : ""
-                }`}
+              className={`px-2 py-1 rounded ${
+                pathname.includes("/today-i-learned")
+                  ? "bg-blue-600 shadow-lg"
+                  : ""
+              }`}
             >
               <Link href="/today-i-learned">
                 <a className="text-white">Today I learned</a>
               </Link>
             </div>
             <div
-              className={`px-2 py-1 rounded ${pathname.includes("/side-projects")
-                ? "bg-blue-600 shadow-lg"
-                : ""
-                }`}
+              className={`px-2 py-1 rounded ${
+                pathname.includes("/side-projects")
+                  ? "bg-blue-600 shadow-lg"
+                  : ""
+              }`}
             >
               <Link href="/side-projects">
                 <a className="text-white">Side Projects</a>
@@ -69,8 +72,9 @@ export const Navigation = withRouter(({ router }) => {
         )}
       </div>
       <nav
-        className={`${isHomepage ? "flex" : "hidden"
-          } md:flex justify-end w-screen px-6 py-4`}
+        className={`${
+          isHomepage ? "flex" : "hidden"
+        } flex justify-center md:justify-end w-screen px-1 md:px-6 py-4`}
       >
         {!isHomepage && (
           <div className="px-2 py-1 rounded">
@@ -80,27 +84,30 @@ export const Navigation = withRouter(({ router }) => {
           </div>
         )}
         <div
-          className={`px-2 py-1 rounded ${pathname.includes("/blog") ? "bg-blue-600 shadow-lg" : ""
-            }`}
+          className={`px-2 py-1 rounded ${
+            pathname.includes("/blog") ? "bg-blue-600 shadow-lg" : ""
+          }`}
         >
           <Link href="/blog-index">
             <a className="text-white">Blog</a>
           </Link>
         </div>
         <div
-          className={`px-2 py-1 rounded ${pathname.includes("/today-i-learned") ? "bg-blue-600 shadow-lg" : ""
-            }`}
+          className={`px-2 py-1 rounded ${
+            pathname.includes("/today-i-learned") ? "bg-blue-600 shadow-lg" : ""
+          }`}
         >
           <Link href="/today-i-learned">
-            <a className="text-white">Today I learned</a>
+            <a className="text-white whitespace-nowrap">Today I learned</a>
           </Link>
         </div>
         <div
-          className={`px-2 py-1 rounded ${pathname.includes("/side-projects") ? "bg-blue-600 shadow-lg" : ""
-            }`}
+          className={`px-2 py-1 rounded ${
+            pathname.includes("/side-projects") ? "bg-blue-600 shadow-lg" : ""
+          }`}
         >
           <Link href="/side-projects">
-            <a className="text-white">Side Projects</a>
+            <a className="text-white whitespace-nowrap">Side Projects</a>
           </Link>
         </div>
         <div className="px-2 py-1 rounded">

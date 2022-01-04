@@ -15,6 +15,8 @@
     "@mdx-js/loader": "^1.6.22",
     "@mdx-js/mdx": "^2.0.0-rc.2",
     "@next/mdx": "^12.0.7",
+    "@react-three/drei": "^8.3.1",
+    "@react-three/fiber": "^7.0.24",
     "feed": "^4.2.2",
     "front-matter": "^4.0.2",
     "marked": "^4.0.8",
@@ -24,7 +26,8 @@
     "react-dom": "17.0.2",
     "reading-time": "^1.5.0",
     "remark-gfm": "^3.0.1",
-    "sharp": "^0.29.3"
+    "sharp": "^0.29.3",
+    "three": "^0.136.0"
   },
   "devDependencies": {
     "@babel/core": "^7.16.5",
