@@ -5,7 +5,7 @@ import Image from "next/image";
 import { Navigation } from "../components/Navigation";
 import dynamic from "next/dynamic";
 
-const FullpageClouds = dynamic(() => import("../components/FullpageClouds"), {
+const FullpageClouds = dynamic(() => import("../components/FullPageClouds"), {
   ssr: false,
 });
 
