@@ -33,3 +33,4 @@ jobs:
       with:
         # Commit message
         commit_message: RSS feeds updated
+        push_options: '--force'
