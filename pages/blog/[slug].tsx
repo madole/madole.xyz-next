@@ -38,7 +38,7 @@ export default function BlogPost(props: Props): JSX.Element {
         id="main-content"
         className="w-full md:max-w-3xl 2xl:max-w-5xl p-8 my-4 overflow-hidden bg-white rounded lg:shadow-lg h-full flex flex-col justify-center items-center"
       >
-        <div className="flex flex-col items-center md:pb-4">
+        <div className="flex flex-col items-center pb-2 md:pb-4">
           <h1 className="prose pb-1 text-2xl md:text-4xl font-semibold text-center md:px-20">
             {title}
           </h1>
@@ -46,7 +46,7 @@ export default function BlogPost(props: Props): JSX.Element {
             {new Date(date).toLocaleDateString()} &mdash; {timeToRead}
           </div>
         </div>
-        <article className="prose prose-slate break-all md:break-normal">
+        <article className="prose prose-slate break-word md:break-normal w-full">
           {/* @ts-ignore */}
           <MDXRemote {...body} components={mdxComponents} />
         </article>
