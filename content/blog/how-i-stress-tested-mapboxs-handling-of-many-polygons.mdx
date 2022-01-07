@@ -104,7 +104,7 @@ const Mapbox: React.FC<MapboxProps> = (props) => {
   }, [center, style, zoom]);
 
   return (
-    <div style={{ height: "93.5vh" }} ref={ref}>
+    <div style={{ height: "100vh" }} ref={ref}>
       {loaded && (
         <MapboxMapContext.Provider value={mapboxRef.current}>
           {children}
@@ -131,12 +131,12 @@ Each child then uses the `useMapboxMap` hook to get a reference to the mapbox ma
 
 ### Rendering the polygons
 My `Polygons` component will render the polygons for me by making use of the `useMapboxMap` hook, a `useEffect` hook and `Leva` as the GUI controls.
-The key thing about the components rendered under the Mapbox parent is that I'm going to return `null` from the components. I'm really just hooking into React's lifecycle to call mapbox's api.
+The key thing about the components rendered under the Mapbox parent is that I'm going to return `null` from them. I'm really just hooking into React's lifecycle to call mapbox's api when something changes.
 
 #### First things first - Controls
 Lets set up our GUI controls. I want to dynamically control the number of polygons and the number of vertices per polygon. For this, I'm using Leva, it's perfect for this case.
 
-To use leva, you just call the `useControl` hook and pass in the name of the control and the value configurations. For this case
+To use Leva, you just call the `useControl` hook and pass in the name of the control and the value configurations. For this case
 I'll just be using numbers. This gives us a nice slider control for each number.
 
 I've added a key to the `PolygonsMapComponent` because when the state changes, I want the component to unmount and remove the existing sources and layers from mapbox using the returned function from the `useEffect`.
