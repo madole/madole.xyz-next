@@ -4,7 +4,7 @@
         <title>Madole.xyz Blog</title>
         <link>http://madole.xyz/</link>
         <description>Blog posts from madole.xyz</description>
-        <lastBuildDate>Fri, 07 Jan 2022 02:54:47 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 07 Jan 2022 05:25:49 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -14,6 +14,19 @@
             <link>http://madole.xyz/</link>
         </image>
         <copyright>All rights reserved 2022, Madole</copyright>
+        <item>
+            <title><![CDATA[Setting up ESLint on Webstorm when using Yarn Berry with pnp]]></title>
+            <link>https://madole.xyz/blog/setting-up-eslint-on-webstorm-when-using-yarn-berry-with-pnp</link>
+            <guid>https://madole.xyz/blog/setting-up-eslint-on-webstorm-when-using-yarn-berry-with-pnp</guid>
+            <pubDate>Fri, 07 Jan 2022 04:35:22 GMT</pubDate>
+            <description><![CDATA[Reading time: 2 min read]]></description>
+            <content:encoded><![CDATA[<h2 id="yarn-berry">Yarn Berry</h2>
+<p><img src="https://media.giphy.com/media/jRZeoFYjBO2joRHPoQ/giphy-downsized-large.gif" alt="What is that?"></p>
+<p>Yarn berry is the codename for Yarn version 2 and 3. It worked so differently to Yarn 1 that the team ended
+up giving it a totally different n</p>
+]]></content:encoded>
+            <author>me@madole.dev (Andrew McDowell)</author>
+        </item>
         <item>
             <title><![CDATA[How I stress tested mapbox's handling of many polygons]]></title>
             <link>https://madole.xyz/blog/how-i-stress-tested-mapboxs-handling-of-many-polygons</link>
