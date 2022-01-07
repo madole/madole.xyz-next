@@ -8,8 +8,8 @@ slug: 'setting-up-eslint-on-webstorm-when-using-yarn-berry-with-pnp'
 ## Yarn Berry
 ![What is that?](https://media.giphy.com/media/jRZeoFYjBO2joRHPoQ/giphy-downsized-large.gif)
 
-Yarn berry is the codename for Yarn version 2 and 3. It worked so differently to Yarn 1 that the team ended
-up giving it a totally different name. The main difference is that Yarn berry uses a feature called PnP(Plug'n'Play)
+Yarn Berry is the codename for Yarn version 2 and 3. It worked so differently to Yarn 1 that the team ended
+up giving it a totally different name. The main difference is that Yarn Berry uses a feature called PnP(Plug'n'Play)
 to install and resolve dependencies.
 
 ## The big impact
@@ -22,18 +22,25 @@ But it boils down to yarn shifting responsibilty of resolving dependencies from 
 
 ## The problem
 Webstorm does have existing support for PnP when you're coding 🎉 but as of January 2020,
-it doesn't know were to look for the ESlint plugin when you've got no node_modules.
+it doesn't know were to look for the ESlint plugin when you've got no `node_modules`. 🤷‍
 
 ## The solution
-- We need to "unplug" ESLint, which means that the package gets unzipped in your `.yarn` directory into an `unplugged` folder.
-    - The command for this is `yarn unplug eslint`
-- To find out where the eslint binary now lives, we run `yarn bin eslint`.
-    - This will give us the fully qualified path to the eslint binary
-    - `[path to your project]/.yarn/unplugged/eslint-npm-8.6.0-f5ecfc9f69/node_modules/eslint/bin/eslint.js`
-- We want to remove `/bin/eslint.js` from the end of that path and copy that to your clipboard
-- Now we can go to the Webstorm settings <kbd>Cmd+,</kbd> and navigate to the ESLint section
-    - Languages & Frameworks > Javascript > Code Quality Tools > ESLint
-- Now choose `Manual ESLint configuration`
-- Now paste the previously copied path into the `ESLint package` field
+#### Unplugging
+We need to "unplug" ESLint, which means that the package gets unzipped in your `.yarn` directory and put into an `unplugged` folder.
 
-That's it, Webstorm is now ready to shout at you when you've forgotten a semicolon.
+The command for this is `yarn unplug eslint`
+
+#### Where'd it go?
+To find out where the eslint binary now lives, we run `yarn bin eslint`. This will give us the fully qualified path to the eslint binary
+
+`[path to your project]/.yarn/unplugged/eslint-npm-8.6.0-f5ecfc9f69/node_modules/eslint/bin/eslint.js`
+
+We want to remove `/bin/eslint.js` from the end of that path and copy that to your clipboard
+
+#### Get those settings right
+Now we can go to the Webstorm settings <kbd>Cmd+,</kbd> and navigate to the ESLint section
+`Languages & Frameworks > Javascript > Code Quality Tools > ESLint`
+Choose `Manual ESLint configuration` and paste the previously copied path into the `ESLint package` field
+
+## That's it!
+Webstorm is now ready to shout at you when you've forgotten a semicolon. 📣
