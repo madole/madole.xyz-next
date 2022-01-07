@@ -1,0 +1,260 @@
+---
+title: How I stress tested mapbox's handling of many polygons
+date: '2022-01-07T01:37:23.352Z'
+tags: ['mapbox','code','stress test','geospatial']
+slug: 'how-i-stress-tested-mapboxs-handling-of-many-polygons'
+---
+
+## Question
+How many polygons can I get mapbox to render before it starts to get slow?
+
+### Considerations
+A polygon consists of many vertices, so I'll want to measure against the number of vertices too as
+100 polygons with 3 vertices is very different from 100 polygons with 100 vertices.
+
+### Tech I'll be using
+- [@turf/random](https://www.npmjs.com/package/@turf/random)
+    - This will allow us to generate random polygons with a given number of vertices inside a given bounding box.
+- [@mapbox/mapbox-gl-js](https://www.npmjs.com/package/@mapbox/mapbox-gl-js)
+    - Mabox GL JS will be our mapping library
+- [React](https://reactjs.org/)
+    - The front end framework I'll be using. This is not necessary to use but it reflects the real world project I'm asking this question for.
+- [Leva](https://github.com/pmndrs/leva)
+  - A modern React components GUI
+
+## Lets get developing
+### Some important coordinates
+- Australia's bounding box
+    - `[[113.338953078, -43.6345972634], [153.569469029, -10.6681857235]]`
+- Center of Australia
+    - `[133.7751, -25.2744]`
+
+### Generating random polygons
+Lets use Turf's `randomPolygon` function to generate a given number of random polygons with a given number of vertices inside a given bounding box.
+
+This is really just a wrapper around the [@turf/random](https://www.npmjs.com/package/@turf/random) package.
+```ts
+import {randomPolygon} from "@turf/random";
+
+function generatePolygons(numberOfPolygons: number, numberOfVertices: number, boundingBox: BBox) {
+    return randomPolygon(numberOfPolygons, {num_vertices: numberOfVertices, bbox: boundingBox, max_radial_length: 2});
+}
+
+
+export default generatePolygons;
+```
+
+
+### Setting up mapbox to play nicely with React
+I use the following pattern in all my Mapbox projects that I also use React in.
+```tsx
+import React, { useEffect, useRef, useState } from "react";
+import mapboxgl from "mapbox-gl";
+import "mapbox-gl/dist/mapbox-gl.css";
+
+const MapboxMapContext = React.createContext<mapboxgl.Map | null>(null);
+
+export const useMapboxMap = () => {
+  const mapboxMap = React.useContext(MapboxMapContext);
+  if (!mapboxMap) {
+    throw new Error("useMapboxMap must be used within a MapboxMapProvider");
+  }
+  return mapboxMap;
+};
+
+export interface MapboxProps {
+  apiKey: string;
+  center?: [number, number];
+  children?: React.ReactNode;
+  style?: mapboxgl.Style;
+  zoom?: number;
+}
+
+const Mapbox: React.FC<MapboxProps> = (props) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const {
+    center = [0, 0],
+    zoom = 17,
+    apiKey,
+    children,
+    style,
+    boundingBox,
+  } = props;
+  const mapboxRef = useRef<mapboxgl.Map | null>(null);
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    mapboxgl.accessToken = apiKey;
+  }, [apiKey]);
+
+  useEffect(() => {
+    if (!ref.current) return;
+
+    mapboxRef.current = new mapboxgl.Map({
+      container: ref.current,
+      style: "mapbox://styles/mapbox/satellite-v9",
+      center: center,
+      zoom: zoom,
+    }).on("load", () => {
+      setLoaded(true);
+    });
+    if (window.location.search.includes("test-mode")) {
+      window.mapbox = mapboxRef.current;
+    }
+  }, [center, style, zoom]);
+
+  return (
+    <div style={{ height: "93.5vh" }} ref={ref}>
+      {loaded && (
+        <MapboxMapContext.Provider value={mapboxRef.current}>
+          {children}
+        </MapboxMapContext.Provider>
+      )}
+    </div>
+  );
+};
+
+export default Mapbox;
+
+```
+
+This is a one file drop-in to any React project which allows me to render a mapbox map as a component.
+I can then declaritvely render Layers as children of the mapbox component.
+
+```tsx
+<Mapbox apiKey={API_KEY} center={CENTER_OF_AUSTRALIA} zoom={4}>
+    <Polygons boundingBox={AUSTRALIA_BOUNDING_BOX}/>
+</Mapbox>
+```
+
+Each child then uses the `useMapboxMap` hook to get a reference to the mapbox map.
+
+### Rendering the polygons
+My `Polygons` component will render the polygons for me by making use of the `useMapboxMap` hook, a `useEffect` hook and `Leva` as the GUI controls.
+The key thing about the components rendered under the Mapbox parent is that I'm going to return `null` from the components. I'm really just hooking into React's lifecycle to call mapbox's api.
+
+#### First things first - Controls
+Lets set up our GUI controls. I want to dynamically control the number of polygons and the number of vertices per polygon. For this, I'm using Leva, it's perfect for this case.
+
+To use leva, you just call the `useControl` hook and pass in the name of the control and the value configurations. For this case
+I'll just be using numbers. This gives us a nice slider control for each number.
+
+I've added a key to the `PolygonsMapComponent` because when the state changes, I want the component to unmount and remove the existing sources and layers from mapbox using the returned function from the `useEffect`.
+```tsx
+const Polygons = (props: { boundingBox: number[] }) => {
+  const values = useControls("Polygon configuration", {
+    numberOfPolygons: {
+      value: 10,
+      min: 1,
+      max: 10000,
+      step: 10,
+    },
+    numberOfVertices: {
+      value: 10,
+      min: 10,
+      max: 200,
+      step: 10,
+    },
+  });
+  return (
+    <PolygonsMapComponent
+      key={`${values.numberOfPolygons}-${values.numberOfVertices}`}
+      boundingBox={props.boundingBox}
+      numberOfPolygons={values.numberOfPolygons}
+      numberOfVertices={values.numberOfVertices}
+    />
+  );
+};
+
+export default Polygons;
+```
+
+![Leva screenshot](/blog-images/leva.png)
+
+#### Now the actual component
+I've done a bit of a wrapper around our actual component because I wanted to control the number of polygons and the number of vertices per polygon with React state.
+
+The pattern I follow is:
+
+```tsx
+const Component = (props) => {
+    const map = useMapboxMap();
+    useEffect(() => {
+        /* add layers to the map */
+        return () => {
+            /* remove layers from the map */
+        };
+    }, [map, /* any other relevant dependencies */]);
+
+    return null
+}
+```
+
+So in practice, I'll read in my `boundingBox`, `numberOfVertices` and `numberOfPolygons` then use those values to generate random polygons. Then I'll add the fill and outline layers to the map so we can see the polygons.
+
+```tsx
+interface Props {
+  boundingBox: number[];
+  numberOfPolygons: number;
+  numberOfVertices: number;
+}
+
+const PolygonsMapComponent: React.VFC<Props> = ({
+  boundingBox,
+  numberOfPolygons,
+  numberOfVertices,
+}) => {
+  const map = useMapboxMap();
+  useEffect(() => {
+    const polygons = generatePolygons(
+      numberOfPolygons,
+      numberOfVertices,
+      boundingBox
+    );
+    map.addSource("polygons", {
+      type: "geojson",
+      data: polygons,
+    });
+    map.addLayer({
+      id: "polygons-fill",
+      type: "fill",
+      source: "polygons",
+      paint: {
+        "fill-color": "red",
+        "fill-opacity": 1,
+      },
+      filter: ["==", "$type", "Polygon"],
+    });
+    // add outline layer
+    map.addLayer({
+      id: "polygons-outline",
+      type: "line",
+      source: "polygons",
+      layout: {
+        "line-join": "round",
+        "line-cap": "round",
+      },
+      paint: {
+        "line-color": "#fff",
+        "line-width": 2,
+      },
+      filter: ["==", "$type", "Polygon"],
+    });
+    return () => {
+      map.removeLayer("polygons-fill");
+      map.removeLayer("polygons-outline");
+      map.removeSource("polygons");
+    };
+  }, [map, numberOfPolygons, numberOfVertices, boundingBox]);
+
+  return null;
+};
+```
+
+Now I have a component that will render dynamic amounts of polygons and vertices on a map.
+
+<iframe src="https://mapbox-polygon-stress-test.netlify.app/" width="100%" height={"500px"}/>
+
+## Well, how many polygons can I get mapbox to render before it starts to get slow?
+
+A hell of a lot of polygons it turns out. Mapbox is an amazing tool and is highly optimised for this kind of work.
