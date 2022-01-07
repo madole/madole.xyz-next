@@ -11,11 +11,23 @@
     },
     "items": [
         {
+            "id": "https://madole.xyz/blog/how-i-stress-tested-mapboxs-handling-of-many-polygons",
+            "content_html": "<h2 id=\"question\">Question</h2>\n<p>How many polygons can I get mapbox to render before it starts to get slow?</p>\n<h3 id=\"considerations\">Considerations</h3>\n<p>A polygon consists of many vertices, so I&#39;ll want to measure against the number of vertices too as\n100 polygons with 3 vertices is very differe</p>\n",
+            "url": "https://madole.xyz/blog/how-i-stress-tested-mapboxs-handling-of-many-polygons",
+            "title": "How I stress tested mapbox's handling of many polygons",
+            "summary": "Reading time: 5 min read",
+            "date_modified": "2022-01-07T01:37:23.352Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
             "id": "https://madole.xyz/blog/how-to-visualise-weather-stations-on-a-map",
             "content_html": "<h2 id=\"tech-well-be-using\">Tech we&#39;ll be using</h2>\n<ul>\n<li><a href=\"https://www.mapbox.com/mapbox-gl-js/\">Mapbox GL JS</a><ul>\n<li>A fantastic library for creating maps</li>\n</ul>\n</li>\n<li><a href=\"https://www.npmjs.com/package/geojson\">GeoJSON NPM package</a><ul>\n<li>A package for working with GeoJSON</li>\n</ul>\n</li>\n<li>[csvtojson NPM package</li>\n</ul>\n",
             "url": "https://madole.xyz/blog/how-to-visualise-weather-stations-on-a-map",
             "title": "How to visualise Australia's weather stations on a map",
-            "summary": "Reading time: 6 min read",
+            "summary": "Reading time: 7 min read",
             "date_modified": "2022-01-04T04:40:33.179Z",
             "author": {
                 "name": "Andrew McDowell",
