@@ -73,8 +73,8 @@ export const Navigation = withRouter(({ router }) => {
       </div>
       <nav
         className={`${
-          isHomepage ? "flex" : "hidden"
-        } flex justify-center md:justify-end w-screen px-1 md:px-6 py-4`}
+          isHomepage ? "flex" : "hidden md:flex"
+        } justify-center md:justify-end w-screen px-1 md:px-6 py-4`}
       >
         {!isHomepage && (
           <div className="px-2 py-1 rounded">
