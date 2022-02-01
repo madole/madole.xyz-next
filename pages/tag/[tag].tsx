@@ -72,7 +72,9 @@ export function getStaticPaths() {
     })
   );
   return {
-    paths: tags.map((tag) => "/tag/" + tag?.split(" ").join("-")),
+    paths: tags.map(
+      (tag) => "/tag/" + tag?.split(" ").join("-").toLocaleUpperCase()
+    ),
     fallback: false,
   };
 }
