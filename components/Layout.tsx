@@ -6,7 +6,7 @@ export const Layout = (props: { children: React.ReactNode }): JSX.Element => {
   const { children } = props;
 
   return (
-    <div className="flex flex-col background overflow-scroll">
+    <div className="flex flex-col background">
       <a href="#main-content" className="sr-only">
         Skip to main content
       </a>
