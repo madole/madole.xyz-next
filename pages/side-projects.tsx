@@ -9,6 +9,9 @@ import issTracker from "../images/ISS-tracker.png";
 import pano360 from "../images/360-pano.png";
 import greensDrivePano from "../images/greens-drive-pano.png";
 import mourneWalks from "../images/mourne-walks.png";
+import gpxEditor from "../images/gpx-editor.jpeg";
+import kmlEditor from "../images/kml-editor.jpeg";
+import geojsonEditor from "../images/geojson-editor.jpeg";
 import mapboxglBoundingBoxViewBoundsComparison from "../images/mapbox-gl-bounding-box-view-bounds-comparison.png";
 import styles from "../styles/side-projects.module.css";
 import { useMultiIntersectionObserver } from "../hooks/useMultiIntersectionObserver";
@@ -20,9 +23,34 @@ const data = [
     title: "Mapbox GL Bounding Box View Bounds Comparison",
     imageAlt: "Mapbox GL Bounding Box View Bounds Comparison",
     description:
-      "A comparison of the bounds returned by Mapbox GL's map.getBounds() and the actual view box of the map.",
+        "A comparison of the bounds returned by Mapbox GL's map.getBounds() and the actual view box of the map.",
     link: "https://mapbox-gl-bounding-box-view-bounds-comparison.madole.dev/",
   },
+  {
+    image: geojsonEditor,
+    title: "GEOJSON Editor",
+    imageAlt: "GEOJSON Editor",
+    description:
+      "A tool to visualise GEOJSON files on a map and make edits. Includes file drag'n'drop.",
+    link: "https://geojson-editor.madole.dev/",
+  },
+  {
+    image: kmlEditor,
+    title: "KML Editor",
+    imageAlt: "KML Editor",
+    description:
+      "A tool to visualise KML files on a map and make edits. Includes file drag'n'drop as well as a geojson export",
+    link: "https://kml-editor.madole.dev/",
+  },
+  {
+    image: gpxEditor,
+    title: "GPX Editor",
+    imageAlt: "GPX Editor",
+    description:
+      "A tool to visualise GPX files on a map and make edits. Includes file drag'n'drop as well as a geojson export",
+    link: "https://gpx-editor.madole.dev/",
+  },
+
   {
     image: mourneWalks,
     title: "Mourne Walks",

@@ -227,7 +227,7 @@ function Resume(): JSX.Element {
           </Column>
           <Column title="January 2021...">
             <Card>
-              <span className="pb-1 font-bold">Technical Lead</span>
+              <span className="pb-1 font-bold">Senior Frontend & Geospatial Technical Lead</span>
               Kablamo
             </Card>
             <Card>
@@ -275,6 +275,10 @@ function Resume(): JSX.Element {
               - Interview candidates for our frontend team
               <Spacer />- Work with clients during engagements to make sure
               we&apos;re delivering on their needs
+            </Card>
+            <Card>
+              <div className="font-bold pb-3">✨Upgrade March 2022✨</div> 
+              <div className="pb-3">Tech Lead -{">"} Senior Tech Lead</div>
             </Card>
           </Column>
           <Column title="2016-December 2020">
