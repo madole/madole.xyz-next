@@ -35,6 +35,12 @@ const Index: React.FC<IndexProps> = (props) => {
     <>
       <Head>
         <title>Homepage | Madole.xyz</title>
+        <meta property="og:title" content="Homepage | Madole.xyz" />
+        <meta
+          property="og:description"
+          content="A portfolio of stuff I've worked or hacked on"
+        />
+        <meta property="og:image" content="https://madole.xyz/bitmoji.png" />
       </Head>
       <div className="absolute inset-0 background">
         <FullpageClouds />
