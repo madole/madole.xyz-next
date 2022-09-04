@@ -9,11 +9,20 @@ import issTracker from "../images/ISS-tracker.png";
 import pano360 from "../images/360-pano.png";
 import greensDrivePano from "../images/greens-drive-pano.png";
 import mourneWalks from "../images/mourne-walks.png";
+import mapboxglBoundingBoxViewBoundsComparison from "../images/mapbox-gl-bounding-box-view-bounds-comparison.png";
 import styles from "../styles/side-projects.module.css";
 import { useMultiIntersectionObserver } from "../hooks/useMultiIntersectionObserver";
 import Head from "next/head";
 
 const data = [
+  {
+    image: mapboxglBoundingBoxViewBoundsComparison,
+    title: "Mapbox GL Bounding Box View Bounds Comparison",
+    imageAlt: "Mapbox GL Bounding Box View Bounds Comparison",
+    description:
+      "A comparison of the bounds returned by Mapbox GL's map.getBounds() and the actual view box of the map.",
+    link: "https://mapbox-gl-bounding-box-view-bounds-comparison.madole.dev/",
+  },
   {
     image: mourneWalks,
     title: "Mourne Walks",
