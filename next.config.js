@@ -12,7 +12,7 @@ module.exports = {
     cfg.plugins.push(
       new webpack.DefinePlugin({
         "process.env.CONFIG_BUILD_ID": JSON.stringify(buildId),
-      })
+      }),
     );
     cfg.resolve.fallback = {
       fs: false,
@@ -23,6 +23,7 @@ module.exports = {
   },
   images: {
     domains: ["media.giphy.com"],
+    unoptimized: true,
   },
   generateBuildId: async () => {
     // You can, for example, get the latest git commit hash here
