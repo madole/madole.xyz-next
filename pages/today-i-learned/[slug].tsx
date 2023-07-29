@@ -49,10 +49,11 @@ const TodayILearned: React.FC<TodayILearnedProps> = (props) => {
             Read more
           </a>
         )}
-        <Link href="/today-i-learned">
-          <a className="text-blue-500 hover:text-blue-700 visited:text-purple-600 cursor-pointer mb-10">
-            Back
-          </a>
+        <Link
+          href="/today-i-learned"
+          className="text-blue-500 hover:text-blue-700 visited:text-purple-600 cursor-pointer mb-10"
+        >
+          Back
         </Link>
       </section>
     </Layout>

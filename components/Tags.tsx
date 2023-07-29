@@ -10,9 +10,7 @@ export const Tags = (props: { tags?: string[] }) => {
           key={tag}
           className="px-2 rounded uppercase hover:bg-blue-500 hover:text-white text-sm font-light bg-gray-200"
         >
-          <Link href={`/tag/${tag.split(" ").join("-")}`}>
-            <a>{tag}</a>
-          </Link>
+          <Link href={`/tag/${tag.split(" ").join("-")}`}>{tag}</Link>
         </li>
       ))}
     </ul>

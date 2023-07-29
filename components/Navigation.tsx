@@ -27,8 +27,8 @@ export const Navigation = withRouter(({ router }) => {
           <nav className="flex flex-col w-screen px-6 py-4 text-lg">
             {!isHomepage && (
               <div className="px-2 py-1 rounded">
-                <Link href="/">
-                  <a className="text-white">Home</a>
+                <Link href="/" className="text-white">
+                  Home
                 </Link>
               </div>
             )}
@@ -37,8 +37,8 @@ export const Navigation = withRouter(({ router }) => {
                 pathname.includes("/blog") ? "bg-blue-600 shadow-lg" : ""
               }`}
             >
-              <Link href="/blog-index">
-                <a className="text-white">Blog</a>
+              <Link href="/blog-index" className="text-white">
+                Blog
               </Link>
             </div>
             <div
@@ -48,8 +48,8 @@ export const Navigation = withRouter(({ router }) => {
                   : ""
               }`}
             >
-              <Link href="/today-i-learned">
-                <a className="text-white">Today I learned</a>
+              <Link href="/today-i-learned" className="text-white">
+                Today I learned
               </Link>
             </div>
             <div
@@ -59,13 +59,13 @@ export const Navigation = withRouter(({ router }) => {
                   : ""
               }`}
             >
-              <Link href="/side-projects">
-                <a className="text-white">Side Projects</a>
+              <Link href="/side-projects" className="text-white">
+                Side Projects
               </Link>
             </div>
             <div className="px-2 py-1 rounded">
-              <Link href="/resume">
-                <a className="text-white">Resume</a>
+              <Link href="/resume" className="text-white">
+                Resume
               </Link>
             </div>
           </nav>
@@ -78,8 +78,8 @@ export const Navigation = withRouter(({ router }) => {
       >
         {!isHomepage && (
           <div className="px-2 py-1 rounded">
-            <Link href="/">
-              <a className="text-white">Home</a>
+            <Link href="/" className="text-white">
+              Home
             </Link>
           </div>
         )}
@@ -88,8 +88,8 @@ export const Navigation = withRouter(({ router }) => {
             pathname.includes("/blog") ? "bg-blue-600 shadow-lg" : ""
           }`}
         >
-          <Link href="/blog-index">
-            <a className="text-white">Blog</a>
+          <Link href="/blog-index" className="text-white">
+            Blog
           </Link>
         </div>
         <div
@@ -97,8 +97,11 @@ export const Navigation = withRouter(({ router }) => {
             pathname.includes("/today-i-learned") ? "bg-blue-600 shadow-lg" : ""
           }`}
         >
-          <Link href="/today-i-learned">
-            <a className="text-white whitespace-nowrap">Today I learned</a>
+          <Link
+            href="/today-i-learned"
+            className="text-white whitespace-nowrap"
+          >
+            Today I learned
           </Link>
         </div>
         <div
@@ -106,13 +109,13 @@ export const Navigation = withRouter(({ router }) => {
             pathname.includes("/side-projects") ? "bg-blue-600 shadow-lg" : ""
           }`}
         >
-          <Link href="/side-projects">
-            <a className="text-white whitespace-nowrap">Side Projects</a>
+          <Link href="/side-projects" className="text-white whitespace-nowrap">
+            Side Projects
           </Link>
         </div>
         <div className="px-2 py-1 rounded">
-          <Link href="/resume">
-            <a className="text-white">Resume</a>
+          <Link href="/resume" className="text-white">
+            Resume
           </Link>
         </div>
       </nav>

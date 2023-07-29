@@ -21,10 +21,11 @@ const Header = (): JSX.Element => {
   return (
     <div className="py-4 flex justify-between">
       <div className="flex">
-        <Link href="/">
-          <a className="text-white text-lg font-bold hover:bg-blue-400 rounded px-4 py-2 ml-2 mr-1 cursor-pointer self-center">
-            Andrew McDowell - Resume
-          </a>
+        <Link
+          href="/"
+          className="text-white text-lg font-bold hover:bg-blue-400 rounded px-4 py-2 ml-2 mr-1 cursor-pointer self-center"
+        >
+          Andrew McDowell - Resume
         </Link>
         <div className="hidden md:flex">
           <button
