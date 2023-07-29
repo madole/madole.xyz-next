@@ -1,7 +1,7 @@
 import { useFrame, useThree } from "@react-three/fiber";
 import React, { Suspense, useEffect, useRef, useState } from "react";
 import { Vector3 } from "three";
-import { Sparkles } from "@react-three/drei";
+import { Sparkles, Trail } from "@react-three/drei";
 
 /**
  * A component that renders the Sparkles ReactThree Drei component and it follows the mouse around the screen.
@@ -49,13 +49,25 @@ export const SparksThatFollowTheMouse = () => {
 
   return (
     <Suspense fallback={null}>
-      <Sparkles
-        count={10}
-        size={5}
-        color={"#00bbff"}
-        ref={sparklesRef}
-        opacity={isMouseMoving ? 0 : 1}
-      />
+      <Trail
+        width={0.1}
+        color={"skyblue"} // Color of the line
+        length={1} // Length of the line
+        decay={0.5} // How fast the line fades away
+        local={true} // Wether to use the target's world or local positions
+        stride={0} // Min distance between previous and current point
+        interval={1} // Number of frames to wait before next calculation
+        target={undefined} // Optional target. This object will produce the trail.
+        attenuation={(width) => width} // A function to define the width in each point along it.
+      >
+        <Sparkles
+          count={10}
+          size={3}
+          color={"skyblue"}
+          ref={sparklesRef}
+          opacity={isMouseMoving ? 0 : 1}
+        />
+      </Trail>
     </Suspense>
   );
 };
