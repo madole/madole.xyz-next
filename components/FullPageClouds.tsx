@@ -1,14 +1,17 @@
 import React from "react";
-import ThreeWrapper from "./ThreeWrapper";
+import FullPageThreeWrapper from "./FullPageThreeWrapper";
 import Clouds from "./Clouds";
+import { SparksThatFollowTheMouse } from "./SparksThatFollowTheMouse";
+import Earth from "./Earth";
 
 export interface FullPageCloudsProps {}
 
 const FullPageClouds: React.FC<FullPageCloudsProps> = (props) => {
   return (
-    <ThreeWrapper>
+    <FullPageThreeWrapper>
       <Clouds />
-    </ThreeWrapper>
+      <SparksThatFollowTheMouse />
+    </FullPageThreeWrapper>
   );
 };
 

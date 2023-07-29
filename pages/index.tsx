@@ -9,6 +9,10 @@ const FullpageClouds = dynamic(() => import("../components/FullPageClouds"), {
   ssr: false,
 });
 
+const EarthCanvas = dynamic(() => import("../components/EarthCanvas"), {
+  ssr: false,
+});
+
 export interface IndexProps {}
 
 const TITLE_SWITCH_INTERVAL = 5000;
@@ -18,6 +22,7 @@ const titles = [
   "Team Leader",
   "Samba Drummer",
   "Whiskey Appreciator",
+  "Digital Cartologist",
 ];
 
 const Index: React.FC<IndexProps> = (props) => {
@@ -44,28 +49,19 @@ const Index: React.FC<IndexProps> = (props) => {
       </Head>
       <div className="absolute inset-0 background">
         <FullpageClouds />
+
         <div className="absolute inset-0 flex flex-col justify-between h-full z-10">
           <a href="#main-content" className="sr-only">
             Skip to main content
           </a>
 
-          <div className="absolute bottom-7 xl:bottom-0 right-0 hidden sm:block">
-            <Image
-              src="/bitmoji.png"
-              alt="Me, a bitmoji"
-              className="animate-slowFadeIn h-48 lg:h-64 pb-12"
-              width={200}
-              height={200}
-            />
-          </div>
-
           <Navigation />
 
           <main
             id="main-content"
-            className="flex flex-col justify-center flex-grow px-8 md:px-20 lg:px-32"
+            className="flex flex-col pt-6 md:pt-0 md:justify-center flex-grow px-8 md:px-20 lg:px-32"
           >
-            <div className="relative h-40 text-6xl leading-none text-white md:h-24 md:leading-tight w-3/4 md:w-full">
+            <div className="relative text-5xl md:text-6xl leading-none text-white h-32 md:h-24 md:leading-tight w-3/4 md:w-full">
               <span key={title} className="animate-slowFadeIn absolute top-0">
                 {title}
               </span>
@@ -75,12 +71,13 @@ const Index: React.FC<IndexProps> = (props) => {
               />
             </div>
             <div className="p-3 pl-0 text-2xl md:text-3xl font-light text-white opacity-75">
-              Work hard, play harder.
+              Unleashing Geospatial Innovation Together.
             </div>
-            <div className="text-2xl md:text-3xl font-light text-white">
-              Specialising in building rich, interactive web applications and
-              leading software engineering teams.
+            <div className="text-2xl md:text-3xl font-light text-white w-full md:w-2/3">
+              Transforming ideas into cutting-edge geospatial web applications
+              through expert leadership and collaborative excellence.
             </div>
+            <EarthCanvas />
           </main>
 
           <div className="flex justify-around pb-4">

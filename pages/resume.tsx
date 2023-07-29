@@ -227,7 +227,9 @@ function Resume(): JSX.Element {
           </Column>
           <Column title="January 2021...">
             <Card>
-              <span className="pb-1 font-bold">Senior Frontend & Geospatial Technical Lead</span>
+              <span className="pb-1 font-bold">
+                Senior Frontend & Geospatial Technical Lead
+              </span>
               Kablamo
             </Card>
             <Card>
@@ -236,8 +238,8 @@ function Resume(): JSX.Element {
             <Card>
               <FlexCenter>
                 <Image
-                  width={"250px"}
-                  height={"300px"}
+                  width={250}
+                  height={300}
                   src="/kablamo-logo.png"
                   alt="Kablamo logo"
                 />
@@ -245,8 +247,8 @@ function Resume(): JSX.Element {
             </Card>
             <Card>
               <Image
-                width={"200px"}
-                height={"150px"}
+                width={200}
+                height={150}
                 src="https://media.giphy.com/media/aNqEFrYVnsS52/giphy.gif"
                 alt="keyboard cat"
               />
@@ -277,7 +279,7 @@ function Resume(): JSX.Element {
               we&apos;re delivering on their needs
             </Card>
             <Card>
-              <div className="font-bold pb-3">✨Upgrade March 2022✨</div> 
+              <div className="font-bold pb-3">✨Upgrade March 2022✨</div>
               <div className="pb-3">Tech Lead -{">"} Senior Tech Lead</div>
             </Card>
           </Column>

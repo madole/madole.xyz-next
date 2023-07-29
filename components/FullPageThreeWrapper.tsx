@@ -5,11 +5,12 @@ export interface ThreeWrapperProps {
   children: React.ReactNode;
 }
 
-const ThreeWrapper: React.FC<ThreeWrapperProps> = (props) => {
+const FullPageThreeWrapper: React.FC<ThreeWrapperProps> = (props) => {
   const { children } = props;
   return (
     <div className="absolute inset-0 animate-slowFadeIn z-0 motion-reduce:hidden">
-      <Canvas>
+      <Canvas camera={{ position: [0, 0, 2] }}>
+        <mesh />
         <ambientLight />
         {children}
       </Canvas>
@@ -17,4 +18,4 @@ const ThreeWrapper: React.FC<ThreeWrapperProps> = (props) => {
   );
 };
 
-export default ThreeWrapper;
+export default FullPageThreeWrapper;
