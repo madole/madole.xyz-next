@@ -12,7 +12,7 @@ import mourneWalks from "../images/mourne-walks.jpeg";
 import gpxEditor from "../images/gpx-editor.jpeg";
 import kmlEditor from "../images/kml-editor.jpeg";
 import geojsonEditor from "../images/geojson-editor.jpeg";
-import mapboxglBoundingBoxViewBoundsComparison from "../images/mapbox-gl-bounding-box-view-bounds-comparison.jpegg";
+import mapboxglBoundingBoxViewBoundsComparison from "../images/mapbox-gl-bounding-box-view-bounds-comparison.jpeg";
 import styles from "../styles/side-projects.module.css";
 import { useMultiIntersectionObserver } from "../hooks/useMultiIntersectionObserver";
 import Head from "next/head";
