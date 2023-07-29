@@ -8,11 +8,11 @@ import covidBananas from "../images/covid-bananas.png";
 import issTracker from "../images/ISS-tracker.png";
 import pano360 from "../images/360-pano.png";
 import greensDrivePano from "../images/greens-drive-pano.png";
-import mourneWalks from "../images/mourne-walks.png";
+import mourneWalks from "../images/mourne-walks.jpeg";
 import gpxEditor from "../images/gpx-editor.jpeg";
 import kmlEditor from "../images/kml-editor.jpeg";
 import geojsonEditor from "../images/geojson-editor.jpeg";
-import mapboxglBoundingBoxViewBoundsComparison from "../images/mapbox-gl-bounding-box-view-bounds-comparison.png";
+import mapboxglBoundingBoxViewBoundsComparison from "../images/mapbox-gl-bounding-box-view-bounds-comparison.jpegg";
 import styles from "../styles/side-projects.module.css";
 import { useMultiIntersectionObserver } from "../hooks/useMultiIntersectionObserver";
 import Head from "next/head";
@@ -23,7 +23,7 @@ const data = [
     title: "Mapbox GL Bounding Box View Bounds Comparison",
     imageAlt: "Mapbox GL Bounding Box View Bounds Comparison",
     description:
-        "A comparison of the bounds returned by Mapbox GL's map.getBounds() and the actual view box of the map.",
+      "A comparison of the bounds returned by Mapbox GL's map.getBounds() and the actual view box of the map.",
     link: "https://mapbox-gl-bounding-box-view-bounds-comparison.madole.dev/",
   },
   {
@@ -140,7 +140,7 @@ const SideProjects = () => {
   useMultiIntersectionObserver(
     observerRef,
     "[data-side-project=true]",
-    addInViewCallback
+    addInViewCallback,
   );
 
   return (
