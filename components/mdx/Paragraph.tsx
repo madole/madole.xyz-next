@@ -1,6 +1,8 @@
 import * as React from "react";
 
-export interface ParagraphProps {}
+export interface ParagraphProps {
+  children: React.ReactNode;
+}
 
 const Paragraph: React.FC<ParagraphProps> = (props) => {
   const { children, ...rest } = props;

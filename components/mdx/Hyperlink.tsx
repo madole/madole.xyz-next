@@ -1,6 +1,8 @@
 import React from "react";
 
-export interface HyperlinkProps {}
+export interface HyperlinkProps {
+  children: React.ReactNode;
+}
 
 const Hyperlink: React.FC<HyperlinkProps> = (props) => {
   const { children, ...rest } = props;
