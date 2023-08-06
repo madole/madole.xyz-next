@@ -12,12 +12,21 @@ import mourneWalks from "../images/mourne-walks.jpeg";
 import gpxEditor from "../images/gpx-editor.jpeg";
 import kmlEditor from "../images/kml-editor.jpeg";
 import geojsonEditor from "../images/geojson-editor.jpeg";
+import bboxUtil from "../images/bbox-util-kit.jpg";
 import mapboxglBoundingBoxViewBoundsComparison from "../images/mapbox-gl-bounding-box-view-bounds-comparison.jpeg";
 import styles from "../styles/side-projects.module.css";
 import { useMultiIntersectionObserver } from "../hooks/useMultiIntersectionObserver";
 import Head from "next/head";
 
 const data = [
+  {
+    image: bboxUtil,
+    title: "Bounding Box Utility Kit",
+    imageAlt: "Bounding Box Utility Kit",
+    description:
+      "With Bbox util you can easily draw polygons on a map and get the resulting bounding box, input bounding boxes in various formats, and visualize the bounding box on a map.",
+    link: "https://bbox-util.madole.dev/",
+  },
   {
     image: mapboxglBoundingBoxViewBoundsComparison,
     title: "Mapbox GL Bounding Box View Bounds Comparison",

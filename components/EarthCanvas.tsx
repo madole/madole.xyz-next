@@ -13,8 +13,8 @@ const EarthCanvas: React.FC = () => {
           enableRotate
           enableZoom={false}
         />
-        <hemisphereLight intensity={0.35} />
-        <ambientLight intensity={0.5} />
+        <hemisphereLight intensity={0.85} />
+        <ambientLight intensity={1} />
         <spotLight
           position={[-200, 100, 50]}
           angle={0.3}
