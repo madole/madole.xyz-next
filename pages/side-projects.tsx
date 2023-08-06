@@ -24,7 +24,7 @@ const data = [
     title: "Bounding Box Utility Kit",
     imageAlt: "Bounding Box Utility Kit",
     description:
-      "With Bbox util you can easily draw polygons on a map and get the resulting bounding box, input bounding boxes in various formats, and visualize the bounding box on a map.",
+      "With The Bounding Box Utility Kit you can easily draw polygons on a map and get the resulting bounding box, input bounding boxes in various formats, and visualize the bounding box on a map.",
     link: "https://bbox-util.madole.dev/",
   },
   {
