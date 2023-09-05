@@ -36,7 +36,7 @@ export const SparksThatFollowTheMouse = () => {
       setIsMouseMoving(true);
       timeoutId = setTimeout(() => {
         setIsMouseMoving(false);
-      }, 500); // Adjust the timeout duration as needed
+      }, 300); // Adjust the timeout duration as needed
     };
 
     window.addEventListener("mousemove", updateMousePosition);
