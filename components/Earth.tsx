@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { Sphere, useTexture } from "@react-three/drei";
+import { Outlines, Sphere, useTexture } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import {
   BufferGeometry,
@@ -30,12 +30,23 @@ const Earth = () => {
     cloudRef.current.rotation.x = cloudRef.current.rotation.x - 0.0005;
   });
 
+  const [hovering, setHovering] = React.useState(false);
+
   return (
     <group position={[0, 0, 0]}>
       <ambientLight />
       <directionalLight position={[10, 10, 20]} />
-      {/* @ts-ignore*/}
-      <Sphere args={[1, 32, 32]} ref={earthRef}>
+      <Sphere
+        args={[1, 32, 32]}
+        /* @ts-ignore*/
+        ref={earthRef}
+        onPointerEnter={() => {
+          setHovering(true);
+        }}
+        onPointerLeave={() => {
+          setHovering(false);
+        }}
+      >
         <meshPhongMaterial
           map={texture}
           bumpMap={bumpMap}
@@ -43,6 +54,16 @@ const Earth = () => {
           specularMap={specMap}
           specular={new Color("grey")}
         />
+        {hovering && (
+          <Outlines
+            screenspace={false}
+            thickness={0.06}
+            color="white"
+            angle={0}
+            opacity={0.5}
+            transparent={true}
+          />
+        )}
       </Sphere>
       {/* @ts-ignore*/}
       <Sphere args={[1.02, 32, 32]} ref={cloudRef}>

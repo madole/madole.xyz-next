@@ -45,3 +45,5 @@ E
 components/Layout.tsx,e/4/e40f74caa43ed7a626ec937167a07ebd91244dd6
 G
 pages/side-projects.tsx,1/8/1825f119181d90c619fb6cf6e076fb9715fd798e
+L
+components/resume/Column.tsx,0/8/0880b56bb29cf828ae245552ad09760f3e17e38b

@@ -14,7 +14,7 @@ interface Props {
   children: React.ReactNode;
 }
 
-const Column = (props: Props): JSX.Element => {
+const Column = (props: Props) => {
   const { title, children } = props;
   return (
     <div className="max-h-9/10 ">

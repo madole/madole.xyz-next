@@ -45,3 +45,5 @@ E
 pages/blog/[slug].tsx,8/5/856a4c58fa806b5616cc5b3e95eef6fab20b95fd
 G
 pages/side-projects.tsx,1/8/1825f119181d90c619fb6cf6e076fb9715fd798e
+L
+components/resume/Column.tsx,0/8/0880b56bb29cf828ae245552ad09760f3e17e38b
