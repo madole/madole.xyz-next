@@ -47,3 +47,9 @@ G
 pages/side-projects.tsx,1/8/1825f119181d90c619fb6cf6e076fb9715fd798e
 L
 components/resume/Column.tsx,0/8/0880b56bb29cf828ae245552ad09760f3e17e38b
+L
+components/resume/Dialog.tsx,a/b/abc6487082e16f60c8c037cae33819b63019e852
+J
+components/mdx/RedText.tsx,6/f/6ff398107effca31c785f4e22e17c0f208b949e4
+>
+.eslintrc.json,7/1/71c20a341bfe32aa5cd5b4384e94f942bab6a7d3
