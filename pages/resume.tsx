@@ -1,12 +1,11 @@
-import * as React from "react";
+import Head from "next/head";
+import Image from "next/image";
 import { useState } from "react";
-import Header from "../components/resume/Header";
-import Column from "../components/resume/Column";
+import FlexCenter from "../components/FlexCenter";
 import Card, { Hr, Spacer } from "../components/resume/Card";
 import CardDialog from "../components/resume/CardDialog";
-import FlexCenter from "../components/FlexCenter";
-import Image from "next/image";
-import Head from "next/head";
+import Column from "../components/resume/Column";
+import Header from "../components/resume/Header";
 
 function getUrlSearchParam(searchParam: string): string | null {
   if (typeof window === "undefined") {
@@ -50,47 +49,42 @@ function Resume(): JSX.Element {
                 date="6th Oct 2020 at 20:10"
               >
                 <ul className="list-disc">
-                  <li>
+                  <li className="pb-2">
                     Samba drumming -
                     <a
                       className="text-blue-800 underline hover:text-blue-600"
                       href="https://www.youtube.com/watch?v=uSLcPmbKSxM"
                       target="_blank"
-                      rel="noreferrer"
+                      rel="noreferrer noopener"
                     >
                       &nbsp;Bateria 61
                     </a>
                   </li>
-                  <br />
-                  <li>
+                  <li className="pb-2">
                     Photography -
                     <a
                       className="text-blue-800 underline hover:text-blue-600"
                       href="https://www.instagram.com/madoliole/"
                       target="_blank"
-                      rel="noreferrer"
+                      rel="noreferrer noopener"
                     >
                       &nbsp;The gram
                     </a>
                   </li>
-                  <br />
-                  <li>
+                  <li className="pb-2">
                     Whiskey -{" "}
                     <a
                       className="text-blue-800 underline hover:text-blue-600"
                       href="https://www.whiskeynerds.com/"
                       target="_blank"
-                      rel="noreferrer"
+                      rel="noreferrer noopener"
                     >
                       &nbsp;Whiskey Nerds
                     </a>
                   </li>
-                  <br />
-                  <li>Skateboarding</li>
-                  <br />
-                  <li>Baking sourdough bread</li>
-                  <br />
-                  <li>Cats</li>
+                  <li className="pb-2">Skateboarding</li>
+                  <li className="pb-2">Baking sourdough bread</li>
+                  <li className="pb-2">Cats</li>
                 </ul>
               </CardDialog>
             </Card>
@@ -109,7 +103,7 @@ function Resume(): JSX.Element {
                 date="6th Oct 2020 at 20:20"
               >
                 <ul className="list-disc">
-                  <li>
+                  <li className="pb-2">
                     Coding - &nbsp;
                     <a
                       href={"https://github.com/madole"}
@@ -120,8 +114,7 @@ function Resume(): JSX.Element {
                       Github
                     </a>
                   </li>
-                  <br />
-                  <li>
+                  <li className="pb-2">
                     Musings - &nbsp;
                     <a
                       href={"https://twitter.com/madole"}
@@ -132,8 +125,7 @@ function Resume(): JSX.Element {
                       Twitter
                     </a>
                   </li>
-                  <br />
-                  <li>
+                  <li className="pb-2">
                     Lurking - &nbsp;
                     <a
                       href={
@@ -169,25 +161,16 @@ function Resume(): JSX.Element {
                       5+ years experience
                     </div>
                     <ul className="list-disc ">
-                      <li>NodeJS</li>
-                      <br />
-                      <li>React</li>
-                      <br />
-                      <li>Mapbox</li>
-                      <br />
-                      <li>Leaflet</li>
-                      <br />
-                      <li>Jest</li>
-                      <br />
-                      <li>Webpack</li>
-                      <br />
-                      <li>AWS</li>
-                      <br />
-                      <li>JS for embedded devices</li>
-                      <br />
-                      <li>NPM</li>
-                      <br />
-                      <li>Jira</li>
+                      <li className="pb-2">NodeJS</li>
+                      <li className="pb-2">React</li>
+                      <li className="pb-2">Mapbox</li>
+                      <li className="pb-2">Leaflet</li>
+                      <li className="pb-2">Jest</li>
+                      <li className="pb-2">Webpack</li>
+                      <li className="pb-2">AWS</li>
+                      <li className="pb-2">JS for embedded devices</li>
+                      <li className="pb-2">NPM</li>
+                      <li className="pb-2">Jira</li>
                     </ul>
                   </div>
                   <div className="mb-4">
@@ -195,34 +178,59 @@ function Resume(): JSX.Element {
                       4 years experience
                     </div>
                     <ul className="list-disc">
-                      <li>Styled Components</li>
-                      <br />
-                      <li>Cesium JS</li>
-                      <br />
-                      <li>Python</li>
-                      <br />
-                      <li>Terraform</li>
-                      <br />
-                      <li>Metabase</li>
-                      <br />
-                      <li>Redash</li>
+                      <li className="pb-2">Styled Components</li>
+                      <li className="pb-2">Cesium JS</li>
+                      <li className="pb-2">Python</li>
+                      <li className="pb-2">Terraform</li>
+                      <li className="pb-2">Metabase</li>
+                      <li className="pb-2">Redash</li>
                     </ul>
                   </div>
                   <div className="mb-4">
                     <div className="font-bold mb-4 text-xl -ml-5">Recent</div>
                     <ul className="list-disc">
-                      <li>Golang</li>
+                      <li className="pb-2">Golang</li>
 
-                      <br />
-                      <li>Tailwind CSS</li>
-                      <br />
-                      <li>Gatsby</li>
-                      <br />
-                      <li>Next</li>
+                      <li className="pb-2">Tailwind CSS</li>
+                      <li className="pb-2">Gatsby</li>
+                      <li className="pb-2">Next</li>
                     </ul>
                   </div>
                 </div>
               </CardDialog>
+            </Card>
+          </Column>
+          <Column title="Achievements">
+            <Card>
+              <div className="pb-1 font-bold">
+                NOV 2023: Completed NASA ARSET training
+              </div>
+              <div>Spectral Indices for Land and Aquatic Applications</div>
+              <FlexCenter>
+                <Image
+                  width={250}
+                  height={300}
+                  src="/arset-spectral-indicies.png"
+                  alt="ARSET Spectral Indicies certificate"
+                />
+              </FlexCenter>
+            </Card>
+            <Card>
+              <div className="pb-1 font-bold">
+                OCT 2022: Completed NASA ARSET training
+              </div>
+              <div>
+                Accessing and Analyzing Air Quality Data from Geostationary
+                Satellites
+              </div>
+              <FlexCenter>
+                <Image
+                  width={250}
+                  height={300}
+                  src="/arset-analyzing-air-quality-data.png"
+                  alt="ARSET Accessing and Analyzing Air Quality Data from Geostationary Satellites certificate"
+                />
+              </FlexCenter>
             </Card>
           </Column>
           <Column title="January 2021...">
@@ -475,7 +483,6 @@ function Resume(): JSX.Element {
             <Column title="Future">
               <Card>
                 <span className="pb-1 font-bold">{futureTitle}</span>
-                <br />
                 {futureCompany}
               </Card>
               <Card>
