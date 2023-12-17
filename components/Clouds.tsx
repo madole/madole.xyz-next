@@ -9,8 +9,6 @@ const Clouds: React.FC = () => {
           position={[4, 2, 0]}
           opacity={0.7}
           speed={0.4} // Rotation speed
-          width={20} // Width of the full cloud
-          depth={2} // Z-dir depth
           segments={10} // Number of particles
         />
       </Float>
