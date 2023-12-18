@@ -1,13 +1,13 @@
-import * as React from "react";
 import fs from "fs";
-import path from "path";
-import { Layout } from "../../components/Layout";
-import Head from "next/head";
 import { MDXRemote } from "next-mdx-remote";
+import Head from "next/head";
+import path from "path";
 import "prismjs/themes/prism-tomorrow.css";
+import { useEffect, useState } from "react";
+import { Layout } from "../../components/Layout";
+import { Tags } from "../../components/Tags";
 import { mdxComponents } from "../../components/mdx/mdx-components";
 import { parseMdxContent } from "../../utils/parseMdxContent";
-import { Tags } from "../../components/Tags";
 
 interface Props {
   data: {
@@ -21,12 +21,25 @@ interface Props {
     body: string;
   };
 }
+const dateStringOptions = {
+  weekday: "long",
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+} as const;
 
 export default function BlogPost(props: Props): JSX.Element {
   const {
     attributes: { title, date, slug, tags, timeToRead },
     body,
   } = props.data;
+
+  const [postDate, setPostDate] = useState("");
+  useEffect(() => {
+    setPostDate(
+      new Date(date).toLocaleDateString(undefined, dateStringOptions)
+    );
+  }, [date]);
 
   return (
     <Layout>
@@ -43,7 +56,7 @@ export default function BlogPost(props: Props): JSX.Element {
             {title}
           </h1>
           <div className="prose pt-2 font-light">
-            {new Date(date).toLocaleDateString()} &mdash; {timeToRead}
+            {postDate} &mdash; {timeToRead}
           </div>
         </div>
         <article className="prose prose-slate break-word md:break-normal w-full">

@@ -1,5 +1,5 @@
-import * as React from "react";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { Tags } from "./Tags";
 
 interface Props {
@@ -31,11 +31,12 @@ const dateStringOptions = {
 
 export function IndexListItem(props: Props): JSX.Element {
   const { title, date, excerpt, slug, timeToRead, tags } = props;
-
-  const dateString = new Date(date).toLocaleDateString(
-    undefined,
-    dateStringOptions
-  );
+  const [postDate, setPostDate] = useState("");
+  useEffect(() => {
+    setPostDate(
+      new Date(date).toLocaleDateString(undefined, dateStringOptions)
+    );
+  }, [date]);
 
   if (!slug) throw new Error("No slug provided for " + title);
 
@@ -48,7 +49,7 @@ export function IndexListItem(props: Props): JSX.Element {
         {title}
       </Link>
       <div className="md:px-2 text-sm font-light">
-        {isInvalidDate(dateString) ? date : dateString} &mdash; {timeToRead}
+        {postDate} &mdash; {timeToRead}
       </div>
       <div className="pt-2">{excerpt}</div>
       <Tags tags={tags} />
