@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>http://madole.xyz/</id>
     <title>Madole.xyz Blog</title>
-    <updated>2022-05-14T09:58:44.301Z</updated>
+    <updated>2023-12-19T00:10:48.583Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Andrew McDowell</name>
@@ -16,12 +16,28 @@
     <icon>http://madole.xyz/favicon.ico</icon>
     <rights>All rights reserved 2022, Madole</rights>
     <entry>
+        <title type="html"><![CDATA[What are Spectral Indices in Remote Sensing?]]></title>
+        <id>https://madole.xyz/blog/spectral-indices</id>
+        <link href="https://madole.xyz/blog/spectral-indices"/>
+        <updated>2023-12-18T23:48:15.845Z</updated>
+        <summary type="html"><![CDATA[Reading time: 6 min read]]></summary>
+        <content type="html"><![CDATA[<h2>What are Spectral Indices in Remote Sensing?</h2>
+<p>Spectral Indices are a set of mathematical equations performed on a per-pixel basis on data coming from multispectral remote sensing data.</p>
+<p>When looking at Satellite data, you don’t get a single image,</p>
+]]></content>
+        <author>
+            <name>Andrew McDowell</name>
+            <email>me@madole.dev</email>
+            <uri>https://madole.xyz</uri>
+        </author>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[Setting up ESLint on Webstorm when using Yarn Berry with Plug'n'Play]]></title>
         <id>https://madole.xyz/blog/setting-up-eslint-on-webstorm-when-using-yarn-berry-with-pnp</id>
         <link href="https://madole.xyz/blog/setting-up-eslint-on-webstorm-when-using-yarn-berry-with-pnp"/>
         <updated>2022-01-07T04:35:22.840Z</updated>
         <summary type="html"><![CDATA[Reading time: 2 min read]]></summary>
-        <content type="html"><![CDATA[<h2 id="yarn-berry">Yarn Berry</h2>
+        <content type="html"><![CDATA[<h2>Yarn Berry</h2>
 <p><img src="https://media.giphy.com/media/jRZeoFYjBO2joRHPoQ/giphy-downsized-large.gif" alt="What is that?"></p>
 <p>Yarn Berry is the codename for Yarn version 2 and 3. It worked so differently to Yarn 1 that the team ended
 up giving it a totally different n</p>
@@ -38,9 +54,9 @@ up giving it a totally different n</p>
         <link href="https://madole.xyz/blog/how-i-stress-tested-mapboxs-handling-of-many-polygons"/>
         <updated>2022-01-07T01:37:23.352Z</updated>
         <summary type="html"><![CDATA[Reading time: 5 min read]]></summary>
-        <content type="html"><![CDATA[<h2 id="question">Question</h2>
+        <content type="html"><![CDATA[<h2>Question</h2>
 <p>How many polygons can I get mapbox to render before it starts to get slow?</p>
-<h3 id="considerations">Considerations</h3>
+<h3>Considerations</h3>
 <p>A polygon consists of many vertices, so I&#39;ll want to measure against the number of vertices too as
 100 polygons with 3 vertices is very differe</p>
 ]]></content>
@@ -56,7 +72,7 @@ up giving it a totally different n</p>
         <link href="https://madole.xyz/blog/how-to-visualise-weather-stations-on-a-map"/>
         <updated>2022-01-04T04:40:33.179Z</updated>
         <summary type="html"><![CDATA[Reading time: 7 min read]]></summary>
-        <content type="html"><![CDATA[<h2 id="tech-well-be-using">Tech we&#39;ll be using</h2>
+        <content type="html"><![CDATA[<h2>Tech we&#39;ll be using</h2>
 <ul>
 <li><a href="https://www.mapbox.com/mapbox-gl-js/">Mapbox GL JS</a><ul>
 <li>A fantastic library for creating maps</li>
@@ -247,9 +263,9 @@ here <a href="https://www.propelleraero.com/blog/meet-your-engineering-team-andr
         <summary type="html"><![CDATA[Reading time: 2 min read]]></summary>
         <content type="html"><![CDATA[<p>This week I came across an odd behaviour that it took me a little while to figure out. 
 Take the following example:</p>
-<p>```js
-const promiseThatWillResolve = Promise.resolve();
-const promiseThatWillReject = new Promise((resolve, reject) =&gt; reject(new Err</p>
+<pre><code class="language-js">const promiseThatWillResolve = Promise.resolve();
+const promiseThatWillReject = new Promise((resolve, reject) =&gt; reject(new Err
+</code></pre>
 ]]></content>
         <author>
             <name>Andrew McDowell</name>
@@ -306,7 +322,7 @@ const promiseThatWillReject = new Promise((resolve, reject) =&gt; reject(new Err
         <link href="https://madole.xyz/blog/migrating-data-from-ghost-to-gatsby"/>
         <updated>2018-06-18T10:28:07.097Z</updated>
         <summary type="html"><![CDATA[Reading time: 3 min read]]></summary>
-        <content type="html"><![CDATA[<h2 id="what-is-gatsby">What is Gatsby?</h2>
+        <content type="html"><![CDATA[<h2>What is Gatsby?</h2>
 <blockquote>
 <p>🔥 Blazing-fast static site generator for React</p>
 </blockquote>
@@ -355,7 +371,7 @@ const promiseThatWillReject = new Promise((resolve, reject) =&gt; reject(new Err
         <updated>2017-02-17T12:16:22.000Z</updated>
         <summary type="html"><![CDATA[Reading time: 3 min read]]></summary>
         <content type="html"><![CDATA[<p>import RedText from &#39;../../components/mdx/RedText&#39;;</p>
-<h1 id="kcors"><a href="https://www.npmjs.com/package/kcors">Kcors</a></h1>
+<h1><a href="https://www.npmjs.com/package/kcors">Kcors</a></h1>
 <p>The Koa CORs library <code>kcors</code> has documentation which is a bit light on how to actually whitelist more than one domain for your node server.</p>
 <p>It has a</p>
 ]]></content>
@@ -386,11 +402,11 @@ const promiseThatWillReject = new Promise((resolve, reject) =&gt; reject(new Err
         <link href="https://madole.xyz/blog/yarn-package-manager"/>
         <updated>2016-11-22T17:26:37.000Z</updated>
         <summary type="html"><![CDATA[Reading time: 3 min read]]></summary>
-        <content type="html"><![CDATA[<h3 id="what-is-yarn">What is Yarn?</h3>
+        <content type="html"><![CDATA[<h3>What is Yarn?</h3>
 <blockquote>
 <p>FAST, RELIABLE, AND SECURE DEPENDENCY MANAGEMENT. - <a href="https://yarnpkg.com/">https://yarnpkg.com/</a></p>
 </blockquote>
-<h3 id="how-does-it-achieve-all-of-this">How does it achieve all of this?</h3>
+<h3>How does it achieve all of this?</h3>
 <p>It uses caching to speed up installs by only ever downloading them once and parallelizes ope</p>
 ]]></content>
         <author>
@@ -530,9 +546,9 @@ const promiseThatWillReject = new Promise((resolve, reject) =&gt; reject(new Err
         <link href="https://madole.xyz/blog/asset-hashing-with-webpack"/>
         <updated>2016-04-15T14:32:57.000Z</updated>
         <summary type="html"><![CDATA[Reading time: 5 min read]]></summary>
-        <content type="html"><![CDATA[<h3 id="why-would-you-hash-your-assets">Why would you hash your assets?</h3>
+        <content type="html"><![CDATA[<h3>Why would you hash your assets?</h3>
 <p>If you&#39;re creating a website that has a caching layer sitting in front of it, you&#39;re going to need a way to bust the cache every time you make a release so your cache doesn&#39;t continue to serve up your old files.</p>
-<h1 id=""></h1>
+<h1></h1>
 ]]></content>
         <author>
             <name>Andrew McDowell</name>
@@ -593,10 +609,10 @@ const promiseThatWillReject = new Promise((resolve, reject) =&gt; reject(new Err
         <link href="https://madole.xyz/blog/my-favourite-atom-packages-of-2015"/>
         <updated>2016-01-02T06:29:19.000Z</updated>
         <summary type="html"><![CDATA[Reading time: 3 min read]]></summary>
-        <content type="html"><![CDATA[<h4 id="a-comprehensive-list-of-my-favourite-atom-packages-from-2015">A comprehensive list of my favourite Atom packages from 2015</h4>
-<h3 id="ask-stack"><a href="https://github.com/Chris911/Ask-Stack-Atom.git">ask-stack</a></h3>
+        <content type="html"><![CDATA[<h4>A comprehensive list of my favourite Atom packages from 2015</h4>
+<h3><a href="https://github.com/Chris911/Ask-Stack-Atom.git">ask-stack</a></h3>
 <p>Quickly get answers and code samples from Stack Overflow in Atom</p>
-<h3 id="ask-stackhttpscamogithubusercontentco">![ask-stack](<a href="https://camo.githubusercontent.co">https://camo.githubusercontent.co</a></h3>
+<h3>![ask-stack](<a href="https://camo.githubusercontent.co">https://camo.githubusercontent.co</a></h3>
 ]]></content>
         <author>
             <name>Andrew McDowell</name>
@@ -666,12 +682,13 @@ const promiseThatWillReject = new Promise((resolve, reject) =&gt; reject(new Err
         <link href="https://madole.xyz/blog/selenium-actionsequence"/>
         <updated>2015-11-07T12:34:54.000Z</updated>
         <summary type="html"><![CDATA[Reading time: 2 min read]]></summary>
-        <content type="html"><![CDATA[<h2 id="how-to-click-outside-the-center-of-a-div-in-a-selenium-test">How to click outside the center of a div in a selenium test</h2>
-<h3 id="selenium-test">Selenium test</h3>
+        <content type="html"><![CDATA[<h2>How to click outside the center of a div in a selenium test</h2>
+<h3>Selenium test</h3>
 <p>Should do something when an outer div, with an inner div placed in the middle in front, is clicked.</p>
-<h3 id="how-to-usually-do-this">How to usually do this?</h3>
-<p>```javascript</p>
-<p>driver.findElement(web</p>
+<h3>How to usually do this?</h3>
+<pre><code class="language-javascript">
+driver.findElement(web
+</code></pre>
 ]]></content>
         <author>
             <name>Andrew McDowell</name>
@@ -704,7 +721,7 @@ const promiseThatWillReject = new Promise((resolve, reject) =&gt; reject(new Err
         <content type="html"><![CDATA[<p>I decided to write down a list of every day commands that I use in the the Bash command line in Linux.
 This is by no means a definitive list and it will grow as I remember or come across commands that make
 my life easier</p>
-<h3 id="ls">ls</h3>
+<h3>ls</h3>
 <ul>
 <li><pre><code>  list informa
 </code></pre>

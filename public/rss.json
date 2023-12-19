@@ -11,8 +11,20 @@
     },
     "items": [
         {
+            "id": "https://madole.xyz/blog/spectral-indices",
+            "content_html": "<h2>What are Spectral Indices in Remote Sensing?</h2>\n<p>Spectral Indices are a set of mathematical equations performed on a per-pixel basis on data coming from multispectral remote sensing data.</p>\n<p>When looking at Satellite data, you don’t get a single image,</p>\n",
+            "url": "https://madole.xyz/blog/spectral-indices",
+            "title": "What are Spectral Indices in Remote Sensing?",
+            "summary": "Reading time: 6 min read",
+            "date_modified": "2023-12-18T23:48:15.845Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
             "id": "https://madole.xyz/blog/setting-up-eslint-on-webstorm-when-using-yarn-berry-with-pnp",
-            "content_html": "<h2 id=\"yarn-berry\">Yarn Berry</h2>\n<p><img src=\"https://media.giphy.com/media/jRZeoFYjBO2joRHPoQ/giphy-downsized-large.gif\" alt=\"What is that?\"></p>\n<p>Yarn Berry is the codename for Yarn version 2 and 3. It worked so differently to Yarn 1 that the team ended\nup giving it a totally different n</p>\n",
+            "content_html": "<h2>Yarn Berry</h2>\n<p><img src=\"https://media.giphy.com/media/jRZeoFYjBO2joRHPoQ/giphy-downsized-large.gif\" alt=\"What is that?\"></p>\n<p>Yarn Berry is the codename for Yarn version 2 and 3. It worked so differently to Yarn 1 that the team ended\nup giving it a totally different n</p>\n",
             "url": "https://madole.xyz/blog/setting-up-eslint-on-webstorm-when-using-yarn-berry-with-pnp",
             "title": "Setting up ESLint on Webstorm when using Yarn Berry with Plug'n'Play",
             "summary": "Reading time: 2 min read",
@@ -24,7 +36,7 @@
         },
         {
             "id": "https://madole.xyz/blog/how-i-stress-tested-mapboxs-handling-of-many-polygons",
-            "content_html": "<h2 id=\"question\">Question</h2>\n<p>How many polygons can I get mapbox to render before it starts to get slow?</p>\n<h3 id=\"considerations\">Considerations</h3>\n<p>A polygon consists of many vertices, so I&#39;ll want to measure against the number of vertices too as\n100 polygons with 3 vertices is very differe</p>\n",
+            "content_html": "<h2>Question</h2>\n<p>How many polygons can I get mapbox to render before it starts to get slow?</p>\n<h3>Considerations</h3>\n<p>A polygon consists of many vertices, so I&#39;ll want to measure against the number of vertices too as\n100 polygons with 3 vertices is very differe</p>\n",
             "url": "https://madole.xyz/blog/how-i-stress-tested-mapboxs-handling-of-many-polygons",
             "title": "How I stress tested mapbox's handling of many polygons",
             "summary": "Reading time: 5 min read",
@@ -36,7 +48,7 @@
         },
         {
             "id": "https://madole.xyz/blog/how-to-visualise-weather-stations-on-a-map",
-            "content_html": "<h2 id=\"tech-well-be-using\">Tech we&#39;ll be using</h2>\n<ul>\n<li><a href=\"https://www.mapbox.com/mapbox-gl-js/\">Mapbox GL JS</a><ul>\n<li>A fantastic library for creating maps</li>\n</ul>\n</li>\n<li><a href=\"https://www.npmjs.com/package/geojson\">GeoJSON NPM package</a><ul>\n<li>A package for working with GeoJSON</li>\n</ul>\n</li>\n<li>[csvtojson NPM package</li>\n</ul>\n",
+            "content_html": "<h2>Tech we&#39;ll be using</h2>\n<ul>\n<li><a href=\"https://www.mapbox.com/mapbox-gl-js/\">Mapbox GL JS</a><ul>\n<li>A fantastic library for creating maps</li>\n</ul>\n</li>\n<li><a href=\"https://www.npmjs.com/package/geojson\">GeoJSON NPM package</a><ul>\n<li>A package for working with GeoJSON</li>\n</ul>\n</li>\n<li>[csvtojson NPM package</li>\n</ul>\n",
             "url": "https://madole.xyz/blog/how-to-visualise-weather-stations-on-a-map",
             "title": "How to visualise Australia's weather stations on a map",
             "summary": "Reading time: 7 min read",
@@ -180,7 +192,7 @@
         },
         {
             "id": "https://madole.xyz/blog/unexpected-promise-in-the-bagging-area",
-            "content_html": "<p>This week I came across an odd behaviour that it took me a little while to figure out. \nTake the following example:</p>\n<p>```js\nconst promiseThatWillResolve = Promise.resolve();\nconst promiseThatWillReject = new Promise((resolve, reject) =&gt; reject(new Err</p>\n",
+            "content_html": "<p>This week I came across an odd behaviour that it took me a little while to figure out. \nTake the following example:</p>\n<pre><code class=\"language-js\">const promiseThatWillResolve = Promise.resolve();\nconst promiseThatWillReject = new Promise((resolve, reject) =&gt; reject(new Err\n</code></pre>\n",
             "url": "https://madole.xyz/blog/unexpected-promise-in-the-bagging-area",
             "title": "Unexpected promise in the bagging area",
             "summary": "Reading time: 2 min read",
@@ -228,7 +240,7 @@
         },
         {
             "id": "https://madole.xyz/blog/migrating-data-from-ghost-to-gatsby",
-            "content_html": "<h2 id=\"what-is-gatsby\">What is Gatsby?</h2>\n<blockquote>\n<p>🔥 Blazing-fast static site generator for React</p>\n</blockquote>\n<p>It&#39;s is perfect for a static blog, it reads markdown and gives you a GraphQL API to query it and a React front end.</p>\n<p>Coupled with <a href=\"https://www.netlify.com/\">https://www.netlify.com/</a>, it is a fantastic solut</p>\n",
+            "content_html": "<h2>What is Gatsby?</h2>\n<blockquote>\n<p>🔥 Blazing-fast static site generator for React</p>\n</blockquote>\n<p>It&#39;s is perfect for a static blog, it reads markdown and gives you a GraphQL API to query it and a React front end.</p>\n<p>Coupled with <a href=\"https://www.netlify.com/\">https://www.netlify.com/</a>, it is a fantastic solut</p>\n",
             "url": "https://madole.xyz/blog/migrating-data-from-ghost-to-gatsby",
             "title": "Migrating data from Ghost to GatsbyJS",
             "summary": "Reading time: 3 min read",
@@ -264,7 +276,7 @@
         },
         {
             "id": "https://madole.xyz/blog/whitelisting-multiple-domains-with-kcors-in-koa",
-            "content_html": "<p>import RedText from &#39;../../components/mdx/RedText&#39;;</p>\n<h1 id=\"kcors\"><a href=\"https://www.npmjs.com/package/kcors\">Kcors</a></h1>\n<p>The Koa CORs library <code>kcors</code> has documentation which is a bit light on how to actually whitelist more than one domain for your node server.</p>\n<p>It has a</p>\n",
+            "content_html": "<p>import RedText from &#39;../../components/mdx/RedText&#39;;</p>\n<h1><a href=\"https://www.npmjs.com/package/kcors\">Kcors</a></h1>\n<p>The Koa CORs library <code>kcors</code> has documentation which is a bit light on how to actually whitelist more than one domain for your node server.</p>\n<p>It has a</p>\n",
             "url": "https://madole.xyz/blog/whitelisting-multiple-domains-with-kcors-in-koa",
             "title": "Whitelisting multiple domains with kcors in Koa",
             "summary": "Reading time: 3 min read",
@@ -288,7 +300,7 @@
         },
         {
             "id": "https://madole.xyz/blog/yarn-package-manager",
-            "content_html": "<h3 id=\"what-is-yarn\">What is Yarn?</h3>\n<blockquote>\n<p>FAST, RELIABLE, AND SECURE DEPENDENCY MANAGEMENT. - <a href=\"https://yarnpkg.com/\">https://yarnpkg.com/</a></p>\n</blockquote>\n<h3 id=\"how-does-it-achieve-all-of-this\">How does it achieve all of this?</h3>\n<p>It uses caching to speed up installs by only ever downloading them once and parallelizes ope</p>\n",
+            "content_html": "<h3>What is Yarn?</h3>\n<blockquote>\n<p>FAST, RELIABLE, AND SECURE DEPENDENCY MANAGEMENT. - <a href=\"https://yarnpkg.com/\">https://yarnpkg.com/</a></p>\n</blockquote>\n<h3>How does it achieve all of this?</h3>\n<p>It uses caching to speed up installs by only ever downloading them once and parallelizes ope</p>\n",
             "url": "https://madole.xyz/blog/yarn-package-manager",
             "title": "Putting Yarn Package Manager to the test",
             "summary": "Reading time: 3 min read",
@@ -396,7 +408,7 @@
         },
         {
             "id": "https://madole.xyz/blog/asset-hashing-with-webpack",
-            "content_html": "<h3 id=\"why-would-you-hash-your-assets\">Why would you hash your assets?</h3>\n<p>If you&#39;re creating a website that has a caching layer sitting in front of it, you&#39;re going to need a way to bust the cache every time you make a release so your cache doesn&#39;t continue to serve up your old files.</p>\n<h1 id=\"\"></h1>\n",
+            "content_html": "<h3>Why would you hash your assets?</h3>\n<p>If you&#39;re creating a website that has a caching layer sitting in front of it, you&#39;re going to need a way to bust the cache every time you make a release so your cache doesn&#39;t continue to serve up your old files.</p>\n<h1></h1>\n",
             "url": "https://madole.xyz/blog/asset-hashing-with-webpack",
             "title": "Asset hashing with webpack",
             "summary": "Reading time: 5 min read",
@@ -444,7 +456,7 @@
         },
         {
             "id": "https://madole.xyz/blog/my-favourite-atom-packages-of-2015",
-            "content_html": "<h4 id=\"a-comprehensive-list-of-my-favourite-atom-packages-from-2015\">A comprehensive list of my favourite Atom packages from 2015</h4>\n<h3 id=\"ask-stack\"><a href=\"https://github.com/Chris911/Ask-Stack-Atom.git\">ask-stack</a></h3>\n<p>Quickly get answers and code samples from Stack Overflow in Atom</p>\n<h3 id=\"ask-stackhttpscamogithubusercontentco\">![ask-stack](<a href=\"https://camo.githubusercontent.co\">https://camo.githubusercontent.co</a></h3>\n",
+            "content_html": "<h4>A comprehensive list of my favourite Atom packages from 2015</h4>\n<h3><a href=\"https://github.com/Chris911/Ask-Stack-Atom.git\">ask-stack</a></h3>\n<p>Quickly get answers and code samples from Stack Overflow in Atom</p>\n<h3>![ask-stack](<a href=\"https://camo.githubusercontent.co\">https://camo.githubusercontent.co</a></h3>\n",
             "url": "https://madole.xyz/blog/my-favourite-atom-packages-of-2015",
             "title": "My favourite Atom packages of 2015",
             "summary": "Reading time: 3 min read",
@@ -492,7 +504,7 @@
         },
         {
             "id": "https://madole.xyz/blog/selenium-actionsequence",
-            "content_html": "<h2 id=\"how-to-click-outside-the-center-of-a-div-in-a-selenium-test\">How to click outside the center of a div in a selenium test</h2>\n<h3 id=\"selenium-test\">Selenium test</h3>\n<p>Should do something when an outer div, with an inner div placed in the middle in front, is clicked.</p>\n<h3 id=\"how-to-usually-do-this\">How to usually do this?</h3>\n<p>```javascript</p>\n<p>driver.findElement(web</p>\n",
+            "content_html": "<h2>How to click outside the center of a div in a selenium test</h2>\n<h3>Selenium test</h3>\n<p>Should do something when an outer div, with an inner div placed in the middle in front, is clicked.</p>\n<h3>How to usually do this?</h3>\n<pre><code class=\"language-javascript\">\ndriver.findElement(web\n</code></pre>\n",
             "url": "https://madole.xyz/blog/selenium-actionsequence",
             "title": "Selenium ActionSequence",
             "summary": "Reading time: 2 min read",
@@ -516,7 +528,7 @@
         },
         {
             "id": "https://madole.xyz/blog/some-useful-l",
-            "content_html": "<p>I decided to write down a list of every day commands that I use in the the Bash command line in Linux.\nThis is by no means a definitive list and it will grow as I remember or come across commands that make\nmy life easier</p>\n<h3 id=\"ls\">ls</h3>\n<ul>\n<li><pre><code>  list informa\n</code></pre>\n</li>\n</ul>\n",
+            "content_html": "<p>I decided to write down a list of every day commands that I use in the the Bash command line in Linux.\nThis is by no means a definitive list and it will grow as I remember or come across commands that make\nmy life easier</p>\n<h3>ls</h3>\n<ul>\n<li><pre><code>  list informa\n</code></pre>\n</li>\n</ul>\n",
             "url": "https://madole.xyz/blog/some-useful-l",
             "title": "Some useful everyday linux commands",
             "summary": "Reading time: 2 min read",
