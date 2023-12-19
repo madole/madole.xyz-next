@@ -1,9 +1,8 @@
-import React, { useState } from "react";
-import Head from "next/head";
-import useInterval from "../hooks/useInterval";
-import Image from "next/image";
-import { Navigation } from "../components/Navigation";
 import dynamic from "next/dynamic";
+import Head from "next/head";
+import React, { useState } from "react";
+import { Navigation } from "../components/Navigation";
+import useInterval from "../hooks/useInterval";
 
 const FullpageClouds = dynamic(() => import("../components/FullPageClouds"), {
   ssr: false,
