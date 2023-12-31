@@ -50,7 +50,7 @@ function Resume(): JSX.Element {
               >
                 <ul className="list-disc">
                   <li className="pb-2">
-                    Samba drumming -
+                    Samba drumming -{" "}
                     <a
                       className="text-blue-800 underline hover:text-blue-600"
                       href="https://www.youtube.com/watch?v=uSLcPmbKSxM"

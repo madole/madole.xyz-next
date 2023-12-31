@@ -1,0 +1,11 @@
+
+ëtypescript:S6848C"ÂAvoid non-native interactive elements. If using native HTML is not possible, add an appropriate role and support for tabbing, mouse, keyboard, and touch inputs to an interactive content element.(¯ƒúÁøÿÿÿÿ8‘ÎŸôË1
+‡typescript:S1082C"_Visible, non-interactive elements with click handlers must have at least one keyboard listener.(¯ƒúÁøÿÿÿÿ8‘ÎŸôË1
+ëtypescript:S6848J"ÂAvoid non-native interactive elements. If using native HTML is not possible, add an appropriate role and support for tabbing, mouse, keyboard, and touch inputs to an interactive content element.(¯ƒúÁøÿÿÿÿ8‘ÎŸôË1
+‡typescript:S1082J"_Visible, non-interactive elements with click handlers must have at least one keyboard listener.(¯ƒúÁøÿÿÿÿ8‘ÎŸôË1
+ëtypescript:S6848N"ÂAvoid non-native interactive elements. If using native HTML is not possible, add an appropriate role and support for tabbing, mouse, keyboard, and touch inputs to an interactive content element.(¯ƒúÁøÿÿÿÿ8ß× ôË1
+‡typescript:S1082N"_Visible, non-interactive elements with click handlers must have at least one keyboard listener.(¯ƒúÁøÿÿÿÿ8‘ÎŸôË1
+ætypescript:S6848Z"ÂAvoid non-native interactive elements. If using native HTML is not possible, add an appropriate role and support for tabbing, mouse, keyboard, and touch inputs to an interactive content element.(ßÀÈ…8‘ÎŸôË1
+‚typescript:S1082Z"_Visible, non-interactive elements with click handlers must have at least one keyboard listener.(ßÀÈ…8‘ÎŸôË1
+ëtypescript:S6848`"ÂAvoid non-native interactive elements. If using native HTML is not possible, add an appropriate role and support for tabbing, mouse, keyboard, and touch inputs to an interactive content element.(õ¡ÚÊùÿÿÿÿ8‘ÎŸôË1
+‡typescript:S1082`"_Visible, non-interactive elements with click handlers must have at least one keyboard listener.(õ¡ÚÊùÿÿÿÿ8’ÎŸôË1

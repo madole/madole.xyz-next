@@ -72,7 +72,7 @@ const CardDialog = (props: Props): JSX.Element | null => {
       }}
     >
       <div
-        className="bg-gray-200 rounded p-6 mx-3 w-full md:w-1/2 relative flex flex-col h-4/5 text-base overflow-scroll max-h-almost-full"
+        className="bg-gray-200 rounded p-6 mx-3 w-full md:w-1/2 relative flex flex-col h-4/5 text-base overflow-auto max-h-almost-full"
         onClick={(e) => e.stopPropagation()}
       >
         <div
