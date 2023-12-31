@@ -13,12 +13,21 @@ import gpxEditor from "../images/gpx-editor.jpeg";
 import kmlEditor from "../images/kml-editor.jpeg";
 import geojsonEditor from "../images/geojson-editor.jpeg";
 import bboxUtil from "../images/bbox-util-kit.jpg";
+import layeredEarth from "../images/layered-earth.jpeg";
 import mapboxglBoundingBoxViewBoundsComparison from "../images/mapbox-gl-bounding-box-view-bounds-comparison.jpeg";
 import styles from "../styles/side-projects.module.css";
 import { useMultiIntersectionObserver } from "../hooks/useMultiIntersectionObserver";
 import Head from "next/head";
 
 const data = [
+  {
+    image: layeredEarth,
+    title: "Layered Earth",
+    imageAlt: "Layered Earth",
+    description:
+      "A geospatial toolkit for visually comparing geospatial datasets on the web.",
+    link: "https://layered.earth/",
+  },
   {
     image: bboxUtil,
     title: "Bounding Box Utility Kit",
