@@ -2,6 +2,7 @@
 const webpack = require("webpack");
 
 module.exports = {
+  output: "export",
   reactStrictMode: true,
   webpack: (cfg, { buildId }) => {
     cfg.module.rules.push({
@@ -12,7 +13,7 @@ module.exports = {
     cfg.plugins.push(
       new webpack.DefinePlugin({
         "process.env.CONFIG_BUILD_ID": JSON.stringify(buildId),
-      }),
+      })
     );
     cfg.resolve.fallback = {
       fs: false,

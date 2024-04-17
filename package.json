@@ -6,7 +6,6 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "export": "npm run build && next export",
     "new-post": "node scripts/new-post.js",
     "generate-rss": "node scripts/generate-rss.js"
   },
