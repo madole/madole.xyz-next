@@ -6,6 +6,7 @@ import Card, { Hr, Spacer } from "../components/resume/Card";
 import CardDialog from "../components/resume/CardDialog";
 import Column from "../components/resume/Column";
 import Header from "../components/resume/Header";
+import { differenceInCalendarYears } from "date-fns";
 
 function getUrlSearchParam(searchParam: string): string | null {
   if (typeof window === "undefined") {
@@ -32,6 +33,17 @@ function Resume(): JSX.Element {
         <Header />
         <div className="h-full flex overflow-x-scroll mx-2">
           <Column title="About me">
+            <Card>
+              <div className="pb-1 font-bold">Engineering Experience</div>
+              <div>
+                Approx{" "}
+                {new Intl.NumberFormat().format(
+                  differenceInCalendarYears(new Date(), new Date(2010, 6, 1)) *
+                    2000
+                )}{" "}
+                hours
+              </div>
+            </Card>
             <Card
               onClick={() => {
                 setHobbiesOpen(true);
@@ -157,43 +169,57 @@ function Resume(): JSX.Element {
               >
                 <div className="flex flex-col lg:flex-row justify-evenly w-full max-h-almost-full">
                   <div className="mb-4">
-                    <div className="font-bold mb-4 text-xl -ml-5">
-                      5+ years experience
-                    </div>
+                    <div className="font-bold mb-4 text-xl -ml-5">Frontend</div>
                     <ul className="list-disc ">
-                      <li className="pb-2">NodeJS</li>
+                      <li className="pb-2">Next</li>
+                      <li className="pb-2">SvelteKit</li>
                       <li className="pb-2">React</li>
                       <li className="pb-2">Mapbox</li>
+                      <li className="pb-2">Maplibre</li>
+                      <li className="pb-2">Turf</li>
+                      <li className="pb-2">NodeJS</li>
+                      <li className="pb-2">Bun</li>
+                      <li className="pb-2">Deno</li>
                       <li className="pb-2">Leaflet</li>
                       <li className="pb-2">Jest</li>
+                      <li className="pb-2">Vitest</li>
                       <li className="pb-2">Webpack</li>
-                      <li className="pb-2">AWS</li>
+                      <li className="pb-2">ESBuild</li>
+                      <li className="pb-2">Vite</li>
                       <li className="pb-2">JS for embedded devices</li>
                       <li className="pb-2">NPM</li>
-                      <li className="pb-2">Jira</li>
+                      <li className="pb-2">Styled Components</li>
+                      <li className="pb-2">Cesium JS</li>
+                      <li className="pb-2">Tailwind CSS</li>
+                      <li className="pb-2">Gatsby</li>
                     </ul>
                   </div>
                   <div className="mb-4">
                     <div className="font-bold mb-4 text-xl -ml-5">
-                      4 years experience
+                      BE ⸳ DevOps
                     </div>
                     <ul className="list-disc">
-                      <li className="pb-2">Styled Components</li>
-                      <li className="pb-2">Cesium JS</li>
-                      <li className="pb-2">Python</li>
+                      <li className="pb-2">AWS</li>
+                      <li className="pb-2">Step Functions</li>
                       <li className="pb-2">Terraform</li>
-                      <li className="pb-2">Metabase</li>
-                      <li className="pb-2">Redash</li>
+                      <li className="pb-2">Cloudformation</li>
+                      <li className="pb-2">Python</li>
+                      <li className="pb-2">Pandas/Geopandas</li>
+                      <li className="pb-2">NumPy</li>
+                      <li className="pb-2">Scikit-learn</li>
+                      <li className="pb-2">Tensorflow/DafanoJS</li>
                     </ul>
                   </div>
                   <div className="mb-4">
-                    <div className="font-bold mb-4 text-xl -ml-5">Recent</div>
+                    <div className="font-bold mb-4 text-xl -ml-5">
+                      Agile ⸳ Product
+                    </div>
                     <ul className="list-disc">
-                      <li className="pb-2">Golang</li>
-
-                      <li className="pb-2">Tailwind CSS</li>
-                      <li className="pb-2">Gatsby</li>
-                      <li className="pb-2">Next</li>
+                      <li className="pb-2">Jira</li>
+                      <li className="pb-2">Confluence</li>
+                      <li className="pb-2">Metabase</li>
+                      <li className="pb-2">Redash</li>
+                      <li className="pb-2">Intercom</li>
                     </ul>
                   </div>
                 </div>
@@ -236,7 +262,7 @@ function Resume(): JSX.Element {
           <Column title="January 2021...">
             <Card>
               <span className="pb-1 font-bold">
-                Senior Frontend & Geospatial Technical Lead
+                Senior Geospatial & Frontend Technical Lead
               </span>
               Kablamo
             </Card>
@@ -254,12 +280,8 @@ function Resume(): JSX.Element {
               </FlexCenter>
             </Card>
             <Card>
-              <Image
-                width={200}
-                height={150}
-                src="https://media.giphy.com/media/aNqEFrYVnsS52/giphy.gif"
-                alt="keyboard cat"
-              />
+              <div className="font-bold pb-3">✨Upgrade March 2022✨</div>
+              <div className="pb-3">Tech Lead -{">"} Senior Tech Lead</div>
             </Card>
             <Card>
               Duties:
@@ -285,10 +307,6 @@ function Resume(): JSX.Element {
               - Interview candidates for our frontend team
               <Spacer />- Work with clients during engagements to make sure
               we&apos;re delivering on their needs
-            </Card>
-            <Card>
-              <div className="font-bold pb-3">✨Upgrade March 2022✨</div>
-              <div className="pb-3">Tech Lead -{">"} Senior Tech Lead</div>
             </Card>
           </Column>
           <Column title="2016-December 2020">
