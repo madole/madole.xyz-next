@@ -12,7 +12,7 @@
     "items": [
         {
             "id": "https://madole.xyz/blog/spectral-indices",
-            "content_html": "<h2>What are Spectral Indices in Remote Sensing?</h2>\n<p>Spectral Indices are a set of mathematical equations performed on a per-pixel basis on data coming from multispectral remote sensing data.</p>\n<p>When looking at Satellite data, you don’t get a single image,</p>\n",
+            "content_html": "<h2>What are Spectral Indices in Remote Sensing?</h2>\n<p>Spectral Indices are a set of mathematical equations performed on a per-pixel basis on data coming from multispectral remote sensing (satellite) data.</p>\n<p>When looking at satellite data, you don’t get a s</p>\n",
             "url": "https://madole.xyz/blog/spectral-indices",
             "title": "What are Spectral Indices in Remote Sensing?",
             "summary": "Reading time: 6 min read",

@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>http://madole.xyz/</id>
     <title>Madole.xyz Blog</title>
-    <updated>2023-12-19T00:10:48.583Z</updated>
+    <updated>2024-04-25T22:59:57.960Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Andrew McDowell</name>
@@ -22,8 +22,8 @@
         <updated>2023-12-18T23:48:15.845Z</updated>
         <summary type="html"><![CDATA[Reading time: 6 min read]]></summary>
         <content type="html"><![CDATA[<h2>What are Spectral Indices in Remote Sensing?</h2>
-<p>Spectral Indices are a set of mathematical equations performed on a per-pixel basis on data coming from multispectral remote sensing data.</p>
-<p>When looking at Satellite data, you don’t get a single image,</p>
+<p>Spectral Indices are a set of mathematical equations performed on a per-pixel basis on data coming from multispectral remote sensing (satellite) data.</p>
+<p>When looking at satellite data, you don’t get a s</p>
 ]]></content>
         <author>
             <name>Andrew McDowell</name>
