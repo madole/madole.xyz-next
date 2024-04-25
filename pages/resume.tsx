@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
-import { useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import FlexCenter from "../components/FlexCenter";
 import Card, { Hr, Spacer } from "../components/resume/Card";
 import CardDialog from "../components/resume/CardDialog";
@@ -16,12 +16,50 @@ function getUrlSearchParam(searchParam: string): string | null {
   return urlParams.get(searchParam);
 }
 
+/**
+ * Adding a future job to the resume via querystring
+ *
+ * We use the `q` attribute
+ * We base64 encode a JSON object with the future job title (t) and company (c) with btoa
+ *
+ * @example
+ * btoa('{"c": "NASA","t": "CEO"}')
+ * //eyJjIjogIk5BU0EiLCJ0IjogIkNFTyJ9
+ *
+ * Querystring becomes
+ * ?q=eyJjIjogIk5BU0EiLCJ0IjogIkNFTyJ9
+ *
+ */
 function Resume(): JSX.Element {
-  const futureCompany = getUrlSearchParam("future");
-  const futureTitle = getUrlSearchParam("title") ?? "Technical Lead";
+  const [futureTitle, setFutureTitle] = useState("Technical Lead");
+  const [futureCompany, setFutureCompany] = useState("");
   const [hobbiesOpen, setHobbiesOpen] = useState(false);
   const [socialOpen, setSocialOpen] = useState(false);
   const [techOpen, setTechOpen] = useState(false);
+
+  useEffect(() => {
+    const q = getUrlSearchParam("q");
+    if (!q) {
+      return;
+    }
+    let future;
+    try {
+      const decoded = atob(q);
+      future = JSON.parse(decoded);
+    } catch (e) {
+      console.error("Failed to parse q", e);
+      return;
+    }
+    const title = future.t;
+
+    if (title) {
+      setFutureTitle(title);
+    }
+    const company = future.c;
+    if (company) {
+      setFutureCompany(company);
+    }
+  }, []);
 
   return (
     <>
@@ -39,7 +77,7 @@ function Resume(): JSX.Element {
                 Approx{" "}
                 {new Intl.NumberFormat().format(
                   differenceInCalendarYears(new Date(), new Date(2010, 6, 1)) *
-                    2000
+                    2000,
                 )}{" "}
                 hours
               </div>
@@ -238,6 +276,7 @@ function Resume(): JSX.Element {
                   height={300}
                   src="/arset-spectral-indicies.png"
                   alt="ARSET Spectral Indicies certificate"
+                  priority={true}
                 />
               </FlexCenter>
             </Card>
@@ -255,10 +294,31 @@ function Resume(): JSX.Element {
                   height={300}
                   src="/arset-analyzing-air-quality-data.png"
                   alt="ARSET Accessing and Analyzing Air Quality Data from Geostationary Satellites certificate"
+                  priority={true}
                 />
               </FlexCenter>
             </Card>
           </Column>
+          {futureCompany && (
+            <Column title="Future">
+              <Card>
+                <span className="pb-1 font-bold">{futureTitle}</span>
+                {futureCompany}
+              </Card>
+              <Card>
+                <Hr />
+              </Card>
+              <Card>
+                <Image
+                  src="https://media.giphy.com/media/aNqEFrYVnsS52/giphy.gif"
+                  alt="keyboard cat"
+                  width="255"
+                  height="200"
+                  priority={false}
+                />
+              </Card>
+            </Column>
+          )}
           <Column title="January 2021...">
             <Card>
               <span className="pb-1 font-bold">
@@ -497,23 +557,6 @@ function Resume(): JSX.Element {
               Central Services Agency Northern Ireland
             </Card>
           </Column>
-          {futureCompany && (
-            <Column title="Future">
-              <Card>
-                <span className="pb-1 font-bold">{futureTitle}</span>
-                {futureCompany}
-              </Card>
-              <Card>
-                <Hr />
-              </Card>
-              <Card>
-                <Image
-                  src="https://media.giphy.com/media/aNqEFrYVnsS52/giphy.gif"
-                  alt="keyboard cat"
-                />
-              </Card>
-            </Column>
-          )}
         </div>
       </div>
     </>
