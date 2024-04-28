@@ -6,7 +6,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "new-post": "node scripts/new-post.js",
+    "new-post": "node scripts/new-post.mjs",
     "generate-rss": "node scripts/generate-rss.js"
   },
   "dependencies": {

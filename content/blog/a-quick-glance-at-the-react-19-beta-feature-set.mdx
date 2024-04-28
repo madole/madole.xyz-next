@@ -1,0 +1,42 @@
+---
+title: 'A quick glance at the React 19 Beta feature set'
+date: '2024-04-28T04:59:49.550Z'
+tags: ['react','javascript','react19']
+slug: 'a-quick-glance-at-the-react-19-beta-feature-set'
+---
+
+ The React 19 Beta release is out and the accompanying [blog post](https://react.dev/blog/2024/04/25/react-19) is a great read. Here's a quick glance at the
+ new features and improvements that are part of this release.
+
+- Some spicy new hooks and a concept of async functions being "actions"
+    - `useTransition`
+    - `useOptimistic`
+    - `useActionState`
+    - `useFormStatus`
+    - `useDeferredValue`
+    - Actions can now be passed to `<form action={actionFunction}>`
+- The use function - new API to read resources in render. Which is named like a hook but doesn't have the same conditional code issue is there, you can give it promises or contexts.
+_Confusing at first glance, maybe it'll settle over time._
+- Server components and actions continue to be a thing
+- Goodbye `forwardRef`, just use ref directly in props now as the second param.
+- Goodbye `Context.Provider`, you just use `<Context>` as the provider now
+- `ref` callbacks get a cleanup callback like effects
+- Goodbye `react-helmet` - React now handles HTML metadata and hoists it into the head from any component
+- Stylesheet links and `<style>` tags now available - _How was this not a thing before? 🤯_
+- New resource preloading APIs
+- Better handling of async script tags
+- Better error reporting
+- Web Components enter the area with React19 now supporting Custom Elements
+
+_**Insight:** A common misunderstanding is that Server Components are denoted by "use server", but there is no directive for Server Components. The "use server" directive is used for Server Actions._
+
+I think this was an easy misunderstanding to make so I'm glad for the clarification.
+
+This is a pretty exciting release given the last significant release from React was March 29, 2022. The wheels are moving again!
+
+React continues to evolve and solve a combination of new problems while fixing some of the pain points with nice quality of life improvements.
+
+I do get the feeling that with the introduction of Server Components, the mental model of React now becomes dynamic and more complicated
+depending on your use case, maybe that will prove out in time as frameworks adopt it and provide opinionated workflows around it.
+
+I'm keeping an eye on the other frameworks/libraries maturing in the space like Svelte, SolidJS, Vue, AlpineJS to see how the new React features measure up and I might be back with a comparison post in the future.
