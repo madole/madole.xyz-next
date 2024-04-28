@@ -1,6 +1,6 @@
-const inquirer = require("inquirer");
-const fs = require("fs");
-const path = require("path");
+import inquirer from "inquirer";
+import fs from "fs";
+import path from "path";
 
 const blogQuestions = [
   {
@@ -54,9 +54,9 @@ slug: '${slug}'
       if (err) throw err;
       console.log(
         `Blog post created at file://${path.join(
-          __dirname,
-          `../content/blog/${slug}.mdx`
-        )}`
+          import.meta.dirname,
+          `../content/blog/${slug}.mdx`,
+        )}`,
       );
     });
   } else if (type.type === "TIL") {
@@ -76,9 +76,9 @@ slug: '${slug}'
       if (err) throw err;
       console.log(
         `Today I learned post created at file://${path.join(
-          __dirname,
-          `../content/today-i-learned/${slug}.md`
-        )}`
+          import.meta.dirname,
+          `../content/today-i-learned/${slug}.md`,
+        )}`,
       );
     });
   }
