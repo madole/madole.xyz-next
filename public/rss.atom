@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>http://madole.xyz/</id>
     <title>Madole.xyz Blog</title>
-    <updated>2024-04-28T05:29:11.015Z</updated>
+    <updated>2024-04-28T10:12:05.845Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Andrew McDowell</name>
@@ -20,7 +20,7 @@
         <id>https://madole.xyz/blog/a-quick-glance-at-the-react-19-beta-feature-set</id>
         <link href="https://madole.xyz/blog/a-quick-glance-at-the-react-19-beta-feature-set"/>
         <updated>2024-04-28T04:59:49.550Z</updated>
-        <summary type="html"><![CDATA[Reading time: 2 min read]]></summary>
+        <summary type="html"><![CDATA[Reading time: 3 min read]]></summary>
         <content type="html"><![CDATA[<p> The React 19 Beta release is out and the accompanying <a href="https://react.dev/blog/2024/04/25/react-19">blog post</a> is a great read. Here&#39;s a quick glance at the
  new features and improvements that are part of this release.</p>
 <ul>
