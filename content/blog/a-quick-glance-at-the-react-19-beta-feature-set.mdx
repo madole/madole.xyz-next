@@ -10,10 +10,25 @@ slug: 'a-quick-glance-at-the-react-19-beta-feature-set'
 
 - Some spicy new hooks and a concept of async functions being "actions"
     - `useTransition`
+        - a React Hook that lets you update the state without blocking the UI.
+        - `const [isPending, startTransition] = useTransition();`
+        - [https://react.dev/reference/react/useTransition](https://react.dev/reference/react/useTransition)
     - `useOptimistic`
+        -  a React Hook that lets you optimistically update the UI.
+        -  `const [optimisticState, addOptimistic] = useOptimistic(state, updateFn);`
+        - [https://react.dev/reference/react/useOptimistic](https://react.dev/reference/react/useOptimistic)
     - `useActionState`
+        - a Hook that allows you to update state based on the result of a form action.
+        - `const [state, formAction] = useActionState(fn, initialState, permalink?);`
+        - [https://react.dev/reference/react/useActionState](https://react.dev/reference/react/useActionState)
     - `useFormStatus`
+        - a Hook provides status information of the last form submission.
+        - `const { pending, data, method, action } = useFormStatus();`
+        - [https://react.dev/reference/react-dom/hooks/useFormStatus](https://react.dev/reference/react-dom/hooks/useFormStatus)
     - `useDeferredValue`
+        - a React Hook that lets you defer updating a part of the UI.
+        - `const deferredValue = useDeferredValue(value);`
+        - [https://react.dev/reference/react/useDeferredValue](https://react.dev/reference/react/useDeferredValue)
     - Actions can now be passed to `<form action={actionFunction}>`
 - The `use` function - new API to read resources in render. Which is named like a hook but doesn't have the same conditional code issue hooks have, you can give it promises and contexts according to the post.
 _Confusing at first glance, maybe it'll settle over time._
