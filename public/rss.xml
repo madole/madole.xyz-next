@@ -4,7 +4,7 @@
         <title>Madole.xyz Blog</title>
         <link>http://madole.xyz/</link>
         <description>Blog posts from madole.xyz</description>
-        <lastBuildDate>Thu, 25 Apr 2024 09:07:14 GMT</lastBuildDate>
+        <lastBuildDate>Sun, 28 Apr 2024 05:27:13 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -14,6 +14,20 @@
             <link>http://madole.xyz/</link>
         </image>
         <copyright>All rights reserved 2022, Madole</copyright>
+        <item>
+            <title><![CDATA[A quick glance at the React 19 Beta feature set]]></title>
+            <link>https://madole.xyz/blog/a-quick-glance-at-the-react-19-beta-feature-set</link>
+            <guid>https://madole.xyz/blog/a-quick-glance-at-the-react-19-beta-feature-set</guid>
+            <pubDate>Sun, 28 Apr 2024 04:59:49 GMT</pubDate>
+            <description><![CDATA[Reading time: 2 min read]]></description>
+            <content:encoded><![CDATA[<p> The React 19 Beta release is out and the accompanying <a href="https://react.dev/blog/2024/04/25/react-19">blog post</a> is a great read. Here&#39;s a quick glance at the
+ new features and improvements that are part of this release.</p>
+<ul>
+<li>Some spicy new hooks and a c</li>
+</ul>
+]]></content:encoded>
+            <author>me@madole.dev (Andrew McDowell)</author>
+        </item>
         <item>
             <title><![CDATA[What are Spectral Indices in Remote Sensing?]]></title>
             <link>https://madole.xyz/blog/spectral-indices</link>

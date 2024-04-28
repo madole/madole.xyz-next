@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>http://madole.xyz/</id>
     <title>Madole.xyz Blog</title>
-    <updated>2024-04-25T09:07:14.106Z</updated>
+    <updated>2024-04-28T05:27:13.207Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Andrew McDowell</name>
@@ -15,6 +15,24 @@
     <logo>http://madole.xyz/bitmoji.png</logo>
     <icon>http://madole.xyz/favicon.ico</icon>
     <rights>All rights reserved 2022, Madole</rights>
+    <entry>
+        <title type="html"><![CDATA[A quick glance at the React 19 Beta feature set]]></title>
+        <id>https://madole.xyz/blog/a-quick-glance-at-the-react-19-beta-feature-set</id>
+        <link href="https://madole.xyz/blog/a-quick-glance-at-the-react-19-beta-feature-set"/>
+        <updated>2024-04-28T04:59:49.550Z</updated>
+        <summary type="html"><![CDATA[Reading time: 2 min read]]></summary>
+        <content type="html"><![CDATA[<p> The React 19 Beta release is out and the accompanying <a href="https://react.dev/blog/2024/04/25/react-19">blog post</a> is a great read. Here&#39;s a quick glance at the
+ new features and improvements that are part of this release.</p>
+<ul>
+<li>Some spicy new hooks and a c</li>
+</ul>
+]]></content>
+        <author>
+            <name>Andrew McDowell</name>
+            <email>me@madole.dev</email>
+            <uri>https://madole.xyz</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[What are Spectral Indices in Remote Sensing?]]></title>
         <id>https://madole.xyz/blog/spectral-indices</id>

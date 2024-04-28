@@ -11,6 +11,18 @@
     },
     "items": [
         {
+            "id": "https://madole.xyz/blog/a-quick-glance-at-the-react-19-beta-feature-set",
+            "content_html": "<p> The React 19 Beta release is out and the accompanying <a href=\"https://react.dev/blog/2024/04/25/react-19\">blog post</a> is a great read. Here&#39;s a quick glance at the\n new features and improvements that are part of this release.</p>\n<ul>\n<li>Some spicy new hooks and a c</li>\n</ul>\n",
+            "url": "https://madole.xyz/blog/a-quick-glance-at-the-react-19-beta-feature-set",
+            "title": "A quick glance at the React 19 Beta feature set",
+            "summary": "Reading time: 2 min read",
+            "date_modified": "2024-04-28T04:59:49.550Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
             "id": "https://madole.xyz/blog/spectral-indices",
             "content_html": "<h2>What are Spectral Indices in Remote Sensing?</h2>\n<p>Spectral Indices are a set of mathematical equations performed on a per-pixel basis on data coming from multispectral remote sensing (satellite) data.</p>\n<p>When looking at satellite data, you don’t get a s</p>\n",
             "url": "https://madole.xyz/blog/spectral-indices",
