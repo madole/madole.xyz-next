@@ -11,7 +11,7 @@ export const mdxComponents = {
   inlineCode: Code,
   MeetTheTeamBackup,
   Citation,
-  kbd: Kbd
+  kbd: Kbd,
   // p: Paragraph,
   // h1: H1,
   // h2: H2,

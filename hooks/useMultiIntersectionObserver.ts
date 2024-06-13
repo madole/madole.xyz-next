@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 export const useMultiIntersectionObserver = (
   ref: React.MutableRefObject<IntersectionObserver | undefined>,
   selector: string,
-  callback: IntersectionObserverCallback
+  callback: IntersectionObserverCallback,
 ) => {
   useEffect(() => {
     ref.current = new IntersectionObserver(callback, {

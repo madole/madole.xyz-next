@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
-import { ReactNode, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import FlexCenter from "../components/FlexCenter";
 import Card, { Hr, Spacer } from "../components/resume/Card";
 import CardDialog from "../components/resume/CardDialog";
@@ -265,6 +265,21 @@ function Resume(): JSX.Element {
             </Card>
           </Column>
           <Column title="Achievements">
+            <Card>
+              <div className="pb-1 font-bold">
+                MAR 2024: Completed NASA ARSET training
+              </div>
+              <div>Introduction to Lightning Observations and Applications</div>
+              <FlexCenter>
+                <Image
+                  width={250}
+                  height={300}
+                  src="/arset-introduction-to-lightning-observations.png"
+                  alt="ARSET Introduction to Lightning Observations and Applications certificate"
+                  priority={true}
+                />
+              </FlexCenter>
+            </Card>
             <Card>
               <div className="pb-1 font-bold">
                 NOV 2023: Completed NASA ARSET training

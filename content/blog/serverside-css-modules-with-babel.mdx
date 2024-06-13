@@ -1,8 +1,8 @@
 ---
-title: 'Serverside CSS Modules with babel'
-date: '2016-08-21T21:09:38.000Z'
+title: "Serverside CSS Modules with babel"
+date: "2016-08-21T21:09:38.000Z"
 slug: serverside-css-modules-with-babel
-tags: ['code']
+tags: ["code"]
 ---
 
 I had a requirement to use CSS modules with serverside rendering, it took me a while to figure out so I thought I'd write the process down.
@@ -51,12 +51,10 @@ The stylus require hook is needed to preprocess the Stylus into CSS so it can be
 
 ```javascript
 /* stylus-require-hook.js */
-const stylus = require('stylus');
+const stylus = require("stylus");
 
 module.exports = (styl, filename) =>
-    stylus(styl)
-        .set('filename', filename)
-        .render();
+  stylus(styl).set("filename", filename).render();
 ```
 
 That's it, you're now set up for babel to process your css classnames into localised css classnames allowing you to use CSS modules in your project. On the client side, if you're using Webpack, you can set up the `css-loader` to hash the classnames in the same way so the browser can then pick up your css module on the client side and use it.

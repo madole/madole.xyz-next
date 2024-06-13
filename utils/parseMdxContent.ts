@@ -9,7 +9,7 @@ interface BaseMdxContent {
   date: string;
 }
 export async function parseMdxContent<T extends BaseMdxContent>(
-  content: string
+  content: string,
 ) {
   const data = frontmatter<T>(content);
   const timeToRead = readingTime(data.body).text;

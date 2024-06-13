@@ -1,23 +1,25 @@
 ---
 title: How to visualise Australia's weather stations on a map
-date: '2022-01-04T04:40:33.179Z'
-tags: ['mapbox','map','code','data']
-slug: 'how-to-visualise-weather-stations-on-a-map'
+date: "2022-01-04T04:40:33.179Z"
+tags: ["mapbox", "map", "code", "data"]
+slug: "how-to-visualise-weather-stations-on-a-map"
 ---
 
 ## Tech we'll be using
+
 - [Mapbox GL JS](https://www.mapbox.com/mapbox-gl-js/)
-    - A fantastic library for creating maps
+  - A fantastic library for creating maps
 - [GeoJSON NPM package](https://www.npmjs.com/package/geojson)
-    - A package for working with GeoJSON
+  - A package for working with GeoJSON
 - [csvtojson NPM package](https://www.npmjs.com/package/csvtojson)
-    - A package for converting CSV to JSON
+  - A package for converting CSV to JSON
 
 ## Where do you get weather station data from?
 
 In Australia, we have a government organisation called the BOM (Bureau of Meteorology) which publishes a group of [CSV files of weather stations](http://www.bom.gov.au/climate/how/newproducts/images/ws_stations.zip).
 
 ## Fixing up the data
+
 This data is pretty raw with no headers and looks like this:
 
 ```csv
@@ -67,7 +69,7 @@ This gives me a nice JSON file with the following structure:
       " (MM/YYYY)": "08/1992"
     },
     "Latitude to 4 decimal places in decimal degrees": -34.2133,
-    "Longitude to 4 decimal places in decimal degrees": 142.0400,
+    "Longitude to 4 decimal places in decimal degrees": 142.04,
     "Method by which latitude/longitude was derived.": "",
     "State.": "VIC",
     "Height of station above mean sea level in metres.": "56.4",
@@ -85,6 +87,7 @@ This gives me a nice JSON file with the following structure:
   }
 ]
 ```
+
 I realise these JSON keys are wordy, but hey, we're scripting here, it'll be fine.
 
 I will do some cleanup to map the latitudes and longitudes to more terse keys `lat` and `lng`
@@ -105,7 +108,7 @@ Now our JSON looks like this:
       " (MM/YYYY)": "08/1992"
     },
     "lat": -34.2133,
-    "lng": 142.0400,
+    "lng": 142.04,
     "Method by which latitude/longitude was derived.": "",
     "State.": "VIC",
     "Height of station above mean sea level in metres.": "56.4",
@@ -125,16 +128,19 @@ Now our JSON looks like this:
 ```
 
 ## Converting to GeoJSON
+
 Time to hop into the frontend. We'll read in this JSON file and use the [Geojson library](https://www.npmjs.com/package/geojson) to create a GeoJSON `FeatureCollection` object filled with points.
 
 We'll tell it that we want to parse the JSON as a collection of Points and that it can find the coordinates under the `lat` and `lng` keys.
 
 ```js
-import GeoJSON from 'geojson'
-import stations from '../ws_stations/ws_stations_VIC.json'
+import GeoJSON from "geojson";
+import stations from "../ws_stations/ws_stations_VIC.json";
 
-const geojsonWeatherStations = GeoJSON.parse(stations, {Point: ['lat', 'lng']})
-export default geojsonWeatherStations
+const geojsonWeatherStations = GeoJSON.parse(stations, {
+  Point: ["lat", "lng"],
+});
+export default geojsonWeatherStations;
 ```
 
 If you're not familiar with GeoJSON, you can read about it [here](https://www.mapbox.com/help/define-geojson/).
@@ -149,10 +155,7 @@ Our JSON has now been parsed and turned into GeoJSON. It looks like this:
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          142.04,
-          -34.2133
-        ]
+        "coordinates": [142.04, -34.2133]
       },
       "properties": {
         "Record identifier - st": "st",
@@ -186,11 +189,12 @@ Our JSON has now been parsed and turned into GeoJSON. It looks like this:
 ```
 
 ## Adding a layer to the map
+
 We can now add this GeoJSON to our mapbox map as a layer and style it with a simple circle style.
 
 ```tsx
-import weatherStationData from './weatherStationData'; //<-- our GeoJSON
-import map from './mapbox-map' //<-- the mapbox instance
+import weatherStationData from "./weatherStationData"; //<-- our GeoJSON
+import map from "./mapbox-map"; //<-- the mapbox instance
 
 map.addLayer({
   source: {

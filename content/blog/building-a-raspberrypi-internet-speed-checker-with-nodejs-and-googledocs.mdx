@@ -1,8 +1,8 @@
 ---
-title: 'Building a Raspberry Pi internet speed checker with NodeJS and GoogleDocs'
-date: '2017-03-18T16:25:23.000Z'
+title: "Building a Raspberry Pi internet speed checker with NodeJS and GoogleDocs"
+date: "2017-03-18T16:25:23.000Z"
 slug: building-a-raspberrypi-internet-speed-checker-with-nodejs-and-googledocs
-tags: ['code']
+tags: ["code"]
 ---
 
 I frequently experience periods of internet drop outs and wanted to build something to monitor my internet without any manual intervention. I wanted this to create an automated report for me so I could then email it off to my ISP and complain.
@@ -15,11 +15,11 @@ Here's how I did it...
 
 Things you'll need:
 
--   Raspberry Pi
--   SD card
--   Ethernet cable
--   Google account
--   IFTTT account
+- Raspberry Pi
+- SD card
+- Ethernet cable
+- Google account
+- IFTTT account
 
 ## Setting up your Raspberry Pi
 
@@ -64,9 +64,9 @@ So now we've got the Raspberry Pi set up. We have to write the program which wil
 
 We want this program to do 3 things.
 
--   Run on a specified interval
--   Do a internet speed test
--   Post results to the cloud
+- Run on a specified interval
+- Do a internet speed test
+- Post results to the cloud
 
 I'm going to use the [node-cron](https://www.npmjs.com/package/node-cron) package to run the speed test on a specified interval. For the speed test, I'm going to use [speedtest-net](https://www.npmjs.com/package/speedtest-net).
 
@@ -84,27 +84,29 @@ Lets create a function that runs a speed test and then plucks the correct inform
 
 ```javascript
 function runSpeedTest() {
-    speedTest({ maxTime: 5000 })
-        .on('data', data => {
-            console.dir(data);
-            const meta = {
-                client: data.client,
-                server: data.server,
-            };
-            const queryString = `value1=${data.speeds.download}&value2=${data.speeds.upload}&value3=${JSON.stringify(meta)}`;
-            const key = process.env.IFTTT_KEY;
-            fetch(`https://maker.ifttt.com/trigger/speed-test/with/key/${key}/?${queryString}`);
-        })
-        .on('error', err => {
-            console.error(err);
-        });
+  speedTest({ maxTime: 5000 })
+    .on("data", (data) => {
+      console.dir(data);
+      const meta = {
+        client: data.client,
+        server: data.server,
+      };
+      const queryString = `value1=${data.speeds.download}&value2=${data.speeds.upload}&value3=${JSON.stringify(meta)}`;
+      const key = process.env.IFTTT_KEY;
+      fetch(
+        `https://maker.ifttt.com/trigger/speed-test/with/key/${key}/?${queryString}`,
+      );
+    })
+    .on("error", (err) => {
+      console.error(err);
+    });
 }
 ```
 
 Now that we have our function that will run the speed test, we need to set up the scheduler.
 
 ```js
-cron.schedule('0 * * * *', runSpeedTest);
+cron.schedule("0 * * * *", runSpeedTest);
 ```
 
 This will run `runSpeedTest` every hour on the hour.

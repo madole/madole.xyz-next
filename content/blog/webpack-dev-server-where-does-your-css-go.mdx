@@ -1,13 +1,11 @@
 ---
-title: 'Webpack-dev-server: Where does your CSS go?'
-date: '2016-09-14T16:29:10.000Z'
+title: "Webpack-dev-server: Where does your CSS go?"
+date: "2016-09-14T16:29:10.000Z"
 slug: webpack-dev-server-where-does-your-css-go
-tags: ['code']
+tags: ["code"]
 ---
 
 You might have noticed when using webpack-dev-server that the CSS seems to appear on the page as if by magic. If you have a look at the build [manifest](https://www.npmjs.com/package/webpack-manifest-plugin), you'll see your `main.js` file listed but no sign of the CSS bundle.
-
-
 
 This may lead you to think that webpack-dev-server somehow magically inserts your CSS, meaning that if you wanted to check what CSS was built, you'd have to build the actual static file.
 

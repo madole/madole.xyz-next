@@ -1,14 +1,16 @@
 ---
-title: 'Asset hashing with webpack'
-date: '2016-04-15T14:32:57.000Z'
+title: "Asset hashing with webpack"
+date: "2016-04-15T14:32:57.000Z"
 slug: asset-hashing-with-webpack
-tags: ['code']
+tags: ["code"]
 ---
 
 ### Why would you hash your assets?
+
 If you're creating a website that has a caching layer sitting in front of it, you're going to need a way to bust the cache every time you make a release so your cache doesn't continue to serve up your old files.
 
 ### What does a hashed asset look like?
+
 Your assets without being hashed could look something like
 
 ```bash
@@ -28,15 +30,17 @@ bundle-86866786.css
 The hash will change every time you create a build so the old files will never get served up as the browser will be asking for the files with the new hash.
 
 ### Vendor bundling
+
 Vendor bundling is when you split up your vendor packages and your own code.
 
 You can create separate bundles for each. The advantage of this is that the browser can cache the files. If you change your code but not any of the dependencies, the browser only has to download the changed file. The vendor bundle will serve from the browser cache and your website will load faster.
 
 ### Kinds of hashing
+
 With webpack, there are 2 kinds of hashing available to you.
 
--   Build hashing - `hash` - where the hash is specific to the total build.
--   Chunk Hashing - `chunkhash` - where the hash is specific to the contents of the file.
+- Build hashing - `hash` - where the hash is specific to the total build.
+- Chunk Hashing - `chunkhash` - where the hash is specific to the contents of the file.
 
 I prefer to use chunk hashing when doing vendor bundling.
 
@@ -47,29 +51,26 @@ If you make a code change, you will get a new hash for the bundle but the vendor
 To achieve vendor bundling, I usually create an array of packages that are unlikely to change and add these as one entry point and then point another entry point to my index.js file.
 
 ```js
-const vendorPackages = [
-    'jquery',
-    'lodash',
-    'fetch',
-    'es6-promise'
-];
+const vendorPackages = ["jquery", "lodash", "fetch", "es6-promise"];
 const webpackConfig = {
-	entry: {
-		bundle: './src/client/index.js',
-		vendor: vendorPackages
-	}
-	//...
-}
+  entry: {
+    bundle: "./src/client/index.js",
+    vendor: vendorPackages,
+  },
+  //...
+};
 ```
 
 We'll need to tell webpack where to look for these modules so the `webpack.resolverPlugin` is be needed to do this. In this case, our vendor packages are from bower.
 
 ```js
 plugins: [
-       new webpack.ResolverPlugin(
-            new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin('bower.json', ['main'])
-        )
-]
+  new webpack.ResolverPlugin(
+    new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin("bower.json", [
+      "main",
+    ]),
+  ),
+];
 ```
 
 Now we set up the output section of the config. We want webpack to output a bundle and a vendor file so we use the name of the entry points and we attach our chunk hash to them.
@@ -114,13 +115,15 @@ and then in the plugins section, hook it up.
 
 ```js
 plugins: [
-    new webpack.ResolverPlugin(
-        new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin('bower.json', ['main'])
-    ),
-    new ManifestPlugin({
-         fileName: 'build-manifest.json'
-    })
-]
+  new webpack.ResolverPlugin(
+    new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin("bower.json", [
+      "main",
+    ]),
+  ),
+  new ManifestPlugin({
+    fileName: "build-manifest.json",
+  }),
+];
 ```
 
 This creates a file that looks like this:
@@ -138,7 +141,7 @@ Now we have a file that we can import and pull the correct filepaths from in you
 Instead of statically referencing your files in your index template, pass them into the template as a variable. I do this with `readFileSync` from the `jsonfile` npm package.
 
 ```js
-import { readFileSync } from 'jsonfile';
+import { readFileSync } from "jsonfile";
 const manifestPath = `${process.cwd()}/build/public/build-manifest.json`;
 const manifest = readFileSync(manifestPath);
 ```
@@ -146,24 +149,24 @@ const manifest = readFileSync(manifestPath);
 Now you've read in the manifest, you can map this to an object and pass it into your template.
 
 ```js
-const jsBundle = manifest['bundle.js'];
+const jsBundle = manifest["bundle.js"];
 /* /public/bundle-5bd5318c.js */
 
-const vendorBundle = manifest['vendor.js']
+const vendorBundle = manifest["vendor.js"];
 /* /public/vendor-9c7274b2.js */
 ```
 
 We can now pass these into our template and use them to pull in the correct bundles into the page.
 
 ```js
-res.render('index', { vendorBundle, jsBundle });
+res.render("index", { vendorBundle, jsBundle });
 ```
 
 ```js
 //index.jade
-head
-	script(src=vendorBundle)
-	script(src=jsBundle)
+head;
+script((src = vendorBundle));
+script((src = jsBundle));
 ```
 
 There are a million different ways to solve this problem but this has been the most effective for us so far.

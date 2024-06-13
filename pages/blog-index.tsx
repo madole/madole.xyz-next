@@ -71,7 +71,7 @@ export const getStaticProps = () => {
       // use frontmatter to read the titles of each blog post
       const file = fs.readFileSync(
         path.join(process.cwd(), "content/blog", filename),
-        "utf8"
+        "utf8",
       );
       const data = frontmatter<Post>(file);
       const timeToRead = readingTime(data.body);

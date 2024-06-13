@@ -8,52 +8,29 @@ tags:
   - docker
 slug: cutting-our-codeship-pro-ci-build-time-in-half
 ---
+
 We have noticed recently our Codeship Pro builds have been taking a very long time. Upwards of 20minutes to get through all our steps.
-
-
 
 We lived with this for a while, but as we started to put more strict conditions around what checks need to pass to be able to merge into the mainline, we started hearing feedback that it was hard to get a clear merge window.
 
-
-
 We started to enforce that you cannot merge stale code into the mainline. This is usually fine, but if you have a few pull requests ready to go and a 20+ minute CI build it plays out as follows.
-
-
 
 Dev A merges her code into the mainline after all the CI checks and conditions have passed. Dev B now has to update his feature branch with the latest from the mainline. This kicks off another 20 minute cycle. In the meantime, Dev C has also updated her branch. After her CI checks finish, she merges her code before Dev B can get to his. Dev B now has to update his code again and wait 20 minutes. The cycle continues.
 
-
-
 This is crazy. So I set about fixing the situation.
-
-
 
 The first step, figure out what is happening, where is the time spent?
 
-
-
 We had 3 sequential Codeship steps and inside those steps they were doing heaps of things.
-
-
 
 I started pulling out each step of the CI pipeline into its own step and parallelised the ones which made sense.
 
-
-
 That allowed me to see that one of our Codeship services had an long start time.
-
-
 
 I was able to dig in with some help from a colleague to audit the dockerfile. We found that the layers were set up to invalidate the cache every build. This was due to a directory copied in at the top which was in constant change. Which was invalidating the cache for all the layers underneath it.
 
-
-
 I rewrote the dockerfile with this in mind. We now cache every step including an 8-minute dependency install. This happens for every build across the application. The exception is when the dependency list changes which is a rare occasion.
 
-
-
 So without even answering why we have an 8 minute dependency installation time. I have been able to cut our CI pipeline build time in half for almost all builds in our application. This has helped resolve our merge window issue.
-
-
 
 I will be auditing our dependency list and choice of package manager tooling next. Watch out for yet another NPM vs Yarn post soon.

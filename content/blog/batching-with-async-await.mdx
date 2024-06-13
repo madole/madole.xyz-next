@@ -1,8 +1,8 @@
 ---
-title: 'Using Async/Await to batch asynchronous requests'
-date: '2018-06-24T10:28:07.097Z'
+title: "Using Async/Await to batch asynchronous requests"
+date: "2018-06-24T10:28:07.097Z"
 slug: batching-with-async-await
-tags: ['code']
+tags: ["code"]
 ---
 
 Lets say you have written a file uploader app and your users might upload 100s of files at a time. You could just loop the files and send off a request per file. This might overload your server, interrupt downloads or just fail due to hitting a maximum simultaneous open http connections. Whatever you issue, lets say batching your uploads is the solution.
@@ -16,16 +16,16 @@ In my example, I'll do some set up by creating an upload simulator and an array 
 const allFiles = Array.from(Array(200)).map((_, i) => `file-${i + 1}`);
 
 async function upload(files) {
-    const uploadingPromises = files.map(file => {
-        const url = `https://myuploadurl.com/${file}`;
-        return new Promise(resolve => {
-            setTimeout(() => {
-                console.log(`Uploaded file: ${url}`);
-                resolve();
-            }, 3000);
-        });
+  const uploadingPromises = files.map((file) => {
+    const url = `https://myuploadurl.com/${file}`;
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        console.log(`Uploaded file: ${url}`);
+        resolve();
+      }, 3000);
     });
-    return Promise.all(uploadingPromises);
+  });
+  return Promise.all(uploadingPromises);
 }
 ```
 
@@ -38,7 +38,7 @@ $ yarn add lodash
 ```
 
 ```javascript
-import { chunk } from 'lodash';
+import { chunk } from "lodash";
 
 const BATCH_SIZE = 20;
 const chunks = chunk(files, BATCH_SIZE);
@@ -47,12 +47,12 @@ const chunks = chunk(files, BATCH_SIZE);
 Now we want to create an async function which will iterate the chunks and call upload but we want it to block at each chunk until it's finished.
 
 ```javascript
-const batchUploads = async files => {
-    const chunks = chunk(files, BATCH_SIZE);
+const batchUploads = async (files) => {
+  const chunks = chunk(files, BATCH_SIZE);
 
-    for (let c of chunks) {
-        await upload(c);
-    }
+  for (let c of chunks) {
+    await upload(c);
+  }
 };
 ```
 
@@ -60,18 +60,27 @@ Then we just have to call our new `batchUploads` function and wait for it to fin
 
 ```javascript
 batchUploads(allFiles)
-    .then(() => {
-        console.info('Finished iterating');
-    })
-    .catch(err => {
-        console.error('Error:', err);
-    });
+  .then(() => {
+    console.info("Finished iterating");
+  })
+  .catch((err) => {
+    console.error("Error:", err);
+  });
 ```
 
 You can try this in the [REPL](https://repl.it) below.
 
 You should see the batches of 20 getting "uploaded" until there are no more files left.
 
-<iframe height="400px" width="100%" src="https://repl.it/@madoliole/batching-with-async-await?lite=true" scrolling="no" frameBorder="no" allowTransparency="true" allowFullScreen="true" sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals"/>
+<iframe
+  height="400px"
+  width="100%"
+  src="https://repl.it/@madoliole/batching-with-async-await?lite=true"
+  scrolling="no"
+  frameBorder="no"
+  allowTransparency="true"
+  allowFullScreen="true"
+  sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals"
+/>
 
 Or fork it and modify it yourself [https://repl.it/@madoliole/batching-with-async-await](https://repl.it/@madoliole/batching-with-async-await)

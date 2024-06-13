@@ -1,15 +1,13 @@
 ---
-title: 'babel-plugin-transform-async-to-module-method gotcha'
-date: '2016-05-08T02:41:11.000Z'
+title: "babel-plugin-transform-async-to-module-method gotcha"
+date: "2016-05-08T02:41:11.000Z"
 slug: babel-plugin-transform-async-to-module-method-gotcha
-tags: ['code']
+tags: ["code"]
 ---
 
 We have been using ES7 Async/Await with `babel-plugin-transform-async-to-module-method` and bluebird co-routines for about a month now.
 
 This has been working great for us in most cases.
-
-
 
 Although we started noticing an issue when we've been using classes and extending upon them. The transpilation process affects the scope of an async class method and causes an error when you try to call super inside the method.
 
@@ -17,21 +15,21 @@ Consider the following example.
 
 ```javascript
 class Animal {
-    constructor(name) {
-        this.name = name;
-    }
+  constructor(name) {
+    this.name = name;
+  }
 
-    async getAge() {
-        const age = await getAgeFromAPI();
-        return age;
-    }
+  async getAge() {
+    const age = await getAgeFromAPI();
+    return age;
+  }
 }
 
 class Dog extends Animal {
-    async getAge() {
-        const age = await super.getAge();
-        return age * 7;
-    }
+  async getAge() {
+    const age = await super.getAge();
+    return age * 7;
+  }
 }
 ```
 
@@ -45,25 +43,25 @@ The transpiled code looks like this.
 
 ```javascript
 class Animal {
-    constructor(name) {
-        this.name = name;
-    }
+  constructor(name) {
+    this.name = name;
+  }
 
-    getAge() {
-        return (0, _bluebird.coroutine)(function* () {
-            const age = yield getAgeFromAPI();
-            return age;
-        })();
-    }
+  getAge() {
+    return (0, _bluebird.coroutine)(function* () {
+      const age = yield getAgeFromAPI();
+      return age;
+    })();
+  }
 }
 
 class Dog extends Animal {
-    getAge() {
-        return (0, _bluebird.coroutine)(function* () {
-            const age = yield super.getAge();
-            return age * 7;
-        })();
-    }
+  getAge() {
+    return (0, _bluebird.coroutine)(function* () {
+      const age = yield super.getAge();
+      return age * 7;
+    })();
+  }
 }
 ```
 
@@ -71,10 +69,10 @@ A workaround that we have been using is to call the parent class's prototype fun
 
 ```javascript
 class Dog extends Animal {
-    async getAge() {
-        const age = await Animal.prototype.getAge.call(this);
-        return age * 5;
-    }
+  async getAge() {
+    const age = await Animal.prototype.getAge.call(this);
+    return age * 5;
+  }
 }
 ```
 
@@ -82,14 +80,14 @@ This now compiles to the following where we can see that the correct context is 
 
 ```javascript
 class Dog extends Animal {
-    getAge() {
-        var _this = this;
+  getAge() {
+    var _this = this;
 
-        return (0, _bluebird.coroutine)(function* () {
-            const age = yield Animal.prototype.getAge.call(_this);
-            return age * 5;
-        })();
-    }
+    return (0, _bluebird.coroutine)(function* () {
+      const age = yield Animal.prototype.getAge.call(_this);
+      return age * 5;
+    })();
+  }
 }
 ```
 

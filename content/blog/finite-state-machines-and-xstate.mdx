@@ -16,14 +16,14 @@ But, when you pair that state with business logic, a finite state machine can be
 
 A finite state machine is a mathematical model of computation.
 It is an abstract "machine" that can be in exactly one of a finite number of states at any given time.
-The machine can *transition* from one state to another in response to some inputs known as *events*.
+The machine can _transition_ from one state to another in response to some inputs known as _events_.
 
-You define a finite state machine by a list of its *states*, its initial state and the events that trigger each transition.
+You define a finite state machine by a list of its _states_, its initial state and the events that trigger each transition.
 
 ### Key takeaways
 
-- We can define a number of *states* a machine can be in.
-- The machine can *transition* from one state to another given some triggered *events*.
+- We can define a number of _states_ a machine can be in.
+- The machine can _transition_ from one state to another given some triggered _events_.
 - The machine can be in **exactly one state** at a time.
 
 ### What does this look like in a real-world application?
@@ -64,27 +64,27 @@ We'll give it an `id` and an initial state which we'll say is `loading`, and we'
 We'll also list out all of the possible states.
 
 ```js
-import { assign, createMachine } from 'xstate';
+import { assign, createMachine } from "xstate";
 
 const fetchMachine = createMachine({
-    id: 'Profile Page',
-    initial: 'loading', // initial state of our machine
-    context: {
-      profile: null,
-      error: null,
-    },
-    states: {
-      loading: {},
-      failure: {},
-      profileLoaded: {},
-      noProfile: {},
-      creatingProfile: {},
-      savingCreatedProfile: {},
-      showProfile: {},
-      editingProfile: {},
-      savingEditedProfile: {}
-    }
-  });
+  id: "Profile Page",
+  initial: "loading", // initial state of our machine
+  context: {
+    profile: null,
+    error: null,
+  },
+  states: {
+    loading: {},
+    failure: {},
+    profileLoaded: {},
+    noProfile: {},
+    creatingProfile: {},
+    savingCreatedProfile: {},
+    showProfile: {},
+    editingProfile: {},
+    savingEditedProfile: {},
+  },
+});
 ```
 
 This yields a diagram of unconnected nodes.
@@ -102,55 +102,56 @@ If we get a successful response, we trigger XState's `assign` action to update t
 Similarly, if we get an unsuccessful response, we'll transition to the `failure` state.
 
 ```js
-import { assign, createMachine } from 'xstate';
+import { assign, createMachine } from "xstate";
 
-const fetchMachine = createMachine({
-    id: 'Profile Page',
-    initial: 'loading',
+const fetchMachine = createMachine(
+  {
+    id: "Profile Page",
+    initial: "loading",
     context: {
-        profile: null,
-        error: null
+      profile: null,
+      error: null,
     },
     states: {
-        loading: {
-            invoke: {
-              /*
-               * The `fetchProfile` service is defined
-               * below in the services object
-               */
-                src: 'fetchProfile',
-                onDone: {
-                    target: "profileLoaded",
-                    actions: assign({
-                        // update `context.profile`
-                        profile: (context, event) => event.data
-
-                    })
-                },
-                onError: {
-                    target: "failure",
-                    actions: assign({
-                        // update `context.error`
-                        error: (context, event) => event.data
-
-                    })
-                }
-            }
+      loading: {
+        invoke: {
+          /*
+           * The `fetchProfile` service is defined
+           * below in the services object
+           */
+          src: "fetchProfile",
+          onDone: {
+            target: "profileLoaded",
+            actions: assign({
+              // update `context.profile`
+              profile: (context, event) => event.data,
+            }),
+          },
+          onError: {
+            target: "failure",
+            actions: assign({
+              // update `context.error`
+              error: (context, event) => event.data,
+            }),
+          },
         },
-        profileLoaded: {},
-        failure: {},
-        noProfile: {},
-        creatingProfile: {},
-        savingCreatedProfile: {},
-        showProfile: {},
-        editingProfile: {},
-        savingEditedProfile: {}
-    }
-}, {
+      },
+      profileLoaded: {},
+      failure: {},
+      noProfile: {},
+      creatingProfile: {},
+      savingCreatedProfile: {},
+      showProfile: {},
+      editingProfile: {},
+      savingEditedProfile: {},
+    },
+  },
+  {
     services: {
-        fetchProfile: Api.fetchProfile
-    }
-});
+      fetchProfile: Api.fetchProfile,
+    },
+  },
+);
 ```
 
 Our state chart now looks like this.
@@ -164,69 +165,69 @@ We'll also set up the `profileLoaded` state to check if the profile exists. If i
 We use the "eventless" `always` property here to automatically move to the next state based on the guards.
 
 ```js
-import { assign, createMachine } from 'xstate';
+import { assign, createMachine } from "xstate";
 
-const fetchMachine = createMachine({
-    id: 'Profile Page',
-    initial: 'loading',
+const fetchMachine = createMachine(
+  {
+    id: "Profile Page",
+    initial: "loading",
     context: {
-        profile: null,
-        error: null
+      profile: null,
+      error: null,
     },
     states: {
-        loading: {
-            invoke: {
-                src: 'fetchProfile',
-                onDone: {
-                    target: "profileLoaded",
-                    actions: assign({
-                        // update `context.profile`
-                        profile: (context, event) => event.data
-
-                    }),
-                },
-                onError: {
-                    target: "failure",
-                    actions: assign({
-                        // update `context.error`
-                        error: (context, event) => event.data
-
-                    }),
-                },
-            }
-
+      loading: {
+        invoke: {
+          src: "fetchProfile",
+          onDone: {
+            target: "profileLoaded",
+            actions: assign({
+              // update `context.profile`
+              profile: (context, event) => event.data,
+            }),
+          },
+          onError: {
+            target: "failure",
+            actions: assign({
+              // update `context.error`
+              error: (context, event) => event.data,
+            }),
+          },
         },
-        profileLoaded: {
-          /*
-          * Eventless transitions - `always`
-          * They are invoked automatically when the parent's state
-          * is active.
-          *
-          * The condition `cond: 'hasProfile'` is defined in the guards
-          * object below. It checks if a profile exists in the context.
-          * If true, this transition occurs, if not the next one is attempted.
-          */
-            always: [
-                {target: "showProfile", cond: "hasProfile"},
-                {target: "noProfile"},
-            ],
-        },
-        failure: {},
-        noProfile: {},
-        creatingProfile: {},
-        savingCreatedProfile: {},
-        showProfile: {},
-        editingProfile: {},
-        savingEditedProfile: {}
-    }
-}, {
+      },
+      profileLoaded: {
+        /*
+         * Eventless transitions - `always`
+         * They are invoked automatically when the parent's state
+         * is active.
+         *
+         * The condition `cond: 'hasProfile'` is defined in the guards
+         * object below. It checks if a profile exists in the context.
+         * If true, this transition occurs, if not the next one is attempted.
+         */
+        always: [
+          { target: "showProfile", cond: "hasProfile" },
+          { target: "noProfile" },
+        ],
+      },
+      failure: {},
+      noProfile: {},
+      creatingProfile: {},
+      savingCreatedProfile: {},
+      showProfile: {},
+      editingProfile: {},
+      savingEditedProfile: {},
+    },
+  },
+  {
     services: {
-        fetchProfile: Api.fetchProfile
+      fetchProfile: Api.fetchProfile,
     },
     guards: {
-        hasProfile: (context) => !!context.profile
-    }
-});
+      hasProfile: (context) => !!context.profile,
+    },
+  },
+);
 ```
 
 Our state chart now looks like this:
@@ -240,163 +241,163 @@ We've added a `CREATE_NEW_PROFILE` event on the `noProfile` state which when tri
 We've also added events on the `creatingProfile` state to handle saving and cancelling the created profile.
 
 ```js
-import { assign, createMachine } from 'xstate';
+import { assign, createMachine } from "xstate";
 
-const fetchMachine = createMachine({
-    id: 'Profile Page',
-    initial: 'loading',
+const fetchMachine = createMachine(
+  {
+    id: "Profile Page",
+    initial: "loading",
     context: {
-        profile: null,
-        error: null
+      profile: null,
+      error: null,
     },
     states: {
-        loading: {
-            invoke: {
-                src: 'fetchProfile',
-                onDone: {
-                    target: "profileLoaded",
-                    actions: assign({
-                        profile: (context, event) => event.data
-
-                    }),
-                },
-                onError: {
-                    target: "failure",
-                    actions: assign({
-                        error: (context, event) => event.data
-
-                    }),
-                },
-            }
+      loading: {
+        invoke: {
+          src: "fetchProfile",
+          onDone: {
+            target: "profileLoaded",
+            actions: assign({
+              profile: (context, event) => event.data,
+            }),
+          },
+          onError: {
+            target: "failure",
+            actions: assign({
+              error: (context, event) => event.data,
+            }),
+          },
         },
-        profileLoaded: {
-            always: [
-                    {target: "showProfile", cond: "hasProfile"},
-                    {target: "noProfile"},
-                ],
+      },
+      profileLoaded: {
+        always: [
+          { target: "showProfile", cond: "hasProfile" },
+          { target: "noProfile" },
+        ],
+      },
+      failure: {},
+      noProfile: {
+        on: {
+          // User triggered event and the next state it targets
+          CREATE_NEW_PROFILE: "creatingProfile",
         },
-        failure: {},
-        noProfile: {
-            on: {
-                // User triggered event and the next state it targets
-                CREATE_NEW_PROFILE: 'creatingProfile'
-            }
+      },
+      creatingProfile: {
+        on: {
+          // User triggered events
+          SAVE_CREATED_PROFILE: "savingCreatedProfile",
+          CANCELLED_SAVED_PROFILE: "noProfile",
         },
-        creatingProfile: {
-            on: {
-               // User triggered events
-                SAVE_CREATED_PROFILE: 'savingCreatedProfile',
-                CANCELLED_SAVED_PROFILE: 'noProfile'
-            }
-        },
-        savingCreatedProfile: {},
-        showProfile: {},
-        editingProfile: {},
-        savingEditedProfile: {}
-    }
-}, {
+      },
+      savingCreatedProfile: {},
+      showProfile: {},
+      editingProfile: {},
+      savingEditedProfile: {},
+    },
+  },
+  {
     services: {
-        fetchProfile: Api.fetchProfile
+      fetchProfile: Api.fetchProfile,
     },
     guards: {
-        hasProfile: (context) => !!context.profile
-    }
-});
+      hasProfile: (context) => !!context.profile,
+    },
+  },
+);
 ```
 
 Our state diagram now looks like this:
 
 ![Nodes with creating profile state](../blog-images/finite-state-machines-and-xstate/Statechart4.png)
 
-
 ## Putting it all together
 
 Finally, we'll fill out the rest of the states, transitions and services based on what we know from the previous steps to end up with this:
 
 ```js
-import { assign, createMachine } from 'xstate';
+import { assign, createMachine } from "xstate";
 
-const fetchMachine = createMachine({
-    id: 'Profile Page',
-    initial: 'loading',
+const fetchMachine = createMachine(
+  {
+    id: "Profile Page",
+    initial: "loading",
     context: {
-        profile: null,
-        error: null
+      profile: null,
+      error: null,
     },
     states: {
-        loading: {
-            invoke: {
-                src: 'fetchProfile',
-                onDone: {
-                    target: "profileLoaded",
-                    actions: assign({
-                        profile: (context, event) => event.data
-
-                    }),
-                },
-                onError: {
-                    target: "failure",
-                    actions: assign({
-                        error: (context, event) => event.data
-
-                    }),
-                },
-            }
-
+      loading: {
+        invoke: {
+          src: "fetchProfile",
+          onDone: {
+            target: "profileLoaded",
+            actions: assign({
+              profile: (context, event) => event.data,
+            }),
+          },
+          onError: {
+            target: "failure",
+            actions: assign({
+              error: (context, event) => event.data,
+            }),
+          },
         },
-        profileLoaded: {
-            always: [
-                {target: "showProfile", cond: "hasProfile"},
-                {target: "noProfile"},
-            ]
+      },
+      profileLoaded: {
+        always: [
+          { target: "showProfile", cond: "hasProfile" },
+          { target: "noProfile" },
+        ],
+      },
+      noProfile: {
+        on: {
+          CREATE_NEW_PROFILE: "creatingProfile",
         },
-        noProfile: {
-            on: {
-                CREATE_NEW_PROFILE: 'creatingProfile'
-            }
+      },
+      creatingProfile: {
+        on: {
+          SAVE_CREATED_PROFILE: "savingCreatedProfile",
+          CANCEL_SAVED_PROFILE: "noProfile",
         },
-        creatingProfile: {
-            on: {
-                SAVE_CREATED_PROFILE: 'savingCreatedProfile',
-                CANCEL_SAVED_PROFILE: 'noProfile'
-            }
+      },
+      savingCreatedProfile: {
+        invoke: {
+          src: "saveProfile",
+          onDone: "loading",
+          onError: "failure",
         },
-        savingCreatedProfile: {
-            invoke: {
-                src: 'saveProfile',
-                onDone: 'loading',
-                onError: 'failure'
-            }
+      },
+      showProfile: {
+        on: {
+          EDIT_PROFILE: "editingProfile",
         },
-        showProfile: {
-            on: {
-                EDIT_PROFILE: 'editingProfile'
-            }
+      },
+      editingProfile: {
+        on: {
+          SAVE_EDITED_PROFILE: "savingEditedProfile",
+          CANCEL_EDITED_PROFILE: "showProfile",
         },
-        editingProfile: {
-            on: {
-                SAVE_EDITED_PROFILE: 'savingEditedProfile',
-                CANCEL_EDITED_PROFILE: 'showProfile'
-            }
+      },
+      savingEditedProfile: {
+        invoke: {
+          src: "saveProfile",
+          onDone: "loading",
+          onError: "failure",
         },
-        savingEditedProfile: {
-            invoke: {
-                src: 'saveProfile',
-                onDone: 'loading',
-                onError: 'failure'
-            }
-        },
-        failure: {},
-    }
-}, {
+      },
+      failure: {},
+    },
+  },
+  {
     services: {
-        fetchProfile: Api.fetchProfile,
-        saveProfile: Api.saveProfile,
+      fetchProfile: Api.fetchProfile,
+      saveProfile: Api.saveProfile,
     },
     guards: {
-        hasProfile: (context) => !!context.profile
-    }
-});
+      hasProfile: (context) => !!context.profile,
+    },
+  },
+);
 ```
 
 Our final state diagram might look a little busy due to the layout, but it has equivalent steps to our original flow chart above.
@@ -414,25 +415,27 @@ Now to use this in React, we simply add the `@xstate/react` package and import t
 
 ```jsx
 const ProfilePage = () => {
-	const [state, send] = useMachine(machine);
+  const [state, send] = useMachine(machine);
 
-	if(state.matches('loading')) {
-	  return <LoadingSpinner />
-	}
+  if (state.matches("loading")) {
+    return <LoadingSpinner />;
+  }
 
-	if(state.matches('error')) {
-	  return <ErrorMessage error={state.context.error}/>
-	}
+  if (state.matches("error")) {
+    return <ErrorMessage error={state.context.error} />;
+  }
 
-	if(state.matches('noProfile')) {
-	  return <CreateProfileNudge onCreateClick={() => send('CREATE_NEW_PROFILE')}/>
-	}
+  if (state.matches("noProfile")) {
+    return (
+      <CreateProfileNudge onCreateClick={() => send("CREATE_NEW_PROFILE")} />
+    );
+  }
 
-	if(state.matches('showProfile')) {
-	  return <ProfileContent profile={state.context.profile} />
-	}
-	/* ... */
-}
+  if (state.matches("showProfile")) {
+    return <ProfileContent profile={state.context.profile} />;
+  }
+  /* ... */
+};
 ```
 
 `state` is an object that has `value` (the current machine state) and `context` (the object with our `profile` and `error`).

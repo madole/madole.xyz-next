@@ -2,7 +2,7 @@
 title: "Semver - the sane way"
 date: "2015-11-07T13:05:03.000Z"
 slug: semver-the-sane-way
-tags: ['code']
+tags: ["code"]
 ---
 
 > **Semantic Versioning 2.0.0** - https://semver.org
@@ -33,8 +33,8 @@ Semantic versioning is a sane way to communicate the changes in a module release
 
 There are two angles this problem has to be tackled from.
 
--   The consuming application angle
--   The module developer angle
+- The consuming application angle
+- The module developer angle
 
 #### From the consuming application's point of view
 
@@ -61,14 +61,14 @@ How can we ensure that our code change hasn't caused a breaking change?
 
 We can of course manage this in a manual fashion. This takes the form of asking yourself the following questions:
 
--   Did I change the functionality or contract of public facing API? **Yes**
-    -   Breaking change -> **MAJOR version bump**
+- Did I change the functionality or contract of public facing API? **Yes**
+  - Breaking change -> **MAJOR version bump**
 
-*   Did my change add a public API function but not change the functionality of the existing API? **Yes**
-    -   Non breaking change -> **MINOR version bump**
+* Did my change add a public API function but not change the functionality of the existing API? **Yes**
+  - Non breaking change -> **MINOR version bump**
 
--   Did my change fix a bug with the internals but not impact any of the public API functionality? **Yes**
-    -   Non breaking change -> **PATCH version bump**
+- Did my change fix a bug with the internals but not impact any of the public API functionality? **Yes**
+  - Non breaking change -> **PATCH version bump**
 
 This is fine, but the issue lies with it's interpretation.
 
@@ -82,9 +82,9 @@ If you can get your test code coverage up to 100%, you can manage semver release
 
 If you're code has 100% test coverage, semver works like this:
 
--   Did your change break the tests? **MAJOR version bump**
--   Did your change add to the API but not break the tests? **MINOR version bump**
--   Did your change not add to the API and not break the tests? **PATCH version bump**
+- Did your change break the tests? **MAJOR version bump**
+- Did your change add to the API but not break the tests? **MINOR version bump**
+- Did your change not add to the API and not break the tests? **PATCH version bump**
 
 **The only time existing tests can be changed is when you're deploying a major version.**
 

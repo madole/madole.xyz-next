@@ -1,13 +1,11 @@
 ---
-title: 'Using console.time to profile performance in your node application'
-date: '2016-06-09T15:27:36.000Z'
+title: "Using console.time to profile performance in your node application"
+date: "2016-06-09T15:27:36.000Z"
 slug: using-console-time-to-profile-performance-in-your-node-app
-tags: ['code']
+tags: ["code"]
 ---
 
 I was writing an express application, when I started to notice one of the routes was taking quite a while to respond to a request. The route was doing some heavy lifting shaping data from an API .
-
-
 
 I needed to figure out where the bottleneck was and optimise it.
 
@@ -30,29 +28,27 @@ To use these, put a `console.time('label')` before the function you want to prof
 Here's an example of profiling native `Array.prototype.map` and `Array.prototype.filter` against their lodash counterparts on an array of a million values:
 
 ```javascript
-const _ = require('lodash');
+const _ = require("lodash");
 const dataset = [];
 for (let i = 0; i < 1000000; i++) {
-    dataset.push(i);
+  dataset.push(i);
 }
 
-console.time('map');
-const squared = dataset.map(x => x * x);
-console.timeEnd('map');
+console.time("map");
+const squared = dataset.map((x) => x * x);
+console.timeEnd("map");
 
-console.time('lodash map');
-const lodashSquared = _.map(dataset, x => x * x);
-console.timeEnd('lodash map');
+console.time("lodash map");
+const lodashSquared = _.map(dataset, (x) => x * x);
+console.timeEnd("lodash map");
 
-console.time('filter');
-const filtered = dataset.filter(x => x % 2 === 0);
-console.timeEnd('filter');
+console.time("filter");
+const filtered = dataset.filter((x) => x % 2 === 0);
+console.timeEnd("filter");
 
-console.time('lodash filter');
-const lodashFiltered = _.filter(dataset, x => x % 2 === 0);
-console.timeEnd('lodash filter');
-
-
+console.time("lodash filter");
+const lodashFiltered = _.filter(dataset, (x) => x % 2 === 0);
+console.timeEnd("lodash filter");
 ```
 
 The output to the console looks like this:

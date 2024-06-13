@@ -10,24 +10,25 @@ tags:
   - legacy code
 slug: upgrading-an-old-flow-codebase
 ---
-We've been gradually migrating our codebases from Flow to Typescript but sometimes we have to upgrade an old Flow codebase to a newer version of Flow. 
+
+We've been gradually migrating our codebases from Flow to Typescript but sometimes we have to upgrade an old Flow codebase to a newer version of Flow.
 
 We've got many old codebases and some are more than 50 Flow versions behind. Flow has been actively developed over the last few years and there are some tools to help you upgrade that aren't immediately obvious.
 
-The problem is when you update flow, it becomes better at doing its job. It becomes stricter. Your old code isn't ready for this new level of strictness and so you are faced with a lot of Flow errors when you first do the upgrade. 
+The problem is when you update flow, it becomes better at doing its job. It becomes stricter. Your old code isn't ready for this new level of strictness and so you are faced with a lot of Flow errors when you first do the upgrade.
 
 You may have time to fix all of these issues but likely you don't and you just want to draw a line in the sand and say "from this point on, I want to take advantage of the new stricter static typing rules".
 
-You may have considered manually going through the codebase, error by error and adding in a `//$FlowFixMe`. 
+You may have considered manually going through the codebase, error by error and adding in a `//$FlowFixMe`.
 
-But, hidden in the Flow codebase there is a dev tool which can automatically add in these comments for you.  (https://github.com/facebook/flow/blob/master/packages/flow-dev-tools/bin/tool[](https://github.com/facebook/flow/blob/master/packages/flow-dev-tools/bin/tool)) 
+But, hidden in the Flow codebase there is a dev tool which can automatically add in these comments for you. (https://github.com/facebook/flow/blob/master/packages/flow-dev-tools/bin/tool[](https://github.com/facebook/flow/blob/master/packages/flow-dev-tools/bin/tool))
 
 To run it, follow these steps:
 
-* Clone the flow codebase from Github
-* Navigate to the codebase you want to update via your terminal
-* Run this command `<path to flow>/packages/flow-dev-tools/bin/tool add-comments --all --bin <path to flow bin in your node_modules> --check check .`
+- Clone the flow codebase from Github
+- Navigate to the codebase you want to update via your terminal
+- Run this command `<path to flow>/packages/flow-dev-tools/bin/tool add-comments --all --bin <path to flow bin in your node_modules> --check check .`
 
-  * For me, this looks like `/Users/fakename/code/flow/packages/flow-dev-tools/bin/tool add-comments --all --bin ./node_modules/flow-bin/flow-osx-v0.136.0/flow --check check .`
+  - For me, this looks like `/Users/fakename/code/flow/packages/flow-dev-tools/bin/tool add-comments --all --bin ./node_modules/flow-bin/flow-osx-v0.136.0/flow --check check .`
 
 Now you can start writing new code to the latest Flow standards and chip away at the `//$FlowFixMe` areas to provide stronger typing on your existing code over time.

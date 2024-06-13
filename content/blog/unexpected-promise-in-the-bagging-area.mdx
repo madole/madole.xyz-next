@@ -1,36 +1,40 @@
 ---
-title: 'Unexpected promise in the bagging area'
-date: '2019-08-27T07:34:00.344Z'
+title: "Unexpected promise in the bagging area"
+date: "2019-08-27T07:34:00.344Z"
 slug: unexpected-promise-in-the-bagging-area
-tags: ['code', 'javascript', 'promises']
+tags: ["code", "javascript", "promises"]
 ---
 
-This week I came across an odd behaviour that it took me a little while to figure out. 
+This week I came across an odd behaviour that it took me a little while to figure out.
 Take the following example:
 
 ```js
 const promiseThatWillResolve = Promise.resolve();
-const promiseThatWillReject = new Promise((resolve, reject) => reject(new Error('Bang')));
+const promiseThatWillReject = new Promise((resolve, reject) =>
+  reject(new Error("Bang")),
+);
 
 //do some processing
-promiseThatWillReject.then(data => data.map((d, i) => ({ index: i, ...d })));
+promiseThatWillReject.then((data) => data.map((d, i) => ({ index: i, ...d })));
 
-Promise.all([promiseThatWillResolve, promiseThatWillReject]).catch(err => console.error(err));
+Promise.all([promiseThatWillResolve, promiseThatWillReject]).catch((err) =>
+  console.error(err),
+);
 ```
 
-A less trivial version of this code was in our codebase and when I did some validation on a returning promise, the rejection was unhandled. 
+A less trivial version of this code was in our codebase and when I did some validation on a returning promise, the rejection was unhandled.
 
-My first thought was “surely the catch on the `Promise.all` should handle any rejections or thrown errors". 
+My first thought was “surely the catch on the `Promise.all` should handle any rejections or thrown errors".
 
-I’ve been working with javascript for about 10 years and consider myself very comfortable with most parts of the language yet this was baffling me. 
+I’ve been working with javascript for about 10 years and consider myself very comfortable with most parts of the language yet this was baffling me.
 
-For what possible reason could tacking on a `then` to a promise cause the error to be unhandled? 
+For what possible reason could tacking on a `then` to a promise cause the error to be unhandled?
 
-It’s at this time I’d like to express that you’re never too good to go back to read the docs. Classic RTFM moment. 
+It’s at this time I’d like to express that you’re never too good to go back to read the docs. Classic RTFM moment.
 
-As I read the MDN docs and relearned something I’d managed to forget or maybe never knew in the first place, I realised that `.then` /returns/ a promise. 
+As I read the MDN docs and relearned something I’d managed to forget or maybe never knew in the first place, I realised that `.then` /returns/ a promise.
 
-What does that mean? Well, we’ve created a promise `promiseThatWillReject` which we’re rejecting at some point in the future. The `.then` will return a new promise. At this stage we’ve not caught the error. When it rejects, /that/ promise isn’t handling the promise rejection and so it becomes unhandled. In order to fix this, we should use the /new/ promise in the `Promise.all` so this can pass on the rejection to the `catch` . 
+What does that mean? Well, we’ve created a promise `promiseThatWillReject` which we’re rejecting at some point in the future. The `.then` will return a new promise. At this stage we’ve not caught the error. When it rejects, /that/ promise isn’t handling the promise rejection and so it becomes unhandled. In order to fix this, we should use the /new/ promise in the `Promise.all` so this can pass on the rejection to the `catch` .
 
 ```javascript
 const promiseThatWillResolve = Promise.resolve()
@@ -42,4 +46,4 @@ const newPromiseThatWillReject = promiseThatWillReject.then(data => data.map((d,
 Promise.all([promiseThatWillResolve, newPromiseThatWillReject]).catch(err => console.error(err))
 ```
 
-This allows us to catch the rejection in the `Promise.all` and handle it whatever way we want to. 
+This allows us to catch the rejection in the `Promise.all` and handle it whatever way we want to.
