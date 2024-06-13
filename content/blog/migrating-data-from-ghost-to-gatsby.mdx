@@ -1,8 +1,8 @@
 ---
-title: 'Migrating data from Ghost to GatsbyJS'
-date: '2018-06-18T10:28:07.097Z'
+title: "Migrating data from Ghost to GatsbyJS"
+date: "2018-06-18T10:28:07.097Z"
 slug: migrating-data-from-ghost-to-gatsby
-tags: ['code']
+tags: ["code"]
 ---
 
 ## What is Gatsby?
@@ -71,13 +71,13 @@ ${markdown}
 Then I realised that the published_at date is in the wrong format so I had to parse that into the correct format so
 
 ```javascript
-date: '${published_at}';
+date: "${published_at}";
 ```
 
 becomes
 
 ```javascript
-date: '${new Date(published_at).toISOString()}';
+date: "${new Date(published_at).toISOString()}";
 ```
 
 I want to put these in a folder which I've already made called _blog-posts_
@@ -103,7 +103,7 @@ fs.mkdirSync(`./blog-posts/${folderName}`);
 All that's left to do now is to write the filled template to file within our new folder. Again, I've opted for the syncronous version of `fs.writeFile` for simplicity.
 
 ```javascript
-fs.writeFileSync(`./blog-posts/${folderName}/index.md`, template, 'utf8');
+fs.writeFileSync(`./blog-posts/${folderName}/index.md`, template, "utf8");
 ```
 
 I put all of this inside a function called `parseBlogPost` and passed it into the `forEach` on the posts.

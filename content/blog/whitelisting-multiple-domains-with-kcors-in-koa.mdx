@@ -3,7 +3,8 @@ title: "Whitelisting multiple domains with kcors in Koa"
 date: "2017-02-17T12:16:22.000Z"
 slug: whitelisting-multiple-domains-with-kcors-in-koa
 ---
-import RedText from '../../components/mdx/RedText';
+
+import RedText from "../../components/mdx/RedText";
 
 # [Kcors](https://www.npmjs.com/package/kcors)
 
@@ -77,12 +78,15 @@ app.use(convert(cors({ origin: checkOriginAgainstWhitelist })));
 
 Now any request coming from an origin in your whitelist will pass it's pre-flight request and your browser will allow the request to take place, any that don't satisfy the whitelist check will chuck and error to be handled by your error handler middleware and your browser will give you feedback similar to this:
 
-<RedText> 
-    Fetch API cannot load https://myunsafeorigin.com/stuff
-    <br />
-    Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource.
-    <br />
-    Origin 'https://myunsafeorigin.com' is therefore not allowed access.
-    <br />
-    The response had HTTP status code 500. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
+<RedText>
+  Fetch API cannot load https://myunsafeorigin.com/stuff
+  <br />
+  Response to preflight request doesn't pass access control check: No
+  'Access-Control-Allow-Origin' header is present on the requested resource.
+  <br />
+  Origin 'https://myunsafeorigin.com' is therefore not allowed access.
+  <br />
+  The response had HTTP status code 500. If an opaque response serves your
+  needs, set the request's mode to 'no-cors' to fetch the resource with CORS
+  disabled.
 </RedText>

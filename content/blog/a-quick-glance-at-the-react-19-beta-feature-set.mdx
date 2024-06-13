@@ -1,39 +1,39 @@
 ---
-title: 'A quick glance at the React 19 Beta feature set'
-date: '2024-04-28T04:59:49.550Z'
-tags: ['react','javascript','react19']
-slug: 'a-quick-glance-at-the-react-19-beta-feature-set'
+title: "A quick glance at the React 19 Beta feature set"
+date: "2024-04-28T04:59:49.550Z"
+tags: ["react", "javascript", "react19"]
+slug: "a-quick-glance-at-the-react-19-beta-feature-set"
 ---
 
- The React 19 Beta release is out and the accompanying [blog post](https://react.dev/blog/2024/04/25/react-19) is a great read. Here's a quick glance at the
- new features and improvements that are part of this release.
+The React 19 Beta release is out and the accompanying [blog post](https://react.dev/blog/2024/04/25/react-19) is a great read. Here's a quick glance at the
+new features and improvements that are part of this release.
 
 - Some spicy new hooks and a concept of async functions being "actions"
-    - `useTransition`
-        - a React Hook that lets you update the state without blocking the UI.
-        - `const [isPending, startTransition] = useTransition();`
-        - [https://react.dev/reference/react/useTransition](https://react.dev/reference/react/useTransition)
-    - `useOptimistic`
-        -  a React Hook that lets you optimistically update the UI.
-        -  `const [optimisticState, addOptimistic] = useOptimistic(state, updateFn);`
-        - [https://react.dev/reference/react/useOptimistic](https://react.dev/reference/react/useOptimistic)
-    - `useActionState`
-        - a Hook that allows you to update state based on the result of a form action.
-        - `const [state, formAction] = useActionState(fn, initialState, permalink?);`
-        - [https://react.dev/reference/react/useActionState](https://react.dev/reference/react/useActionState)
-    - `useFormStatus`
-        - a Hook provides status information of the last form submission.
-        - `const { pending, data, method, action } = useFormStatus();`
-        - [https://react.dev/reference/react-dom/hooks/useFormStatus](https://react.dev/reference/react-dom/hooks/useFormStatus)
-    - `useDeferredValue`
-        - a React Hook that lets you defer updating a part of the UI.
-        - `const deferredValue = useDeferredValue(value);`
-        - [https://react.dev/reference/react/useDeferredValue](https://react.dev/reference/react/useDeferredValue)
-    - Actions can now be passed to `<form action={actionFunction}>`
+  - `useTransition`
+    - a React Hook that lets you update the state without blocking the UI.
+    - `const [isPending, startTransition] = useTransition();`
+    - [https://react.dev/reference/react/useTransition](https://react.dev/reference/react/useTransition)
+  - `useOptimistic`
+    - a React Hook that lets you optimistically update the UI.
+    - `const [optimisticState, addOptimistic] = useOptimistic(state, updateFn);`
+    - [https://react.dev/reference/react/useOptimistic](https://react.dev/reference/react/useOptimistic)
+  - `useActionState`
+    - a Hook that allows you to update state based on the result of a form action.
+    - `const [state, formAction] = useActionState(fn, initialState, permalink?);`
+    - [https://react.dev/reference/react/useActionState](https://react.dev/reference/react/useActionState)
+  - `useFormStatus`
+    - a Hook provides status information of the last form submission.
+    - `const { pending, data, method, action } = useFormStatus();`
+    - [https://react.dev/reference/react-dom/hooks/useFormStatus](https://react.dev/reference/react-dom/hooks/useFormStatus)
+  - `useDeferredValue`
+    - a React Hook that lets you defer updating a part of the UI.
+    - `const deferredValue = useDeferredValue(value);`
+    - [https://react.dev/reference/react/useDeferredValue](https://react.dev/reference/react/useDeferredValue)
+  - Actions can now be passed to `<form action={actionFunction}>`
 - The `use` function - new API to read resources in render. Which is named like a hook but doesn't have the same conditional code issue hooks have, you can give it promises and contexts according to the post.
-_Confusing at first glance, maybe it'll settle over time._
+  _Confusing at first glance, maybe it'll settle over time._
 - Server components and actions continue to be a thing
-- Goodbye `forwardRef`, just use ref directly in props now as the second param. 
+- Goodbye `forwardRef`, just use ref directly in props now as the second param.
 - Goodbye `Context.Provider`, you just use `<Context>` as the provider now
 - `ref` callbacks get a cleanup callback like effects
 - Goodbye `react-helmet` - React now handles HTML metadata and hoists it into the head from any component

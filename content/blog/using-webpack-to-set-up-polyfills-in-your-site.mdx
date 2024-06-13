@@ -1,15 +1,13 @@
 ---
-title: 'Using webpack to set up polyfills in your site'
-date: '2016-04-03T21:40:03.000Z'
+title: "Using webpack to set up polyfills in your site"
+date: "2016-04-03T21:40:03.000Z"
 slug: using-webpack-to-set-up-polyfills-in-your-site
-tags: ['code']
+tags: ["code"]
 ---
 
 Webpack's Provide Plugin allows you to set up variables that get injected into your code when they are used in your codebase.
 
 This means that if I want to polyfill the new ES6 native promise for older browsers, I can do it at build time.
-
-
 
 Two polyfills you'll want to have set up in your site is the fetch and promise polyfills.
 
@@ -33,24 +31,25 @@ Here we'll create a new instance of `webpack.ProvidePlugin` and set up our varia
 
 ```javascript
 plugins: [
-    new webpack.ProvidePlugin({
-          Promise: 'imports-loader?this=>global!exports-loader?global.Promise!es6-promise',
-          fetch: 'imports-loader?this=>global!exports-loader?global.fetch!fetch'
-     })
-]
-
+  new webpack.ProvidePlugin({
+    Promise:
+      "imports-loader?this=>global!exports-loader?global.Promise!es6-promise",
+    fetch: "imports-loader?this=>global!exports-loader?global.fetch!fetch",
+  }),
+];
 ```
 
 NOTE: The name of `fetch` at the end of the line corresponds to the version you're using, if you installed via npm, you should use the following config:
 
 ```javascript
 plugins: [
-    new webpack.ProvidePlugin({
-          Promise: 'imports-loader?this=>global!exports-loader?global.Promise!es6-promise',
-          fetch: 'imports-loader?this=>global!exports-loader?global.fetch!whatwg-fetch'
-     })
-]
-
+  new webpack.ProvidePlugin({
+    Promise:
+      "imports-loader?this=>global!exports-loader?global.Promise!es6-promise",
+    fetch:
+      "imports-loader?this=>global!exports-loader?global.fetch!whatwg-fetch",
+  }),
+];
 ```
 
 ---

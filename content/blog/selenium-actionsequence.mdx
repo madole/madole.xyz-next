@@ -1,8 +1,8 @@
 ---
-title: 'Selenium ActionSequence'
-date: '2015-11-07T12:34:54.000Z'
+title: "Selenium ActionSequence"
+date: "2015-11-07T12:34:54.000Z"
 slug: selenium-actionsequence
-tags: ['code']
+tags: ["code"]
 ---
 
 ## How to click outside the center of a div in a selenium test
@@ -46,7 +46,9 @@ WebDriver.ActionSequence.prototype.moveMouse();
 We create an action sequence that moves the mouse to the outer div, but with an offset from its top left corner.
 
 ```javascript
-new webdriver.ActionSequence(driver).moveMouse(outerElement, 10, 10).click(outerElement);
+new webdriver.ActionSequence(driver)
+  .moveMouse(outerElement, 10, 10)
+  .click(outerElement);
 ```
 
 This will now click 10px in from the top of the outer element and 10px in from the left.

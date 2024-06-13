@@ -1,77 +1,85 @@
-.side-project-container  {
-    --side-project-image-size: 400px;
-    --side-project-clip-path: path("M288.5 33.5C318 54.75 341.75 82.25 359.25 113C376.5 143.75 388 178 391 213.75C394 249.5 388.5 287.25 369.5 315C350.25 342.75 317.25 360.5 284.75 369.5C252 378.5 220 378.5 183.75 386C147.25 393.5 106.5 408.5 84 393.75C61.25 379.25 56.75 334.75 42 299.5C27 264.25 1.49997 238 0.749969 211.5C-3.14699e-05 185 23.5 157.75 43.5 131C63.25 104.25 79.25 77.75 102.75 53C126 28 157 5 190.25 0.999997C223.5 -3 259 12.25 288.5 33.5Z");
-    --side-project-clip-path-2: path("M279.733 31.6068C305.253 45.318 330.03 62.1933 352.081 86.4516C374.132 110.71 393.458 141.824 398.661 176.365C403.617 210.907 394.697 248.349 373.884 274.981C353.32 301.876 321.11 317.696 290.387 339.318C259.912 360.939 230.923 388.625 197.227 397.063C163.778 405.501 125.622 394.954 91.1822 375.705C56.7426 356.193 26.0195 328.243 11.649 292.911C-2.96923 257.842 -1.23486 215.39 2.97718 175.838C7.18922 136.287 14.3745 99.3718 32.2137 70.1036C50.0529 41.0992 78.7939 20.005 108.774 9.19426C139.001 -1.35282 170.468 -1.88016 199.209 2.86602C228.197 7.87588 254.461 18.1593 279.733 31.6068Z");
+.side-project-container {
+  --side-project-image-size: 400px;
+  --side-project-clip-path: path(
+    "M288.5 33.5C318 54.75 341.75 82.25 359.25 113C376.5 143.75 388 178 391 213.75C394 249.5 388.5 287.25 369.5 315C350.25 342.75 317.25 360.5 284.75 369.5C252 378.5 220 378.5 183.75 386C147.25 393.5 106.5 408.5 84 393.75C61.25 379.25 56.75 334.75 42 299.5C27 264.25 1.49997 238 0.749969 211.5C-3.14699e-05 185 23.5 157.75 43.5 131C63.25 104.25 79.25 77.75 102.75 53C126 28 157 5 190.25 0.999997C223.5 -3 259 12.25 288.5 33.5Z"
+  );
+  --side-project-clip-path-2: path(
+    "M279.733 31.6068C305.253 45.318 330.03 62.1933 352.081 86.4516C374.132 110.71 393.458 141.824 398.661 176.365C403.617 210.907 394.697 248.349 373.884 274.981C353.32 301.876 321.11 317.696 290.387 339.318C259.912 360.939 230.923 388.625 197.227 397.063C163.778 405.501 125.622 394.954 91.1822 375.705C56.7426 356.193 26.0195 328.243 11.649 292.911C-2.96923 257.842 -1.23486 215.39 2.97718 175.838C7.18922 136.287 14.3745 99.3718 32.2137 70.1036C50.0529 41.0992 78.7939 20.005 108.774 9.19426C139.001 -1.35282 170.468 -1.88016 199.209 2.86602C228.197 7.87588 254.461 18.1593 279.733 31.6068Z"
+  );
 }
 
 @media (max-width: 600px) {
-    .side-project-container {
-        --side-project-image-size: 250px;
-        --side-project-clip-path: path('M183.978 20.7306C202.838 34.0238 218.022 51.2268 229.21 70.4629C240.238 89.6989 247.591 111.124 249.509 133.488C251.427 155.852 247.91 179.467 235.763 196.827C223.456 214.186 202.358 225.29 181.58 230.92C160.642 236.55 140.184 236.55 117.008 241.242C93.6726 245.933 67.62 255.317 53.2352 246.09C38.6905 237.019 35.8135 209.181 26.3834 187.13C16.7935 165.079 0.490684 148.658 0.0111888 132.081C-0.468307 115.503 14.5559 98.4568 27.3424 81.723C39.9691 64.9892 50.1984 48.4118 65.2226 32.9291C80.0869 17.29 99.9061 2.90205 121.164 0.399795C142.421 -2.10246 165.117 7.43738 183.978 20.7306Z');
-        --side-project-clip-path-2: path('M164.25 57.875C177.125 64.375 189.625 72.375 200.75 83.875C211.875 95.375 221.625 110.125 224.25 126.5C226.75 142.875 222.25 160.625 211.75 173.25C201.375 186 185.125 193.5 169.625 203.75C154.25 214 139.625 227.125 122.625 231.125C105.75 235.125 86.5 230.125 69.125 221C51.75 211.75 36.25 198.5 29 181.75C21.625 165.125 22.5 145 24.625 126.25C26.75 107.5 30.375 90 39.375 76.125C48.375 62.375 62.875 52.375 78 47.25C93.25 42.25 109.125 42 123.625 44.25C138.25 46.625 151.5 51.5 164.25 57.875Z');
-    }
+  .side-project-container {
+    --side-project-image-size: 250px;
+    --side-project-clip-path: path(
+      "M183.978 20.7306C202.838 34.0238 218.022 51.2268 229.21 70.4629C240.238 89.6989 247.591 111.124 249.509 133.488C251.427 155.852 247.91 179.467 235.763 196.827C223.456 214.186 202.358 225.29 181.58 230.92C160.642 236.55 140.184 236.55 117.008 241.242C93.6726 245.933 67.62 255.317 53.2352 246.09C38.6905 237.019 35.8135 209.181 26.3834 187.13C16.7935 165.079 0.490684 148.658 0.0111888 132.081C-0.468307 115.503 14.5559 98.4568 27.3424 81.723C39.9691 64.9892 50.1984 48.4118 65.2226 32.9291C80.0869 17.29 99.9061 2.90205 121.164 0.399795C142.421 -2.10246 165.117 7.43738 183.978 20.7306Z"
+    );
+    --side-project-clip-path-2: path(
+      "M164.25 57.875C177.125 64.375 189.625 72.375 200.75 83.875C211.875 95.375 221.625 110.125 224.25 126.5C226.75 142.875 222.25 160.625 211.75 173.25C201.375 186 185.125 193.5 169.625 203.75C154.25 214 139.625 227.125 122.625 231.125C105.75 235.125 86.5 230.125 69.125 221C51.75 211.75 36.25 198.5 29 181.75C21.625 165.125 22.5 145 24.625 126.25C26.75 107.5 30.375 90 39.375 76.125C48.375 62.375 62.875 52.375 78 47.25C93.25 42.25 109.125 42 123.625 44.25C138.25 46.625 151.5 51.5 164.25 57.875Z"
+    );
+  }
 }
 
 .side-project-container:last-of-type {
-    margin-bottom: 50px;
+  margin-bottom: 50px;
 }
 
 .side-project-image-container {
-    position: relative;
-    display: inline-block;
-    flex-shrink: 0;
+  position: relative;
+  display: inline-block;
+  flex-shrink: 0;
 }
 
 .side-project-image {
-    height: var(--side-project-image-size);
-    width: var(--side-project-image-size);
-    object-fit: cover;
+  height: var(--side-project-image-size);
+  width: var(--side-project-image-size);
+  object-fit: cover;
 }
 
 .side-project-image-container:before {
-    position: absolute;
-    top: 0;
-    left: 0;
-    content: '';
-    height: var(--side-project-image-size);
-    width: var(--side-project-image-size);
-    background-color: #FFF;
-    transform: translate(20px, 20px);
-    transition-duration: 200ms;
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "";
+  height: var(--side-project-image-size);
+  width: var(--side-project-image-size);
+  background-color: #fff;
+  transform: translate(20px, 20px);
+  transition-duration: 200ms;
 }
 
 .side-project-image-container:hover:before {
-    transform: translate(15px, 15px);
+  transform: translate(15px, 15px);
 }
 
-
-.side-project-image, .side-project-image-container:before {
-    clip-path: var(--side-project-clip-path);
-    animation: blobby 10s ease-in-out infinite;
+.side-project-image,
+.side-project-image-container:before {
+  clip-path: var(--side-project-clip-path);
+  animation: blobby 10s ease-in-out infinite;
 }
 
-.side-project-container:nth-of-type(even) .side-project-image, .side-project-container:nth-of-type(even) .side-project-image-container:before {
-    animation-delay: 2.5s;
+.side-project-container:nth-of-type(even) .side-project-image,
+.side-project-container:nth-of-type(even) .side-project-image-container:before {
+  animation-delay: 2.5s;
 }
 
 .side-project-container {
-    opacity: 0.5;
-    transition: opacity ease-in-out 300ms;
+  opacity: 0.5;
+  transition: opacity ease-in-out 300ms;
 }
 
 .side-project-container.in-view {
-    opacity:1
+  opacity: 1;
 }
 
-
 @keyframes blobby {
-    0% {
-        clip-path: var(--side-project-clip-path);
-    }
-    50% {
-        clip-path: var(--side-project-clip-path-2);
-    }
-    100% {
-        clip-path: var(--side-project-clip-path);
-    }
+  0% {
+    clip-path: var(--side-project-clip-path);
+  }
+  50% {
+    clip-path: var(--side-project-clip-path-2);
+  }
+  100% {
+    clip-path: var(--side-project-clip-path);
+  }
 }

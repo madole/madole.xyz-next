@@ -7,37 +7,39 @@ tags:
   - modules
 slug: lessons-from-creating-a-component-library
 ---
-If you work in a place that has lots of separate apps that all need a consistent look, creating a shared component library is a good idea. This allows you to pull in components as packages and use them throughout the different projects to maintain a consistent look and feel. 
 
-This may sound like a great idea, and it is, but there are some hidden challenges to be aware of. 
+If you work in a place that has lots of separate apps that all need a consistent look, creating a shared component library is a good idea. This allows you to pull in components as packages and use them throughout the different projects to maintain a consistent look and feel.
+
+This may sound like a great idea, and it is, but there are some hidden challenges to be aware of.
 
 ### Hint: (it’s versioning)
-As different project maintainers will be contributing to this shared library, it’s important to first of all have version control, we use Git and GitHub but you also need to have a consistent versioning strategy. In JavaScript the common strategy is [SemVer](https://semver.org/) . This allows you to define major, minor and patch versions of your packages letting the consumers know if there are breaking changes, new features or bug fixes in the code. 
+
+As different project maintainers will be contributing to this shared library, it’s important to first of all have version control, we use Git and GitHub but you also need to have a consistent versioning strategy. In JavaScript the common strategy is [SemVer](https://semver.org/) . This allows you to define major, minor and patch versions of your packages letting the consumers know if there are breaking changes, new features or bug fixes in the code.
 
 ### Out of control versioning
-As we add more and more components to a library the versioning starts to get out of control. Imagine the scenario where I have a dropdown component and a date picker component and my library is released at version 1.0.0. 
 
-Now I’ve decided that the date picker api could be simplified and go about making those changes. I have broken the contract that the date picker previously had with its consumers so I have to bump this a major version. I update the package version in my consuming application and update the code to match the new API, all good. 
+As we add more and more components to a library the versioning starts to get out of control. Imagine the scenario where I have a dropdown component and a date picker component and my library is released at version 1.0.0.
 
-But now my colleague who is not using the date picker, but is using the dropdown component has noticed a bug in the dropdown component functionality, she sets about fixing that bug. As this update hasn’t changed the API or added any new functionality, she bumps the package a patch version. 
+Now I’ve decided that the date picker api could be simplified and go about making those changes. I have broken the contract that the date picker previously had with its consumers so I have to bump this a major version. I update the package version in my consuming application and update the code to match the new API, all good.
 
-At this point she’s expecting to bump to 1.0.1 but has actually bumped to 2.0.1 due to my previous major bump for the new datepicker API. To pull in this new bug fix, she has to upgrade the package in her consuming application by a major and a patch even though she’s not consuming the date picker with the new api. 
+But now my colleague who is not using the date picker, but is using the dropdown component has noticed a bug in the dropdown component functionality, she sets about fixing that bug. As this update hasn’t changed the API or added any new functionality, she bumps the package a patch version.
 
-This is ok with 2 components in the library but when you scale that out to 20 components under active development, it quickly becomes the Wild West of package versioning. To pull in a bug fix for the one component you’re interested in, you have to upgrade 5 major versions, this sort of breaks the point of SemVer. 
+At this point she’s expecting to bump to 1.0.1 but has actually bumped to 2.0.1 due to my previous major bump for the new datepicker API. To pull in this new bug fix, she has to upgrade the package in her consuming application by a major and a patch even though she’s not consuming the date picker with the new api.
 
+This is ok with 2 components in the library but when you scale that out to 20 components under active development, it quickly becomes the Wild West of package versioning. To pull in a bug fix for the one component you’re interested in, you have to upgrade 5 major versions, this sort of breaks the point of SemVer.
 
 ### What are our options?
-* Split the components out into separate projects and separate packages
-* Split the components out into separate packages in a monorepo using something like [lerna](https://lernajs.io/) 
-* Not release a major until active development has stabilised 
-* Creating atomic components which are then adorned with extra functionality via higher order components which consume the atomic components allowing for api changes to accomodate the extra functionality without the need for major versioning each time. 
-* Eg. **Atomic component** - Button, **HOC** - ButtonWithIcon
+
+- Split the components out into separate projects and separate packages
+- Split the components out into separate packages in a monorepo using something like [lerna](https://lernajs.io/)
+- Not release a major until active development has stabilised
+- Creating atomic components which are then adorned with extra functionality via higher order components which consume the atomic components allowing for api changes to accomodate the extra functionality without the need for major versioning each time.
+- Eg. **Atomic component** - Button, **HOC** - ButtonWithIcon
 
 Any of these options will get you a bit closer to where you want to be but a combination of these will help immensely.
 
-Sometimes it’s not clear when active development of components will actually cease due to the iterative, ad-hoc nature of development so holding off on a 1.0.0 major release might be hard to do. 
+Sometimes it’s not clear when active development of components will actually cease due to the iterative, ad-hoc nature of development so holding off on a 1.0.0 major release might be hard to do.
 
-Splitting components out into separate packages managed in a mono-repo will help due to the individual components having version independence from each other.  I can work away on my datepicker without affecting anyone using the dropdown component. 
+Splitting components out into separate packages managed in a mono-repo will help due to the individual components having version independence from each other. I can work away on my datepicker without affecting anyone using the dropdown component.
 
-Identifying the base functionality of a component and providing that, along with using the pattern of adding a few higher order components to add extra functionality keeps the versioning in the minors rather than major bumps as you add functionality. This allows you to pick and choose what you want your component to do. Want to use it just as it is...fine, want this extra sweet feature...mix it in. These HOCs can be composed together to create highly functional components from a standard base component. 
-
+Identifying the base functionality of a component and providing that, along with using the pattern of adding a few higher order components to add extra functionality keeps the versioning in the minors rather than major bumps as you add functionality. This allows you to pick and choose what you want your component to do. Want to use it just as it is...fine, want this extra sweet feature...mix it in. These HOCs can be composed together to create highly functional components from a standard base component.

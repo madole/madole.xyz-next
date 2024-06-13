@@ -1,13 +1,11 @@
 ---
-title: 'ASYNC/AWAIT ES7'
-date: '2016-03-12T21:56:32.000Z'
+title: "ASYNC/AWAIT ES7"
+date: "2016-03-12T21:56:32.000Z"
 slug: async-await-es7
-tags: ['code']
+tags: ["code"]
 ---
 
 Async/Await is a JavaScript ES7/ES2016 language feature that allows you to write asynchronous code that looks synchronous.
-
-
 
 This feature has been available in other languages like C# and Visual Basic for a while.
 
@@ -26,10 +24,10 @@ You can read more about them in the [TC39 Proposal here](https://tc39.github.io/
 
 ## Why would you want to write code like this?
 
--   You never have to write another `Promise.then` to get the value out of a promise.
--   No more context issues with `then` statements.
--   No more nested promises, caching variables to simulate an async waterfall.
--   No more callback hell to deal with asynchronous calls.
+- You never have to write another `Promise.then` to get the value out of a promise.
+- No more context issues with `then` statements.
+- No more nested promises, caching variables to simulate an async waterfall.
+- No more callback hell to deal with asynchronous calls.
 
 ## Using babel to transpile Async/Await
 
@@ -43,7 +41,7 @@ This option requires you to specify it in the plugins section of your .babelrc
 
 ```json
 {
-    "plugins": ["transform-regenerator"]
+  "plugins": ["transform-regenerator"]
 }
 ```
 
@@ -59,15 +57,15 @@ and configure like this in your .babelrc
 
 ```json
 {
-    "plugins": [
-        [
-            "transform-async-to-module-method",
-            {
-                "module": "bluebird",
-                "method": "coroutine"
-            }
-        ]
+  "plugins": [
+    [
+      "transform-async-to-module-method",
+      {
+        "module": "bluebird",
+        "method": "coroutine"
+      }
     ]
+  ]
 }
 ```
 
@@ -107,11 +105,11 @@ Or even if the function you're awaiting throws an error?
 
 ```javascript
 function throwErr() {
-    throw new Error();
+  throw new Error();
 }
 
 async function testError() {
-    const response = await throwErr();
+  const response = await throwErr();
 }
 testError();
 ```
@@ -129,19 +127,19 @@ So our new functions with error handling could look something like this.
 
 ```js
 function getUserFromDb() {
-    throw new Error('No users in db');
+  throw new Error("No users in db");
 }
 
 async function testTryCatch() {
-    let response;
-    try {
-        response = await getUserFromDb();
-    } catch (err) {
-        console.log(err.message);
-        response = { user: 'default' };
-    }
-    const { user } = response;
-    return user;
+  let response;
+  try {
+    response = await getUserFromDb();
+  } catch (err) {
+    console.log(err.message);
+    response = { user: "default" };
+  }
+  const { user } = response;
+  return user;
 }
 
 testTryCatch();

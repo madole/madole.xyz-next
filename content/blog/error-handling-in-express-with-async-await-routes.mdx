@@ -1,12 +1,10 @@
 ---
-title: 'Error handling in Express with Async/Await routes'
-date: '2016-05-25T03:01:50.000Z'
+title: "Error handling in Express with Async/Await routes"
+date: "2016-05-25T03:01:50.000Z"
 slug: error-handling-in-express-with-async-await-routes
 ---
 
 > _Async/Await for me is one of the best things to not quite happen to JavaScript yet._
-
-
 
 As we all know from Object.observe, you're never really sure what's going to end up in a language until it actually lands.
 
@@ -33,18 +31,18 @@ In Express, you'll want to be passing the errors that get thrown to an error han
 Well this is the obvious option:
 
 ```js
-app.get('/', async (req, res, next) => {
-    try {
-        const result = await goDoSomething();
-        return result.data;
-    } catch (err) {
-        next(err);
-    }
+app.get("/", async (req, res, next) => {
+  try {
+    const result = await goDoSomething();
+    return result.data;
+  } catch (err) {
+    next(err);
+  }
 });
 
 app.use((err, req, res, next) => {
-    /* do something with the error */
-    console.error(err);
+  /* do something with the error */
+  console.error(err);
 });
 ```
 
@@ -58,12 +56,12 @@ What would that look like?
 
 ```js
 function catchAsyncErrors(fn) {
-    return (req, res, next) => {
-        const routePromise = fn(req, res, next);
-        if (routePromise.catch) {
-            routePromise.catch(err => next(err));
-        }
-    };
+  return (req, res, next) => {
+    const routePromise = fn(req, res, next);
+    if (routePromise.catch) {
+      routePromise.catch((err) => next(err));
+    }
+  };
 }
 ```
 

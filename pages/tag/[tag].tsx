@@ -65,15 +65,15 @@ export function getStaticPaths() {
       // use frontmatter to read the titles of each blog post
       const file = fs.readFileSync(
         path.join(process.cwd(), "content/blog", filename),
-        "utf8"
+        "utf8",
       );
       const data = frontmatter<Post>(file);
       return data.attributes.tags as string[];
-    })
+    }),
   );
   return {
     paths: tags.map(
-      (tag) => "/tag/" + tag?.split(" ").join("-").toLocaleUpperCase()
+      (tag) => "/tag/" + tag?.split(" ").join("-").toLocaleUpperCase(),
     ),
     fallback: false,
   };
@@ -89,7 +89,7 @@ export const getStaticProps = (context: { params: { tag: string } }) => {
     .map((filename) => {
       const file = fs.readFileSync(
         path.join(process.cwd(), "content/blog", filename),
-        "utf8"
+        "utf8",
       );
       const data = frontmatter<Post>(file);
       const lowercaseTags =

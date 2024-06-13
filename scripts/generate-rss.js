@@ -32,7 +32,7 @@ const generateRss = () => {
       // use frontmatter to read the titles of each blog post
       const file = fs.readFileSync(
         path.join(process.cwd(), "content/blog", filename),
-        "utf8"
+        "utf8",
       );
       const data = frontmatter(file);
       const timeToRead = readingTime(data.body);
@@ -81,4 +81,4 @@ const generateRss = () => {
   });
 };
 
-generateRss()
+generateRss();

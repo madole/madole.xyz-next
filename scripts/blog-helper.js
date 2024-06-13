@@ -15,7 +15,7 @@ function readFilesAndRemoveDate() {
             if (err) {
               console.log(err);
             }
-          }
+          },
         );
       });
     }

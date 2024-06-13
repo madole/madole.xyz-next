@@ -1,8 +1,8 @@
 ---
-title: 'Writing a Gulpfile in ES6'
-date: '2016-03-30T15:36:06.000Z'
+title: "Writing a Gulpfile in ES6"
+date: "2016-03-30T15:36:06.000Z"
 slug: writing-a-gulpfile-in-es6
-tags: ['code']
+tags: ["code"]
 ---
 
 So you've written your app in ES6 and you're using babel to transpile to ES5.
@@ -11,11 +11,10 @@ But your build process uses Gulp and it requires you to write your Gulpfile in E
 
 **What do you do?**
 
-
 You could go down the route of requiring in the [babel register](https://babeljs.io/docs/usage/require/) at the top of your Gulpfile to get it to transpile on the fly.
 
 ```js
-require('babel-register');
+require("babel-register");
 ```
 
 But there is some built in functionality in Gulp which allows your to name your Gulpfile `gulpfile.babel.js`.

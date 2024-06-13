@@ -1,29 +1,27 @@
 ---
-title: 'Mocking relative dependencies in Jest with jest.mock()'
-date: '2016-12-07T15:31:07.000Z'
+title: "Mocking relative dependencies in Jest with jest.mock()"
+date: "2016-12-07T15:31:07.000Z"
 slug: mocking-relative-dependencies-in-jest-with-jest-mock
-tags: ['code']
+tags: ["code"]
 ---
 
 If you're like me and have just entered the world of Jest for testing your React application. You might be familiar with a mocking library called Proxyquire.
 
 **Proxyquire -** _"nodejs require in order to allow overriding dependencies during testing."_
 
-
-
 An example of using proxyquire to mock an import would be something like this.
 
 ```javascript
 /* Source File - src/doSomething.js */
-import dependencyOne from '../utils/dependencyOne';
+import dependencyOne from "../utils/dependencyOne";
 
 export default () => dependencyOne();
 
 /* Test File - test/doSomething.spec.js */
-import proxyquire from 'proxyquire';
+import proxyquire from "proxyquire";
 
-const doSomething = proxyquire('../src/doSomething', {
-    '../utils/dependencyOne': cb => cb(),
+const doSomething = proxyquire("../src/doSomething", {
+  "../utils/dependencyOne": (cb) => cb(),
 });
 
 doSomething(); //calls our mocked dependencyOne instead of the real one
@@ -37,14 +35,14 @@ Lets take the above example now in Jest's syntax.
 
 ```javascript
 /* Source File - src/doSomething.js */
-import dependencyOne from '../utils/dependencyOne';
+import dependencyOne from "../utils/dependencyOne";
 
 export default () => dependencyOne();
 
 /* Test File - test/doSomething.spec.js */
-import doSomething from '../src/doSomething';
+import doSomething from "../src/doSomething";
 
-jest.mock('../src/utils/dependencyOne', cb => cb());
+jest.mock("../src/utils/dependencyOne", (cb) => cb());
 
 doSomething(); //calls our mocked dependencyOne instead of the real one
 ```

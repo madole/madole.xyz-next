@@ -2,7 +2,7 @@
 title: "Javascript Interview Questions"
 date: "2015-11-01T00:29:11.000Z"
 slug: javascript-interview-questions
-tags: ['code']
+tags: ["code"]
 ---
 
 I was asked recently by a friend of mine to come up with a list of interview questions that you can get asked during
@@ -33,7 +33,7 @@ Variable scoping in Javascript can get complicated so lets do some examples.
 var a = 1;
 
 function test() {
-    console.log(a); //1
+  console.log(a); //1
 }
 ```
 
@@ -41,8 +41,8 @@ function test() {
 
 ```javascript
 function test() {
-    var a = 1;
-    console.log(a); //1
+  var a = 1;
+  console.log(a); //1
 }
 ```
 
@@ -52,11 +52,11 @@ The return function still has access to the internal variable by trapping it in 
 This is one of the great features of closures. More on this later.
 
 ```javascript
-var close = (function() {
-    var a = 1;
-    return function() {
-        console.log(a); //1
-    };
+var close = (function () {
+  var a = 1;
+  return function () {
+    console.log(a); //1
+  };
 })();
 
 close();
@@ -70,7 +70,7 @@ because they can cause issues where things don't seem to act like they should.
 
 ```javascript
 function test() {
-    a = 1;
+  a = 1;
 }
 
 console.log(a); //1
@@ -81,23 +81,23 @@ Javascript has a way of hoisting variable declarations to the top of the functio
 results if you are not aware of it them.
 
 ```javascript
-(function() {
-    if (true) {
-        var x = 5;
-    }
-    console.log(x); //5
+(function () {
+  if (true) {
+    var x = 5;
+  }
+  console.log(x); //5
 })();
 ```
 
 The above example is interpreted exactly the same as this
 
 ```javascript
-(function() {
-    var x;
-    if (true) {
-        x = 5;
-    }
-    console.log(x); //5
+(function () {
+  var x;
+  if (true) {
+    x = 5;
+  }
+  console.log(x); //5
 })();
 ```
 
@@ -107,10 +107,10 @@ Where this gets confusing is in an example like this
 var x = 100;
 
 function test() {
-    if (false) {
-        var x = 199;
-    }
-    console.log(x); //undefined
+  if (false) {
+    var x = 199;
+  }
+  console.log(x); //undefined
 }
 
 test();
@@ -127,11 +127,11 @@ It is the same as writing
 var x = 100;
 
 function test() {
-    var x;
-    if (false) {
-        x = 199;
-    }
-    console.log(x); //undefined
+  var x;
+  if (false) {
+    x = 199;
+  }
+  console.log(x); //undefined
 }
 
 test();
@@ -160,7 +160,7 @@ Double equals checks equality whereas triple equals checks equality and type. Wh
 
 ```javascript
 if (x === 1) {
-    //...
+  //...
 }
 ```
 
@@ -168,9 +168,9 @@ if (x === 1) {
 
 ```javascript
 if (x === 1) {
-    //...
+  //...
 } else {
-    //...
+  //...
 }
 ```
 
@@ -178,9 +178,9 @@ if (x === 1) {
 
 ```javascript
 if (x === 1) {
-    //...
+  //...
 } else if (y === 1) {
-    //...
+  //...
 }
 ```
 
@@ -188,18 +188,18 @@ if (x === 1) {
 
 ```javascript
 switch (x) {
-    case 1:
-        console.log("one");
-        break;
-    case 2:
-        console.log("two");
-        break;
-    case 3:
-        console.log("three");
-        break;
-    default:
-        console.log("This is the default condition");
-        break;
+  case 1:
+    console.log("one");
+    break;
+  case 2:
+    console.log("two");
+    break;
+  case 3:
+    console.log("three");
+    break;
+  default:
+    console.log("This is the default condition");
+    break;
 }
 ```
 
@@ -207,7 +207,7 @@ switch (x) {
 
 ```javascript
 if (!condition) {
-    //...
+  //...
 }
 ```
 
@@ -233,11 +233,11 @@ V8 will more than likely JIT compile for loops automatically into their most eff
 
 ```javascript
 for (var i = 0; i < arr.length; i++) {
-    //do stuff
+  //do stuff
 }
 
 for (var i = 0, l = arr.length; i < l; i++) {
-    //do stuff
+  //do stuff
 }
 ```
 
@@ -245,7 +245,7 @@ for (var i = 0, l = arr.length; i < l; i++) {
 
 ```javascript
 for (var x in arr) {
-    //do stuff
+  //do stuff
 }
 ```
 
@@ -253,7 +253,7 @@ for (var x in arr) {
 
 ```javascript
 while (x === true) {
-    //do stuff
+  //do stuff
 }
 ```
 
@@ -262,7 +262,7 @@ NOTE: This does one full iteration before checking the condition
 
 ```javascript
 do {
-    //do stuff
+  //do stuff
 } while (x === true);
 ```
 
@@ -300,12 +300,12 @@ If you were to write the following code, it would assign the function to the var
 In order to access the return value, you would have to execute the function.
 
 ```javascript
-var addFirstFiveNumbers = function() {
-    var count = 0;
-    for (var i = 0; i <= 5; i++) {
-        count += i;
-    }
-    return count;
+var addFirstFiveNumbers = function () {
+  var count = 0;
+  for (var i = 0; i <= 5; i++) {
+    count += i;
+  }
+  return count;
 };
 
 console.log(addFirstFiveNumbers()); //15
@@ -316,12 +316,12 @@ you use an immediately invoked function. To do this, wrap your function in paren
 parenthesis after it
 
 ```javascript
-var addFirstSixNumbers = (function() {
-    var count = 0;
-    for (var j = 0; j <= 6; j++) {
-        count += j;
-    }
-    return count;
+var addFirstSixNumbers = (function () {
+  var count = 0;
+  for (var j = 0; j <= 6; j++) {
+    count += j;
+  }
+  return count;
 })();
 
 console.log(addFirstSixNumbers); //21
@@ -333,10 +333,10 @@ These allow you to throw errors inside the try and catch them in the catch block
 
 ```javascript
 try {
-    //do stuff
-    throw "My Error";
+  //do stuff
+  throw "My Error";
 } catch (e) {
-    console.log(e);
+  console.log(e);
 }
 ```
 
@@ -346,11 +346,11 @@ These allow your code to fail gracefully by performing some clean up task after 
 ```javascript
 openMyFile();
 try {
-    //tie up the resource
-    writeTofile();
+  //tie up the resource
+  writeTofile();
 } finally {
-    //release the resource
-    closeMyFile();
+  //release the resource
+  closeMyFile();
 }
 ```
 
@@ -376,8 +376,8 @@ try {
 ####Set Timeout
 
 ```javascript
-var timeout = setTimeout(function() {
-    //code to be executed in 30 seconds
+var timeout = setTimeout(function () {
+  //code to be executed in 30 seconds
 }, 30000);
 
 //To cancel this timeout
@@ -389,8 +389,8 @@ clearTimeout(timeout);
 ####Set Interval
 
 ```javascript
-var interval = setInterval(function() {
-    //Code to be executed every 10 seconds
+var interval = setInterval(function () {
+  //Code to be executed every 10 seconds
 }, 10000);
 
 //To remove this setInterval
@@ -413,15 +413,15 @@ do an example.
 
 ```javascript
 function Person() {
-    this.species = "human";
+  this.species = "human";
 }
 
-Person.prototype.speak = function() {
-    console.log("Hello");
+Person.prototype.speak = function () {
+  console.log("Hello");
 };
 
-Person.prototype.sleep = function() {
-    console.log("Snore...zzz");
+Person.prototype.sleep = function () {
+  console.log("Snore...zzz");
 };
 
 var andrew = new Person();
@@ -448,12 +448,12 @@ in action
 var car1 = { make: "Vauxhall", model: "Corsa", year: "2005" };
 var car2 = { make: "Bugatti", model: "Veyron", year: "2014" };
 
-var printMake = function() {
-    console.log(this.make);
+var printMake = function () {
+  console.log(this.make);
 };
 
-var printModel = function() {
-    console.log(this.model);
+var printModel = function () {
+  console.log(this.model);
 };
 
 printMake.call(car1); //Vauxhall
@@ -483,10 +483,10 @@ Lets see these in action
 var car1 = { make: "Vauxhall", model: "Corsa", year: "2005" };
 var car2 = { make: "Bugatti", model: "Veyron", year: "2014" };
 
-var udpateCar = function(make, model, year) {
-    this.make = make;
-    this.model = model;
-    this.year = year;
+var udpateCar = function (make, model, year) {
+  this.make = make;
+  this.model = model;
+  this.year = year;
 };
 
 udpateCar.call(car1, "Vauxhall", "Astra", "2014");
@@ -548,8 +548,8 @@ You can play with these here at [JSFiddle](https://jsfiddle.net/madole404/KdnJ7/
 
 ```javascript
 function returnTrueIfLessThanTen(checkVal) {
-    var returnVal = checkVal < 10 ? true : false;
-    return returnVal;
+  var returnVal = checkVal < 10 ? true : false;
+  return returnVal;
 }
 console.log(returnTrueIfLessThanTen(9)); //true
 console.log(returnTrueIfLessThanTen(29)); //false
@@ -564,12 +564,12 @@ They are marginally faster than Math.floor as we can see from this [JSPerf](http
 
 #####Why not to use them?
 
--   They reduce clarity in your coding
--   They only work 32-bit signed integers
--   They work by truncating the decimal rather than working out what the floor is
--   You might not get the outcome you are expecting
-    -   `Math.floor(NaN) === NaN`
-    -   `(NaN >> 0) === 0`
+- They reduce clarity in your coding
+- They only work 32-bit signed integers
+- They work by truncating the decimal rather than working out what the floor is
+- You might not get the outcome you are expecting
+  - `Math.floor(NaN) === NaN`
+  - `(NaN >> 0) === 0`
 
 ---
 

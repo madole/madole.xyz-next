@@ -3,7 +3,7 @@ import { ClassAttributes, HTMLAttributes } from "react";
 export const Ul = (
   props: JSX.IntrinsicAttributes &
     ClassAttributes<HTMLUListElement> &
-    HTMLAttributes<HTMLUListElement>
+    HTMLAttributes<HTMLUListElement>,
 ) => {
   const { children, ...rest } = props;
   return (

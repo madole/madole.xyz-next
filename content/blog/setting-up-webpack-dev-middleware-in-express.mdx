@@ -1,17 +1,15 @@
 ---
-title: 'Setting up webpack dev middleware in express'
-date: '2015-11-07T13:04:33.000Z'
+title: "Setting up webpack dev middleware in express"
+date: "2015-11-07T13:04:33.000Z"
 slug: setting-up-webpack-dev-middleware-in-express
-tags: ['code']
+tags: ["code"]
 ---
 
-[[[ **THIS BLOG POST IS 2 YEARS OLD, CHECK OUT [WEBPACK2](https://webpack.js.org) INSTEAD** ]]]
+[[[ **THIS BLOG POST IS 2 YEARS OLD, CHECK OUT [WEBPACK2](https://webpack.js.org) INSTEAD**]]]
 
 **What is webpack dev server?**
 
 Webpack dev server is a live reloading server for webpack.
-
-
 
 **What is webpack dev middleware?**
 
@@ -19,8 +17,8 @@ It's a simple wrapper middleware for webpack. It serves the files emitted from w
 
 It has a few advantages over bundling it as files:
 
--   No files are written to disk, it handles the files in memory
--   If files changed in watch mode, the middleware no longer serves the old bundle, but delays requests until the compiling has finished. You don't have to wait before refreshing the page after a file modification.
+- No files are written to disk, it handles the files in memory
+- If files changed in watch mode, the middleware no longer serves the old bundle, but delays requests until the compiling has finished. You don't have to wait before refreshing the page after a file modification.
 
 **What is webpack hot middleware?**
 
@@ -57,8 +55,6 @@ output: {
 ```
 
 Add in whatever loaders and plugins you need and target 'web' … you can see my config [here(https://github.com/madole/webpack-dev-middleware-boilerplate/blob/master/src/config/webpack.dev.config.coffee)
-
-
 
 Now we’ve got our dev config, we need to build our express application.  
 We need to require webpack, webpack-dev-middleware and webpack-hot-middleware as well as express.
