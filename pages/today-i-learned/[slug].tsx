@@ -39,7 +39,7 @@ const TodayILearned: React.FC<TodayILearnedProps> = (props) => {
           url={`https://madole.xyz/today-i-learned/${slug}`}
         />
       </Head>
-      <section className="bg-white inline-flex flex-col items-center justify-start mt-10 shadow-lg p-4 md:p-10 rounded w-11/12 md:w-2/3">
+      <section className="bg-white inline-flex flex-col items-center justify-start mt-10 mx-2 shadow-lg p-4 md:p-10 rounded w-full md:max-w-3xl 2xl:max-w-5xl">
         <h1 className="prose pb-1 text-3xl font-semibold text-center md:px-20">
           {title}
         </h1>
