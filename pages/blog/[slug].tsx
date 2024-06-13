@@ -3,11 +3,13 @@ import { MDXRemote } from "next-mdx-remote";
 import Head from "next/head";
 import path from "path";
 import "prismjs/themes/prism-tomorrow.css";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Layout } from "../../components/Layout";
 import { Tags } from "../../components/Tags";
 import { mdxComponents } from "../../components/mdx/mdx-components";
 import { parseMdxContent } from "../../utils/parseMdxContent";
+import OpenGraphHeadTags from "../../components/OpenGraphHeadTags";
+import { useLocalDate } from "../../hooks/useLocalDate";
 
 interface Props {
   data: {
@@ -34,18 +36,18 @@ export default function BlogPost(props: Props): JSX.Element {
     body,
   } = props.data;
 
-  const [postDate, setPostDate] = useState("");
-  useEffect(() => {
-    setPostDate(
-      new Date(date).toLocaleDateString(undefined, dateStringOptions)
-    );
-  }, [date]);
+  const postDate = useLocalDate(date);
 
   return (
     <Layout>
       <Head>
         <title>{title} | Madole.xyz</title>
-        <meta name="description" content={`${title} blog post`} />
+        <OpenGraphHeadTags
+          title={title}
+          description={title + " | " + "Blog post"}
+          imageUrl="https://madole.xyz/bitmoji.png"
+          url={`https://madole.xyz/blog/${slug}`}
+        />
       </Head>
       <section
         id="main-content"
@@ -91,7 +93,7 @@ export async function getStaticProps({ params }: { params: { slug: string } }) {
   const slug = params.slug + ".mdx";
   const content = fs.readFileSync(
     path.join(process.cwd(), "content/blog", slug),
-    "utf8"
+    "utf8",
   );
   const data = await parseMdxContent<PostAttributes>(content);
   return { props: { data } };

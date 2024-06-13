@@ -9,12 +9,14 @@ import "prismjs/themes/prism-tomorrow.css";
 import { mdxComponents } from "../../components/mdx/mdx-components";
 import { parseMdxContent } from "../../utils/parseMdxContent";
 import { useLocalDate } from "../../hooks/useLocalDate";
+import OpenGraphHeadTags from "../../components/OpenGraphHeadTags";
 
 export interface TodayILearnedProps extends PostAttributes {
   data: {
     attributes: PostAttributes;
     body: string;
   };
+  slug: string;
 }
 
 const TodayILearned: React.FC<TodayILearnedProps> = (props) => {
@@ -22,6 +24,7 @@ const TodayILearned: React.FC<TodayILearnedProps> = (props) => {
     attributes: { title, date, url, timeToRead },
     body,
   } = props.data;
+  const { slug } = props;
 
   const postDate = useLocalDate(date);
 
@@ -29,6 +32,12 @@ const TodayILearned: React.FC<TodayILearnedProps> = (props) => {
     <Layout>
       <Head>
         <title>Today I Learned | Madole.xyz</title>
+        <OpenGraphHeadTags
+          title={title}
+          description={title}
+          imageUrl="https://madole.xyz/bitmoji.png"
+          url={`https://madole.xyz/today-i-learned/${slug}`}
+        />
       </Head>
       <section className="bg-white inline-flex flex-col items-center justify-start mt-10 shadow-lg p-4 md:p-10 rounded w-11/12 md:w-2/3">
         <h1 className="prose pb-1 text-3xl font-semibold text-center md:px-20">
@@ -92,5 +101,5 @@ export async function getStaticProps({ params }: { params: { slug: string } }) {
     "utf8",
   );
   const data = await parseMdxContent<PostAttributes>(content);
-  return { props: { data } };
+  return { props: { data, slug: params.slug } };
 }
