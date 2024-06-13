@@ -33,7 +33,7 @@ const TodayILearned: React.FC<TodayILearnedProps> = (props) => {
       <Head>
         <title>Today I Learned | Madole.xyz</title>
         <OpenGraphHeadTags
-          title={title}
+          title={`TIL ${title}`}
           description={title}
           imageUrl="https://madole.xyz/bitmoji.png"
           url={`https://madole.xyz/today-i-learned/${slug}`}
