@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import { Tags } from "./Tags";
+import { useLocalDate } from "../hooks/useLocalDate";
 
 interface Props {
   title: string;
@@ -11,10 +11,6 @@ interface Props {
   tags?: string[];
 }
 
-function isInvalidDate(d: Date | string) {
-  return d === "Invalid Date";
-}
-
 function addSlashPrefix(slug: string) {
   if (slug.startsWith("/")) {
     return slug;
@@ -22,21 +18,9 @@ function addSlashPrefix(slug: string) {
   return `/${slug}`;
 }
 
-const dateStringOptions = {
-  weekday: "long",
-  year: "numeric",
-  month: "long",
-  day: "numeric",
-} as const;
-
 export function IndexListItem(props: Props): JSX.Element {
   const { title, date, excerpt, slug, timeToRead, tags } = props;
-  const [postDate, setPostDate] = useState("");
-  useEffect(() => {
-    setPostDate(
-      new Date(date).toLocaleDateString(undefined, dateStringOptions)
-    );
-  }, [date]);
+  const postDate = useLocalDate(date);
 
   if (!slug) throw new Error("No slug provided for " + title);
 

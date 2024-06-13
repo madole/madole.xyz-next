@@ -8,6 +8,7 @@ import { MDXRemote } from "next-mdx-remote";
 import "prismjs/themes/prism-tomorrow.css";
 import { mdxComponents } from "../../components/mdx/mdx-components";
 import { parseMdxContent } from "../../utils/parseMdxContent";
+import { useLocalDate } from "../../hooks/useLocalDate";
 
 export interface TodayILearnedProps extends PostAttributes {
   data: {
@@ -22,6 +23,8 @@ const TodayILearned: React.FC<TodayILearnedProps> = (props) => {
     body,
   } = props.data;
 
+  const postDate = useLocalDate(date);
+
   return (
     <Layout>
       <Head>
@@ -32,7 +35,7 @@ const TodayILearned: React.FC<TodayILearnedProps> = (props) => {
           {title}
         </h1>
         <div className="prose font-light">
-          {new Date(date).toLocaleDateString()} &mdash; {timeToRead}
+          {postDate} &mdash; {timeToRead}
         </div>
         <article className="prose mt-10 break-words w-full md:w-2/3">
           {/* @ts-ignore */}
@@ -64,11 +67,11 @@ export default TodayILearned;
 
 export function getStaticPaths() {
   const filenames = fs.readdirSync(
-    path.join(process.cwd(), "content/today-i-learned")
+    path.join(process.cwd(), "content/today-i-learned"),
   );
   return {
     paths: filenames.map(
-      (filename) => "/today-i-learned/" + filename.replace(".md", "")
+      (filename) => "/today-i-learned/" + filename.replace(".md", ""),
     ),
     fallback: false,
   };
@@ -86,7 +89,7 @@ export async function getStaticProps({ params }: { params: { slug: string } }) {
   const slug = params.slug + ".md";
   const content = fs.readFileSync(
     path.join(process.cwd(), "content/today-i-learned", slug),
-    "utf8"
+    "utf8",
   );
   const data = await parseMdxContent<PostAttributes>(content);
   return { props: { data } };
