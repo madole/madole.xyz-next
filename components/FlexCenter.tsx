@@ -5,7 +5,7 @@ interface Props {
 }
 const FlexCenter = (props: Props): JSX.Element => {
   const { children } = props;
-  return <div className="flex flex-center">{children}</div>;
+  return <div className="flex justify-center">{children}</div>;
 };
 
 export default FlexCenter;

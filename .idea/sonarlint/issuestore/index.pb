@@ -83,3 +83,5 @@ P
  content/blog/async-await-es7.mdx,8/8/88a008e38b20d4ca72cba0db77194a81a94dd6ba
 k
 ;content/blog/babel-loaders-hidden-feature-babelrc-false.mdx,6/4/640f71b290d677d49367a9189e15fbc9340f4489
+I
+components/FlexCenter.tsx,5/b/5be2e56b4c8571ac7d05055a7c0a4b555b5f415c

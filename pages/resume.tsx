@@ -347,8 +347,8 @@ function Resume(): JSX.Element {
             <Card>
               <FlexCenter>
                 <Image
-                  width={250}
-                  height={300}
+                  width={100}
+                  height={200}
                   src="/kablamo-logo.png"
                   alt="Kablamo logo"
                 />
@@ -382,6 +382,29 @@ function Resume(): JSX.Element {
               - Interview candidates for our frontend team
               <Spacer />- Work with clients during engagements to make sure
               we&apos;re delivering on their needs
+            </Card>
+            <Card>
+              Experience:
+              <Spacer />
+              - Lead the frontend team to deliver a 3D fire prediction tool for
+              NSW RFS using Mapbox and React.
+              <Spacer />- Architected and led the team delivering a Remote Fire
+              Detection capability for{" "}
+              <a
+                href={"https://firestory.io"}
+                target={"_blank"}
+                className={"text-blue-800"}
+              >
+                Firestory
+              </a>
+              <ul className={"ml-4"}>
+                <li>- Event Driven</li>
+                <li>- Serverless</li>
+                <li>- Modular architecture</li>
+                <li>- NodeJS, Go, Typescript, React</li>
+              </ul>
+              <Spacer />- Exhibited at AFAC 2023 and the 2024 Office of the NSW
+              Chief Scientist & Engineer Commercialisation showcase
             </Card>
           </Column>
           <Column title="2016-December 2020">
