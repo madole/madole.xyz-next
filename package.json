@@ -6,6 +6,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "tsc": "tsc",
+    "ci": "npm run tsc && npm run lint",
     "prettier": "prettier --write .",
     "new-post": "node scripts/new-post.mjs",
     "generate-rss": "node scripts/generate-rss.js"
