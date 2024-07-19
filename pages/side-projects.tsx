@@ -18,6 +18,7 @@ import mapboxglBoundingBoxViewBoundsComparison from "../images/mapbox-gl-boundin
 import styles from "../styles/side-projects.module.css";
 import { useMultiIntersectionObserver } from "../hooks/useMultiIntersectionObserver";
 import Head from "next/head";
+import FullPageClouds from "../components/FullPageClouds";
 
 const data = [
   {
