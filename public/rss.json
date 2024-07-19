@@ -1,590 +1,590 @@
 {
-  "version": "https://jsonfeed.org/version/1",
-  "title": "Madole.xyz Blog",
-  "home_page_url": "http://madole.xyz/",
-  "feed_url": "https://madole.xyz/json",
-  "description": "Blog posts from madole.xyz",
-  "icon": "http://madole.xyz/bitmoji.png",
-  "author": {
-    "name": "Andrew McDowell",
-    "url": "https://madole.xyz/"
-  },
-  "items": [
-    {
-      "id": "https://madole.xyz/blog/a-quick-glance-at-the-react-19-beta-feature-set",
-      "content_html": "<p> The React 19 Beta release is out and the accompanying <a href=\"https://react.dev/blog/2024/04/25/react-19\">blog post</a> is a great read. Here&#39;s a quick glance at the\n new features and improvements that are part of this release.</p>\n<ul>\n<li>Some spicy new hooks and a c</li>\n</ul>\n",
-      "url": "https://madole.xyz/blog/a-quick-glance-at-the-react-19-beta-feature-set",
-      "title": "A quick glance at the React 19 Beta feature set",
-      "summary": "Reading time: 3 min read",
-      "date_modified": "2024-04-28T04:59:49.550Z",
-      "author": {
+    "version": "https://jsonfeed.org/version/1",
+    "title": "Madole.xyz Blog",
+    "home_page_url": "http://madole.xyz/",
+    "feed_url": "https://madole.xyz/json",
+    "description": "Blog posts from madole.xyz",
+    "icon": "http://madole.xyz/bitmoji.png",
+    "author": {
         "name": "Andrew McDowell",
-        "url": "https://madole.xyz"
-      }
+        "url": "https://madole.xyz/"
     },
-    {
-      "id": "https://madole.xyz/blog/spectral-indices",
-      "content_html": "<h2>What are Spectral Indices in Remote Sensing?</h2>\n<p>Spectral Indices are a set of mathematical equations performed on a per-pixel basis on data coming from multispectral remote sensing (satellite) data.</p>\n<p>When looking at satellite data, you don’t get a s</p>\n",
-      "url": "https://madole.xyz/blog/spectral-indices",
-      "title": "What are Spectral Indices in Remote Sensing?",
-      "summary": "Reading time: 6 min read",
-      "date_modified": "2023-12-18T23:48:15.845Z",
-      "author": {
-        "name": "Andrew McDowell",
-        "url": "https://madole.xyz"
-      }
-    },
-    {
-      "id": "https://madole.xyz/blog/setting-up-eslint-on-webstorm-when-using-yarn-berry-with-pnp",
-      "content_html": "<h2>Yarn Berry</h2>\n<p><img src=\"https://media.giphy.com/media/jRZeoFYjBO2joRHPoQ/giphy-downsized-large.gif\" alt=\"What is that?\"></p>\n<p>Yarn Berry is the codename for Yarn version 2 and 3. It worked so differently to Yarn 1 that the team ended\nup giving it a totally different n</p>\n",
-      "url": "https://madole.xyz/blog/setting-up-eslint-on-webstorm-when-using-yarn-berry-with-pnp",
-      "title": "Setting up ESLint on Webstorm when using Yarn Berry with Plug'n'Play",
-      "summary": "Reading time: 2 min read",
-      "date_modified": "2022-01-07T04:35:22.840Z",
-      "author": {
-        "name": "Andrew McDowell",
-        "url": "https://madole.xyz"
-      }
-    },
-    {
-      "id": "https://madole.xyz/blog/how-i-stress-tested-mapboxs-handling-of-many-polygons",
-      "content_html": "<h2>Question</h2>\n<p>How many polygons can I get mapbox to render before it starts to get slow?</p>\n<h3>Considerations</h3>\n<p>A polygon consists of many vertices, so I&#39;ll want to measure against the number of vertices too as\n100 polygons with 3 vertices is very differe</p>\n",
-      "url": "https://madole.xyz/blog/how-i-stress-tested-mapboxs-handling-of-many-polygons",
-      "title": "How I stress tested mapbox's handling of many polygons",
-      "summary": "Reading time: 5 min read",
-      "date_modified": "2022-01-07T01:37:23.352Z",
-      "author": {
-        "name": "Andrew McDowell",
-        "url": "https://madole.xyz"
-      }
-    },
-    {
-      "id": "https://madole.xyz/blog/how-to-visualise-weather-stations-on-a-map",
-      "content_html": "<h2>Tech we&#39;ll be using</h2>\n<ul>\n<li><a href=\"https://www.mapbox.com/mapbox-gl-js/\">Mapbox GL JS</a><ul>\n<li>A fantastic library for creating maps</li>\n</ul>\n</li>\n<li><a href=\"https://www.npmjs.com/package/geojson\">GeoJSON NPM package</a><ul>\n<li>A package for working with GeoJSON</li>\n</ul>\n</li>\n<li>[csvtojson NPM package</li>\n</ul>\n",
-      "url": "https://madole.xyz/blog/how-to-visualise-weather-stations-on-a-map",
-      "title": "How to visualise Australia's weather stations on a map",
-      "summary": "Reading time: 7 min read",
-      "date_modified": "2022-01-04T04:40:33.179Z",
-      "author": {
-        "name": "Andrew McDowell",
-        "url": "https://madole.xyz"
-      }
-    },
-    {
-      "id": "https://madole.xyz/blog/finite-state-machines-and-xstate",
-      "content_html": "<p><em>(This was originally posted on the <a href=\"https://engineering.kablamo.com.au/posts/2021/finite-state-machines-and-xstate\">Kablamo Engineering Blog</a>)</em></p>\n<p>Application state in front-end clients is a complexity that is at best managed, and at worst the reason </p>\n",
-      "url": "https://madole.xyz/blog/finite-state-machines-and-xstate",
-      "title": "How to model application flows in React with finite state machines and XState",
-      "summary": "Reading time: 10 min read",
-      "date_modified": "2021-07-23T00:00:00.000Z",
-      "author": {
-        "name": "Andrew McDowell",
-        "url": "https://madole.xyz"
-      }
-    },
-    {
-      "id": "https://madole.xyz/blog/kablamo-taps-mcdowell-for-geo-spatial-expertise",
-      "content_html": "<p>I got interviewed about joining Kablamo, you can read it here <a href=\"https://www.itwire.com/people-moves/kablamo-taps-mcdowell-for-geo-spatial-expertise.html\">https://www.itwire.com/people-moves/kablamo-taps-mcdowell-for-geo-spatial-expertise.html</a> </p>\n<p>![H</p>\n",
-      "url": "https://madole.xyz/blog/kablamo-taps-mcdowell-for-geo-spatial-expertise",
-      "title": "Kablamo taps McDowell for geo-spatial expertise",
-      "summary": "Reading time: 2 min read",
-      "date_modified": "2021-03-14T11:52:36.000Z",
-      "author": {
-        "name": "Andrew McDowell",
-        "url": "https://madole.xyz"
-      }
-    },
-    {
-      "id": "https://madole.xyz/blog/analysing-codebase-metadata-to-make-refactoring-more-impactful",
-      "content_html": "<p>Let&#39;s say you&#39;ve inherited a codebase that is in a bit of a dire state. The business wants to continue to add features to this codebase for the next X years. You attempt to write some code to implement a feature. In doing so, you introduce 4 bugs due</p>\n",
-      "url": "https://madole.xyz/blog/analysing-codebase-metadata-to-make-refactoring-more-impactful",
-      "title": "Analysing codebase metadata to make refactoring more impactful",
-      "summary": "Reading time: 3 min read",
-      "date_modified": "2020-11-11T23:31:20.000Z",
-      "author": {
-        "name": "Andrew McDowell",
-        "url": "https://madole.xyz"
-      }
-    },
-    {
-      "id": "https://madole.xyz/blog/building-software-is-much-like-buying-a-house",
-      "content_html": "<p><strong>Warning:</strong> This is a stream of consiousness. It is a hot-take that is not meant to fit every case. </p>\n<p>When buying a house, if you&#39;ve got time, you&#39;ll shop around to get a good rate on your mortgage, if you&#39;re in a rush, you&#39;ll take a bad mortgage </p>\n",
-      "url": "https://madole.xyz/blog/building-software-is-much-like-buying-a-house",
-      "title": "Building Software is much like buying a house",
-      "summary": "Reading time: 2 min read",
-      "date_modified": "2020-10-20T23:18:57.000Z",
-      "author": {
-        "name": "Andrew McDowell",
-        "url": "https://madole.xyz"
-      }
-    },
-    {
-      "id": "https://madole.xyz/blog/upgrading-an-old-flow-codebase",
-      "content_html": "<p>We&#39;ve been gradually migrating our codebases from Flow to Typescript but sometimes we have to upgrade an old Flow codebase to a newer version of Flow. </p>\n<p>We&#39;ve got many old codebases and some are more than 50 Flow versions behind. Flow has been active</p>\n",
-      "url": "https://madole.xyz/blog/upgrading-an-old-flow-codebase",
-      "title": "Upgrading an old Flow codebase",
-      "summary": "Reading time: 2 min read",
-      "date_modified": "2020-10-20T01:11:34.000Z",
-      "author": {
-        "name": "Andrew McDowell",
-        "url": "https://madole.xyz"
-      }
-    },
-    {
-      "id": "https://madole.xyz/blog/cutting-our-codeship-pro-ci-build-time-in-half",
-      "content_html": "<p>We have noticed recently our Codeship Pro builds have been taking a very long time. Upwards of 20minutes to get through all our steps.</p>\n<p>We lived with this for a while, but as we started to put more strict conditions around what checks need to pass </p>\n",
-      "url": "https://madole.xyz/blog/cutting-our-codeship-pro-ci-build-time-in-half",
-      "title": "Cutting our Codeship Pro CI build time in half",
-      "summary": "Reading time: 3 min read",
-      "date_modified": "2020-09-25T05:54:05.000Z",
-      "author": {
-        "name": "Andrew McDowell",
-        "url": "https://madole.xyz"
-      }
-    },
-    {
-      "id": "https://madole.xyz/blog/meet-the-team",
-      "content_html": "<p>I got interviewed for work, you can see it\nhere <a href=\"https://www.propelleraero.com/blog/meet-your-engineering-team-andrew-mcdowell/\">https://www.propelleraero.com/blog/meet-your-engineering-team-andrew-mcdowell/</a></p>\n<iframe src=\"https://www.propelleraero.c",
-      "url": "https://madole.xyz/blog/meet-the-team",
-      "title": "Meet the team - Andrew McDowell",
-      "summary": "Reading time: 1 min read",
-      "date_modified": "2019-12-01T01:15:33.000Z",
-      "author": {
-        "name": "Andrew McDowell",
-        "url": "https://madole.xyz"
-      }
-    },
-    {
-      "id": "https://madole.xyz/blog/getting-organised-in-work",
-      "content_html": "<p>Since taking on a leadership role, I’ve had to <strong>get organised.</strong></p>\n<p>Being a developer for most of my career, I’ve been able to get my head down and attend minimal meetings. Those which I did attend were always organised for me.</p>\n<p>Now I’m facilitating d</p>\n",
-      "url": "https://madole.xyz/blog/getting-organised-in-work",
-      "title": "Getting organised in work",
-      "summary": "Reading time: 5 min read",
-      "date_modified": "2019-11-04T07:12:35.000Z",
-      "author": {
-        "name": "Andrew McDowell",
-        "url": "https://madole.xyz"
-      }
-    },
-    {
-      "id": "https://madole.xyz/blog/lessons-from-creating-a-component-library",
-      "content_html": "<p>If you work in a place that has lots of separate apps that all need a consistent look, creating a shared component library is a good idea. This allows you to pull in components as packages and use them throughout the different projects to maintain a </p>\n",
-      "url": "https://madole.xyz/blog/lessons-from-creating-a-component-library",
-      "title": "Lessons from creating a component library",
-      "summary": "Reading time: 4 min read",
-      "date_modified": "2019-09-23T21:58:40.000Z",
-      "author": {
-        "name": "Andrew McDowell",
-        "url": "https://madole.xyz"
-      }
-    },
-    {
-      "id": "https://madole.xyz/blog/debugging-minified-code",
-      "content_html": "<p>As developers, we tend to like to optimise our processes, including debugging issues. </p>\n<p>In the front-end development world, its possible to ship an asset called a sourcemap along with your bundled, mangled and minified code. </p>\n<p>This asset helps map ou</p>\n",
-      "url": "https://madole.xyz/blog/debugging-minified-code",
-      "title": "Debugging minified code",
-      "summary": "Reading time: 4 min read",
-      "date_modified": "2019-09-12T11:00:34.000Z",
-      "author": {
-        "name": "Andrew McDowell",
-        "url": "https://madole.xyz"
-      }
-    },
-    {
-      "id": "https://madole.xyz/blog/a-day-in-the-life-of",
-      "content_html": "<p>My good friend Chris Laughlin over at <a href=\"https://www.thedyslexicdeveloper.com\">https://www.thedyslexicdeveloper.com</a> put out a call for what his next blog post should be, I asked him for a run down of his typical day as we have similar titles, but I wa</p>\n",
-      "url": "https://madole.xyz/blog/a-day-in-the-life-of",
-      "title": "A day in the life of ",
-      "summary": "Reading time: 4 min read",
-      "date_modified": "2019-09-11T17:45:00.344Z",
-      "author": {
-        "name": "Andrew McDowell",
-        "url": "https://madole.xyz"
-      }
-    },
-    {
-      "id": "https://madole.xyz/blog/unexpected-promise-in-the-bagging-area",
-      "content_html": "<p>This week I came across an odd behaviour that it took me a little while to figure out. \nTake the following example:</p>\n<pre><code class=\"language-js\">const promiseThatWillResolve = Promise.resolve();\nconst promiseThatWillReject = new Promise((resolve, reject) =&gt; reject(new Err\n</code></pre>\n",
-      "url": "https://madole.xyz/blog/unexpected-promise-in-the-bagging-area",
-      "title": "Unexpected promise in the bagging area",
-      "summary": "Reading time: 2 min read",
-      "date_modified": "2019-08-27T07:34:00.344Z",
-      "author": {
-        "name": "Andrew McDowell",
-        "url": "https://madole.xyz"
-      }
-    },
-    {
-      "id": "https://madole.xyz/blog/how-i-approach-an-algorithmic-code-challenge",
-      "content_html": "<p>I approach different challenges in different ways. If it’s algorithmic, I’ll usually get the whiteboard out or if I’m not near a whiteboard, my iPad Pro is a good alternative. Before I put pen to <del>paper</del> whiteboard, I’ll do the necessary background</p>\n",
-      "url": "https://madole.xyz/blog/how-i-approach-an-algorithmic-code-challenge",
-      "title": "How I approach an algorithmic code challenge",
-      "summary": "Reading time: 3 min read",
-      "date_modified": "2019-07-12T05:59:56.344Z",
-      "author": {
-        "name": "Andrew McDowell",
-        "url": "https://madole.xyz"
-      }
-    },
-    {
-      "id": "https://madole.xyz/blog/how-to-download-an-image-to-file-on-disk-when-scraping-a-website",
-      "content_html": "<p>Recently I was recovering data from one of my websites that had been unceremoniously taken down while I was on holidays when I got stomped for a little while on how to scrape an image and save it to file using NodeJS.</p>\n<p>Let’s say you are using puppete</p>\n",
-      "url": "https://madole.xyz/blog/how-to-download-an-image-to-file-on-disk-when-scraping-a-website",
-      "title": "How to download an image to file on disk when scraping a website",
-      "summary": "Reading time: 1 min read",
-      "date_modified": "2019-02-07T07:59:56.344Z",
-      "author": {
-        "name": "Andrew McDowell",
-        "url": "https://madole.xyz"
-      }
-    },
-    {
-      "id": "https://madole.xyz/blog/batching-with-async-await",
-      "content_html": "<p>Lets say you have written a file uploader app and your users might upload 100s of files at a time. You could just loop the files and send off a request per file. This might overload your server, interrupt downloads or just fail due to hitting a maxim</p>\n",
-      "url": "https://madole.xyz/blog/batching-with-async-await",
-      "title": "Using Async/Await to batch asynchronous requests",
-      "summary": "Reading time: 2 min read",
-      "date_modified": "2018-06-24T10:28:07.097Z",
-      "author": {
-        "name": "Andrew McDowell",
-        "url": "https://madole.xyz"
-      }
-    },
-    {
-      "id": "https://madole.xyz/blog/migrating-data-from-ghost-to-gatsby",
-      "content_html": "<h2>What is Gatsby?</h2>\n<blockquote>\n<p>🔥 Blazing-fast static site generator for React</p>\n</blockquote>\n<p>It&#39;s is perfect for a static blog, it reads markdown and gives you a GraphQL API to query it and a React front end.</p>\n<p>Coupled with <a href=\"https://www.netlify.com/\">https://www.netlify.com/</a>, it is a fantastic solut</p>\n",
-      "url": "https://madole.xyz/blog/migrating-data-from-ghost-to-gatsby",
-      "title": "Migrating data from Ghost to GatsbyJS",
-      "summary": "Reading time: 3 min read",
-      "date_modified": "2018-06-18T10:28:07.097Z",
-      "author": {
-        "name": "Andrew McDowell",
-        "url": "https://madole.xyz"
-      }
-    },
-    {
-      "id": "https://madole.xyz/blog/building-node-canvas-in-amazon-linux-ami-for-lambdas",
-      "content_html": "<p>Building node-canvas for use inside an AWS Lambda is tricky as it requires some dependencies to be built by node-gyp against the target architecture. If you build these dependencies locally before deploying your lambda, they&#39;ll be built on against yo</p>\n",
-      "url": "https://madole.xyz/blog/building-node-canvas-in-amazon-linux-ami-for-lambdas",
-      "title": "Building node-canvas in Amazon Linux AMI for Lambdas",
-      "summary": "Reading time: 2 min read",
-      "date_modified": "2017-10-08T18:06:13.000Z",
-      "author": {
-        "name": "Andrew McDowell",
-        "url": "https://madole.xyz"
-      }
-    },
-    {
-      "id": "https://madole.xyz/blog/building-a-raspberrypi-internet-speed-checker-with-nodejs-and-googledocs",
-      "content_html": "<p>I frequently experience periods of internet drop outs and wanted to build something to monitor my internet without any manual intervention. I wanted this to create an automated report for me so I could then email it off to my ISP and complain.</p>\n<p>So I </p>\n",
-      "url": "https://madole.xyz/blog/building-a-raspberrypi-internet-speed-checker-with-nodejs-and-googledocs",
-      "title": "Building a Raspberry Pi internet speed checker with NodeJS and GoogleDocs",
-      "summary": "Reading time: 4 min read",
-      "date_modified": "2017-03-18T16:25:23.000Z",
-      "author": {
-        "name": "Andrew McDowell",
-        "url": "https://madole.xyz"
-      }
-    },
-    {
-      "id": "https://madole.xyz/blog/whitelisting-multiple-domains-with-kcors-in-koa",
-      "content_html": "<p>import RedText from &#39;../../components/mdx/RedText&#39;;</p>\n<h1><a href=\"https://www.npmjs.com/package/kcors\">Kcors</a></h1>\n<p>The Koa CORs library <code>kcors</code> has documentation which is a bit light on how to actually whitelist more than one domain for your node server.</p>\n<p>It has a</p>\n",
-      "url": "https://madole.xyz/blog/whitelisting-multiple-domains-with-kcors-in-koa",
-      "title": "Whitelisting multiple domains with kcors in Koa",
-      "summary": "Reading time: 3 min read",
-      "date_modified": "2017-02-17T12:16:22.000Z",
-      "author": {
-        "name": "Andrew McDowell",
-        "url": "https://madole.xyz"
-      }
-    },
-    {
-      "id": "https://madole.xyz/blog/mocking-relative-dependencies-in-jest-with-jest-mock",
-      "content_html": "<p>If you&#39;re like me and have just entered the world of Jest for testing your React application. You might be familiar with a mocking library called Proxyquire.</p>\n<p><strong>Proxyquire -</strong> _&quot;nodejs require in order to allow overriding dependencies during testing.</p>\n",
-      "url": "https://madole.xyz/blog/mocking-relative-dependencies-in-jest-with-jest-mock",
-      "title": "Mocking relative dependencies in Jest with jest.mock()",
-      "summary": "Reading time: 2 min read",
-      "date_modified": "2016-12-07T15:31:07.000Z",
-      "author": {
-        "name": "Andrew McDowell",
-        "url": "https://madole.xyz"
-      }
-    },
-    {
-      "id": "https://madole.xyz/blog/yarn-package-manager",
-      "content_html": "<h3>What is Yarn?</h3>\n<blockquote>\n<p>FAST, RELIABLE, AND SECURE DEPENDENCY MANAGEMENT. - <a href=\"https://yarnpkg.com/\">https://yarnpkg.com/</a></p>\n</blockquote>\n<h3>How does it achieve all of this?</h3>\n<p>It uses caching to speed up installs by only ever downloading them once and parallelizes ope</p>\n",
-      "url": "https://madole.xyz/blog/yarn-package-manager",
-      "title": "Putting Yarn Package Manager to the test",
-      "summary": "Reading time: 3 min read",
-      "date_modified": "2016-11-22T17:26:37.000Z",
-      "author": {
-        "name": "Andrew McDowell",
-        "url": "https://madole.xyz"
-      }
-    },
-    {
-      "id": "https://madole.xyz/blog/my-favourite-vscode-plugins",
-      "content_html": "<p>A while ago I published a comprehensive list of my favourite Atom Editor plugins, I&#39;ve since moved to VSCode for the majority of my development so I thought I&#39;d gather together a similar list for it.</p>\n<hr>\n<p>###[Auto-close-tag](<a href=\"https://marketplace.vi\">https://marketplace.vi</a></p>\n",
-      "url": "https://madole.xyz/blog/my-favourite-vscode-plugins",
-      "title": "My favourite VSCode plugins",
-      "summary": "Reading time: 7 min read",
-      "date_modified": "2016-11-06T14:35:03.000Z",
-      "author": {
-        "name": "Andrew McDowell",
-        "url": "https://madole.xyz"
-      }
-    },
-    {
-      "id": "https://madole.xyz/blog/webpack-dev-server-where-does-your-css-go",
-      "content_html": "<p>You might have noticed when using webpack-dev-server that the CSS seems to appear on the page as if by magic. If you have a look at the build <a href=\"https://www.npmjs.com/package/webpack-manifest-plugin\">manifest</a>, you&#39;ll see your <code>main.js</code> file listed but</p>\n",
-      "url": "https://madole.xyz/blog/webpack-dev-server-where-does-your-css-go",
-      "title": "Webpack-dev-server: Where does your CSS go?",
-      "summary": "Reading time: 1 min read",
-      "date_modified": "2016-09-14T16:29:10.000Z",
-      "author": {
-        "name": "Andrew McDowell",
-        "url": "https://madole.xyz"
-      }
-    },
-    {
-      "id": "https://madole.xyz/blog/serverside-css-modules-with-babel",
-      "content_html": "<p>I had a requirement to use CSS modules with serverside rendering, it took me a while to figure out so I thought I&#39;d write the process down.</p>\n<p>In order to set css modules, we need babel to turn our generic classnames (<code>.container</code>) into localised class</p>\n",
-      "url": "https://madole.xyz/blog/serverside-css-modules-with-babel",
-      "title": "Serverside CSS Modules with babel",
-      "summary": "Reading time: 2 min read",
-      "date_modified": "2016-08-21T21:09:38.000Z",
-      "author": {
-        "name": "Andrew McDowell",
-        "url": "https://madole.xyz"
-      }
-    },
-    {
-      "id": "https://madole.xyz/blog/babel-loaders-hidden-feature-babelrc-false",
-      "content_html": "<p>I&#39;ve spent 3 days configuring Webpack and babel to deal with CSS Modules while doing server-side rendering. I&#39;ve just discovered an undocumented setting in Webpack&#39;s babel-loader that solves the mystery of disappearing css.</p>\n<p>On the server, I&#39;ve got</p>\n",
-      "url": "https://madole.xyz/blog/babel-loaders-hidden-feature-babelrc-false",
-      "title": "babel-loader's hidden feature - babelrc:false",
-      "summary": "Reading time: 2 min read",
-      "date_modified": "2016-08-21T19:59:31.000Z",
-      "author": {
-        "name": "Andrew McDowell",
-        "url": "https://madole.xyz"
-      }
-    },
-    {
-      "id": "https://madole.xyz/blog/npm-uses-your-gitignore-file",
-      "content_html": "<p>###The Problem</p>\n<p>I recently published a package to npm and got an issue raised on Github to tell me that the build artifact hadn&#39;t been published.</p>\n<p>The helpful person who raised the issue informed me that in the absence of an <code>.npmignore</code> file, npm </p>\n",
-      "url": "https://madole.xyz/blog/npm-uses-your-gitignore-file",
-      "title": "NPM uses your .gitignore file",
-      "summary": "Reading time: 2 min read",
-      "date_modified": "2016-07-03T02:59:42.000Z",
-      "author": {
-        "name": "Andrew McDowell",
-        "url": "https://madole.xyz"
-      }
-    },
-    {
-      "id": "https://madole.xyz/blog/using-console-time-to-profile-performance-in-your-node-app",
-      "content_html": "<p>I was writing an express application, when I started to notice one of the routes was taking quite a while to respond to a request. The route was doing some heavy lifting shaping data from an API .</p>\n<p>I needed to figure out where the bottleneck was an</p>\n",
-      "url": "https://madole.xyz/blog/using-console-time-to-profile-performance-in-your-node-app",
-      "title": "Using console.time to profile performance in your node application",
-      "summary": "Reading time: 3 min read",
-      "date_modified": "2016-06-09T15:27:36.000Z",
-      "author": {
-        "name": "Andrew McDowell",
-        "url": "https://madole.xyz"
-      }
-    },
-    {
-      "id": "https://madole.xyz/blog/error-handling-in-express-with-async-await-routes",
-      "content_html": "<blockquote>\n<p><em>Async/Await for me is one of the best things to not quite happen to JavaScript yet.</em></p>\n</blockquote>\n<p>As we all know from Object.observe, you&#39;re never really sure what&#39;s going to end up in a language until it actually lands.</p>\n<p>But I&#39;ve been transpiling async/awa</p>\n",
-      "url": "https://madole.xyz/blog/error-handling-in-express-with-async-await-routes",
-      "title": "Error handling in Express with Async/Await routes",
-      "summary": "Reading time: 3 min read",
-      "date_modified": "2016-05-25T03:01:50.000Z",
-      "author": {
-        "name": "Andrew McDowell",
-        "url": "https://madole.xyz"
-      }
-    },
-    {
-      "id": "https://madole.xyz/blog/babel-plugin-transform-async-to-module-method-gotcha",
-      "content_html": "<p>We have been using ES7 Async/Await with <code>babel-plugin-transform-async-to-module-method</code> and bluebird co-routines for about a month now.</p>\n<p>This has been working great for us in most cases.</p>\n<p>Although we started noticing an issue when we&#39;ve been using </p>\n",
-      "url": "https://madole.xyz/blog/babel-plugin-transform-async-to-module-method-gotcha",
-      "title": "babel-plugin-transform-async-to-module-method gotcha",
-      "summary": "Reading time: 2 min read",
-      "date_modified": "2016-05-08T02:41:11.000Z",
-      "author": {
-        "name": "Andrew McDowell",
-        "url": "https://madole.xyz"
-      }
-    },
-    {
-      "id": "https://madole.xyz/blog/asset-hashing-with-webpack",
-      "content_html": "<h3>Why would you hash your assets?</h3>\n<p>If you&#39;re creating a website that has a caching layer sitting in front of it, you&#39;re going to need a way to bust the cache every time you make a release so your cache doesn&#39;t continue to serve up your old files.</p>\n<h1></h1>\n",
-      "url": "https://madole.xyz/blog/asset-hashing-with-webpack",
-      "title": "Asset hashing with webpack",
-      "summary": "Reading time: 5 min read",
-      "date_modified": "2016-04-15T14:32:57.000Z",
-      "author": {
-        "name": "Andrew McDowell",
-        "url": "https://madole.xyz"
-      }
-    },
-    {
-      "id": "https://madole.xyz/blog/using-webpack-to-set-up-polyfills-in-your-site",
-      "content_html": "<p>Webpack&#39;s Provide Plugin allows you to set up variables that get injected into your code when they are used in your codebase.</p>\n<p>This means that if I want to polyfill the new ES6 native promise for older browsers, I can do it at build time.</p>\n<p>Two poly</p>\n",
-      "url": "https://madole.xyz/blog/using-webpack-to-set-up-polyfills-in-your-site",
-      "title": "Using webpack to set up polyfills in your site",
-      "summary": "Reading time: 3 min read",
-      "date_modified": "2016-04-03T21:40:03.000Z",
-      "author": {
-        "name": "Andrew McDowell",
-        "url": "https://madole.xyz"
-      }
-    },
-    {
-      "id": "https://madole.xyz/blog/writing-a-gulpfile-in-es6",
-      "content_html": "<p>So you&#39;ve written your app in ES6 and you&#39;re using babel to transpile to ES5.</p>\n<p>But your build process uses Gulp and it requires you to write your Gulpfile in ES5 meaning you can&#39;t take advantage of all the latest JavaScript features you&#39;re using else</p>\n",
-      "url": "https://madole.xyz/blog/writing-a-gulpfile-in-es6",
-      "title": "Writing a Gulpfile in ES6",
-      "summary": "Reading time: 1 min read",
-      "date_modified": "2016-03-30T15:36:06.000Z",
-      "author": {
-        "name": "Andrew McDowell",
-        "url": "https://madole.xyz"
-      }
-    },
-    {
-      "id": "https://madole.xyz/blog/async-await-es7",
-      "content_html": "<p>Async/Await is a JavaScript ES7/ES2016 language feature that allows you to write asynchronous code that looks synchronous.</p>\n<p>This feature has been available in other languages like C# and Visual Basic for a while.</p>\n<p>It allows you to write your functi</p>\n",
-      "url": "https://madole.xyz/blog/async-await-es7",
-      "title": "ASYNC/AWAIT ES7",
-      "summary": "Reading time: 4 min read",
-      "date_modified": "2016-03-12T21:56:32.000Z",
-      "author": {
-        "name": "Andrew McDowell",
-        "url": "https://madole.xyz"
-      }
-    },
-    {
-      "id": "https://madole.xyz/blog/my-favourite-atom-packages-of-2015",
-      "content_html": "<h4>A comprehensive list of my favourite Atom packages from 2015</h4>\n<h3><a href=\"https://github.com/Chris911/Ask-Stack-Atom.git\">ask-stack</a></h3>\n<p>Quickly get answers and code samples from Stack Overflow in Atom</p>\n<h3>![ask-stack](<a href=\"https://camo.githubusercontent.co\">https://camo.githubusercontent.co</a></h3>\n",
-      "url": "https://madole.xyz/blog/my-favourite-atom-packages-of-2015",
-      "title": "My favourite Atom packages of 2015",
-      "summary": "Reading time: 3 min read",
-      "date_modified": "2016-01-02T06:29:19.000Z",
-      "author": {
-        "name": "Andrew McDowell",
-        "url": "https://madole.xyz"
-      }
-    },
-    {
-      "id": "https://madole.xyz/blog/semver-the-sane-way",
-      "content_html": "<blockquote>\n<p><strong>Semantic Versioning 2.0.0</strong> - <a href=\"https://semver.org\">https://semver.org</a></p>\n<p><em>Summary</em></p>\n<p>Given a version number MAJOR.MINOR.PATCH, increment the:</p>\n<p>MAJOR version when you make incompatible API changes,</p>\n<p>MINOR version when you add functionality in a backwards-comp</p>\n</blockquote>\n",
-      "url": "https://madole.xyz/blog/semver-the-sane-way",
-      "title": "Semver - the sane way",
-      "summary": "Reading time: 4 min read",
-      "date_modified": "2015-11-07T13:05:03.000Z",
-      "author": {
-        "name": "Andrew McDowell",
-        "url": "https://madole.xyz"
-      }
-    },
-    {
-      "id": "https://madole.xyz/blog/setting-up-webpack-dev-middleware-in-express",
-      "content_html": "<p>[[[ <strong>THIS BLOG POST IS 2 YEARS OLD, CHECK OUT <a href=\"https://webpack.js.org\">WEBPACK2</a> INSTEAD</strong> ]]]</p>\n<p><strong>What is webpack dev server?</strong></p>\n<p>Webpack dev server is a live reloading server for webpack.</p>\n<p><strong>What is webpack dev middleware?</strong></p>\n<p>It&#39;s a simple wrapper</p>\n",
-      "url": "https://madole.xyz/blog/setting-up-webpack-dev-middleware-in-express",
-      "title": "Setting up webpack dev middleware in express",
-      "summary": "Reading time: 3 min read",
-      "date_modified": "2015-11-07T13:04:33.000Z",
-      "author": {
-        "name": "Andrew McDowell",
-        "url": "https://madole.xyz"
-      }
-    },
-    {
-      "id": "https://madole.xyz/blog/whatsapp-sharing-from-the-mobile-browser",
-      "content_html": "<p>####BuzzFeed Says:</p>\n<blockquote>\n<p>iPhone users are clicking their new WhatsApp button more than Twitter&#39;s. This was enough for us to build a WhatsApp sharing button generator, so you can easily create your own.</p>\n</blockquote>\n<p>They have a built a button generator, for you to ge</p>\n",
-      "url": "https://madole.xyz/blog/whatsapp-sharing-from-the-mobile-browser",
-      "title": "WhatsApp sharing from the mobile browser",
-      "summary": "Reading time: 2 min read",
-      "date_modified": "2015-11-07T13:03:16.000Z",
-      "author": {
-        "name": "Andrew McDowell",
-        "url": "https://madole.xyz"
-      }
-    },
-    {
-      "id": "https://madole.xyz/blog/selenium-actionsequence",
-      "content_html": "<h2>How to click outside the center of a div in a selenium test</h2>\n<h3>Selenium test</h3>\n<p>Should do something when an outer div, with an inner div placed in the middle in front, is clicked.</p>\n<h3>How to usually do this?</h3>\n<pre><code class=\"language-javascript\">\ndriver.findElement(web\n</code></pre>\n",
-      "url": "https://madole.xyz/blog/selenium-actionsequence",
-      "title": "Selenium ActionSequence",
-      "summary": "Reading time: 2 min read",
-      "date_modified": "2015-11-07T12:34:54.000Z",
-      "author": {
-        "name": "Andrew McDowell",
-        "url": "https://madole.xyz"
-      }
-    },
-    {
-      "id": "https://madole.xyz/blog/jsfiddle-firebug-lite",
-      "content_html": "<p>I recently discovered a cool feature in JSFiddle which changed the way I use it.</p>\n<p>Until now, I&#39;ve been hopping on to JSFiddle to test out little bits of code and logging out to the console.</p>\n<p>If you&#39;re like me, you&#39;ll be familiar with having Chrome De</p>\n",
-      "url": "https://madole.xyz/blog/jsfiddle-firebug-lite",
-      "title": "JsFiddle - Firebug lite",
-      "summary": "Reading time: 2 min read",
-      "date_modified": "2015-11-07T12:31:46.000Z",
-      "author": {
-        "name": "Andrew McDowell",
-        "url": "https://madole.xyz"
-      }
-    },
-    {
-      "id": "https://madole.xyz/blog/some-useful-l",
-      "content_html": "<p>I decided to write down a list of every day commands that I use in the the Bash command line in Linux.\nThis is by no means a definitive list and it will grow as I remember or come across commands that make\nmy life easier</p>\n<h3>ls</h3>\n<ul>\n<li><pre><code>  list informa\n</code></pre>\n</li>\n</ul>\n",
-      "url": "https://madole.xyz/blog/some-useful-l",
-      "title": "Some useful everyday linux commands",
-      "summary": "Reading time: 2 min read",
-      "date_modified": "2015-11-07T12:22:16.000Z",
-      "author": {
-        "name": "Andrew McDowell",
-        "url": "https://madole.xyz"
-      }
-    },
-    {
-      "id": "https://madole.xyz/blog/creating-svg-animation-with-walkwayjs",
-      "content_html": "<p>A few days ago this link (<a href=\"https://www.connoratherton.com/walkway\">https://www.connoratherton.com/walkway</a>) popped up on Reddit’s <a href=\"https://reddit.com/r/javascript\">/r/javascript</a>.</p>\n<p>I liked how it looked so I set about having a go. Turns out Connor Atherton’s library has made this super easy </p>\n",
-      "url": "https://madole.xyz/blog/creating-svg-animation-with-walkwayjs",
-      "title": "Creating SVG animation with WalkwayJS",
-      "summary": "Reading time: 2 min read",
-      "date_modified": "2015-11-01T01:01:07.000Z",
-      "author": {
-        "name": "Andrew McDowell",
-        "url": "https://madole.xyz"
-      }
-    },
-    {
-      "id": "https://madole.xyz/blog/javascript-interview-questions",
-      "content_html": "<p>I was asked recently by a friend of mine to come up with a list of interview questions that you can get asked during\na Javascript interview. I looked by to my last interview and came up with a few topics for him to brush up on.\nI thought I&#39;d write th</p>\n",
-      "url": "https://madole.xyz/blog/javascript-interview-questions",
-      "title": "Javascript Interview Questions",
-      "summary": "Reading time: 11 min read",
-      "date_modified": "2015-11-01T00:29:11.000Z",
-      "author": {
-        "name": "Andrew McDowell",
-        "url": "https://madole.xyz"
-      }
-    },
-    {
-      "id": "https://madole.xyz/blog/javascript-toolbox",
-      "content_html": "<p>I write Javascript most days and have done so for a few years now. I still find new tools, websites, frameworks and\nways to do things. I thought I&#39;d write them down and get the list online as it may help other people discover some\nuseful tools of the</p>\n",
-      "url": "https://madole.xyz/blog/javascript-toolbox",
-      "title": "Javascript Toolbox",
-      "summary": "Reading time: 6 min read",
-      "date_modified": "2015-11-01T00:27:54.000Z",
-      "author": {
-        "name": "Andrew McDowell",
-        "url": "https://madole.xyz"
-      }
-    }
-  ]
+    "items": [
+        {
+            "id": "https://madole.xyz/blog/a-quick-glance-at-the-react-19-beta-feature-set",
+            "content_html": "<p>The React 19 Beta release is out and the accompanying <a href=\"https://react.dev/blog/2024/04/25/react-19\">blog post</a> is a great read. Here&#39;s a quick glance at the\nnew features and improvements that are part of this release.</p>\n<ul>\n<li>Some spicy new hooks and a con</li>\n</ul>\n",
+            "url": "https://madole.xyz/blog/a-quick-glance-at-the-react-19-beta-feature-set",
+            "title": "A quick glance at the React 19 Beta feature set",
+            "summary": "Reading time: 3 min read",
+            "date_modified": "2024-04-28T04:59:49.550Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
+            "id": "https://madole.xyz/blog/spectral-indices",
+            "content_html": "<h2>What are Spectral Indices in Remote Sensing?</h2>\n<p>Spectral Indices are a set of mathematical equations performed on a per-pixel basis on data coming from multispectral remote sensing (satellite) data.</p>\n<p>When looking at satellite data, you don’t get a s</p>\n",
+            "url": "https://madole.xyz/blog/spectral-indices",
+            "title": "What are Spectral Indices in Remote Sensing?",
+            "summary": "Reading time: 6 min read",
+            "date_modified": "2023-12-18T23:48:15.845Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
+            "id": "https://madole.xyz/blog/setting-up-eslint-on-webstorm-when-using-yarn-berry-with-pnp",
+            "content_html": "<h2>Yarn Berry</h2>\n<p><img src=\"https://media.giphy.com/media/jRZeoFYjBO2joRHPoQ/giphy-downsized-large.gif\" alt=\"What is that?\"></p>\n<p>Yarn Berry is the codename for Yarn version 2 and 3. It worked so differently to Yarn 1 that the team ended\nup giving it a totally different </p>\n",
+            "url": "https://madole.xyz/blog/setting-up-eslint-on-webstorm-when-using-yarn-berry-with-pnp",
+            "title": "Setting up ESLint on Webstorm when using Yarn Berry with Plug'n'Play",
+            "summary": "Reading time: 2 min read",
+            "date_modified": "2022-01-07T04:35:22.840Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
+            "id": "https://madole.xyz/blog/how-i-stress-tested-mapboxs-handling-of-many-polygons",
+            "content_html": "<h2>Question</h2>\n<p>How many polygons can I get mapbox to render before it starts to get slow?</p>\n<h3>Considerations</h3>\n<p>A polygon consists of many vertices, so I&#39;ll want to measure against the number of vertices too as\n100 polygons with 3 vertices is very diffe</p>\n",
+            "url": "https://madole.xyz/blog/how-i-stress-tested-mapboxs-handling-of-many-polygons",
+            "title": "How I stress tested mapbox's handling of many polygons",
+            "summary": "Reading time: 5 min read",
+            "date_modified": "2022-01-07T01:37:23.352Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
+            "id": "https://madole.xyz/blog/how-to-visualise-weather-stations-on-a-map",
+            "content_html": "<h2>Tech we&#39;ll be using</h2>\n<ul>\n<li><a href=\"https://www.mapbox.com/mapbox-gl-js/\">Mapbox GL JS</a><ul>\n<li>A fantastic library for creating maps</li>\n</ul>\n</li>\n<li><a href=\"https://www.npmjs.com/package/geojson\">GeoJSON NPM package</a><ul>\n<li>A package for working with GeoJSON</li>\n</ul>\n</li>\n<li>[csvtojson NPM package](h</li>\n</ul>\n",
+            "url": "https://madole.xyz/blog/how-to-visualise-weather-stations-on-a-map",
+            "title": "How to visualise Australia's weather stations on a map",
+            "summary": "Reading time: 7 min read",
+            "date_modified": "2022-01-04T04:40:33.179Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
+            "id": "https://madole.xyz/blog/finite-state-machines-and-xstate",
+            "content_html": "<p><em>(This was originally posted on the <a href=\"https://engineering.kablamo.com.au/posts/2021/finite-state-machines-and-xstate\">Kablamo Engineering Blog</a>)</em></p>\n<p>Application state in front-end clients is a complexity that is at best managed, and at worst the reason </p>\n",
+            "url": "https://madole.xyz/blog/finite-state-machines-and-xstate",
+            "title": "How to model application flows in React with finite state machines and XState",
+            "summary": "Reading time: 10 min read",
+            "date_modified": "2021-07-23T00:00:00.000Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
+            "id": "https://madole.xyz/blog/kablamo-taps-mcdowell-for-geo-spatial-expertise",
+            "content_html": "<p>I got interviewed about joining Kablamo, you can read it here <a href=\"https://www.itwire.com/people-moves/kablamo-taps-mcdowell-for-geo-spatial-expertise.html\">https://www.itwire.com/people-moves/kablamo-taps-mcdowell-for-geo-spatial-expertise.html</a></p>\n<p>![Head</p>\n",
+            "url": "https://madole.xyz/blog/kablamo-taps-mcdowell-for-geo-spatial-expertise",
+            "title": "Kablamo taps McDowell for geo-spatial expertise",
+            "summary": "Reading time: 2 min read",
+            "date_modified": "2021-03-14T11:52:36.000Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
+            "id": "https://madole.xyz/blog/analysing-codebase-metadata-to-make-refactoring-more-impactful",
+            "content_html": "<p>Let&#39;s say you&#39;ve inherited a codebase that is in a bit of a dire state. The business wants to continue to add features to this codebase for the next X years. You attempt to write some code to implement a feature. In doing so, you introduce 4 bugs due</p>\n",
+            "url": "https://madole.xyz/blog/analysing-codebase-metadata-to-make-refactoring-more-impactful",
+            "title": "Analysing codebase metadata to make refactoring more impactful",
+            "summary": "Reading time: 3 min read",
+            "date_modified": "2020-11-11T23:31:20.000Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
+            "id": "https://madole.xyz/blog/building-software-is-much-like-buying-a-house",
+            "content_html": "<p><strong>Warning:</strong> This is a stream of consiousness. It is a hot-take that is not meant to fit every case.</p>\n<p>When buying a house, if you&#39;ve got time, you&#39;ll shop around to get a good rate on your mortgage, if you&#39;re in a rush, you&#39;ll take a bad mortgage rat</p>\n",
+            "url": "https://madole.xyz/blog/building-software-is-much-like-buying-a-house",
+            "title": "Building Software is much like buying a house",
+            "summary": "Reading time: 2 min read",
+            "date_modified": "2020-10-20T23:18:57.000Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
+            "id": "https://madole.xyz/blog/upgrading-an-old-flow-codebase",
+            "content_html": "<p>We&#39;ve been gradually migrating our codebases from Flow to Typescript but sometimes we have to upgrade an old Flow codebase to a newer version of Flow.</p>\n<p>We&#39;ve got many old codebases and some are more than 50 Flow versions behind. Flow has been activel</p>\n",
+            "url": "https://madole.xyz/blog/upgrading-an-old-flow-codebase",
+            "title": "Upgrading an old Flow codebase",
+            "summary": "Reading time: 2 min read",
+            "date_modified": "2020-10-20T01:11:34.000Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
+            "id": "https://madole.xyz/blog/cutting-our-codeship-pro-ci-build-time-in-half",
+            "content_html": "<p>We have noticed recently our Codeship Pro builds have been taking a very long time. Upwards of 20minutes to get through all our steps.</p>\n<p>We lived with this for a while, but as we started to put more strict conditions around what checks need to pass to</p>\n",
+            "url": "https://madole.xyz/blog/cutting-our-codeship-pro-ci-build-time-in-half",
+            "title": "Cutting our Codeship Pro CI build time in half",
+            "summary": "Reading time: 3 min read",
+            "date_modified": "2020-09-25T05:54:05.000Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
+            "id": "https://madole.xyz/blog/meet-the-team",
+            "content_html": "<p>I got interviewed for work, you can see it\nhere <a href=\"https://www.propelleraero.com/blog/meet-your-engineering-team-andrew-mcdowell/\">https://www.propelleraero.com/blog/meet-your-engineering-team-andrew-mcdowell/</a></p>\n<iframe\n  src=\"https://www.propelleraero",
+            "url": "https://madole.xyz/blog/meet-the-team",
+            "title": "Meet the team - Andrew McDowell",
+            "summary": "Reading time: 1 min read",
+            "date_modified": "2019-12-01T01:15:33.000Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
+            "id": "https://madole.xyz/blog/getting-organised-in-work",
+            "content_html": "<p>Since taking on a leadership role, I’ve had to <strong>get organised.</strong></p>\n<p>Being a developer for most of my career, I’ve been able to get my head down and attend minimal meetings. Those which I did attend were always organised for me.</p>\n<p>Now I’m facilitating d</p>\n",
+            "url": "https://madole.xyz/blog/getting-organised-in-work",
+            "title": "Getting organised in work",
+            "summary": "Reading time: 5 min read",
+            "date_modified": "2019-11-04T07:12:35.000Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
+            "id": "https://madole.xyz/blog/lessons-from-creating-a-component-library",
+            "content_html": "<p>If you work in a place that has lots of separate apps that all need a consistent look, creating a shared component library is a good idea. This allows you to pull in components as packages and use them throughout the different projects to maintain a </p>\n",
+            "url": "https://madole.xyz/blog/lessons-from-creating-a-component-library",
+            "title": "Lessons from creating a component library",
+            "summary": "Reading time: 4 min read",
+            "date_modified": "2019-09-23T21:58:40.000Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
+            "id": "https://madole.xyz/blog/debugging-minified-code",
+            "content_html": "<p>As developers, we tend to like to optimise our processes, including debugging issues.</p>\n<p>In the front-end development world, its possible to ship an asset called a sourcemap along with your bundled, mangled and minified code.</p>\n<p>This asset helps map our </p>\n",
+            "url": "https://madole.xyz/blog/debugging-minified-code",
+            "title": "Debugging minified code",
+            "summary": "Reading time: 4 min read",
+            "date_modified": "2019-09-12T11:00:34.000Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
+            "id": "https://madole.xyz/blog/a-day-in-the-life-of",
+            "content_html": "<p>My good friend Chris Laughlin over at <a href=\"https://www.thedyslexicdeveloper.com\">https://www.thedyslexicdeveloper.com</a> put out a call for what his next blog post should be, I asked him for a run down of his typical day as we have similar titles, but I wa</p>\n",
+            "url": "https://madole.xyz/blog/a-day-in-the-life-of",
+            "title": "A day in the life of ",
+            "summary": "Reading time: 4 min read",
+            "date_modified": "2019-09-11T17:45:00.344Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
+            "id": "https://madole.xyz/blog/unexpected-promise-in-the-bagging-area",
+            "content_html": "<p>This week I came across an odd behaviour that it took me a little while to figure out.\nTake the following example:</p>\n<pre><code class=\"language-js\">const promiseThatWillResolve = Promise.resolve();\nconst promiseThatWillReject = new Promise((resolve, reject) =&gt;\n  reject(new Er\n</code></pre>\n",
+            "url": "https://madole.xyz/blog/unexpected-promise-in-the-bagging-area",
+            "title": "Unexpected promise in the bagging area",
+            "summary": "Reading time: 2 min read",
+            "date_modified": "2019-08-27T07:34:00.344Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
+            "id": "https://madole.xyz/blog/how-i-approach-an-algorithmic-code-challenge",
+            "content_html": "<p>I approach different challenges in different ways. If it’s algorithmic, I’ll usually get the whiteboard out or if I’m not near a whiteboard, my iPad Pro is a good alternative. Before I put pen to <del>paper</del> whiteboard, I’ll do the necessary background</p>\n",
+            "url": "https://madole.xyz/blog/how-i-approach-an-algorithmic-code-challenge",
+            "title": "How I approach an algorithmic code challenge",
+            "summary": "Reading time: 3 min read",
+            "date_modified": "2019-07-12T05:59:56.344Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
+            "id": "https://madole.xyz/blog/how-to-download-an-image-to-file-on-disk-when-scraping-a-website",
+            "content_html": "<p>Recently I was recovering data from one of my websites that had been unceremoniously taken down while I was on holidays when I got stomped for a little while on how to scrape an image and save it to file using NodeJS.</p>\n<p>Let’s say you are using puppete</p>\n",
+            "url": "https://madole.xyz/blog/how-to-download-an-image-to-file-on-disk-when-scraping-a-website",
+            "title": "How to download an image to file on disk when scraping a website",
+            "summary": "Reading time: 1 min read",
+            "date_modified": "2019-02-07T07:59:56.344Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
+            "id": "https://madole.xyz/blog/batching-with-async-await",
+            "content_html": "<p>Lets say you have written a file uploader app and your users might upload 100s of files at a time. You could just loop the files and send off a request per file. This might overload your server, interrupt downloads or just fail due to hitting a maxim</p>\n",
+            "url": "https://madole.xyz/blog/batching-with-async-await",
+            "title": "Using Async/Await to batch asynchronous requests",
+            "summary": "Reading time: 2 min read",
+            "date_modified": "2018-06-24T10:28:07.097Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
+            "id": "https://madole.xyz/blog/migrating-data-from-ghost-to-gatsby",
+            "content_html": "<h2>What is Gatsby?</h2>\n<blockquote>\n<p>🔥 Blazing-fast static site generator for React</p>\n</blockquote>\n<p>It&#39;s is perfect for a static blog, it reads markdown and gives you a GraphQL API to query it and a React front end.</p>\n<p>Coupled with <a href=\"https://www.netlify.com/\">https://www.netlify.com/</a>, it is a fantastic solut</p>\n",
+            "url": "https://madole.xyz/blog/migrating-data-from-ghost-to-gatsby",
+            "title": "Migrating data from Ghost to GatsbyJS",
+            "summary": "Reading time: 3 min read",
+            "date_modified": "2018-06-18T10:28:07.097Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
+            "id": "https://madole.xyz/blog/building-node-canvas-in-amazon-linux-ami-for-lambdas",
+            "content_html": "<p>Building node-canvas for use inside an AWS Lambda is tricky as it requires some dependencies to be built by node-gyp against the target architecture. If you build these dependencies locally before deploying your lambda, they&#39;ll be built on against yo</p>\n",
+            "url": "https://madole.xyz/blog/building-node-canvas-in-amazon-linux-ami-for-lambdas",
+            "title": "Building node-canvas in Amazon Linux AMI for Lambdas",
+            "summary": "Reading time: 2 min read",
+            "date_modified": "2017-10-08T18:06:13.000Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
+            "id": "https://madole.xyz/blog/building-a-raspberrypi-internet-speed-checker-with-nodejs-and-googledocs",
+            "content_html": "<p>I frequently experience periods of internet drop outs and wanted to build something to monitor my internet without any manual intervention. I wanted this to create an automated report for me so I could then email it off to my ISP and complain.</p>\n<p>So I </p>\n",
+            "url": "https://madole.xyz/blog/building-a-raspberrypi-internet-speed-checker-with-nodejs-and-googledocs",
+            "title": "Building a Raspberry Pi internet speed checker with NodeJS and GoogleDocs",
+            "summary": "Reading time: 4 min read",
+            "date_modified": "2017-03-18T16:25:23.000Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
+            "id": "https://madole.xyz/blog/whitelisting-multiple-domains-with-kcors-in-koa",
+            "content_html": "<p>import RedText from &quot;../../components/mdx/RedText&quot;;</p>\n<h1><a href=\"https://www.npmjs.com/package/kcors\">Kcors</a></h1>\n<p>The Koa CORs library <code>kcors</code> has documentation which is a bit light on how to actually whitelist more than one domain for your node server.</p>\n<p>It has a</p>\n",
+            "url": "https://madole.xyz/blog/whitelisting-multiple-domains-with-kcors-in-koa",
+            "title": "Whitelisting multiple domains with kcors in Koa",
+            "summary": "Reading time: 3 min read",
+            "date_modified": "2017-02-17T12:16:22.000Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
+            "id": "https://madole.xyz/blog/mocking-relative-dependencies-in-jest-with-jest-mock",
+            "content_html": "<p>If you&#39;re like me and have just entered the world of Jest for testing your React application. You might be familiar with a mocking library called Proxyquire.</p>\n<p><strong>Proxyquire -</strong> _&quot;nodejs require in order to allow overriding dependencies during testing.</p>\n",
+            "url": "https://madole.xyz/blog/mocking-relative-dependencies-in-jest-with-jest-mock",
+            "title": "Mocking relative dependencies in Jest with jest.mock()",
+            "summary": "Reading time: 2 min read",
+            "date_modified": "2016-12-07T15:31:07.000Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
+            "id": "https://madole.xyz/blog/yarn-package-manager",
+            "content_html": "<h3>What is Yarn?</h3>\n<blockquote>\n<p>FAST, RELIABLE, AND SECURE DEPENDENCY MANAGEMENT. - <a href=\"https://yarnpkg.com/\">https://yarnpkg.com/</a></p>\n</blockquote>\n<h3>How does it achieve all of this?</h3>\n<p>It uses caching to speed up installs by only ever downloading them once and parallelizes oper</p>\n",
+            "url": "https://madole.xyz/blog/yarn-package-manager",
+            "title": "Putting Yarn Package Manager to the test",
+            "summary": "Reading time: 3 min read",
+            "date_modified": "2016-11-22T17:26:37.000Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
+            "id": "https://madole.xyz/blog/my-favourite-vscode-plugins",
+            "content_html": "<p>A while ago I published a comprehensive list of my favourite Atom Editor plugins, I&#39;ve since moved to VSCode for the majority of my development so I thought I&#39;d gather together a similar list for it.</p>\n<hr>\n<p>###[Auto-close-tag](<a href=\"https://marketplace.visu\">https://marketplace.visu</a></p>\n",
+            "url": "https://madole.xyz/blog/my-favourite-vscode-plugins",
+            "title": "My favourite VSCode plugins",
+            "summary": "Reading time: 7 min read",
+            "date_modified": "2016-11-06T14:35:03.000Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
+            "id": "https://madole.xyz/blog/webpack-dev-server-where-does-your-css-go",
+            "content_html": "<p>You might have noticed when using webpack-dev-server that the CSS seems to appear on the page as if by magic. If you have a look at the build <a href=\"https://www.npmjs.com/package/webpack-manifest-plugin\">manifest</a>, you&#39;ll see your <code>main.js</code> file listed but</p>\n",
+            "url": "https://madole.xyz/blog/webpack-dev-server-where-does-your-css-go",
+            "title": "Webpack-dev-server: Where does your CSS go?",
+            "summary": "Reading time: 1 min read",
+            "date_modified": "2016-09-14T16:29:10.000Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
+            "id": "https://madole.xyz/blog/serverside-css-modules-with-babel",
+            "content_html": "<p>I had a requirement to use CSS modules with serverside rendering, it took me a while to figure out so I thought I&#39;d write the process down.</p>\n<p>In order to set css modules, we need babel to turn our generic classnames (<code>.container</code>) into localised class</p>\n",
+            "url": "https://madole.xyz/blog/serverside-css-modules-with-babel",
+            "title": "Serverside CSS Modules with babel",
+            "summary": "Reading time: 2 min read",
+            "date_modified": "2016-08-21T21:09:38.000Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
+            "id": "https://madole.xyz/blog/babel-loaders-hidden-feature-babelrc-false",
+            "content_html": "<p>I&#39;ve spent 3 days configuring Webpack and babel to deal with CSS Modules while doing server-side rendering. I&#39;ve just discovered an undocumented setting in Webpack&#39;s babel-loader that solves the mystery of disappearing css.</p>\n<p>On the server, I&#39;ve got a</p>\n",
+            "url": "https://madole.xyz/blog/babel-loaders-hidden-feature-babelrc-false",
+            "title": "babel-loader's hidden feature - babelrc:false",
+            "summary": "Reading time: 2 min read",
+            "date_modified": "2016-08-21T19:59:31.000Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
+            "id": "https://madole.xyz/blog/npm-uses-your-gitignore-file",
+            "content_html": "<p>###The Problem</p>\n<p>I recently published a package to npm and got an issue raised on Github to tell me that the build artifact hadn&#39;t been published.</p>\n<p>The helpful person who raised the issue informed me that in the absence of an <code>.npmignore</code> file, npm wi</p>\n",
+            "url": "https://madole.xyz/blog/npm-uses-your-gitignore-file",
+            "title": "NPM uses your .gitignore file",
+            "summary": "Reading time: 2 min read",
+            "date_modified": "2016-07-03T02:59:42.000Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
+            "id": "https://madole.xyz/blog/using-console-time-to-profile-performance-in-your-node-app",
+            "content_html": "<p>I was writing an express application, when I started to notice one of the routes was taking quite a while to respond to a request. The route was doing some heavy lifting shaping data from an API .</p>\n<p>I needed to figure out where the bottleneck was and </p>\n",
+            "url": "https://madole.xyz/blog/using-console-time-to-profile-performance-in-your-node-app",
+            "title": "Using console.time to profile performance in your node application",
+            "summary": "Reading time: 3 min read",
+            "date_modified": "2016-06-09T15:27:36.000Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
+            "id": "https://madole.xyz/blog/error-handling-in-express-with-async-await-routes",
+            "content_html": "<blockquote>\n<p><em>Async/Await for me is one of the best things to not quite happen to JavaScript yet.</em></p>\n</blockquote>\n<p>As we all know from Object.observe, you&#39;re never really sure what&#39;s going to end up in a language until it actually lands.</p>\n<p>But I&#39;ve been transpiling async/await</p>\n",
+            "url": "https://madole.xyz/blog/error-handling-in-express-with-async-await-routes",
+            "title": "Error handling in Express with Async/Await routes",
+            "summary": "Reading time: 3 min read",
+            "date_modified": "2016-05-25T03:01:50.000Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
+            "id": "https://madole.xyz/blog/babel-plugin-transform-async-to-module-method-gotcha",
+            "content_html": "<p>We have been using ES7 Async/Await with <code>babel-plugin-transform-async-to-module-method</code> and bluebird co-routines for about a month now.</p>\n<p>This has been working great for us in most cases.</p>\n<p>Although we started noticing an issue when we&#39;ve been using cl</p>\n",
+            "url": "https://madole.xyz/blog/babel-plugin-transform-async-to-module-method-gotcha",
+            "title": "babel-plugin-transform-async-to-module-method gotcha",
+            "summary": "Reading time: 2 min read",
+            "date_modified": "2016-05-08T02:41:11.000Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
+            "id": "https://madole.xyz/blog/asset-hashing-with-webpack",
+            "content_html": "<h3>Why would you hash your assets?</h3>\n<p>If you&#39;re creating a website that has a caching layer sitting in front of it, you&#39;re going to need a way to bust the cache every time you make a release so your cache doesn&#39;t continue to serve up your old files.</p>\n",
+            "url": "https://madole.xyz/blog/asset-hashing-with-webpack",
+            "title": "Asset hashing with webpack",
+            "summary": "Reading time: 5 min read",
+            "date_modified": "2016-04-15T14:32:57.000Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
+            "id": "https://madole.xyz/blog/using-webpack-to-set-up-polyfills-in-your-site",
+            "content_html": "<p>Webpack&#39;s Provide Plugin allows you to set up variables that get injected into your code when they are used in your codebase.</p>\n<p>This means that if I want to polyfill the new ES6 native promise for older browsers, I can do it at build time.</p>\n<p>Two polyfi</p>\n",
+            "url": "https://madole.xyz/blog/using-webpack-to-set-up-polyfills-in-your-site",
+            "title": "Using webpack to set up polyfills in your site",
+            "summary": "Reading time: 3 min read",
+            "date_modified": "2016-04-03T21:40:03.000Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
+            "id": "https://madole.xyz/blog/writing-a-gulpfile-in-es6",
+            "content_html": "<p>So you&#39;ve written your app in ES6 and you&#39;re using babel to transpile to ES5.</p>\n<p>But your build process uses Gulp and it requires you to write your Gulpfile in ES5 meaning you can&#39;t take advantage of all the latest JavaScript features you&#39;re using else</p>\n",
+            "url": "https://madole.xyz/blog/writing-a-gulpfile-in-es6",
+            "title": "Writing a Gulpfile in ES6",
+            "summary": "Reading time: 1 min read",
+            "date_modified": "2016-03-30T15:36:06.000Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
+            "id": "https://madole.xyz/blog/async-await-es7",
+            "content_html": "<p>Async/Await is a JavaScript ES7/ES2016 language feature that allows you to write asynchronous code that looks synchronous.</p>\n<p>This feature has been available in other languages like C# and Visual Basic for a while.</p>\n<p>It allows you to write your function</p>\n",
+            "url": "https://madole.xyz/blog/async-await-es7",
+            "title": "ASYNC/AWAIT ES7",
+            "summary": "Reading time: 4 min read",
+            "date_modified": "2016-03-12T21:56:32.000Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
+            "id": "https://madole.xyz/blog/my-favourite-atom-packages-of-2015",
+            "content_html": "<h4>A comprehensive list of my favourite Atom packages from 2015</h4>\n<h3><a href=\"https://github.com/Chris911/Ask-Stack-Atom.git\">ask-stack</a></h3>\n<p>Quickly get answers and code samples from Stack Overflow in Atom</p>\n<h3>![ask-stack](<a href=\"https://camo.githubusercontent.com/\">https://camo.githubusercontent.com/</a></h3>\n",
+            "url": "https://madole.xyz/blog/my-favourite-atom-packages-of-2015",
+            "title": "My favourite Atom packages of 2015",
+            "summary": "Reading time: 3 min read",
+            "date_modified": "2016-01-02T06:29:19.000Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
+            "id": "https://madole.xyz/blog/semver-the-sane-way",
+            "content_html": "<blockquote>\n<p><strong>Semantic Versioning 2.0.0</strong> - <a href=\"https://semver.org\">https://semver.org</a></p>\n<p><em>Summary</em></p>\n<p>Given a version number MAJOR.MINOR.PATCH, increment the:</p>\n<p>MAJOR version when you make incompatible API changes,</p>\n<p>MINOR version when you add functionality in a backwards-comp</p>\n</blockquote>\n",
+            "url": "https://madole.xyz/blog/semver-the-sane-way",
+            "title": "Semver - the sane way",
+            "summary": "Reading time: 4 min read",
+            "date_modified": "2015-11-07T13:05:03.000Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
+            "id": "https://madole.xyz/blog/setting-up-webpack-dev-middleware-in-express",
+            "content_html": "<p>[[[ <strong>THIS BLOG POST IS 2 YEARS OLD, CHECK OUT <a href=\"https://webpack.js.org\">WEBPACK2</a> INSTEAD</strong>]]]</p>\n<p><strong>What is webpack dev server?</strong></p>\n<p>Webpack dev server is a live reloading server for webpack.</p>\n<p><strong>What is webpack dev middleware?</strong></p>\n<p>It&#39;s a simple wrapper mi</p>\n",
+            "url": "https://madole.xyz/blog/setting-up-webpack-dev-middleware-in-express",
+            "title": "Setting up webpack dev middleware in express",
+            "summary": "Reading time: 3 min read",
+            "date_modified": "2015-11-07T13:04:33.000Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
+            "id": "https://madole.xyz/blog/whatsapp-sharing-from-the-mobile-browser",
+            "content_html": "<p>####BuzzFeed Says:</p>\n<blockquote>\n<p>iPhone users are clicking their new WhatsApp button more than Twitter&#39;s. This was enough for us to build a WhatsApp sharing button generator, so you can easily create your own.</p>\n</blockquote>\n<p>They have a built a button generator, for you to g</p>\n",
+            "url": "https://madole.xyz/blog/whatsapp-sharing-from-the-mobile-browser",
+            "title": "WhatsApp sharing from the mobile browser",
+            "summary": "Reading time: 2 min read",
+            "date_modified": "2015-11-07T13:03:16.000Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
+            "id": "https://madole.xyz/blog/selenium-actionsequence",
+            "content_html": "<h2>How to click outside the center of a div in a selenium test</h2>\n<h3>Selenium test</h3>\n<p>Should do something when an outer div, with an inner div placed in the middle in front, is clicked.</p>\n<h3>How to usually do this?</h3>\n<pre><code class=\"language-javascript\">\ndriver.findElement(web\n</code></pre>\n",
+            "url": "https://madole.xyz/blog/selenium-actionsequence",
+            "title": "Selenium ActionSequence",
+            "summary": "Reading time: 2 min read",
+            "date_modified": "2015-11-07T12:34:54.000Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
+            "id": "https://madole.xyz/blog/jsfiddle-firebug-lite",
+            "content_html": "<p>I recently discovered a cool feature in JSFiddle which changed the way I use it.</p>\n<p>Until now, I&#39;ve been hopping on to JSFiddle to test out little bits of code and logging out to the console.</p>\n<p>If you&#39;re like me, you&#39;ll be familiar with having Chrome De</p>\n",
+            "url": "https://madole.xyz/blog/jsfiddle-firebug-lite",
+            "title": "JsFiddle - Firebug lite",
+            "summary": "Reading time: 2 min read",
+            "date_modified": "2015-11-07T12:31:46.000Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
+            "id": "https://madole.xyz/blog/some-useful-l",
+            "content_html": "<p>I decided to write down a list of every day commands that I use in the the Bash command line in Linux.\nThis is by no means a definitive list and it will grow as I remember or come across commands that make\nmy life easier</p>\n<h3>ls</h3>\n<ul>\n<li><pre><code>  list informa\n</code></pre>\n</li>\n</ul>\n",
+            "url": "https://madole.xyz/blog/some-useful-l",
+            "title": "Some useful everyday linux commands",
+            "summary": "Reading time: 2 min read",
+            "date_modified": "2015-11-07T12:22:16.000Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
+            "id": "https://madole.xyz/blog/creating-svg-animation-with-walkwayjs",
+            "content_html": "<p>A few days ago this link (<a href=\"https://www.connoratherton.com/walkway\">https://www.connoratherton.com/walkway</a>) popped up on Reddit’s <a href=\"https://reddit.com/r/javascript\">/r/javascript</a>.</p>\n<p>I liked how it looked so I set about having a go. Turns out Connor Atherton’s library has made this super easy </p>\n",
+            "url": "https://madole.xyz/blog/creating-svg-animation-with-walkwayjs",
+            "title": "Creating SVG animation with WalkwayJS",
+            "summary": "Reading time: 2 min read",
+            "date_modified": "2015-11-01T01:01:07.000Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
+            "id": "https://madole.xyz/blog/javascript-interview-questions",
+            "content_html": "<p>I was asked recently by a friend of mine to come up with a list of interview questions that you can get asked during\na Javascript interview. I looked by to my last interview and came up with a few topics for him to brush up on.\nI thought I&#39;d write th</p>\n",
+            "url": "https://madole.xyz/blog/javascript-interview-questions",
+            "title": "Javascript Interview Questions",
+            "summary": "Reading time: 11 min read",
+            "date_modified": "2015-11-01T00:29:11.000Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
+            "id": "https://madole.xyz/blog/javascript-toolbox",
+            "content_html": "<p>I write Javascript most days and have done so for a few years now. I still find new tools, websites, frameworks and\nways to do things. I thought I&#39;d write them down and get the list online as it may help other people discover some\nuseful tools of the</p>\n",
+            "url": "https://madole.xyz/blog/javascript-toolbox",
+            "title": "Javascript Toolbox",
+            "summary": "Reading time: 6 min read",
+            "date_modified": "2015-11-01T00:27:54.000Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        }
+    ]
 }
