@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { Reducer, useEffect, useState } from "react";
 import FlexCenter from "../components/FlexCenter";
 import Card, { Hr, Spacer } from "../components/resume/Card";
 import CardDialog from "../components/resume/CardDialog";
@@ -36,6 +36,10 @@ function Resume(): JSX.Element {
   const [hobbiesOpen, setHobbiesOpen] = useState(false);
   const [socialOpen, setSocialOpen] = useState(false);
   const [techOpen, setTechOpen] = useState(false);
+
+  const [activeModal, setActiveModal] = useState<
+    "hobbies" | "social" | "tech" | null
+  >(null);
 
   useEffect(() => {
     const q = getUrlSearchParam("q");
@@ -84,15 +88,15 @@ function Resume(): JSX.Element {
             </Card>
             <Card
               onClick={() => {
-                setHobbiesOpen(true);
+                setActiveModal("hobbies");
               }}
               labels={[{ text: "Clickable", color: "#61bd4f" }]}
             >
               Hobbies and interests
               <CardDialog
-                open={hobbiesOpen}
+                open={activeModal === "hobbies"}
                 onClose={() => {
-                  setHobbiesOpen(false);
+                  setActiveModal(null);
                 }}
                 title="Hobbies and interests"
                 columnName="About Me"
@@ -140,14 +144,16 @@ function Resume(): JSX.Element {
             </Card>
             <Card
               onClick={() => {
-                setSocialOpen(true);
+                setActiveModal("social");
               }}
               labels={[{ text: "Clickable", color: "#61bd4f" }]}
             >
               Social media
               <CardDialog
-                open={socialOpen}
-                onClose={() => setSocialOpen(false)}
+                open={activeModal === "social"}
+                onClose={() => {
+                  setActiveModal(null);
+                }}
                 title="Social media"
                 columnName="About Me"
                 date="6th Oct 2020 at 20:20"
@@ -193,14 +199,16 @@ function Resume(): JSX.Element {
             </Card>
             <Card
               onClick={() => {
-                setTechOpen(true);
+                setActiveModal("tech");
               }}
               labels={[{ text: "Clickable", color: "#61bd4f" }]}
             >
               Technologies
               <CardDialog
-                open={techOpen}
-                onClose={() => setTechOpen(false)}
+                open={activeModal === "tech"}
+                onClose={() => {
+                  setActiveModal(null);
+                }}
                 title="Technologies"
                 columnName="About Me"
                 date="7th Oct 2020 at 20:20"
@@ -280,6 +288,7 @@ function Resume(): JSX.Element {
                 />
               </FlexCenter>
             </Card>
+
             <Card>
               <div className="pb-1 font-bold">
                 NOV 2023: Completed NASA ARSET training

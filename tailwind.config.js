@@ -22,7 +22,7 @@ module.exports = {
       },
       animation: {
         fadeIn: "fadeIn 0.3s ease-in-out",
-        slowFadeIn: "fadeIn 1s ease-in-out",
+        slowFadeIn: "fadeIn 3s ease-in-out",
         horizontalBounce: "horizontalBounce 5s ease-in-out alternate infinite",
       },
       colors: {

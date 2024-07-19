@@ -6,10 +6,11 @@ const Clouds: React.FC = () => {
     <Suspense fallback={null}>
       <Float>
         <Cloud
-          position={[4, 2, 0]}
-          opacity={0.7}
-          speed={0.4} // Rotation speed
-          segments={10} // Number of particles
+          seed={20}
+          color={"black"}
+          opacity={0.4}
+          speed={0.05} // Rotation speed
+          concentrate={"random"}
         />
       </Float>
     </Suspense>

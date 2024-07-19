@@ -49,25 +49,25 @@ export const SparksThatFollowTheMouse = () => {
 
   return (
     <Suspense fallback={null}>
-      <Trail
-        width={0.1}
-        color={"skyblue"} // Color of the line
-        length={1} // Length of the line
-        decay={0.5} // How fast the line fades away
-        local={true} // Wether to use the target's world or local positions
-        stride={0} // Min distance between previous and current point
-        interval={1} // Number of frames to wait before next calculation
-        target={undefined} // Optional target. This object will produce the trail.
-        attenuation={(width) => width} // A function to define the width in each point along it.
-      >
-        <Sparkles
-          count={10}
-          size={3}
-          color={"skyblue"}
-          ref={sparklesRef}
-          opacity={isMouseMoving ? 0 : 1}
-        />
-      </Trail>
+      {/*<Trail*/}
+      {/*// width={0.1}*/}
+      {/*// color={"skyblue"} // Color of the line*/}
+      {/*// length={1} // Length of the line*/}
+      {/*// decay={0.5} // How fast the line fades away*/}
+      {/*// local={true} // Weather to use the target's world or local positions*/}
+      {/*// stride={0} // Min distance between previous and current point*/}
+      {/*// interval={1} // Number of frames to wait before next calculation*/}
+      {/*// target={sparklesRef.current} // Optional target. This object will produce the trail.*/}
+      {/*// attenuation={(width) => width} // A function to define the width in each point along it.*/}
+      {/*>*/}
+      <Sparkles
+        count={10}
+        size={3}
+        color={"skyblue"}
+        ref={sparklesRef}
+        opacity={isMouseMoving ? 0 : 1}
+      />
+      {/*</Trail>*/}
     </Suspense>
   );
 };
