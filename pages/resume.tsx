@@ -16,19 +16,6 @@ function getUrlSearchParam(searchParam: string): string | null {
   return urlParams.get(searchParam);
 }
 
-const reducer: Reducer<
-  {
-    openModalType: "hobbies" | "social" | "tech" | null;
-  },
-  {
-    type: "openModal";
-    payload: {
-      open: boolean;
-      type: "hobbies" | "social" | "tech";
-    };
-  }
-> = (state, action) => {};
-
 /**
  * Adding a future job to the resume via querystring
  *
