@@ -49,7 +49,7 @@ const Index: React.FC<IndexProps> = (props) => {
       <div className="absolute inset-0 background">
         <FullpageClouds />
 
-        <div className="absolute inset-0 flex flex-col justify-between h-full z-10">
+        <div className="absolute inset-0 flex flex-col justify-between z-1">
           <a href="#main-content" className="sr-only">
             Skip to main content
           </a>
@@ -60,6 +60,7 @@ const Index: React.FC<IndexProps> = (props) => {
             id="main-content"
             className="flex flex-col pt-6 md:pt-0 md:justify-center flex-grow px-8 md:px-20 lg:px-32"
           >
+            <EarthCanvas />
             <div className="relative text-5xl md:text-6xl leading-none text-white h-32 md:h-24 md:leading-tight w-3/4 md:w-full">
               <span key={title} className="animate-slowFadeIn absolute top-0">
                 {title}
@@ -76,7 +77,6 @@ const Index: React.FC<IndexProps> = (props) => {
               Transforming ideas into cutting-edge geospatial web applications
               through expert leadership and collaborative excellence.
             </div>
-            <EarthCanvas />
           </main>
 
           <div className="flex justify-around pb-4">

@@ -4,7 +4,7 @@ import path from "path";
 import frontmatter from "front-matter";
 import { IndexListItem } from "../../components/IndexListItem";
 import readingTime from "reading-time";
-import { Layout } from "../../components/Layout";
+import { Layout } from "../../components/Layout/Layout";
 
 function dedupeArray<T>(arr: T[]) {
   return Array.from(new Set(arr));

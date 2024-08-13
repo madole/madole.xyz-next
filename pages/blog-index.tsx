@@ -5,7 +5,7 @@ import frontmatter from "front-matter";
 import Link from "next/link";
 import { IndexListItem } from "../components/IndexListItem";
 import readingTime from "reading-time";
-import { Layout } from "../components/Layout";
+import { Layout } from "../components/Layout/Layout";
 import Head from "next/head";
 import RssIcon from "../components/RSSIcon";
 

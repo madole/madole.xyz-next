@@ -5,7 +5,7 @@ import path from "path";
 import frontmatter from "front-matter";
 import readingTime from "reading-time";
 import { useRouter } from "next/router";
-import { Layout } from "../components/Layout";
+import { Layout } from "../components/Layout/Layout";
 import { IndexListItem } from "../components/IndexListItem";
 
 export interface TodayILearnedProps {

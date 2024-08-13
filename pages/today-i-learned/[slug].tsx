@@ -3,7 +3,7 @@ import React from "react";
 import fs from "fs";
 import path from "path";
 import Link from "next/link";
-import { Layout } from "../../components/Layout";
+import { Layout } from "../../components/Layout/Layout";
 import { MDXRemote } from "next-mdx-remote";
 import "prismjs/themes/prism-tomorrow.css";
 import { mdxComponents } from "../../components/mdx/mdx-components";

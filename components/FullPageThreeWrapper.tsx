@@ -8,7 +8,7 @@ export interface ThreeWrapperProps {
 const FullPageThreeWrapper: React.FC<ThreeWrapperProps> = (props) => {
   const { children } = props;
   return (
-    <div className="absolute inset-0 animate-slowFadeIn z-0 motion-reduce:hidden min-h-screen w-full">
+    <div className="inset-0 animate-slowFadeIn z-0 motion-reduce:hidden fixed">
       <Canvas camera={{ position: [0, 0, 2] }}>
         <mesh />
         <ambientLight />

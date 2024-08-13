@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { Layout } from "../components/Layout";
+import { Layout } from "../components/Layout/Layout";
 import threedcolors from "../images/3d-colors.png";
 import madoleText from "../images/madole-text.png";
 import earthMars from "../images/earth-mars.png";
