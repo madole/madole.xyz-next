@@ -1,0 +1,83 @@
+---
+title: 'Pop the console of JS library websites to demo the library'
+date: '2024-08-13T01:07:09.729Z'
+tags: ['javascript','js','tip']
+slug: 'pop-the-console-of-js-library-websites-to-demo-the-library'
+---
+
+Did you know that often you can pop the console of a JS library website to demo the library?
+
+This is a great way to quickly test out a library without having to set up a project or write any code.
+
+## Examples
+
+---
+
+### Decimal.js
+For example, in [Decimal.js](https://mikemcl.github.io/decimal.js/) you can pop the console and run:
+
+```js
+> const a = new Decimal(0.1)
+
+> const b = new Decimal(0.2)
+
+> a.plus(b).toNumber()
+
+0.3
+```
+
+![decimal.js screenshot](/blog-images/decimal.png)
+
+---
+
+### Lodash
+At [Lodash](https://lodash.com/) you can run:
+
+```js
+_.difference(['a','b','c'], ['b','c'])
+
+['a']
+```
+
+![lodash screenshot](/blog-images/lodash.png)
+
+---
+
+### Moment.js
+
+At [Moment.js](https://momentjs.com/) you can run:
+
+```js
+moment().format('MMMM Do YYYY, h:mm:ss a')
+
+'August 13th 2024, 11:16:55 am'
+```
+
+---
+
+![moment.js screenshot](/blog-images/moment.png)
+
+---
+
+### Date-fns
+
+At [date-fns](https://date-fns.org/) you can run:
+
+```js
+// init date-fns on the page
+init()
+
+// use the _ object to access date-fns functions
+_.addDays(new Date(), 5)
+
+'Sun Aug 18 2024 11:18:39 GMT+1000 (Australian Eastern Standard Time)'
+```
+
+Date Fns even prompts you from within the console.
+
+![date-fns screenshot](/blog-images/date-fns.png)
+
+---
+
+So next time you're checking out a JS library, remember to pop the console and give it a spin!
+
