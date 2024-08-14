@@ -39,34 +39,34 @@ const TodayILearned: React.FC<TodayILearnedProps> = (props) => {
           url={`https://madole.xyz/today-i-learned/${slug}`}
         />
       </Head>
-      <section className="bg-white inline-flex flex-col items-center justify-start mt-10 mx-2 shadow-lg p-4 md:p-10 rounded w-full md:max-w-3xl 2xl:max-w-5xl">
-        <h1 className="prose pb-1 text-3xl font-semibold text-center md:px-20">
-          {title}
-        </h1>
+      <section>
+        <h1 className="prose text-3xl font-semibold text-center">{title}</h1>
         <div className="prose font-light">
           {postDate} &mdash; {timeToRead}
         </div>
-        <article className="prose mt-10 break-words w-full md:w-2/3">
+        <article className="prose mt-10 break-words">
           {/* @ts-ignore */}
           <MDXRemote {...body} components={mdxComponents} />
         </article>
-        {url && (
-          <a
-            className="text-blue-500 hover:text-blue-700 visited:text-purple-600 cursor-pointer m-10"
-            target="_blank"
-            rel="noopener noreferrer"
-            href={url}
-            title={url}
+        <div className="flex justify-center items-center gap-8">
+          <Link
+            href="/today-i-learned"
+            className="text-blue-500 hover:text-blue-700 visited:text-purple-600 cursor-pointer hover:underline"
           >
-            Read more
-          </a>
-        )}
-        <Link
-          href="/today-i-learned"
-          className="text-blue-500 hover:text-blue-700 visited:text-purple-600 cursor-pointer mb-10"
-        >
-          Back
-        </Link>
+            Back
+          </Link>
+          {url && (
+            <a
+              className="text-blue-500 hover:text-blue-700 visited:text-purple-600 cursor-pointer hover:underline"
+              target="_blank"
+              rel="noopener noreferrer"
+              href={url}
+              title={url}
+            >
+              Read more
+            </a>
+          )}
+        </div>
       </section>
     </Layout>
   );

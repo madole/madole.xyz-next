@@ -21,12 +21,9 @@ export interface TodayILearnedProps {
 const TodayILearned: React.FC<TodayILearnedProps> = (props) => {
   const { postsMetadata } = props;
   return (
-    <Layout>
-      <section
-        id="main-content"
-        className="w-11/12 p-8 md:py-8 md:px-20 my-4 overflow-hidden bg-white rounded lg:w-4/6 lg:shadow-lg h-full mb-6 "
-      >
-        <h1 className="prose pb-1 text-2xl font-semibold text-center lg:text-4xl">
+    <Layout isIndexPage>
+      <section id="main-content">
+        <h1 className="prose text-2xl font-semibold text-center lg:text-4xl">
           Today I learned
         </h1>
         {postsMetadata.map((post) => (

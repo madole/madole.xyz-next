@@ -49,23 +49,18 @@ export default function BlogPost(props: Props): JSX.Element {
           url={`https://madole.xyz/blog/${slug}`}
         />
       </Head>
-      <section
-        id="main-content"
-        className="w-full md:max-w-3xl 2xl:max-w-5xl p-8 my-4 overflow-hidden bg-white rounded lg:shadow-lg h-full flex flex-col justify-center items-center"
-      >
-        <div className="flex flex-col items-center pb-2 md:pb-4">
-          <h1 className="prose pb-1 text-2xl md:text-4xl font-semibold text-center md:px-20">
-            {title}
-          </h1>
-          <div className="prose pt-2 font-light">
-            {postDate} &mdash; {timeToRead}
-          </div>
+      <section id="main-content">
+        <h1 className="prose pb-1 text-2xl md:text-4xl font-semibold text-center">
+          {title}
+        </h1>
+        <div className="prose pt-2 font-light">
+          {postDate} &mdash; {timeToRead}
         </div>
         <article className="prose prose-slate break-word md:break-normal w-full">
           {/* @ts-ignore */}
           <MDXRemote {...body} components={mdxComponents} />
         </article>
-        <div className="m-6">
+        <div className="m-6 flex justify-center">
           <Tags tags={tags} />
         </div>
       </section>

@@ -3,9 +3,8 @@ import { Navigation } from "../Navigation";
 import Footer from "../Footer";
 import styles from "./layout.module.css";
 
-export const Layout = (props: {
+export const SideProjectLayout = (props: {
   children: React.ReactNode;
-  isIndexPage?: boolean;
 }): JSX.Element => {
   const { children } = props;
 
@@ -17,16 +16,7 @@ export const Layout = (props: {
         Skip to main content
       </a>
       <Navigation />
-      <div
-        className={`
-          flex justify-center p-8 md:p-4 w-full md:max-w-[100ch] md:rounded my-6 
-          [&>section]:max-w-[min(80ch,100%)] 
-          [&>section]:flex
-          [&>section]:flex-col
-          [&>section]:items-${props.isIndexPage ? "start" : "center"}
-          [&>section]:gap-4
-          [&>section>h1]:py-4 bg-white lg:shadow-lg"}`}
-      >
+      <div className="flex justify-center pt- md:p-4 rounded mb-6  w-full">
         {children}
       </div>
       <Footer />

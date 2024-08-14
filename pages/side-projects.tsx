@@ -19,6 +19,7 @@ import styles from "../styles/side-projects.module.css";
 import { useMultiIntersectionObserver } from "../hooks/useMultiIntersectionObserver";
 import Head from "next/head";
 import FullPageClouds from "../components/FullPageClouds";
+import { SideProjectLayout } from "../components/Layout/SideProjectLayout";
 
 const data = [
   {
@@ -159,15 +160,15 @@ const SideProjects = () => {
   useMultiIntersectionObserver(
     observerRef,
     "[data-side-project=true]",
-    addInViewCallback,
+    addInViewCallback
   );
 
   return (
-    <Layout>
+    <SideProjectLayout>
       <Head>
         <title>Side Projects | Madole.xyz</title>
       </Head>
-      <div className="flex flex-col w-full justify-evenly items-center">
+      <section className="flex flex-col w-full justify-evenly items-center">
         {data.map(({ image, imageAlt, title, description, link }, index) => (
           <div
             key={imageAlt}
@@ -205,8 +206,8 @@ const SideProjects = () => {
             </div>
           </div>
         ))}
-      </div>
-    </Layout>
+      </section>
+    </SideProjectLayout>
   );
 };
 
