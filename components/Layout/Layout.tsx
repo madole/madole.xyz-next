@@ -1,6 +1,6 @@
 import React from "react";
-import { Navigation } from "../Navigation";
 import Footer from "../Footer";
+import { Navigation } from "../Navigation";
 import styles from "./layout.module.css";
 
 export const Layout = (props: {
@@ -23,7 +23,7 @@ export const Layout = (props: {
           [&>section]:max-w-[min(80ch,100%)] 
           [&>section]:flex
           [&>section]:flex-col
-          [&>section]:items-${props.isIndexPage ? "start" : "center"}
+          ${props.isIndexPage ? "[&>section]:items-start" : "[&>section]:items-center"}
           [&>section]:gap-4
           [&>section>h1]:py-4 bg-white lg:shadow-lg"}`}
       >

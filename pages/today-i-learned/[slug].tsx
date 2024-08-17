@@ -1,15 +1,15 @@
-import Head from "next/head";
-import React from "react";
 import fs from "fs";
-import path from "path";
-import Link from "next/link";
-import { Layout } from "../../components/Layout/Layout";
 import { MDXRemote } from "next-mdx-remote";
+import Head from "next/head";
+import Link from "next/link";
+import path from "path";
 import "prismjs/themes/prism-tomorrow.css";
+import React from "react";
+import { Layout } from "../../components/Layout/Layout";
 import { mdxComponents } from "../../components/mdx/mdx-components";
-import { parseMdxContent } from "../../utils/parseMdxContent";
-import { useLocalDate } from "../../hooks/useLocalDate";
 import OpenGraphHeadTags from "../../components/OpenGraphHeadTags";
+import { useLocalDate } from "../../hooks/useLocalDate";
+import { parseMdxContent } from "../../utils/parseMdxContent";
 
 export interface TodayILearnedProps extends PostAttributes {
   data: {
@@ -76,11 +76,11 @@ export default TodayILearned;
 
 export function getStaticPaths() {
   const filenames = fs.readdirSync(
-    path.join(process.cwd(), "content/today-i-learned"),
+    path.join(process.cwd(), "content/today-i-learned")
   );
   return {
     paths: filenames.map(
-      (filename) => "/today-i-learned/" + filename.replace(".md", ""),
+      (filename) => "/today-i-learned/" + filename.replace(".md", "")
     ),
     fallback: false,
   };
@@ -98,7 +98,7 @@ export async function getStaticProps({ params }: { params: { slug: string } }) {
   const slug = params.slug + ".md";
   const content = fs.readFileSync(
     path.join(process.cwd(), "content/today-i-learned", slug),
-    "utf8",
+    "utf8"
   );
   const data = await parseMdxContent<PostAttributes>(content);
   return { props: { data, slug: params.slug } };
