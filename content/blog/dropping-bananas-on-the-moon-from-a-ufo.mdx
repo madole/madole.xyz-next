@@ -57,7 +57,7 @@ Upon a click, I use the `viewer.scene.pickPosition` function to turn the clicked
 
 This is where it gets a bit tricky, to set the position, I needed to calculate a new `modelMatrix` for the `Model` and update it. 
 
-I went back to the docks and had a read, what’s the difference between the `Model` component and the `Entity` component with `ModelGraphics` inside it. 
+I went back to the docs and had a read, what’s the difference between the `Model` component and the `Entity` component with `ModelGraphics` inside it. 
 
 The gist from what I can tell is, use an `Entity` as default and then use a `Model` when you need low level control over the model.
 
