@@ -31,8 +31,8 @@
 }
 
 .side-project-image {
-  height: var(--side-project-image-size);
   width: var(--side-project-image-size);
+  aspect-ratio: 1 / 1;
   object-fit: cover;
 }
 

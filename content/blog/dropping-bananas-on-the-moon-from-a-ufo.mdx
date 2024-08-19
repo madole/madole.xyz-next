@@ -47,7 +47,11 @@ With this all set, I fire up the app and explore the moon, it has so many more c
 
 I had a look at the Resium docs and added a `Model` component, loaded in the GLTF and calculated a modelMatrix to position it somewhere on the surface. 
 
-*A note on hosting, I host my sites on Netlify and it turns out they have a bandwidth limit on their free tier. In the past, projects that load one or two GLTF files chew through that bandwidth, but Github hosts our code for free. What is a GLTF? A coded representation of a 3D model, so I’m trying out hosting my assets in a public assets directory and then pointing the application at the [raw.githubusercontent.com](http://raw.githubusercontent.com) url to load the models from there.* 
+---
+### *A note on hosting*
+*I host my sites on Netlify and it turns out they have a bandwidth limit on their free tier. In the past, projects that load one or two GLTF files chew through that bandwidth, but Github hosts our code for free. What is a GLTF? A coded representation of a 3D model, so I’m trying out hosting my assets in a public assets directory and then pointing the application at the [raw.githubusercontent.com](http://raw.githubusercontent.com) url to load the models from there.* 
+
+---
 
 So now I have a banana on the moon, I was thinking it might be cool if could move the banana to where ever I clicked. So I set up a `<ScreenSpaceEventHandler>` and a `<ScreenSpaceEvent>` child which is listening to left mouse clicks. 
 
@@ -95,17 +99,17 @@ const startCartesian =
 
 ---
 
-### A note on Cartesians and Cartographics
+### *A note on Cartesians and Cartographics*
 
-**Cartesians**
+#### *Cartesians*
 
-These values represent a point in 3D space referenced from the center of the Ellipsoid (the Moon in this case) along the cartesian axes. They come in `Cartesian2` (`x`, `y`), `Cartesian3` (`x` , `y` , `z`) and even `Cartesian4` (`x`, `y`, `z`, `w`) flavours, where the `w` component is used for perspective transformations and scaling. 
+*These values represent a point in 3D space referenced from the center of the Ellipsoid (the Moon in this case) along the cartesian axes. They come in `Cartesian2` (`x`, `y`), `Cartesian3` (`x` , `y` , `z`) and even `Cartesian4` (`x`, `y`, `z`, `w`) flavours, where the `w` component is used for perspective transformations and scaling.*
 
-**Cartographics**
+#### *Cartographics*
 
-These represent a point on a globe, and are specified in `latitude`, `longitude` and `height`. Where `height` is the distance in meters above the ellipsoid. 
+*These represent a point on a globe, and are specified in `latitude`, `longitude` and `height`. Where `height` is the distance in meters above the ellipsoid.*
 
-They are good for representing positions on the Earth’s surface in a human readable way. 
+*They are good for representing positions on the Earth’s surface in a human readable way.*
 
 ---
 

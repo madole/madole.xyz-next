@@ -3,15 +3,23 @@ type Props = {
   description: string;
   imageUrl: string;
   url: string;
+  tags?: string[];
 };
 
 const OpenGraphHeadTags = (props: Props) => {
-  const { title, description, imageUrl, url } = props;
+  const { title, description, imageUrl, url, tags = [] } = props;
   return (
     <>
       {/*{ <!-- HTML Meta Tags -->}*/}
       <title>{title}</title>
+      {/*{ <!-- Google / Search Engine Tags -->}*/}
+      <meta name="title" content={title} />
       <meta name="description" content={description} />
+      <meta name="author" content="@madole" />
+      <meta name="robots" content="index, follow" />
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      <meta name="language" content="English" />
+      <meta name="keywords" content={tags.join(", ")} />
 
       {/*{  <!-- Facebook Meta Tags -->}*/}
       <meta property="og:url" content={url} />

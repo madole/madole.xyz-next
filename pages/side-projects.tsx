@@ -1,27 +1,43 @@
-import React, { useRef } from "react";
-import { Layout } from "../components/Layout/Layout";
+import Head from "next/head";
+import { useRef } from "react";
+import { SideProjectLayout } from "../components/Layout/SideProjectLayout";
+import { useMultiIntersectionObserver } from "../hooks/useMultiIntersectionObserver";
+import pano360 from "../images/360-pano.png";
 import threedcolors from "../images/3d-colors.png";
-import madoleText from "../images/madole-text.png";
+import bboxUtil from "../images/bbox-util-kit.jpg";
+import covidBananas from "../images/covid-bananas.png";
 import earthMars from "../images/earth-mars.png";
 import everyPlane from "../images/every-plane.png";
-import covidBananas from "../images/covid-bananas.png";
-import issTracker from "../images/ISS-tracker.png";
-import pano360 from "../images/360-pano.png";
-import greensDrivePano from "../images/greens-drive-pano.png";
-import mourneWalks from "../images/mourne-walks.jpeg";
-import gpxEditor from "../images/gpx-editor.jpeg";
-import kmlEditor from "../images/kml-editor.jpeg";
+import fuelCharts from "../images/fuel-charts.jpg";
 import geojsonEditor from "../images/geojson-editor.jpeg";
-import bboxUtil from "../images/bbox-util-kit.jpg";
+import gpxEditor from "../images/gpx-editor.jpeg";
+import greensDrivePano from "../images/greens-drive-pano.png";
+import issTracker from "../images/ISS-tracker.png";
+import kmlEditor from "../images/kml-editor.jpeg";
 import layeredEarth from "../images/layered-earth.jpeg";
+import madoleText from "../images/madole-text.png";
 import mapboxglBoundingBoxViewBoundsComparison from "../images/mapbox-gl-bounding-box-view-bounds-comparison.jpeg";
+import moonBananas from "../images/moon-bananas-ufo.png";
+import mourneWalks from "../images/mourne-walks.jpeg";
 import styles from "../styles/side-projects.module.css";
-import { useMultiIntersectionObserver } from "../hooks/useMultiIntersectionObserver";
-import Head from "next/head";
-import FullPageClouds from "../components/FullPageClouds";
-import { SideProjectLayout } from "../components/Layout/SideProjectLayout";
 
 const data = [
+  {
+    image: moonBananas,
+    title: "Moon Bananas",
+    imageAlt: "Moon Bananas",
+    description:
+      "A cesium experiment where I use the new Cesium Moon Tileset to drop bananas on the moon from a UFO",
+    link: "https://moon-bananas.madole.dev/",
+  },
+  {
+    image: fuelCharts,
+    title: "Fuel Charts",
+    imageAlt: "Fuel Charts",
+    description:
+      "A tool to visualise fuel prices in NSW, Australia. The data is sourced from the Australian government's open data portal.",
+    link: "https://fuel-charts.madole.dev/",
+  },
   {
     image: layeredEarth,
     title: "Layered Earth",

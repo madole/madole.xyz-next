@@ -47,6 +47,7 @@ export default function BlogPost(props: Props): JSX.Element {
           description={(description ?? title) + " | " + "Blog post"}
           imageUrl="https://madole.xyz/bitmoji.png"
           url={`https://madole.xyz/blog/${slug}`}
+          tags={tags}
         />
       </Head>
       <section id="main-content">
