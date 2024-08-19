@@ -117,33 +117,33 @@ To do this, I will use the `viewer.clock.onTick` event to run the callback every
 const startTime = viewer.clock.currentTime;
 
 const onTick = (clock: Cesium.Clock) => {
-const currentTime = clock.currentTime;
+    const currentTime = clock.currentTime;
 
-const elapsedTime = Cesium.JulianDate.secondsDifference(
-    currentTime,
-    startTime
-);
-const t = elapsedTime / ANIMATION_DURATION_S;
+    const elapsedTime = Cesium.JulianDate.secondsDifference(
+        currentTime,
+        startTime
+    );
+    const t = elapsedTime / ANIMATION_DURATION_S;
 
-if (t >= 1.0) {
-    console.log("Animation complete");
-    // Stop the animation
-    viewer.clock.onTick.removeEventListener(onTick);
-    entity.position = new ConstantPositionProperty(endCartesian);
+    if (t >= 1.0) {
+        console.log("Animation complete");
+        // Stop the animation
+        viewer.clock.onTick.removeEventListener(onTick);
+        entity.position = new ConstantPositionProperty(endCartesian);
+        viewer.scene.requestRender();
+        return;
+    }
+
+    const currentCartesian = Cesium.Cartesian3.lerp(
+        startCartesian,
+        endCartesian,
+        t,
+        new Cesium.Cartesian3()
+    );
+
+    entity.position = new ConstantPositionProperty(currentCartesian);
+
     viewer.scene.requestRender();
-    return;
-}
-
-const currentCartesian = Cesium.Cartesian3.lerp(
-    startCartesian,
-    endCartesian,
-    t,
-    new Cesium.Cartesian3()
-);
-
-entity.position = new ConstantPositionProperty(currentCartesian);
-
-viewer.scene.requestRender();
 };
 viewer.clock.onTick.addEventListener(onTick)
 ```
