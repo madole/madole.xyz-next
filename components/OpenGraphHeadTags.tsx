@@ -10,8 +10,6 @@ const OpenGraphHeadTags = (props: Props) => {
   const { title, description, imageUrl, url, tags = [] } = props;
   return (
     <>
-      {/*{ <!-- HTML Meta Tags -->}*/}
-      <title>{title}</title>
       {/*{ <!-- Google / Search Engine Tags -->}*/}
       <meta name="title" content={title} />
       <meta name="description" content={description} />
