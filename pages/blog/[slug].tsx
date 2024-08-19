@@ -3,13 +3,12 @@ import { MDXRemote } from "next-mdx-remote";
 import Head from "next/head";
 import path from "path";
 import "prismjs/themes/prism-tomorrow.css";
-import React from "react";
 import { Layout } from "../../components/Layout/Layout";
+import OpenGraphHeadTags from "../../components/OpenGraphHeadTags";
 import { Tags } from "../../components/Tags";
 import { mdxComponents } from "../../components/mdx/mdx-components";
-import { parseMdxContent } from "../../utils/parseMdxContent";
-import OpenGraphHeadTags from "../../components/OpenGraphHeadTags";
 import { useLocalDate } from "../../hooks/useLocalDate";
+import { parseMdxContent } from "../../utils/parseMdxContent";
 
 interface Props {
   data: {
@@ -19,6 +18,7 @@ interface Props {
       slug: string;
       tags: string[];
       timeToRead: string;
+      description?: string;
     };
     body: string;
   };
@@ -32,7 +32,7 @@ const dateStringOptions = {
 
 export default function BlogPost(props: Props): JSX.Element {
   const {
-    attributes: { title, date, slug, tags, timeToRead },
+    attributes: { title, date, slug, tags, timeToRead, description },
     body,
   } = props.data;
 
@@ -44,7 +44,7 @@ export default function BlogPost(props: Props): JSX.Element {
         <title>{title} | Madole.xyz</title>
         <OpenGraphHeadTags
           title={title}
-          description={title + " | " + "Blog post"}
+          description={(description ?? title) + " | " + "Blog post"}
           imageUrl="https://madole.xyz/bitmoji.png"
           url={`https://madole.xyz/blog/${slug}`}
         />

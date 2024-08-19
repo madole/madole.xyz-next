@@ -1,0 +1,259 @@
+---
+title: 'Dropping bananas on the Moon from a UFO'
+date: '2024-08-18T23:29:20.450Z'
+tags: ['react','cesium','cesiumjs','typescript','gltf','moon landing','space exploration','3D simulation','weekend project','web development','Cesium Ion','Resium','Vite','Netlify','GitHub','UFO']
+slug: 'dropping-bananas-on-the-moon-from-a-ufo'
+description: 'How I tested Cesium’s new Moon tiles with Typescript, React, Resium and CesiumJS'
+---
+
+[Cesium](https://cesium.com/) have released their new [Moon tileset via their Cesium Ion service](https://cesium.com/blog/2024/08/06/introducing-cesium-moon-terrain/)! This is huge as it provides high quality terrain in 3D tile format to their Cesium suite of products. They now have a Moon ellispoid in CesiumJS to compliment this new tileset. 
+
+To give this a whirl, I do what I always do, reach for the low poly bananas and see what I can come up with.
+
+[*See banana-covid-checker, banana-ISS-tracker, all-planes-in-the-sky-but-bananas*](/side-projects)
+
+I set out with the thought of just putting a banana on the moon. 
+
+## The setup
+
+I created a new Vite powered React/Typescript app. I chose Vite due to its easy [Vite Cesium plugin](https://github.com/nshen/vite-plugin-cesium) which manages all the copying of CesiumJS files and assets to the right place when you build it. It used to be such a pain setting this up in Webpack. 
+
+I gave [Resium](https://resium.reearth.io/) a go as it provides a lot of the boilerplate I’d be writing anyway if I was to integrate Cesium into a react app. 
+
+## The Moon
+
+So I set up the Viewer, and the `Cesium3DTileset` component with the new moon tiles. 
+
+```jsx
+<Cesium3DTileset
+  url={IonResource.fromAssetId(2684829)}
+  enableCollision={true}
+/>
+```
+
+As I’m loading in the tileset from Cesium Ion, I can use the `IonResource.fromAssetId()` function to load in the moon tiles. 
+
+I also need to set the ellipsoid to the moon so it doesn’t try to render the moon tiles inside the Earth’s ellipsoid. 
+
+```jsx
+Cesium.Ellipsoid.default = Cesium.Ellipsoid.MOON
+```
+
+With this all set, I fire up the app and explore the moon, it has so many more craters than I was expecting. It’s like an irregular golfball. 
+
+![Moon](/blog-images/moon-bananas-moon-tiles.png)
+
+## The Banana
+
+I had a look at the Resium docs and added a `Model` component, loaded in the GLTF and calculated a modelMatrix to position it somewhere on the surface. 
+
+*A note on hosting, I host my sites on Netlify and it turns out they have a bandwidth limit on their free tier. In the past, projects that load one or two GLTF files chew through that bandwidth, but Github hosts our code for free. What is a GLTF? A coded representation of a 3D model, so I’m trying out hosting my assets in a public assets directory and then pointing the application at the [raw.githubusercontent.com](http://raw.githubusercontent.com) url to load the models from there.* 
+
+So now I have a banana on the moon, I was thinking it might be cool if could move the banana to where ever I clicked. So I set up a `<ScreenSpaceEventHandler>` and a `<ScreenSpaceEvent>` child which is listening to left mouse clicks. 
+
+Upon a click, I use the `viewer.scene.pickPosition` function to turn the clicked `Cartesian2` with `x` and `y` coordinates, into a a `Cartesian3` which includes a `z` value representing the surface of the moon at the `x,y` coordinate. 
+
+### It got tricky
+
+This is where it gets a bit tricky, to set the position, I needed to calculate a new `modelMatrix` for the `Model` and update it. 
+
+I went back to the docks and had a read, what’s the difference between the `Model` component and the `Entity` component with `ModelGraphics` inside it. 
+
+The gist from what I can tell is, use an `Entity` as default and then use a `Model` when you need low level control over the model.
+
+*I know I’m listing Resium components here but they map directly to Cesium APIs so feel free to do the mental mapping if you’re not familiar with Resium*
+
+I went back and switched out the `Model` for an `Entity` and `ModelGraphics` pair and swapped the `modelMatrix` for a much easier to reason about `position` value. 
+
+Now when I’m responding to the click event, I just need to take the resulting `Cartesian3` from the `scene.pickPosition` and create a `new ConstantPositionProperty(cartesian)` and assign it to my entity’s position property. Followed by a call to `viewer.scene.requerstRender()` to update the scene. 
+
+```jsx
+const cartesian = viewer.scene.pickPosition(clickedCartesian)
+entity.position = new ConstantPositionProperty(cartesian);
+viewer.scene.requestRender();
+```
+
+Now I have a banana appearing everywhere I click, nice one. 
+
+![Banana in a crater on the moon](/blog-images/moon-bananas-banana-in-crater.png)
+
+## What if it dropped from the sky?
+
+What if every time I clicked, a banana would fall out of the sky. That might be cool. 
+
+So I set about figuring out the steps. I think a fixed elevation would work fine. Pick a number of meters above the click point and let it drop.
+
+To do that, I need to convert from `Cartesian3` to `Cartographic` so I can set the elevation to the height I want, then convert back to `Cartesian3`. This seems like a bit of faffing but it works fine and I *think* that’s how it’s supposed to be done. 
+
+```jsx
+const endCartesian = viewer.scene.pickPosition(clickedCartesian);
+const tempCartographic = Ellipsoid.MOON.cartesianToCartographic(endCartesian);
+tempCartographic.height = tempCartographic.height + DROP_HEIGHT_M;
+const startCartesian =
+  Ellipsoid.MOON.cartographicToCartesian(tempCartographic);
+```
+
+---
+
+### A note on Cartesians and Cartographics
+
+**Cartesians**
+
+These values represent a point in 3D space referenced from the center of the Ellipsoid (the Moon in this case) along the cartesian axes. They come in `Cartesian2` (`x`, `y`), `Cartesian3` (`x` , `y` , `z`) and even `Cartesian4` (`x`, `y`, `z`, `w`) flavours, where the `w` component is used for perspective transformations and scaling. 
+
+**Cartographics**
+
+These represent a point on a globe, and are specified in `latitude`, `longitude` and `height`. Where `height` is the distance in meters above the ellipsoid. 
+
+They are good for representing positions on the Earth’s surface in a human readable way. 
+
+---
+
+Now I’ve got where I want the banana to start, and where I want it to end. I need to start calculating the animation. 
+
+To do this, I will use the `viewer.clock.onTick` event to run the callback every time the clock ticks. I’ll then `lerp` between the start position and the end position based on the `startTime - currentTime` . I’ll then set the position to be the new position in the animation and request a rerender show it shows. When the animation is complete, I will remove the `onTick` event listener.
+
+```typescript
+const startTime = viewer.clock.currentTime;
+
+const onTick = (clock: Cesium.Clock) => {
+const currentTime = clock.currentTime;
+
+const elapsedTime = Cesium.JulianDate.secondsDifference(
+    currentTime,
+    startTime
+);
+const t = elapsedTime / ANIMATION_DURATION_S;
+
+if (t >= 1.0) {
+    console.log("Animation complete");
+    // Stop the animation
+    viewer.clock.onTick.removeEventListener(onTick);
+    entity.position = new ConstantPositionProperty(endCartesian);
+    viewer.scene.requestRender();
+    return;
+}
+
+const currentCartesian = Cesium.Cartesian3.lerp(
+    startCartesian,
+    endCartesian,
+    t,
+    new Cesium.Cartesian3()
+);
+
+entity.position = new ConstantPositionProperty(currentCartesian);
+
+viewer.scene.requestRender();
+};
+viewer.clock.onTick.addEventListener(onTick)
+```
+
+Now I’ve got an animation of a banana falling from the sky. Something is off with it, I think it’s the linear timing of the animation, I add a simple ease in function. 
+
+## Ease into it
+
+```typescript
+const easeIn = (t: number) => t * t;
+```
+
+This is not an exact analog for gravity, even though we are on the moon, but we’ll go with it for now as it is so simple. It should provide a slow start with a speed up to a terminal velocity. Close enough. 
+
+Here’s the relevant snippet now
+
+```typescript
+const currentCartesian = Cesium.Cartesian3.lerp(
+  startCartesian,
+  endCartesian,
+  easeIn(t),
+  new Cesium.Cartesian3()
+);
+
+entity.position = new ConstantPositionProperty(currentCartesian);
+
+viewer.scene.requestRender();
+```
+
+
+## The UFO
+
+Now I have a banana appearing out of nowhere and animating to the ground upon every mouse click. 
+
+Wouldn’t it be cool if something was dropping the banana? What kind of things would even be capable of dropping a banana on the moon? Lunar Orbiter, Lunar lander, or a UFO. Time to get weird. 
+
+I look up a UFO Model and push it to my assets repo. 
+
+Now I build a new `Entity` and `ModelGraphics` and point it at the new GLTF model. (GLB actually, trying to shave a few megs off the giant file)
+
+I want this UFO to follow my mouse, but at a constant height  that matches the height I’m dropping bananas at. If I can pull this off, I reckon it has a 50% chance of it looking like the UFO is dropping the bananas. Bingo! 
+
+So I set up my `ScreenSpaceEventHandler` and `ScreenSpaceEvent` components, this time listening for a mouse move event, every time the mouse moves, I want the UFO to follow. I create a bit of state using a React `useState` hook and then set the location after picking the position on the ground. 
+
+```tsx
+<ScreenSpaceEventHandler>
+    <ScreenSpaceEvent
+        action={(action) => {
+        if (!cesium.viewer || !("endPosition" in action)) {
+            console.error("No endPosition in action");
+            return;
+        }
+
+        const locationOnMoon = cesium.viewer.scene.pickPosition(
+            action.endPosition
+        );
+
+        if (!locationOnMoon) {
+            console.log("No location on moon");
+            return;
+        }
+
+        setUfoCartesian(locationOnMoon);
+        }}
+        type={ScreenSpaceEventType.MOUSE_MOVE}
+    />
+</ScreenSpaceEventHandler>
+```
+
+From here, I set up a React `useEffect` hook depending on the newly written state. When the `ufoCartesian` state updates, the effect will run and we follow the pattern we developed before to get the start position of the banana. 
+
+```tsx
+ useEffect(() => {
+    if (!cesium.viewer) {
+      console.log("No viewer");
+      return;
+    }
+
+    if (!entityRef.current?.cesiumElement) {
+      console.log("No entity position");
+      return;
+    }
+
+    const cartographic = Ellipsoid.MOON.cartesianToCartographic(ufoCartesian);
+    cartographic.height += DROP_HEIGHT_M;
+    const cartesian = Ellipsoid.MOON.cartographicToCartesian(cartographic);
+
+    entityRef.current.cesiumElement.position = new ConstantPositionProperty(
+      cartesian
+    );
+
+    cesium.viewer.scene.requestRender();
+}, [cesium, ufoCartesian]);
+```
+
+This does a bit of null checking, converts the `Cartesian3`to `Cartographic` sets the `height` property then converts back to `Cartesian3` so it can be set as the position property and the scene rerendered. 
+
+A quick check in the browser and BINGO, the odds of it looking like a UFO dropping a banana shot up to 100%! 
+
+![UFO Dropping a banana](/blog-images/moon-bananas-ufo.png)
+
+That’s where I’m at for now, next steps. 
+
+- Keep the bananas around when they’re dropped.
+- Add some sound effects to the UFO and banana drop
+
+## Weekend Project
+
+This was a fun weekend hack to try out the Cesium Moon tileset. It’s really cool that you can now many of the cool things we could do with Cesium on Earth, but on the moon. 
+
+I can’t want to see some of the creative apps that are built off the back of this, not to mention the usefulness in industry for planning or simulating actual moon missions. Nice work Cesium team!
+
+You can go check it out at [https://moon-bananas.madole.dev](https://moon-bananas.madole.dev).

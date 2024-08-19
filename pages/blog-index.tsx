@@ -1,12 +1,11 @@
-import React from "react";
-import * as fs from "fs";
-import path from "path";
 import frontmatter from "front-matter";
-import Link from "next/link";
-import { IndexListItem } from "../components/IndexListItem";
-import readingTime from "reading-time";
-import { Layout } from "../components/Layout/Layout";
+import * as fs from "fs";
 import Head from "next/head";
+import path from "path";
+import React from "react";
+import readingTime from "reading-time";
+import { IndexListItem } from "../components/IndexListItem";
+import { Layout } from "../components/Layout/Layout";
 import RssIcon from "../components/RSSIcon";
 
 interface Post {
@@ -68,7 +67,7 @@ export const getStaticProps = () => {
       // use frontmatter to read the titles of each blog post
       const file = fs.readFileSync(
         path.join(process.cwd(), "content/blog", filename),
-        "utf8",
+        "utf8"
       );
       const data = frontmatter<Post>(file);
       const timeToRead = readingTime(data.body);
