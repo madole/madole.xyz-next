@@ -115,7 +115,7 @@ const startCartesian =
 
 Now I’ve got where I want the banana to start, and where I want it to end. I need to start calculating the animation. 
 
-To do this, I will use the `viewer.clock.onTick` event to run the callback every time the clock ticks. I’ll then `lerp` between the start position and the end position based on the `currentTime - startTime` . I’ll then set the position to be the new position in the animation and request a rerender show it shows. When the animation is complete, I will remove the `onTick` event listener.
+To do this, I will use the `viewer.clock.onTick` event to run the callback every time the clock ticks. I’ll then `lerp` between the start position and the end position based on the `currentTime - startTime` . I’ll then set the position to be the new position in the animation and request a rerender so it shows. When the animation is complete, I will remove the `onTick` event listener.
 
 ```typescript
 const startTime = viewer.clock.currentTime;
