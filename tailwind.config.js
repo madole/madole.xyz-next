@@ -40,6 +40,14 @@ module.exports = {
       "almost-full": "95%",
       full: "100%",
     },
+    gridTemplateColumns: {
+      // Simple 16 column grid
+      16: "repeat(16, minmax(0, 1fr))",
+
+      // Complex site-specific column configuration
+      layout: "1fr minmax(100ch, 1fr) 1fr",
+      mobile: "repeat(auto-fit, minmax(200px, auto))",
+    },
   },
   plugins: [require("@tailwindcss/typography")],
 };

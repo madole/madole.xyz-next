@@ -54,7 +54,7 @@ export default function BlogPost(props: Props): JSX.Element {
         <h1 className="prose pb-1 text-2xl md:text-4xl font-semibold text-center">
           {title}
         </h1>
-        <div className="prose pt-2 font-light">
+        <div className="prose pt-2 font-light text-center">
           {postDate} &mdash; {timeToRead}
         </div>
         <article className="prose prose-slate break-word md:break-normal w-full">

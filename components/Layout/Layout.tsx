@@ -19,13 +19,21 @@ export const Layout = (props: {
       <Navigation />
       <div
         className={`
-          flex justify-center p-8 md:p-4 w-full md:max-w-[100ch] md:rounded my-6 
-          [&>section]:max-w-[min(80ch,100%)] 
+          grid grid-cols-mobile lg:grid-cols-layout gap-4
+          [&>section]max-w-[min(80ch,100%)]
+          [&>section]:lg:col-start-2
+          [&>section]:lg:col-end-2
           [&>section]:flex
           [&>section]:flex-col
-          ${props.isIndexPage ? "[&>section]:items-start" : "[&>section]:items-center"}
+          [&>section]:justify-center
+          [&>section]:items-center
           [&>section]:gap-4
-          [&>section>h1]:py-4 bg-white lg:shadow-lg"}`}
+          [&>section]:bg-white
+          [&>section]:lg:rounded-lg
+          [&>section]:p-8
+          [&>section]:mt-6
+          ${props.isIndexPage ? "[&>section]:items-start" : "[&>section]:items-center"}
+          `}
       >
         {children}
       </div>

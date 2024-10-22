@@ -1,12 +1,10 @@
-import React from "react";
-import Head from "next/head";
+import frontmatter from "front-matter";
 import fs from "fs";
 import path from "path";
-import frontmatter from "front-matter";
+import React from "react";
 import readingTime from "reading-time";
-import { useRouter } from "next/router";
-import { Layout } from "../components/Layout/Layout";
 import { IndexListItem } from "../components/IndexListItem";
+import { Layout } from "../components/Layout/Layout";
 
 export interface TodayILearnedProps {
   postsMetadata: {
@@ -32,8 +30,8 @@ const TodayILearned: React.FC<TodayILearnedProps> = (props) => {
             date={post.date}
             timeToRead={post.timeToRead}
             slug={
-              "today-i-learned/" + post.slug ??
-              `${post.title.split(" ").join("-")}`
+              "today-i-learned/" +
+              (post.slug ?? `${post.title.split(" ").join("-")}`)
             }
             key={post.title}
           />
@@ -50,14 +48,14 @@ export default TodayILearned;
 
 export function getStaticProps() {
   const filenames = fs.readdirSync(
-    path.join(process.cwd(), "content/today-i-learned"),
+    path.join(process.cwd(), "content/today-i-learned")
   );
   const postsMetadata = filenames
     .map((filename) => {
       // use frontmatter to read the titles of each blog post
       const file = fs.readFileSync(
         path.join(process.cwd(), "content/today-i-learned", filename),
-        "utf8",
+        "utf8"
       );
       const data = frontmatter<{
         title: string;

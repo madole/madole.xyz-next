@@ -11,6 +11,7 @@ import OpenGraphHeadTags from "../../components/OpenGraphHeadTags";
 import { useLocalDate } from "../../hooks/useLocalDate";
 import { parseMdxContent } from "../../utils/parseMdxContent";
 
+
 export interface TodayILearnedProps extends PostAttributes {
   data: {
     attributes: PostAttributes;
@@ -39,12 +40,12 @@ const TodayILearned: React.FC<TodayILearnedProps> = (props) => {
           url={`https://madole.xyz/today-i-learned/${slug}`}
         />
       </Head>
-      <section>
-        <h1 className="prose text-3xl font-semibold text-center">{title}</h1>
-        <div className="prose font-light">
+      <section id="main-content">
+        <h1 className="prose-h1 text-center font-semibold text-3xl">{title}</h1>
+        <div className="prose font-light text-center">
           {postDate} &mdash; {timeToRead}
         </div>
-        <article className="prose mt-10 break-words">
+        <article className="prose prose-slate break-word md:break-normal w-full">
           {/* @ts-ignore */}
           <MDXRemote {...body} components={mdxComponents} />
         </article>
