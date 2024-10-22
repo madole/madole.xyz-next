@@ -34,7 +34,7 @@ const BlogIndex: React.FC<BlogIndexProps> = (props) => {
         <meta name="description" content="Blog index for Madole.xyz" />
       </Head>
       <section id="main-content">
-        <h1 className="prose text-2xl font-semibold text-center lg:text-4xl flex justify-center items-center">
+        <h1 className="prose text-2xl font-semibold text-center lg:text-4xl flex justify-center items-center  w-full">
           Latest Blog Posts
           <a href="feed://madole.xyz/rss.atom" className="pl-3" title="RSS">
             <RssIcon />

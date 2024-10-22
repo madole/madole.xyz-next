@@ -26,8 +26,7 @@ export const Layout = (props: {
           [&>section]:flex
           [&>section]:flex-col
           [&>section]:justify-center
-          [&>section]:items-center
-          [&>section]:gap-4
+          [&>section]:gap-6
           [&>section]:bg-white
           [&>section]:lg:rounded-lg
           [&>section]:p-8

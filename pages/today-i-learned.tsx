@@ -21,7 +21,7 @@ const TodayILearned: React.FC<TodayILearnedProps> = (props) => {
   return (
     <Layout isIndexPage>
       <section id="main-content">
-        <h1 className="prose text-2xl font-semibold text-center lg:text-4xl">
+        <h1 className="prose text-2xl font-semibold text-center lg:text-4xl w-full">
           Today I learned
         </h1>
         {postsMetadata.map((post) => (

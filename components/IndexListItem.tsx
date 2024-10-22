@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { Tags } from "./Tags";
 import { useLocalDate } from "../hooks/useLocalDate";
+import { Tags } from "./Tags";
 
 interface Props {
   title: string;
@@ -25,7 +25,7 @@ export function IndexListItem(props: Props): JSX.Element {
   if (!slug) throw new Error("No slug provided for " + title);
 
   return (
-    <div className="flex flex-col py-4">
+    <div className="flex flex-col">
       <Link
         href={addSlashPrefix(slug)}
         className="hover:text-white hover:bg-blue-400 prose pb-2 text-lg lg:text-3xl md:font-light prose-a:no-underline md:p-1 rounded"
