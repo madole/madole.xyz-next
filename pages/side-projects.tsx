@@ -19,9 +19,18 @@ import madoleText from "../images/madole-text.png";
 import mapboxglBoundingBoxViewBoundsComparison from "../images/mapbox-gl-bounding-box-view-bounds-comparison.jpeg";
 import moonBananas from "../images/moon-bananas-ufo.png";
 import mourneWalks from "../images/mourne-walks.jpeg";
+import recipeDeguffer from "../images/recipe-deguffer.jpg";
 import styles from "../styles/side-projects.module.css";
 
 const data = [
+  {
+    image: recipeDeguffer,
+    title: "Recipe Deguffer",
+    imageAlt: "Recipe Deguffer",
+    description:
+      "Transform any recipe website into a clean, easy-to-read format. This is a Deno Fresh project styled with Tailwind CSS.",
+    link: "https://recipe-deguffer.madole.fun/",
+  },
   {
     image: moonBananas,
     title: "Moon Bananas",
