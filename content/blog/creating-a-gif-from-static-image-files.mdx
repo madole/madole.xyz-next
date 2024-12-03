@@ -1,0 +1,32 @@
+---
+title: "Creating a gif from static image files"
+date: "2024-12-03T02:42:53.919Z"
+tags: ["command-line", "imagemagick", "gif"]
+slug: "creating-a-gif-from-static-image-files"
+---
+
+Today I wanted to create a gif of some weather imagery I exported from QGIS. I was able to use the timeline functionality in QGIS to export individual static frames for each timestamp of weather data I had.
+
+For example, I've got a bunch of images like the ones below
+
+![Map screenshot of Australia with thunderstorm forecast overlaid on it - one
+  of two](/blog-images/creating-a-gif/0000.jpg)
+
+![Map screenshot of Australia with thunderstorm forecast overlaid on it - two of
+two](/blog-images/creating-a-gif/0045.jpg) To take these and turn them into an
+animated gif on a Mac, I must first install imagemagick.
+
+```bash
+brew install imagemagick
+
+```
+
+Then I can invoke imagemagick's convert function and tell it all the images I want to include in the animation and an output file.
+
+```bash
+magick *.png animation.gif
+```
+
+And you end up with something like
+
+![Animation of thunderstorm forecasts moving across Austrlia](/blog-images/creating-a-gif/out2-opt.gif)
