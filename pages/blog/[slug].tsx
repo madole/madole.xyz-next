@@ -57,7 +57,7 @@ export default function BlogPost(props: Props): JSX.Element {
         <div className="prose pt-2 font-light text-center">
           {postDate} &mdash; {timeToRead}
         </div>
-        <article className="prose prose-slate break-word md:break-normal w-full">
+        <article className="prose prose-slate break-words md:break-normal w-full text-pretty">
           {/* @ts-ignore */}
           <MDXRemote {...body} />
         </article>

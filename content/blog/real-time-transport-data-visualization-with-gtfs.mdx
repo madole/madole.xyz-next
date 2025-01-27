@@ -1,0 +1,210 @@
+---
+title: "Real-time Transport Data Visualization with GTFS"
+date: "2025-01-27T09:13:04.936Z"
+tags: ["gtfs", "realtime", "javascript", "protobuf", "typescript"]
+slug: "real-time-transport-data-visualization-with-gtfs"
+---
+
+For real-time transport data visualization, there is a standard called GTFS built on top of Protocol Buffers. GTFS consists of two main parts: GTFS Schedule and GTFS Realtime.
+
+## **GTFS Schedule**
+
+GTFS Schedule is a standard format for static public transportation information. It tells you, for a specific stop, which buses or trains will be stopping next and when. It can also tell you about specific routes, for example, all the stops that BUS 203x does and at what times.
+
+> GTFS Schedule is a feed specification that defines a common format for static public transportation information. It is composed of a collection of simple files, mostly text files (.txt) that are contained in a single ZIP file.
+>
+> Each file describes a particular aspect of transit information such as stops, routes, trips, etc. At its most basic form, a GTFS Schedule dataset is composed of 7 files:
+>
+> - `agency.txt`
+> - `routes.txt`
+> - `trips.txt`
+> - `stops.txt`
+> - `stop_times.txt`
+> - `calendar.txt`
+> - `calendar_dates.txt`
+>
+> The source of truth for all GTFS Schedule files is the official [GTFS Schedule Reference](https://gtfs.org/documentation/schedule/reference), which provides detailed information on the requirements for all information elements in each file that composes a GTFS Schedule dataset.
+>
+> — [https://gtfs.org/documentation/schedule/reference](https://gtfs.org/documentation/schedule/reference)
+
+## **GTFS Realtime**
+
+GTFS Realtime is an extension to the GTFS standard that provides up-to-the-minute information about public transportation systems. This is what powers the live tracking features in apps like Google Maps, allowing you to see exactly where your bus is and when it's expected to arrive. The specification encodes a variety of real-time data, including the location, speed, and direction of vehicles. It can even provide information on how crowded a bus is using a feature called OccupancyStatus. This real-time data helps riders plan their journeys more effectively, avoid unnecessary waiting, and have a smoother travel experience overall.
+
+> GTFS Realtime is a feed specification that allows public transportation agencies to provide up-to-date information about current arrival and departure times, service alerts, and vehicle position, allowing users to smoothly plan their trips.
+>
+> The specification currently supports the following types of information:
+>
+> - Trip updates - delays, cancellations, changed routes
+> - Service alerts - stop moved, unforeseen events affecting a station, route or the entire network
+> - Vehicle positions - information about the vehicles including location and congestion level
+>
+> — [https://gtfs.org/documentation/realtime/reference](https://gtfs.org/documentation/realtime/reference)
+
+>
+
+## **Accessing the Data**
+
+Many countries and states make their public transport data available through open web APIs. For example, Transport for NSW provides real-time data via their Open Data Hub: [https://opendata.transport.nsw.gov.au/](https://opendata.transport.nsw.gov.au/). After signing up and generating an API key, you can use it in the header of your requests to access the GTFS Realtime data. The specific endpoint for vehicle positions is: `https://api.transport.nsw.gov.au/v2/gtfs/vehiclepos/`.
+
+To work with this data, you'll need to decode it from its protobuf format into JSON. There are two primary ways to do this:
+
+**Generating a Parser (The Hard Way)**
+
+You can manually create a JavaScript parser for the GTFS Realtime protobuf schema. Here's how:
+
+- Download the protobuf specification: [https://github.com/google/transit/blob/master/gtfs-realtime/proto/gtfs-realtime.proto](https://github.com/google/transit/blob/master/gtfs-realtime/proto/gtfs-realtime.proto)
+- Use the `protobufjs` CLI tool to generate a parser:
+
+```bash
+$ npm install -g protobufjs-cli
+
+$ pbjs gtfs-realtime.proto -t static-module -o gtfs-realtime.js -w es6
+```
+
+Here's a breakdown of the flags:
+
+- `-t static-module`: Builds the code as a JavaScript module.
+- `-o gtfs-realtime.js`: Specifies the output filename.
+- `-w es6`: Wraps the code in ES6 module syntax.
+
+**2. Using Pre-built Bindings (The Easy Way)**
+
+For a simpler approach, install the `gtfs-realtime-bindings` package, which provides a pre-generated parser:
+
+```bash
+$ npm install gtfs-realtime-bindings
+```
+
+You can find more information about this package here: [https://gtfs.org/documentation/realtime/language-bindings/nodejs/](https://gtfs.org/documentation/realtime/language-bindings/nodejs/)
+
+## Parsing the Protobuf
+
+To decode the protobuf data and convert it into JSON, we'll use the protobufjs library and the parser we generated (or downloaded from gtfs-realtime-bindings).
+
+First, make sure you have protobufjs installed:
+
+```bash
+$ npm install protobufjs
+```
+
+Now, let's look at some of the key message types defined in the GTFS Realtime protobuf schema:
+
+- **FeedMessage**: The root message containing the entire real-time feed.
+- **FeedHeader**: Contains metadata about the feed, such as the version and timestamp.
+- **FeedEntity**: Represents a single entity within the feed (e.g., a trip update, vehicle position, or alert).
+- **TripUpdate**: Provides information about updates to a trip's schedule (delays, cancellations, etc.).
+- **VehiclePosition**: Contains information about a vehicle's current position.
+  Alert: Relays information about service alerts.
+
+I’ll switch to a code example with comments here to show what we need to do next
+
+```jsx
+import gtfs from "./gtfs-realtime.js";
+
+const { FeedMessage } = gtfs.transit_realtime;
+
+// Fetch the GTFS Realtime data for vehicle positions from the NSW Transport API.
+// Replace `[YOUR_API_KEY]` with your actual API key, and
+// `BUS_ENDPOINT` with the specific endpoint for the bus route you want to track
+// (you can find this in the NSW Transport API documentation).
+const response = await fetch(
+  `https://api.transport.nsw.gov.au/v1/gtfs/vehiclepos/${BUS_ENDPOINT}`,
+  {
+    headers: {
+      Authorization: "apikey [YOUR_API_KEY]",
+    },
+  }
+);
+
+if (!response.ok) {
+  const errorMessage = await response.text();
+  throw new Error("Failed to fetch GTFS Realtime data: " + errorMessage);
+}
+
+// Read the response as an ArrayBuffer.
+const buffer = await response.arrayBuffer();
+
+// Decode the protobuf data using the FeedMessage decoder.
+const feedMessage = FeedMessage.decode(new Uint8Array(buffer));
+
+console.log(feedMessage);
+/*
+  This will output a JavaScript object representing the parsed GTFS Realtime data, 
+  containing information about vehicle positions, trip updates, and service alerts.
+  Here's an example of what the output might look like:
+
+  FeedMessage {
+    entity: [
+      FeedEntity {
+        id: '0/2025-01-27T00:07:04Z/6025MO',
+        vehicle: [VehiclePosition] 
+      }
+    ],
+    header: FeedHeader {
+      gtfsRealtimeVersion: '1.0',
+      incrementality: 0,
+      timestamp: Long { low: 1737936429, high: 0, unsigned: true }
+    }
+  }
+  ... 
+*/
+```
+
+## **Converting to GeoJSON**
+
+To visualize the real-time vehicle positions on a map, we need to convert the data into GeoJSON format. GeoJSON is a standard format for representing geographical features, making it ideal for use with mapping libraries.
+
+Here's a function that takes the parsed GTFS Realtime data and converts it into a GeoJSON `FeatureCollection`:
+
+```tsx
+import { Feature, FeatureCollection, Point } from "geojson";
+import gtfs from "gtfs-realtime-bindings";
+
+/**
+ * Parses a GTFS Realtime FeedMessage and converts it into a GeoJSON FeatureCollection.
+ *
+ * @param feedMessage The GTFS Realtime FeedMessage to parse.
+ * @returns A GeoJSON FeatureCollection representing the vehicle positions.
+ */
+export const parseFeedMessageToGeojson = (
+  feedMessage: gtfs.transit_realtime.FeedMessage
+): FeatureCollection<Point, gtfs.transit_realtime.IFeedEntity> => {
+  // Map over the entities in the FeedMessage.
+  const features = feedMessage.entity
+    .map((entity): Feature<Point, gtfs.transit_realtime.IFeedEntity> | null => {
+      // Check if the entity has vehicle position data.
+      if (!entity.vehicle?.position) {
+        return null;
+      }
+
+      // Create a GeoJSON Point geometry from the longitude and latitude.
+      const lngLat = [
+        entity.vehicle.position.longitude,
+        entity.vehicle.position.latitude,
+      ];
+
+      // Create a GeoJSON Feature with the Point geometry and the entity properties.
+      return {
+        type: "Feature",
+        geometry: {
+          type: "Point",
+          coordinates: lngLat,
+        },
+        properties: entity,
+      };
+    })
+    // Filter out any null values (entities without vehicle positions).
+    .filter(Boolean);
+
+  // Return a GeoJSON FeatureCollection.
+  return {
+    type: "FeatureCollection",
+    features: features,
+  };
+};
+```
+
+Now we can plot these on a map as a GeoJSON layer, poll for new data occasionally and we've got ourselves a live feed of the public transport options in NSW.
+
+![image.png](/blog-images/gtfs.png)

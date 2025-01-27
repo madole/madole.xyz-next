@@ -4,6 +4,7 @@ import Code from "./Code";
 import Img from "./Img";
 import Kbd from "./Kbd";
 import MeetTheTeamBackup from "./MeetTheTeamBackup";
+import Pre from "./Pre";
 import RedText from "./RedText";
 
 export const mdxComponents: import("mdx/types").MDXComponents = {
@@ -14,6 +15,7 @@ export const mdxComponents: import("mdx/types").MDXComponents = {
   Citation,
   Kbd,
   Img,
+  pre: ({ children, ...props }) => <Pre {...props}>{children}</Pre>,
   // p: Paragraph,
   // h1: H1,
   // h2: H2,
