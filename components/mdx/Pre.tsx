@@ -1,14 +1,15 @@
 import { ReactNode } from "react";
+import { twMerge } from "tailwind-merge";
 
 type Props = {
   children: ReactNode;
 } & JSX.IntrinsicElements["pre"];
 
-const Pre = ({ children, ...props }: Props) => {
+const Pre = ({ children, className, ...props }: Props) => {
   return (
     <pre
-      className="text-sm md:w-[120%] md:-translate-x-[10%] text-wrap whitespace-wrap"
       {...props}
+      className={twMerge(className, "!text-xs text-wrap whitespace-wrap")}
     >
       {children}
     </pre>
