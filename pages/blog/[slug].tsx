@@ -1,12 +1,12 @@
 import fs from "fs";
 import { MDXRemote } from "next-mdx-remote";
+import { serialize } from "next-mdx-remote/serialize";
 import Head from "next/head";
 import path from "path";
 import "prismjs/themes/prism-tomorrow.css";
 import { Layout } from "../../components/Layout/Layout";
 import OpenGraphHeadTags from "../../components/OpenGraphHeadTags";
 import { Tags } from "../../components/Tags";
-import { mdxComponents } from "../../components/mdx/mdx-components";
 import { useLocalDate } from "../../hooks/useLocalDate";
 import { parseMdxContent } from "../../utils/parseMdxContent";
 
@@ -59,7 +59,7 @@ export default function BlogPost(props: Props): JSX.Element {
         </div>
         <article className="prose prose-slate break-word md:break-normal w-full">
           {/* @ts-ignore */}
-          <MDXRemote {...body} components={mdxComponents} />
+          <MDXRemote {...body} />
         </article>
         <div className="m-6 flex justify-center">
           <Tags tags={tags} />
@@ -89,8 +89,8 @@ export async function getStaticProps({ params }: { params: { slug: string } }) {
   const slug = params.slug + ".mdx";
   const content = fs.readFileSync(
     path.join(process.cwd(), "content/blog", slug),
-    "utf8",
+    "utf8"
   );
-  const data = await parseMdxContent<PostAttributes>(content);
+  const data = await parseMdxContent<PostAttributes>(content, serialize);
   return { props: { data } };
 }

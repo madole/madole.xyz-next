@@ -1,8 +1,10 @@
+import { MDXProvider } from "@mdx-js/react";
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import Script from "next/script";
 import { useEffect } from "react";
 import * as gtag from "../components/gtag";
+import { mdxComponents } from "../components/mdx/mdx-components";
 import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -38,7 +40,9 @@ function MyApp({ Component, pageProps }: AppProps) {
           `,
         }}
       />
-      <Component {...pageProps} />
+      <MDXProvider components={mdxComponents}>
+        <Component {...pageProps} />
+      </MDXProvider>
     </>
   );
 }

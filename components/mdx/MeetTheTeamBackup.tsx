@@ -1,8 +1,4 @@
-import React from "react";
-
-export interface MeetTheTeamBackupProps {}
-
-const MeetTheTeamBackup: React.FC<MeetTheTeamBackupProps> = (props) => {
+const MeetTheTeamBackup = () => {
   return (
     <details>
       <summary>

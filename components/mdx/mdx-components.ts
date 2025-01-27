@@ -1,17 +1,19 @@
-import RedText from "./RedText";
-import Code from "./Code";
-import MeetTheTeamBackup from "./MeetTheTeamBackup";
-import ClickyThing from "./ClickyThing";
 import Citation from "./Citation";
+import ClickyThing from "./ClickyThing";
+import Code from "./Code";
+import Img from "./Img";
 import Kbd from "./Kbd";
+import MeetTheTeamBackup from "./MeetTheTeamBackup";
+import RedText from "./RedText";
 
-export const mdxComponents = {
+export const mdxComponents: import("mdx/types").MDXComponents = {
   RedText,
   ClickyThing,
   inlineCode: Code,
   MeetTheTeamBackup,
   Citation,
-  kbd: Kbd,
+  Kbd,
+  Img,
   // p: Paragraph,
   // h1: H1,
   // h2: H2,

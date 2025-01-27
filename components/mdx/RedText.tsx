@@ -4,7 +4,7 @@ export interface RedTextProps {
   children: React.ReactNode;
 }
 
-const RedText: React.FC<RedTextProps> = (props) => {
+const RedText = (props: RedTextProps) => {
   return (
     <div className="border-red-500 border-2 rounded-lg p-4 italic text-red-500">
       {props.children}

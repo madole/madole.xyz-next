@@ -4,7 +4,7 @@ export interface CitationProps {
   children: React.ReactNode;
 }
 
-const Citation: React.FC<CitationProps> = (props) => {
+const Citation = (props: CitationProps) => {
   return <cite className="prose">-- {props.children}</cite>;
 };
 

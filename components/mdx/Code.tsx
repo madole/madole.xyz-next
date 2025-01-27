@@ -7,7 +7,7 @@ export interface CodeProps {
   style?: React.CSSProperties;
 }
 
-const Code: React.FC<CodeProps> = (props) => {
+const Code = (props: CodeProps) => {
   const { children, ...rest } = props;
   return (
     <code className="bg-sky-200 p-1 mx-1 rounded font-mono" {...rest}>

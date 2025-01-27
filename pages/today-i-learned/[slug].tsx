@@ -1,5 +1,6 @@
 import fs from "fs";
 import { MDXRemote } from "next-mdx-remote";
+import { serialize } from "next-mdx-remote/serialize";
 import Head from "next/head";
 import Link from "next/link";
 import path from "path";
@@ -10,7 +11,6 @@ import { mdxComponents } from "../../components/mdx/mdx-components";
 import OpenGraphHeadTags from "../../components/OpenGraphHeadTags";
 import { useLocalDate } from "../../hooks/useLocalDate";
 import { parseMdxContent } from "../../utils/parseMdxContent";
-
 
 export interface TodayILearnedProps extends PostAttributes {
   data: {
@@ -101,6 +101,6 @@ export async function getStaticProps({ params }: { params: { slug: string } }) {
     path.join(process.cwd(), "content/today-i-learned", slug),
     "utf8"
   );
-  const data = await parseMdxContent<PostAttributes>(content);
+  const data = await parseMdxContent<PostAttributes>(content, serialize);
   return { props: { data, slug: params.slug } };
 }
