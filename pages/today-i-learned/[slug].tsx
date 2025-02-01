@@ -22,7 +22,7 @@ export interface TodayILearnedProps extends PostAttributes {
 
 const TodayILearned: React.FC<TodayILearnedProps> = (props) => {
   const {
-    attributes: { title, date, url, timeToRead },
+    attributes: { title, date, url, timeToRead, og_image },
     body,
   } = props.data;
   const { slug } = props;
@@ -36,7 +36,7 @@ const TodayILearned: React.FC<TodayILearnedProps> = (props) => {
         <OpenGraphHeadTags
           title={`TIL ${title}`}
           description={title}
-          imageUrl="https://madole.xyz/bitmoji.png"
+          imageUrl={og_image ?? "https://madole.xyz/bitmoji.png"}
           url={`https://madole.xyz/today-i-learned/${slug}`}
         />
       </Head>
@@ -93,6 +93,7 @@ interface PostAttributes {
   date: string;
   body: string;
   url: string;
+  og_image?: string;
 }
 
 export async function getStaticProps({ params }: { params: { slug: string } }) {

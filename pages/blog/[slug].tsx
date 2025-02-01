@@ -19,6 +19,7 @@ interface Props {
       tags: string[];
       timeToRead: string;
       description?: string;
+      og_image?: string;
     };
     body: string;
   };
@@ -32,7 +33,7 @@ const dateStringOptions = {
 
 export default function BlogPost(props: Props): JSX.Element {
   const {
-    attributes: { title, date, slug, tags, timeToRead, description },
+    attributes: { title, date, slug, tags, timeToRead, description, og_image },
     body,
   } = props.data;
 
@@ -45,7 +46,7 @@ export default function BlogPost(props: Props): JSX.Element {
         <OpenGraphHeadTags
           title={title}
           description={(description ?? title) + " | " + "Blog post"}
-          imageUrl="https://madole.xyz/bitmoji.png"
+          imageUrl={og_image ?? "https://madole.xyz/bitmoji.png"}
           url={`https://madole.xyz/blog/${slug}`}
           tags={tags}
         />
