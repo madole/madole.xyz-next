@@ -36,7 +36,11 @@ const TodayILearned: React.FC<TodayILearnedProps> = (props) => {
         <OpenGraphHeadTags
           title={`TIL ${title}`}
           description={title}
-          imageUrl={og_image ?? "https://madole.xyz/bitmoji.png"}
+          imageUrl={
+            og_image
+              ? `${window.location.origin}${og_image}`
+              : "https://madole.xyz/bitmoji.png"
+          }
           url={`https://madole.xyz/today-i-learned/${slug}`}
         />
       </Head>
