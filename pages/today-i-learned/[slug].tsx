@@ -38,7 +38,7 @@ const TodayILearned: React.FC<TodayILearnedProps> = (props) => {
           description={title}
           imageUrl={
             og_image
-              ? `${window.location.origin}${og_image}`
+              ? `https://madole.xyz/${og_image}`
               : "https://madole.xyz/bitmoji.png"
           }
           url={`https://madole.xyz/today-i-learned/${slug}`}

@@ -48,7 +48,7 @@ export default function BlogPost(props: Props): JSX.Element {
           description={(description ?? title) + " | " + "Blog post"}
           imageUrl={
             og_image
-              ? `${window.location.origin}${og_image}`
+              ? `https://madole.xyz/${og_image}`
               : "https://madole.xyz/bitmoji.png"
           }
           url={`https://madole.xyz/blog/${slug}`}
