@@ -7,7 +7,7 @@ export interface ParagraphProps {
 const Paragraph: React.FC<ParagraphProps> = (props) => {
   const { children, ...rest } = props;
   return (
-    <p {...rest} className="my-4">
+    <p {...rest} className="has-[img]:flex has-[img]:justify-center">
       {children}
     </p>
   );

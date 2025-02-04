@@ -1,5 +1,5 @@
-import inquirer from "inquirer";
 import fs from "fs";
+import inquirer from "inquirer";
 import path from "path";
 
 const blogQuestions = [
@@ -55,8 +55,8 @@ slug: '${slug}'
       console.log(
         `Blog post created at file://${path.join(
           import.meta.dirname,
-          `../content/blog/${slug}.mdx`,
-        )}`,
+          `../content/blog/${slug}.mdx`
+        )}`
       );
     });
   } else if (type.type === "TIL") {
@@ -64,7 +64,11 @@ slug: '${slug}'
 
     const date = new Date().toISOString();
     // make a slug from lowercase and replace spaces with dashes
-    const slug = title.trim().toLowerCase().replace(/\s/g, "-");
+    const slug = title
+      .trim()
+      .toLowerCase()
+      .replace(/\s/g, "-")
+      .replace("?", "");
     const frontmatter = `---
 title: '${title}'
 date: '${date}'
@@ -77,8 +81,8 @@ slug: '${slug}'
       console.log(
         `Today I learned post created at file://${path.join(
           import.meta.dirname,
-          `../content/today-i-learned/${slug}.md`,
-        )}`,
+          `../content/today-i-learned/${slug}.md`
+        )}`
       );
     });
   }
