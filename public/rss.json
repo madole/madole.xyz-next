@@ -11,9 +11,9 @@
     },
     "items": [
         {
-            "id": "https://madole.xyz/blog/efficiently-querying-large-geospatial-datasets-with-duckdb,-geoparquet-and-s3",
+            "id": "https://madole.xyz/blog/efficiently-querying-large-geospatial-datasets-with-duckdb-geoparquet-and-s3",
             "content_html": "<p>How do you query millions of Australian building footprints – a 4.3GB GeoJSON beast from the Microsoft Global ML Building Footprints dataset – efficiently from a tiny AWS Lambda function? This isn&#39;t just an academic exercise; it&#39;s critical for urban </p>\n",
-            "url": "https://madole.xyz/blog/efficiently-querying-large-geospatial-datasets-with-duckdb,-geoparquet-and-s3",
+            "url": "https://madole.xyz/blog/efficiently-querying-large-geospatial-datasets-with-duckdb-geoparquet-and-s3",
             "title": "Efficiently querying large geospatial datasets with DuckDB, GeoParquet and S3",
             "summary": "Reading time: 9 min read",
             "date_modified": "2025-06-05T11:32:29.353Z",
