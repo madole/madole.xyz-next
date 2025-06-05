@@ -1,0 +1,231 @@
+---
+title: 'Efficiently querying large geospatial datasets with DuckDB, GeoParquet and S3'
+date: '2025-06-05T11:32:29.353Z'
+tags: ['duckdb','geoparquet','geospatial','s3','byte-range requests','efficient','geojson','data']
+slug: 'efficiently-querying-large-geospatial-datasets-with-duckdb,-geoparquet-and-s3'
+---
+
+How do you query millions of Australian building footprints – a 4.3GB GeoJSON beast from the Microsoft Global ML Building Footprints dataset – efficiently from a tiny AWS Lambda function? This isn't just an academic exercise; it's critical for urban planning and disaster response. We need to find buildings within a polygon without memory explosions. Step one: Is there a better, smaller format than GeoJSON? Absolutely.
+
+| Type           | Size |
+| -------------- | ---- |
+| ESRI Shapefile | 1.7G |
+| FlatGeobuff    | 2.4G |
+| GeoPackage     | 2.7G |
+| GeoParquet     | 1.3G |
+*Comparing the size of the same dataset across different file types*
+
+While GeoParquet is the most compact here, even 1.3GB is too large to load entirely into memory for a typical Lambda function before querying
+
+The big question, can I leverage S3's HTTP byte-range requests and some metadata to select only the portion of the dataset I’m interested in?  
+
+GeoJSON, Geopackages & Shapefiles are ruled out due to their lack of internal spatial indexing or metadata suitable for partial reads over HTTP. 
+
+Byte-range requests can be achieved via GDAL for FlatGeobufs, and for Geoparquet files, we can use DuckDB with some extensions to make SQL queries against the dataset. 
+
+## What is DuckDB? 
+> DuckDB is an in-process SQL database management system designed for analytical workloads. Unlike traditional client-server databases, it runs directly within your application, eliminating the overhead of inter-process communication. This architecture makes it incredibly fast for querying and analyzing large datasets locally, offering a powerful and portable solution for data exploration and transformation.
+
+### HTTPFS support 
+> With the `httpfs` extension, it is possible to directly query files over the HTTP(S) protocol. This works for all files supported by DuckDB or its various extensions, and provides read-only access. [https://duckdb.org/docs/stable/extensions/httpfs/https.html](https://duckdb.org/docs/stable/extensions/httpfs/https.html) 
+
+This httpfs module also supports partial reading.
+
+>For CSV files, files will be downloaded entirely in most cases, due to the row-based nature of the format. For Parquet files, DuckDB supports partial reading, i.e., it can use a combination of the Parquet metadata and HTTP range requests to only download the parts of the file that are actually required by the query. 
+
+This partial reading capability is precisely what we need to efficiently query the dataset by reading the Parquet metadata and return only the data we’re after keeping the memory footprint low and speed high. 
+
+### Spatial support
+> The `spatial` extension provides support for geospatial data processing in DuckDB. [https://duckdb.org/docs/stable/extensions/spatial/overview](https://duckdb.org/docs/stable/extensions/spatial/overview) 
+
+If you’ve ever used PostGIS, the spatial extension functions will look very familiar. All the ST_* functions you’re used to like ST_Intersection, ST_Distance, ST_GeomFromGeoJSON, etc. are available. 
+
+Full list available at [https://duckdb.org/docs/stable/extensions/spatial/functions](https://duckdb.org/docs/stable/extensions/spatial/functions)
+
+### So how do I create the Geoparquet file from the GeoJSON file? 
+GDAL's ogr2ogr is the perfect tool for this. We want to utilise specific options to ensure we generate the files efficiently. 
+
+
+```bash
+ogr2ogr -f Parquet ./aus-buildings-microsoft.parquet ./aus-buildings-microsoft.geojson \
+-lco COMPRESSION=SNAPPY \
+-lco GEOMETRY_ENCODING=WKB \
+-lco WRITE_COVERING_BBOX=YES \
+-lco SORT_BY_BBOX=YES \
+-progress
+```
+
+
+#### So what is this doing? 
+
+- `ogr2ogr`: This is the command-line tool itself.
+- `-f Parquet`: This option specifies the output format as Parquet. Parquet is a columnar storage format that is efficient for analytical queries.
+- `./aus-buildings-microsoft.parquet`: This is the destination file name and path for the output Parquet file. It will be created in the current directory.
+- `./aus-buildings-microsoft.geojson`: This is the source file name and path of the input GeoJSON file. 
+- `-lco COMPRESSION=SNAPPY`: This is a layer creation option (lco) that sets the compression algorithm for the Parquet file to SNAPPY. SNAPPY is a fast compression/decompression algorithm.
+- `-lco GEOMETRY_ENCODING=WKB`: Another layer creation option that specifies the encoding for the geometry data as Well-Known Binary (WKB). WKB is a standard binary format for representing spatial geometries.
+- `-lco WRITE_COVERING_BBOX=YES`: Writes the overall bounding box (extent) of all geometries in each geometry column to the GeoParquet metadata. This can help with spatial indexing and filtering in subsequent analysis.
+- `-lco SORT_BY_BBOX=YES`: This layer creation option instructs `ogr2ogr` to sort the features spatially based on their bounding boxes before writing them to the Parquet file. Spatially sorting data ensures that geographically proximate features are stored together, which allows DuckDB to more effectively skip irrelevant row groups when performing spatial queries on ranges.
+- `-progress`: This option displays a progress bar during the conversion process, allowing you to monitor its status.
+
+Note the order of the filenames destination then source parameters in the ogr2ogr command, it's backwards compared to other GDAL commands. 
+
+## Putting It All Together: Querying from S3 with DuckDB and Deno
+
+Now that we have our `aus-buildings-microsoft.parquet` file, optimised with spatial sorting and bounding boxes, stored in S3, let's see how we can query it efficiently. We'll use DuckDB's `httpfs` and `spatial` extensions, this time demonstrated with a Deno (TypeScript) example. This approach is particularly well-suited for environments like serverless functions or applications where you want to interact with S3 data without downloading entire files.
+
+The Deno script below outlines a `DuckDBService` class that handles the initialisation, S3 configuration, and execution of spatial queries against our GeoParquet file.
+
+```typescript
+/* Deno Typescript */
+import { DuckDBConnection, DuckDBInstance } from "npm:@duckdb/node-api";
+import { FeatureCollection } from "npm:geojson";
+import "jsr:@std/dotenv/load"; // Load environment variables
+
+// Helper to ensure required environment variables are set
+function requireEnv(name: string): string {
+  const value = Deno.env.get(name);
+  if (!value) throw new Error(`Missing required environment variable: ${name}`);
+  return value;
+}
+
+// S3 configuration from environment variables
+const AWS_ACCESS_KEY_ID = requireEnv("AWS_ACCESS_KEY_ID");
+const AWS_SECRET_ACCESS_KEY = requireEnv("AWS_SECRET_ACCESS_KEY");
+const AWS_ENDPOINT_URL = requireEnv("AWS_ENDPOINT_URL");
+const S3_URL_STYLE = requireEnv("S3_URL_STYLE"); // 'path' or 'virtual'
+
+// Replace with your actual S3 bucket and path
+const parquetFilePath = "s3://your-bucket-name/path/to/aus-buildings-microsoft.parquet";
+
+class DuckDBService {
+  private connection: DuckDBConnection | null = null;
+  private instance: DuckDBInstance | null = null;
+
+  async initialise(): Promise<void> {
+    // Create in-memory DuckDB instance
+    this.instance = await DuckDBInstance.create(":memory:");
+    this.connection = await this.instance.connect();
+    
+    try {
+      // Install and load required extensions
+      await this.connection.run(`
+        INSTALL httpfs;
+        LOAD httpfs;
+        INSTALL spatial;
+        LOAD spatial;
+      `);
+      
+      // Configure S3 access
+      await this.connection.run(`
+        CREATE OR REPLACE SECRET my_s3_secret (
+          TYPE S3,
+          PROVIDER config,
+          KEY_ID '${AWS_ACCESS_KEY_ID}',
+          SECRET '${AWS_SECRET_ACCESS_KEY}',
+          ENDPOINT '${AWS_ENDPOINT_URL}',
+          URL_STYLE '${S3_URL_STYLE}'
+        );
+      `);
+      
+      console.log("DuckDB initialized successfully with S3 configuration.");
+    } catch (error) {
+      console.error("Error initializing DuckDB:", error);
+      this.close();
+      throw error;
+    }
+  }
+
+  async query(sql: string): Promise<any> {
+    if (!this.connection) throw new Error("DuckDB not initialized. Call initialise() first.");
+    return await this.connection.all(sql);
+  }
+
+  close(): void {
+    if (this.connection) {
+      this.connection.closeSync();
+      this.connection = null;
+      console.log("DuckDB connection closed");
+    }
+    if (this.instance) {
+      this.instance.closeSync();
+      this.instance = null;
+    }
+  }
+
+  // Get all building footprints within a given WKT polygon
+  async getFeatureCollectionInsideBbox(
+    polygonWKT: string
+  ): Promise<FeatureCollection> {
+    // Build GeoJSON FeatureCollection directly in SQL
+    const sql = `
+      SELECT json_object(
+        'type', 'FeatureCollection',
+        'features', json_group_array(
+          json_object(
+            'type', 'Feature',
+            'geometry', json(ST_AsGeoJSON(t.geom)),
+            'properties', json_object(
+                'height', t.height
+            )
+          )
+        )
+      ) AS geojson
+      FROM read_parquet('${parquetFilePath}') AS t 
+      WHERE ST_Intersects(
+        ST_GeomFromText('${polygonWKT}'), 
+        t.geom
+      )
+    `;
+    
+    const data = await this.query(sql);
+    return JSON.parse(data[0].geojson as string) as FeatureCollection;
+  }
+}
+
+// Example usage
+async function main() {
+  const dbService = new DuckDBService();
+  
+  try {
+    await dbService.initialise();
+
+    // Define a bounding box polygon in WKT format
+    const boundingBoxWKT =
+      "POLYGON((148.049994542352 -32.60722910757276, 149.3222725563581 -32.60722910757276, 149.3222725563581 -31.870662513105437, 148.049994542352 -31.870662513105437, 148.049994542352 -32.60722910757276))";
+    
+    console.log(`Querying buildings within polygon...`);
+    const featureCollection = await dbService.getFeatureCollectionInsideBbox(boundingBoxWKT);
+    
+    console.log(`Found ${featureCollection.features.length} features.`);
+
+    // Write results to GeoJSON file
+    if (featureCollection.features.length > 0) {
+      const outputFilePath = "./output_buildings.geojson";
+      await Deno.writeTextFile(outputFilePath, JSON.stringify(featureCollection, null, 2));
+      console.log(`GeoJSON output written to ${outputFilePath}`);
+    }
+
+  } catch (error) {
+    console.error("An error occurred:", error);
+  } finally {
+    dbService.close();
+  }
+}
+
+if (import.meta.main) {
+  main();
+}
+```
+
+**Key aspects:**
+
+- **Initialisation (`initialise()`):** We create an in-memory DuckDB instance, install the `httpfs` and `spatial` extensions, and critically, configure S3 access by creating a `SECRET`. This secret tells DuckDB how to authenticate with S3-compatible storage using environment variables for credentials and endpoint configuration. Note the absence of hardcoded credentials, making this pattern suitable for production environments.
+- **Querying (`getFeatureCollectionInsideBbox()`):** The SQL query uses `read_parquet('${parquetFilePath}')` to target our GeoParquet file on S3. The `WHERE ST_Intersects(...)` clause performs the spatial filtering. DuckDB, leveraging the GeoParquet's internal metadata (like bounding boxes of row groups, especially effective if `SORT_BY_BBOX=YES` was used during creation) and S3's HTTP byte-range requests, only fetches the necessary data portions from S3. The result is directly formatted as a GeoJSON `FeatureCollection` string using DuckDB's JSON functions.
+- **Efficiency:** The beauty of this approach is that the Deno application (or your Lambda function) doesn't need to download the entire multi-gigabyte GeoParquet file. DuckDB intelligently streams only the relevant segments, keeping memory usage low and query times fast, even for very large datasets.
+
+By converting large geospatial datasets like GeoJSON into spatially optimised GeoParquet files and leveraging DuckDB with its `httpfs` and `spatial` extensions, we can achieve highly efficient querying directly against data stored in S3. This type of technique is invaluable for geospatial software engineers looking to build scalable, cost-effective, and performant applications that operate on large-scale vector data without the need for traditional spatial databases or downloading massive files. DuckDB is way more than just an OLAP DBMS.
+
+The combination of GeoParquet's efficient storage and indexing capabilities with DuckDB's in-process power and direct S3 access provides a modern, flexible stack for geospatial analysis. While the initial data preparation using `ogr2ogr` with appropriate flags is crucial, the downstream benefits in query performance and reduced infrastructure complexity are significant.
+
+Have a go and explore this tech trio—GeoParquet, DuckDB, and S3— when you next encounter a similar challenge. The ability to perform complex spatial queries on terabytes of data with minimal local resources opens up new possibilities for analysis and application development. Combine this with a data catalog of files and you have a a highly effective dynamic vector data extractor.
