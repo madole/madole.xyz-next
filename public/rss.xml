@@ -4,7 +4,7 @@
         <title>Madole.xyz Blog</title>
         <link>http://madole.xyz/</link>
         <description>Blog posts from madole.xyz</description>
-        <lastBuildDate>Thu, 05 Jun 2025 11:43:20 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 05 Jun 2025 11:54:27 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -16,8 +16,8 @@
         <copyright>All rights reserved 2022, Madole</copyright>
         <item>
             <title><![CDATA[Efficiently querying large geospatial datasets with DuckDB, GeoParquet and S3]]></title>
-            <link>https://madole.xyz/blog/efficiently-querying-large-geospatial-datasets-with-duckdb,-geoparquet-and-s3</link>
-            <guid>https://madole.xyz/blog/efficiently-querying-large-geospatial-datasets-with-duckdb,-geoparquet-and-s3</guid>
+            <link>https://madole.xyz/blog/efficiently-querying-large-geospatial-datasets-with-duckdb-geoparquet-and-s3</link>
+            <guid>https://madole.xyz/blog/efficiently-querying-large-geospatial-datasets-with-duckdb-geoparquet-and-s3</guid>
             <pubDate>Thu, 05 Jun 2025 11:32:29 GMT</pubDate>
             <description><![CDATA[Reading time: 9 min read]]></description>
             <content:encoded><![CDATA[<p>How do you query millions of Australian building footprints – a 4.3GB GeoJSON beast from the Microsoft Global ML Building Footprints dataset – efficiently from a tiny AWS Lambda function? This isn&#39;t just an academic exercise; it&#39;s critical for urban </p>

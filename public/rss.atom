@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>http://madole.xyz/</id>
     <title>Madole.xyz Blog</title>
-    <updated>2025-06-05T11:43:20.607Z</updated>
+    <updated>2025-06-05T11:54:27.968Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Andrew McDowell</name>
@@ -17,8 +17,8 @@
     <rights>All rights reserved 2022, Madole</rights>
     <entry>
         <title type="html"><![CDATA[Efficiently querying large geospatial datasets with DuckDB, GeoParquet and S3]]></title>
-        <id>https://madole.xyz/blog/efficiently-querying-large-geospatial-datasets-with-duckdb,-geoparquet-and-s3</id>
-        <link href="https://madole.xyz/blog/efficiently-querying-large-geospatial-datasets-with-duckdb,-geoparquet-and-s3"/>
+        <id>https://madole.xyz/blog/efficiently-querying-large-geospatial-datasets-with-duckdb-geoparquet-and-s3</id>
+        <link href="https://madole.xyz/blog/efficiently-querying-large-geospatial-datasets-with-duckdb-geoparquet-and-s3"/>
         <updated>2025-06-05T11:32:29.353Z</updated>
         <summary type="html"><![CDATA[Reading time: 9 min read]]></summary>
         <content type="html"><![CDATA[<p>How do you query millions of Australian building footprints – a 4.3GB GeoJSON beast from the Microsoft Global ML Building Footprints dataset – efficiently from a tiny AWS Lambda function? This isn&#39;t just an academic exercise; it&#39;s critical for urban </p>
