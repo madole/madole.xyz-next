@@ -4,7 +4,7 @@
         <title>Madole.xyz Blog</title>
         <link>http://madole.xyz/</link>
         <description>Blog posts from madole.xyz</description>
-        <lastBuildDate>Fri, 19 Jul 2024 09:07:34 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 05 Jun 2025 11:43:20 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -14,6 +14,77 @@
             <link>http://madole.xyz/</link>
         </image>
         <copyright>All rights reserved 2022, Madole</copyright>
+        <item>
+            <title><![CDATA[Efficiently querying large geospatial datasets with DuckDB, GeoParquet and S3]]></title>
+            <link>https://madole.xyz/blog/efficiently-querying-large-geospatial-datasets-with-duckdb,-geoparquet-and-s3</link>
+            <guid>https://madole.xyz/blog/efficiently-querying-large-geospatial-datasets-with-duckdb,-geoparquet-and-s3</guid>
+            <pubDate>Thu, 05 Jun 2025 11:32:29 GMT</pubDate>
+            <description><![CDATA[Reading time: 9 min read]]></description>
+            <content:encoded><![CDATA[<p>How do you query millions of Australian building footprints – a 4.3GB GeoJSON beast from the Microsoft Global ML Building Footprints dataset – efficiently from a tiny AWS Lambda function? This isn&#39;t just an academic exercise; it&#39;s critical for urban </p>
+]]></content:encoded>
+            <author>me@madole.dev (Andrew McDowell)</author>
+        </item>
+        <item>
+            <title><![CDATA[WTF are Popcorn Tasks?]]></title>
+            <link>https://madole.xyz/blog/wtf-are-popcorn-tasks</link>
+            <guid>https://madole.xyz/blog/wtf-are-popcorn-tasks</guid>
+            <pubDate>Tue, 04 Feb 2025 00:22:52 GMT</pubDate>
+            <description><![CDATA[Reading time: 3 min read]]></description>
+            <content:encoded><![CDATA[<h1>Popcorn tasks</h1>
+<p>A term that originated in my previous job at Propeller Aero. It is the name given to the stream of random high priority tasks that pop up out of nowhere.</p>
+<p>![Popping popcorn](<a href="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExbmo2b3FvZ">https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExbmo2b3FvZ</a></p>
+]]></content:encoded>
+            <author>me@madole.dev (Andrew McDowell)</author>
+        </item>
+        <item>
+            <title><![CDATA[Real-time Transport Data Visualization with GTFS]]></title>
+            <link>https://madole.xyz/blog/real-time-transport-data-visualization-with-gtfs</link>
+            <guid>https://madole.xyz/blog/real-time-transport-data-visualization-with-gtfs</guid>
+            <pubDate>Mon, 27 Jan 2025 09:13:04 GMT</pubDate>
+            <description><![CDATA[Reading time: 7 min read]]></description>
+            <content:encoded><![CDATA[<p>For real-time transport data visualization, there is a standard called GTFS built on top of Protocol Buffers.</p>
+<p><strong>GTFS</strong> stands for <strong>General Transit Feed Specification</strong></p>
+<p>It consists of two main parts: <strong>GTFS Schedule</strong> and <strong>GTFS Realtime</strong>.</p>
+<p>![GTFS</p>
+]]></content:encoded>
+            <author>me@madole.dev (Andrew McDowell)</author>
+        </item>
+        <item>
+            <title><![CDATA[Creating a gif from static image files]]></title>
+            <link>https://madole.xyz/blog/creating-a-gif-from-static-image-files</link>
+            <guid>https://madole.xyz/blog/creating-a-gif-from-static-image-files</guid>
+            <pubDate>Tue, 03 Dec 2024 02:42:53 GMT</pubDate>
+            <description><![CDATA[Reading time: 1 min read]]></description>
+            <content:encoded><![CDATA[<p>Today I wanted to create a gif of some weather imagery I exported from QGIS. I was able to use the timeline functionality in QGIS to export individual static frames for each timestamp of weather data I had.</p>
+<p>For example, I&#39;ve got a bunch of images li</p>
+]]></content:encoded>
+            <author>me@madole.dev (Andrew McDowell)</author>
+        </item>
+        <item>
+            <title><![CDATA[Dropping bananas on the Moon from a UFO]]></title>
+            <link>https://madole.xyz/blog/dropping-bananas-on-the-moon-from-a-ufo</link>
+            <guid>https://madole.xyz/blog/dropping-bananas-on-the-moon-from-a-ufo</guid>
+            <pubDate>Sun, 18 Aug 2024 23:29:20 GMT</pubDate>
+            <description><![CDATA[Reading time: 9 min read]]></description>
+            <content:encoded><![CDATA[<p><a href="https://cesium.com/">Cesium</a> have released their new <a href="https://cesium.com/blog/2024/08/06/introducing-cesium-moon-terrain/">Moon tileset via their Cesium Ion service</a>! This is huge as it provides high quality terrain in 3D tile format to their Cesium</p>
+]]></content:encoded>
+            <author>me@madole.dev (Andrew McDowell)</author>
+        </item>
+        <item>
+            <title><![CDATA[Pop the console of JS library websites to demo the library]]></title>
+            <link>https://madole.xyz/blog/pop-the-console-of-js-library-websites-to-demo-the-library</link>
+            <guid>https://madole.xyz/blog/pop-the-console-of-js-library-websites-to-demo-the-library</guid>
+            <pubDate>Tue, 13 Aug 2024 01:07:09 GMT</pubDate>
+            <description><![CDATA[Reading time: 1 min read]]></description>
+            <content:encoded><![CDATA[<p>Did you know that often you can pop the console of a JS library website to demo the library?</p>
+<p>This is a great way to quickly test out a library without having to set up a project or write any code.</p>
+<h2>Examples</h2>
+<hr>
+<h3>Decimal.js</h3>
+<p>For example, in [D</p>
+]]></content:encoded>
+            <author>me@madole.dev (Andrew McDowell)</author>
+        </item>
         <item>
             <title><![CDATA[A quick glance at the React 19 Beta feature set]]></title>
             <link>https://madole.xyz/blog/a-quick-glance-at-the-react-19-beta-feature-set</link>

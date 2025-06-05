@@ -11,6 +11,78 @@
     },
     "items": [
         {
+            "id": "https://madole.xyz/blog/efficiently-querying-large-geospatial-datasets-with-duckdb,-geoparquet-and-s3",
+            "content_html": "<p>How do you query millions of Australian building footprints – a 4.3GB GeoJSON beast from the Microsoft Global ML Building Footprints dataset – efficiently from a tiny AWS Lambda function? This isn&#39;t just an academic exercise; it&#39;s critical for urban </p>\n",
+            "url": "https://madole.xyz/blog/efficiently-querying-large-geospatial-datasets-with-duckdb,-geoparquet-and-s3",
+            "title": "Efficiently querying large geospatial datasets with DuckDB, GeoParquet and S3",
+            "summary": "Reading time: 9 min read",
+            "date_modified": "2025-06-05T11:32:29.353Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
+            "id": "https://madole.xyz/blog/wtf-are-popcorn-tasks",
+            "content_html": "<h1>Popcorn tasks</h1>\n<p>A term that originated in my previous job at Propeller Aero. It is the name given to the stream of random high priority tasks that pop up out of nowhere.</p>\n<p>![Popping popcorn](<a href=\"https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExbmo2b3FvZ\">https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExbmo2b3FvZ</a></p>\n",
+            "url": "https://madole.xyz/blog/wtf-are-popcorn-tasks",
+            "title": "WTF are Popcorn Tasks?",
+            "summary": "Reading time: 3 min read",
+            "date_modified": "2025-02-04T00:22:52.654Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
+            "id": "https://madole.xyz/blog/real-time-transport-data-visualization-with-gtfs",
+            "content_html": "<p>For real-time transport data visualization, there is a standard called GTFS built on top of Protocol Buffers.</p>\n<p><strong>GTFS</strong> stands for <strong>General Transit Feed Specification</strong></p>\n<p>It consists of two main parts: <strong>GTFS Schedule</strong> and <strong>GTFS Realtime</strong>.</p>\n<p>![GTFS</p>\n",
+            "url": "https://madole.xyz/blog/real-time-transport-data-visualization-with-gtfs",
+            "title": "Real-time Transport Data Visualization with GTFS",
+            "summary": "Reading time: 7 min read",
+            "date_modified": "2025-01-27T09:13:04.936Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
+            "id": "https://madole.xyz/blog/creating-a-gif-from-static-image-files",
+            "content_html": "<p>Today I wanted to create a gif of some weather imagery I exported from QGIS. I was able to use the timeline functionality in QGIS to export individual static frames for each timestamp of weather data I had.</p>\n<p>For example, I&#39;ve got a bunch of images li</p>\n",
+            "url": "https://madole.xyz/blog/creating-a-gif-from-static-image-files",
+            "title": "Creating a gif from static image files",
+            "summary": "Reading time: 1 min read",
+            "date_modified": "2024-12-03T02:42:53.919Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
+            "id": "https://madole.xyz/blog/dropping-bananas-on-the-moon-from-a-ufo",
+            "content_html": "<p><a href=\"https://cesium.com/\">Cesium</a> have released their new <a href=\"https://cesium.com/blog/2024/08/06/introducing-cesium-moon-terrain/\">Moon tileset via their Cesium Ion service</a>! This is huge as it provides high quality terrain in 3D tile format to their Cesium</p>\n",
+            "url": "https://madole.xyz/blog/dropping-bananas-on-the-moon-from-a-ufo",
+            "title": "Dropping bananas on the Moon from a UFO",
+            "summary": "Reading time: 9 min read",
+            "date_modified": "2024-08-18T23:29:20.450Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
+            "id": "https://madole.xyz/blog/pop-the-console-of-js-library-websites-to-demo-the-library",
+            "content_html": "<p>Did you know that often you can pop the console of a JS library website to demo the library?</p>\n<p>This is a great way to quickly test out a library without having to set up a project or write any code.</p>\n<h2>Examples</h2>\n<hr>\n<h3>Decimal.js</h3>\n<p>For example, in [D</p>\n",
+            "url": "https://madole.xyz/blog/pop-the-console-of-js-library-websites-to-demo-the-library",
+            "title": "Pop the console of JS library websites to demo the library",
+            "summary": "Reading time: 1 min read",
+            "date_modified": "2024-08-13T01:07:09.729Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
             "id": "https://madole.xyz/blog/a-quick-glance-at-the-react-19-beta-feature-set",
             "content_html": "<p>The React 19 Beta release is out and the accompanying <a href=\"https://react.dev/blog/2024/04/25/react-19\">blog post</a> is a great read. Here&#39;s a quick glance at the\nnew features and improvements that are part of this release.</p>\n<ul>\n<li>Some spicy new hooks and a con</li>\n</ul>\n",
             "url": "https://madole.xyz/blog/a-quick-glance-at-the-react-19-beta-feature-set",
