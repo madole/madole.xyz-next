@@ -7,6 +7,7 @@ const VerticalBar = (): JSX.Element => (
   <div className="text-blue-500 text-lg align-middle p-2">|</div>
 );
 
+
 const Header = (): JSX.Element => {
   const [dialogOpen, setDialogOpen] = useState<boolean>(false);
 
@@ -19,7 +20,7 @@ const Header = (): JSX.Element => {
   };
 
   return (
-    <div className="py-4 flex justify-between">
+    <div className="py-2 flex justify-start">
       <div className="flex">
         <Link
           href="/"
