@@ -44,15 +44,15 @@ const Index: React.FC = () => {
         </title>
         <meta
           name="description"
-          content="Showcasing geospatial innovation, web applications, and projects by Andrew McDowell. Explore a portfolio of software engineering, leadership, and creative work."
+          content="Andrew McDowell's portfolio: geospatial web applications, software engineering, and leadership projects."
         />
         <meta
           property="og:title"
-          content="Madole.xyz | Geospatial Web Apps & Portfolio of Andrew McDowell"
+          content="Andrew McDowell | Geospatial Web Applications & Portfolio"
         />
         <meta
           property="og:description"
-          content="Showcasing geospatial innovation, web applications, and projects by Andrew McDowell."
+          content="Portfolio of geospatial web applications and projects by Andrew McDowell."
         />
         <meta property="og:image" content="https://madole.xyz/bitmoji.png" />
         <script type="application/ld+json">
@@ -67,12 +67,12 @@ const Index: React.FC = () => {
               "https://x.com/madole",
               "https://www.linkedin.com/in/andrew-mcdowell-0092649b/"
             ],
-            "jobTitle": "Full Stack Software Engineer, Tech Lead, Geospatial Expert & Tech Writer",
+            "jobTitle": "Full Stack Software Engineer, Tech Lead, Geospatial Expert, & Tech Writer",
             "worksFor": {
               "@type": "Organization",
               "name": "Madole.xyz"
             },
-            "description": "Showcasing geospatial innovation, web applications, and projects by Andrew McDowell."
+            "description": "Andrew McDowell's portfolio of geospatial web applications and projects."
           }`}
         </script>
       </Head>
