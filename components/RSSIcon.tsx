@@ -1,8 +1,4 @@
-import React from "react";
-
-export interface RssIconProps {}
-
-const RssIcon: React.FC<RssIconProps> = (props) => {
+const RssIcon = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

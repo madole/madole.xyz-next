@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import creditCard from "./credit-card.png";
 import textWithLines from "./text-with-lines.png";
 import closeButton from "./close-button.png";

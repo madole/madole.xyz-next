@@ -24,12 +24,6 @@ interface Props {
     body: string;
   };
 }
-const dateStringOptions = {
-  weekday: "long",
-  year: "numeric",
-  month: "long",
-  day: "numeric",
-} as const;
 
 export default function BlogPost(props: Props): JSX.Element {
   const {

@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
-import { Reducer, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import FlexCenter from "../components/FlexCenter";
 import Card, { Hr, Spacer } from "../components/resume/Card";
 import CardDialog from "../components/resume/CardDialog";
@@ -33,12 +33,14 @@ function getUrlSearchParam(searchParam: string): string | null {
 function Resume(): JSX.Element {
   const [futureTitle, setFutureTitle] = useState("Technical Lead");
   const [futureCompany, setFutureCompany] = useState("");
-  const [hobbiesOpen, setHobbiesOpen] = useState(false);
-  const [socialOpen, setSocialOpen] = useState(false);
-  const [techOpen, setTechOpen] = useState(false);
 
   const [activeModal, setActiveModal] = useState<
     "hobbies" | "social" | "tech" | null
+  >(null);
+
+  // New state for lightbox
+  const [openAchievement, setOpenAchievement] = useState<
+    null | "lightning" | "spectral" | "airquality"
   >(null);
 
   useEffect(() => {
@@ -81,7 +83,7 @@ function Resume(): JSX.Element {
                 Approx{" "}
                 {new Intl.NumberFormat().format(
                   differenceInCalendarYears(new Date(), new Date(2010, 6, 1)) *
-                    2000,
+                    2000
                 )}{" "}
                 hours
               </div>
@@ -215,6 +217,30 @@ function Resume(): JSX.Element {
               >
                 <div className="flex flex-col lg:flex-row justify-evenly w-full max-h-almost-full">
                   <div className="mb-4">
+                    <div className="font-bold mb-4 text-xl -ml-5">AI</div>
+                    <ul className="list-disc">
+                      {[
+                        "Github Copilot",
+                        "Cursor",
+                        "Claude",
+                        "Gemini",
+                        "Grok",
+                        "Vertex AI",
+                        "AWS Bedrock",
+                        "AWS Sagemaker",
+                        "AWS Rekognition",
+                        "AWS Polly",
+                        "OpenAI Whisper",
+                        "Ollama",
+                        "MCP",
+                        "Agentic AI",
+                        "Mastra AI",
+                      ].map((ai) => (
+                        <li className="pb-2">{ai}</li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="mb-4">
                     <div className="font-bold mb-4 text-xl -ml-5">Frontend</div>
                     <ul className="list-disc ">
                       <li className="pb-2">Next</li>
@@ -285,6 +311,8 @@ function Resume(): JSX.Element {
                   src="/arset-introduction-to-lightning-observations.png"
                   alt="ARSET Introduction to Lightning Observations and Applications certificate"
                   priority={true}
+                  className="cursor-pointer"
+                  onClick={() => setOpenAchievement("lightning")}
                 />
               </FlexCenter>
             </Card>
@@ -301,6 +329,8 @@ function Resume(): JSX.Element {
                   src="/arset-spectral-indicies.png"
                   alt="ARSET Spectral Indicies certificate"
                   priority={true}
+                  className="cursor-pointer"
+                  onClick={() => setOpenAchievement("spectral")}
                 />
               </FlexCenter>
             </Card>
@@ -319,9 +349,61 @@ function Resume(): JSX.Element {
                   src="/arset-analyzing-air-quality-data.png"
                   alt="ARSET Accessing and Analyzing Air Quality Data from Geostationary Satellites certificate"
                   priority={true}
+                  className="cursor-pointer"
+                  onClick={() => setOpenAchievement("airquality")}
                 />
               </FlexCenter>
             </Card>
+            {/* Lightbox Dialog for Achievements */}
+            <CardDialog
+              open={openAchievement !== null}
+              onClose={() => setOpenAchievement(null)}
+              title={
+                openAchievement === "lightning"
+                  ? "NASA ARSET: Lightning Observations Certificate"
+                  : openAchievement === "spectral"
+                    ? "NASA ARSET: Spectral Indices Certificate"
+                    : openAchievement === "airquality"
+                      ? "NASA ARSET: Air Quality Data Certificate"
+                      : ""
+              }
+              columnName="Achievements"
+              date=""
+            >
+              {openAchievement === "lightning" && (
+                <FlexCenter>
+                  <Image
+                    width={600}
+                    height={800}
+                    src="/arset-introduction-to-lightning-observations.png"
+                    alt="ARSET Introduction to Lightning Observations and Applications certificate"
+                    priority={true}
+                  />
+                </FlexCenter>
+              )}
+              {openAchievement === "spectral" && (
+                <FlexCenter>
+                  <Image
+                    width={600}
+                    height={800}
+                    src="/arset-spectral-indicies.png"
+                    alt="ARSET Spectral Indicies certificate"
+                    priority={true}
+                  />
+                </FlexCenter>
+              )}
+              {openAchievement === "airquality" && (
+                <FlexCenter>
+                  <Image
+                    width={600}
+                    height={800}
+                    src="/arset-analyzing-air-quality-data.png"
+                    alt="ARSET Accessing and Analyzing Air Quality Data from Geostationary Satellites certificate"
+                    priority={true}
+                  />
+                </FlexCenter>
+              )}
+            </CardDialog>
           </Column>
           {futureCompany && (
             <Column title="Future">
@@ -516,11 +598,11 @@ function Resume(): JSX.Element {
               Duties:
               <Spacer />
               - Work as part of a scrum team to create and maintain the whole of
-              Channel 9’s network of websites
+              Channel 9's network of websites
               <Spacer />
               - Leading teams to deliver these websites
               <Spacer />
-              - Set the technical direction of the teams to ensure we’re moving
+              - Set the technical direction of the teams to ensure we're moving
               forward and taking advantage of best practices and new technology
               <Spacer />
               - Helped deliver the first webpack built website in the network

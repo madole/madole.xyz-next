@@ -43,7 +43,11 @@ const TagPage: React.FC<TagPageProps> = (props) => {
             title={post.title}
             date={post.date}
             timeToRead={post.timeToRead.text}
-            slug={"blog/" + post.slug ?? `${post.title.split(" ").join("-")}`}
+            slug={
+              post.slug
+                ? "blog/" + post.slug
+                : `blog/${post.title.split(" ").join("-")}`
+            }
             tags={post.tags}
             key={post.title}
           />
