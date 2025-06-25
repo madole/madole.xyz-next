@@ -1,8 +1,7 @@
 import { useState } from "react";
 
-export interface MdxTestProps {}
 
-const ClickyThing = (props: MdxTestProps) => {
+const ClickyThing = () => {
   const [count, setCount] = useState(0);
   return (
     <div className="w-full flex justify-center flex-col items-center border-dashed border-2 border-sky-400 p-8 gap-2 rounded-lg">

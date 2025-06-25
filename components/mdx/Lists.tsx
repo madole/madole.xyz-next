@@ -5,7 +5,7 @@ export const Ul = (
     ClassAttributes<HTMLUListElement> &
     HTMLAttributes<HTMLUListElement>,
 ) => {
-  const { children, ...rest } = props;
+  const { children } = props;
   return (
     <ul {...props} className="list-disc ml-6">
       {children}

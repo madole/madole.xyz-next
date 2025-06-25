@@ -5,7 +5,7 @@ import { SparksThatFollowTheMouse } from "./SparksThatFollowTheMouse";
 
 export interface FullPageCloudsProps {}
 
-const FullPageClouds: React.FC<FullPageCloudsProps> = (props) => {
+const FullPageClouds: React.FC<FullPageCloudsProps> = () => {
   return (
     <FullPageThreeWrapper>
       <Clouds />

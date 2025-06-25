@@ -1,7 +1,7 @@
 import { useFrame, useThree } from "@react-three/fiber";
-import React, { Suspense, useEffect, useRef, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import { Vector3 } from "three";
-import { Sparkles, Trail } from "@react-three/drei";
+import { Sparkles } from "@react-three/drei";
 
 /**
  * A component that renders the Sparkles ReactThree Drei component and it follows the mouse around the screen.

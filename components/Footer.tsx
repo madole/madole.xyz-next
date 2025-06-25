@@ -1,4 +1,3 @@
-import React from "react";
 import Link from "next/link";
 
 const RssFeed = () => (
@@ -29,7 +28,7 @@ function Footer(): JSX.Element {
         GitHub Repository
       </a>
       <div>Last build: {process.env.CONFIG_BUILD_ID}</div>
-      {/*<RssFeed />*/}
+      <RssFeed />
     </div>
   );
 }
