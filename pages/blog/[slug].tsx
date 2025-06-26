@@ -40,6 +40,7 @@ export default function BlogPost(props: Props): JSX.Element {
         <OpenGraphHeadTags
           title={title}
           description={(description ?? title) + " | " + "Blog post"}
+          ogImageAlt={title}
           imageUrl={
             og_image
               ? `https://madole.xyz/${og_image}`
