@@ -235,8 +235,8 @@ function Resume(): JSX.Element {
                         "MCP",
                         "Agentic AI",
                         "Mastra AI",
-                      ].map((ai) => (
-                        <li className="pb-2">{ai}</li>
+                      ].map((ai, index) => (
+                        <li key={index} className="pb-2">{ai}</li>
                       ))}
                     </ul>
                   </div>
