@@ -42,6 +42,7 @@ const TodayILearned: React.FC<TodayILearnedProps> = (props) => {
               : "https://madole.xyz/bitmoji.png"
           }
           url={`https://madole.xyz/today-i-learned/${slug}`}
+          ogImageAlt={title}
         />
       </Head>
       <section id="main-content">
