@@ -10,7 +10,8 @@
     "ci": "npm run tsc && npm run lint",
     "prettier": "prettier --write .",
     "new-post": "node scripts/new-post.mjs",
-    "generate-rss": "node scripts/generate-rss.js"
+    "generate-rss": "node scripts/generate-rss.js",
+    "generate-sitemap": "node scripts/generate-sitemap.js"
   },
   "dependencies": {
     "@eslint/js": "^9.7.0",

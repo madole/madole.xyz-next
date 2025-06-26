@@ -2,12 +2,13 @@ type Props = {
   title: string;
   description: string;
   imageUrl: string;
+  ogImageAlt: string;
   url: string;
   tags?: string[];
 };
 
 const OpenGraphHeadTags = (props: Props) => {
-  const { title, description, imageUrl, url, tags = [] } = props;
+  const { title, description, imageUrl, url, tags = [], ogImageAlt } = props;
   return (
     <>
       <link rel="canonical" href={url} />
@@ -28,6 +29,7 @@ const OpenGraphHeadTags = (props: Props) => {
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={imageUrl} />
+      <meta property="og:image:alt" content={ogImageAlt} />
 
       {/*{ <!-- Twitter Meta Tags -->}*/}
       <meta name="twitter:card" content="summary_large_image" />
@@ -37,6 +39,7 @@ const OpenGraphHeadTags = (props: Props) => {
       <meta name="twitter:description" content={description} />
 
       <meta name="twitter:image" content={imageUrl} />
+      <meta name="twitter:image:alt" content={ogImageAlt} />
     </>
   );
 };

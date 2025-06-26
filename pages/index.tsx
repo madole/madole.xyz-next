@@ -55,6 +55,7 @@ const Index: React.FC = () => {
           content="Portfolio of geospatial web applications and projects by Andrew McDowell."
         />
         <meta property="og:image" content="https://madole.xyz/bitmoji.png" />
+        <meta property="og:image:alt" content="A bitmoji of Andrew McDowell" />
         <script type="application/ld+json">
           {`{
             "@context": "https://schema.org",
