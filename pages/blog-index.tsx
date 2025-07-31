@@ -79,7 +79,7 @@ export const getStaticProps = () => {
         ...(data.attributes as {}),
         timeToRead,
         date: data.attributes.date.toString(),
-        slug: filename.split(".mdx")[0],
+        slug: data.attributes.slug ?? filename.split(".mdx")[0],
       };
     })
     .sort((a, b) => (new Date(a.date) < new Date(b.date) ? 1 : -1));
