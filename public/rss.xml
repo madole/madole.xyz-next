@@ -4,7 +4,7 @@
         <title>Madole.xyz Blog</title>
         <link>http://madole.xyz/</link>
         <description>Blog posts from madole.xyz</description>
-        <lastBuildDate>Thu, 26 Jun 2025 03:42:17 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 31 Jul 2025 12:52:36 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -14,6 +14,22 @@
             <link>http://madole.xyz/</link>
         </image>
         <copyright>All rights reserved 2022, Madole</copyright>
+        <item>
+            <title><![CDATA[What if You Could Draw Your AI Prompts?]]></title>
+            <link>https://madole.xyz/blog/what-if-you-could-draw-your-ai-prompts</link>
+            <guid>https://madole.xyz/blog/what-if-you-could-draw-your-ai-prompts</guid>
+            <pubDate>Thu, 31 Jul 2025 10:54:57 GMT</pubDate>
+            <description><![CDATA[Reading time: 4 min read]]></description>
+            <content:encoded><![CDATA[<p><img src="/blog-images/what-if-you-could-draw/og-image.png" alt="TLDraw Computer"></p>
+<p>Working with AI can often feel complex, abstract and impenetrable. </p>
+<blockquote>
+<p>What is all this jargon?&quot;</p>
+<p>&quot;How do I even get started?</p>
+</blockquote>
+<p>But what if interacting with AI models was more in</p>
+]]></content:encoded>
+            <author>me@madole.dev (Andrew McDowell)</author>
+        </item>
         <item>
             <title><![CDATA[Efficiently querying large geospatial datasets with DuckDB, GeoParquet and S3]]></title>
             <link>https://madole.xyz/blog/efficiently-querying-large-geospatial-datasets-with-duckdb-geoparquet-and-s3</link>

@@ -11,6 +11,18 @@
     },
     "items": [
         {
+            "id": "https://madole.xyz/blog/what-if-you-could-draw-your-ai-prompts",
+            "content_html": "<p><img src=\"/blog-images/what-if-you-could-draw/og-image.png\" alt=\"TLDraw Computer\"></p>\n<p>Working with AI can often feel complex, abstract and impenetrable. </p>\n<blockquote>\n<p>What is all this jargon?&quot;</p>\n<p>&quot;How do I even get started?</p>\n</blockquote>\n<p>But what if interacting with AI models was more in</p>\n",
+            "url": "https://madole.xyz/blog/what-if-you-could-draw-your-ai-prompts",
+            "title": "What if You Could Draw Your AI Prompts?",
+            "summary": "Reading time: 4 min read",
+            "date_modified": "2025-07-31T10:54:57.304Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
             "id": "https://madole.xyz/blog/efficiently-querying-large-geospatial-datasets-with-duckdb-geoparquet-and-s3",
             "content_html": "<p>How do you query millions of Australian building footprints – a 4.3GB GeoJSON beast from the Microsoft Global ML Building Footprints dataset – efficiently from a tiny AWS Lambda function? This isn&#39;t just an academic exercise; it&#39;s critical for urban </p>\n",
             "url": "https://madole.xyz/blog/efficiently-querying-large-geospatial-datasets-with-duckdb-geoparquet-and-s3",
