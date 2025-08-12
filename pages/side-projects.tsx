@@ -20,9 +20,18 @@ import mapboxglBoundingBoxViewBoundsComparison from "../images/mapbox-gl-boundin
 import moonBananas from "../images/moon-bananas-ufo.png";
 import mourneWalks from "../images/mourne-walks.jpeg";
 import recipeDeguffer from "../images/recipe-deguffer.jpg";
+import bandWrangler from "../images/band-wrangler.jpg";
 import styles from "../styles/side-projects.module.css";
 
 const data = [
+  {
+    image: bandWrangler,
+    title: "Band Wrangler",
+    imageAlt: "Band Wrangler",
+    description:
+      "A tool to help you manage your community band's membership and gig schedule. Built with Tanstack Start, Shadcn UI, and Supabase.",
+    link: "https://band-wrangler.net/",
+  },
   {
     image: recipeDeguffer,
     title: "Recipe Deguffer",
