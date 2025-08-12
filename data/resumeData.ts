@@ -225,7 +225,7 @@ export const resumeData: ResumeData = {
           ],
         },
         {
-          name: "BE ⸳ DevOps",
+          name: "BE ⸳ DevOps ⸳ Data Sci",
           items: [
             "AWS",
             "Step Functions",
@@ -235,7 +235,7 @@ export const resumeData: ResumeData = {
             "Pandas/Geopandas",
             "NumPy",
             "Scikit-learn",
-            "Tensorflow/DafanoJS",
+            "Tensorflow/DanfoJS",
           ],
         },
         {

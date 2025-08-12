@@ -347,11 +347,11 @@ function Resume(): JSX.Element {
               onClose={() => setOpenAchievement(null)}
               title={
                 openAchievement
-                  ? `NASA ARSET: ${resumeData.achievements
-                      .find((a) => a.id === openAchievement)
-                      ?.description.split(" ")
-                      .slice(-2)
-                      .join(" ")} Certificate`
+                  ? `${
+                      resumeData.achievements.find(
+                        (a) => a.id === openAchievement
+                      )?.description
+                    }`
                   : ""
               }
               columnName="Achievements"

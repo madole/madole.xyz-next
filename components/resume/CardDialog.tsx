@@ -23,7 +23,7 @@ interface CommentProps {
 const Comment = (props: CommentProps) => {
   const { date, columnName } = props;
   return (
-    <div className="flex items-start space-x-3 mb-4">
+    <div className="flex items-start space-x-2 mb-4">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src="https://avatars1.githubusercontent.com/u/3341965?s=460&v=4"
@@ -85,7 +85,7 @@ const CardDialog = (props: Props): JSX.Element | null => {
       }}
     >
       <div
-        className="bg-white rounded-lg shadow-xl mx-4 w-full max-w-5xl h-5/6 flex flex-col overflow-hidden"
+        className="bg-white rounded-lg shadow-xl mx-4 w-full max-w-6xl h-5/6 flex flex-col overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header Bar */}
@@ -169,7 +169,7 @@ const CardDialog = (props: Props): JSX.Element | null => {
           </div>
 
           {/* Right Panel - Comments and Activity */}
-          <div className="w-80 border-l border-gray-200 p-6 overflow-y-auto hidden md:block">
+          <div className="w-[24rem] border-l border-gray-200 p-6 overflow-y-auto hidden md:block">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center space-x-2">
                 <MessageCircle className="w-5 h-5 text-gray-600" />
