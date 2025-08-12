@@ -96,7 +96,7 @@ function Resume(): JSX.Element {
           <Card key={index}>
             <div className="font-bold pb-3">✨Upgrade {upgrade.date}✨</div>
             <div className="pb-3">
-              {upgrade.from} -{">"} {upgrade.to}
+              {upgrade.from} {"->"} {upgrade.to}
             </div>
           </Card>
         ))}
