@@ -215,13 +215,7 @@ export const resumeData: ResumeData = {
         },
         {
           name: "Agile ⸳ Product",
-          items: [
-            "Jira",
-            "Confluence",
-            "Metabase",
-            "Redash",
-            "Intercom",
-          ],
+          items: ["Jira", "Confluence", "Metabase", "Redash", "Intercom"],
         },
       ],
     },
@@ -263,7 +257,8 @@ export const resumeData: ResumeData = {
       id: "airquality",
       date: "OCT 2022",
       title: "Completed NASA ARSET training",
-      description: "Accessing and Analyzing Air Quality Data from Geostationary Satellites",
+      description:
+        "Accessing and Analyzing Air Quality Data from Geostationary Satellites",
       image: {
         src: "/arset-analyzing-air-quality-data.png",
         alt: "ARSET Accessing and Analyzing Air Quality Data from Geostationary Satellites certificate",
@@ -291,7 +286,7 @@ export const resumeData: ResumeData = {
         {
           date: "January 2023",
           from: "",
-          to: "Firestory Tech Director",
+          to: "Firestory Technical Director",
         },
         {
           date: "March 2022",
@@ -358,7 +353,10 @@ export const resumeData: ResumeData = {
         { text: "Expert level React" },
         { text: "Expert level Node" },
         { text: "Strong mapping skills" },
-        { text: "CesiumJS", subItems: ["CesiumJS", "Resium", "Leaflet", "Mapbox"] },
+        {
+          text: "CesiumJS",
+          subItems: ["CesiumJS", "Resium", "Leaflet", "Mapbox"],
+        },
         { text: "Tech/Team Leading" },
         { text: "Developer Experience" },
         { text: "Agile ceremony facilitation" },
