@@ -21,10 +21,6 @@ const Header = (): JSX.Element => {
     setDialogOpen(false);
   };
 
-  const handleOpenDialog = () => {
-    setDialogOpen(true);
-  };
-
   return (
     <div className="py-3 px-4 flex justify-between items-center bg-[#045C92] mb-2">
       {/* Left side - Profile/User section */}
@@ -46,41 +42,37 @@ const Header = (): JSX.Element => {
         </Link>
 
         {/* Profile icon */}
-        <button className="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center hover:bg-gray-400 transition-colors">
+        <button className="w-8 h-8 bg-gray-300 rounded-full items-center justify-center hover:bg-gray-400 transition-colors hidden md:flex">
           <User className="w-4 h-4 text-gray-600" />
         </button>
 
         {/* Speaker icon */}
-        <button className="text-white hover:bg-[hsl(203,95%,35%)] rounded p-2 transition-colors">
+        <button className="text-white hover:bg-[hsl(203,95%,35%)] rounded p-2 transition-colors hidden md:block">
           <Volume2 className="w-5 h-5" />
         </button>
 
         {/* Lightning bolt icon */}
-        <button className="text-white hover:bg-[hsl(203,95%,35%)] rounded p-2 transition-colors">
+        <button className="text-white hover:bg-[hsl(203,95%,35%)] rounded p-2 transition-colors hidden md:block">
           <Zap className="w-5 h-5" />
         </button>
 
         {/* Menu icon */}
-        <button className="text-white hover:bg-[hsl(203,95%,35%)] rounded p-2 transition-colors">
+        <button className="text-white hover:bg-[hsl(203,95%,35%)] rounded p-2 transition-colors hidden md:block">
           <Menu className="w-5 h-5" />
         </button>
 
         {/* Star icon */}
-        <button className="text-white hover:bg-[hsl(203,95%,35%)] rounded p-2 transition-colors">
+        <button className="text-white hover:bg-[hsl(203,95%,35%)] rounded p-2 transition-colors hidden md:block">
           <Star className="w-5 h-5" />
         </button>
 
         {/* Lock icon */}
-        <button className="text-white hover:bg-[hsl(203,95%,35%)] rounded p-2 transition-colors">
+        <button className="text-white hover:bg-[hsl(203,95%,35%)] rounded p-2 transition-colors hidden md:block">
           <Lock className="w-5 h-5" />
         </button>
 
         {/* Share button */}
-        <a
-          href="mailto:madoliole+resume@gmail.com"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <a href="mailto:madoliole+resume@gmail.com">
           <button className="bg-gray-100 text-gray-700 px-4 py-2 rounded flex items-center space-x-2 hover:bg-gray-300 transition-colors">
             <MailIcon className="w-4 h-4" />
             <span className="font-medium">Mail</span>
@@ -88,7 +80,7 @@ const Header = (): JSX.Element => {
         </a>
 
         {/* More options icon */}
-        <button className="text-white hover:bg-[hsl(203,95%,35%)] rounded p-2 transition-colors">
+        <button className="text-white hover:bg-[hsl(203,95%,35%)] rounded p-2 transition-colors hidden md:block">
           <MoreHorizontal className="w-5 h-5" />
         </button>
       </div>

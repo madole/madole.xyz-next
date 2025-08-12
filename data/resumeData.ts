@@ -109,18 +109,23 @@ export const resumeData: ResumeData = {
           text: "Photography",
           link: {
             url: "https://www.instagram.com/madoliole/",
-            text: "The gram",
+            text: "Instagram",
           },
         },
         {
-          text: "Whiskey",
+          text: "Blogging",
           link: {
-            url: "https://www.whiskeynerds.com/",
-            text: "Whiskey Nerds",
+            url: "https://madole.xyz/blog-index",
+            text: "madole.xyz",
           },
         },
+        {
+          text: "Whiskey tasting",
+        },
         { text: "Skateboarding" },
-        { text: "Baking sourdough bread" },
+        { text: "Cycling" },
+        { text: "Cooking" },
+        { text: "Baking bread" },
         { text: "Cats" },
       ],
     },
@@ -135,14 +140,14 @@ export const resumeData: ResumeData = {
           },
         },
         {
-          label: "Musings",
+          label: "Thoughts",
           link: {
-            url: "https://twitter.com/madole",
-            text: "Twitter",
+            url: "https://bsky.app/profile/madole.bsky.social",
+            text: "Bluesky",
           },
         },
         {
-          label: "Lurking",
+          label: "Linkedin",
           link: {
             url: "https://www.linkedin.com/in/andrew-mcdowell-0092649b/",
             text: "Linkedin",
@@ -153,6 +158,26 @@ export const resumeData: ResumeData = {
     technologies: {
       title: "Technologies",
       categories: [
+        {
+          name: "Geospatial",
+          items: [
+            "Mapbox",
+            "Maplibre",
+            "Turf",
+            "Leaflet",
+            "Cesium JS",
+            "Resium",
+            "Geopandas",
+            "GDAL",
+            "QGIS",
+            "ArcGIS Pro",
+            "ArcGIS Online",
+            "Geoserver",
+            "WFS",
+            "WMS",
+            "Phoenix Fire Prediction Engine",
+          ],
+        },
         {
           name: "AI",
           items: [

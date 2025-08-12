@@ -214,7 +214,13 @@ function Resume(): JSX.Element {
                 }}
                 title={resumeData.aboutMe.hobbies.title}
                 columnName="About Me"
-                date="6th Oct 2020 at 20:10"
+                date={new Date().toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                  hour: "numeric",
+                  minute: "numeric",
+                })}
               >
                 <ul className="list-disc">
                   {resumeData.aboutMe.hobbies.items.map((item, index) => (
@@ -222,7 +228,7 @@ function Resume(): JSX.Element {
                       {item.text}
                       {item.link && (
                         <>
-                          -{" "}
+                          &nbsp;-&nbsp;
                           <a
                             className="text-blue-800 underline hover:text-blue-600"
                             href={item.link.url}
@@ -287,7 +293,7 @@ function Resume(): JSX.Element {
                 columnName="About Me"
                 date="7th Oct 2020 at 20:20"
               >
-                <div className="flex flex-col lg:flex-row justify-evenly w-full max-h-almost-full">
+                <div className="w-full max-h-almost-full grid grid-cols-mobile gap-4">
                   {resumeData.aboutMe.technologies.categories.map(
                     (category, index) => (
                       <div key={index} className="mb-4">

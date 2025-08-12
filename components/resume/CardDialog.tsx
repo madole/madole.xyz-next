@@ -1,8 +1,19 @@
 import { ReactNode } from "react";
-import creditCard from "./credit-card.png";
-import textWithLines from "./text-with-lines.png";
-import closeButton from "./close-button.png";
-import Image from "next/image";
+import {
+  ChevronDown,
+  Megaphone,
+  Image as ImageIcon,
+  MoreHorizontal,
+  X,
+  Plus,
+  Tag,
+  Clock,
+  CheckSquare,
+  Users,
+  AlignLeft,
+  MessageCircle,
+  Circle,
+} from "lucide-react";
 
 interface CommentProps {
   date: string;
@@ -12,19 +23,21 @@ interface CommentProps {
 const Comment = (props: CommentProps) => {
   const { date, columnName } = props;
   return (
-    <div className="flex items-center">
+    <div className="flex items-start space-x-3 mb-4">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src="https://avatars1.githubusercontent.com/u/3341965?s=460&v=4"
         alt="avatar"
-        className="rounded-full h-8 w-8 flex items-center justify-center"
+        className="rounded-full h-8 w-8 flex-shrink-0"
       />
-      <div className="flex flex-col ml-2">
-        <div>
-          <span className="font-bold">Andrew McDowell</span>
+      <div className="flex flex-col flex-1">
+        <div className="text-sm">
+          <span className="font-semibold">Andrew McDowell</span>
           <span> added this card to {columnName}</span>
         </div>
-        <div className="text-gray-700 text-sm mt-1">{date}</div>
+        <div className="text-gray-500 text-xs mt-1 cursor-pointer hover:underline">
+          {date}
+        </div>
       </div>
     </div>
   );
@@ -32,15 +45,15 @@ const Comment = (props: CommentProps) => {
 
 const Input = () => {
   return (
-    <div className="flex items-center my-4">
+    <div className="flex items-start space-x-3 mb-4">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src="https://avatars1.githubusercontent.com/u/3341965?s=460&v=4"
         alt="avatar"
-        className="rounded-full h-8 w-8 flex items-center justify-center"
+        className="rounded-full h-8 w-8 flex-shrink-0"
       />
       <input
-        className="ml-2 w-3/4 p-2 shadow rounded-sm"
+        className="flex-1 p-2 border border-gray-300 rounded text-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
         placeholder="Write a comment..."
       />
     </div>
@@ -72,49 +85,107 @@ const CardDialog = (props: Props): JSX.Element | null => {
       }}
     >
       <div
-        className="bg-gray-200 rounded p-6 mx-3 w-full md:w-1/2 relative flex flex-col h-4/5 text-base overflow-auto max-h-almost-full"
+        className="bg-white rounded-lg shadow-xl mx-4 w-full max-w-5xl h-5/6 flex flex-col overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
-        <div
-          className="absolute top-2 right-2 p-2 text-black text-2xl hover:bg-gray-300 rounded flex items-center justify-center"
-          onClick={onClose}
-        >
-          <div className="w-4 h-4 flex">
-            <Image src={closeButton} alt="close" layout="intrinsic" />
+        {/* Header Bar */}
+        <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-gray-50">
+          <div className="flex items-center space-x-2">
+            <button className="flex items-center space-x-1 px-3 py-1 text-sm font-medium text-gray-700 rounded bg-gray-100 hover:bg-gray-200">
+              <span>Info</span>
+              <ChevronDown className="w-4 h-4" />
+            </button>
+          </div>
+          <div className="flex items-center space-x-2">
+            <button className="p-2 text-gray-600 hover:bg-gray-200 rounded">
+              <Megaphone className="w-5 h-5" />
+            </button>
+            <button className="p-2 text-gray-600 hover:bg-gray-200 rounded">
+              <ImageIcon className="w-5 h-5" />
+            </button>
+            <button className="p-2 text-gray-600 hover:bg-gray-200 rounded">
+              <MoreHorizontal className="w-5 h-5" />
+            </button>
+            <button
+              className="p-2 text-gray-600 hover:bg-gray-200 rounded"
+              onClick={onClose}
+            >
+              <X className="w-5 h-5" />
+            </button>
           </div>
         </div>
-        <div className="flex items-center">
-          <div className="w-6 h-6 mr-2">
-            <Image src={creditCard} alt="card" layout="intrinsic" />
+
+        {/* Main Content */}
+        <div className="flex flex-1 overflow-hidden text-[#182B4E]">
+          {/* Left Panel - Main Card Content */}
+          <div className="flex-1 p-6 overflow-y-auto">
+            {/* Card Title */}
+            <div className="flex items-center space-x-3 mb-4">
+              <Circle className="w-5 h-5" />
+              <div className="text-2xl font-bold leading-relaxed ">{title}</div>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="flex flex-wrap gap-2 mb-6">
+              <button className="flex items-center space-x-2 px-3 py-1 border border-gray-200 hover:bg-gray-200 hover:border-gray-300 rounded text-sm font-medium text-gray-600">
+                <Plus className="w-4 h-4" />
+                <span>Add</span>
+              </button>
+              <button className="flex items-center space-x-2 px-3 py-1 border border-gray-200 hover:bg-gray-200 hover:border-gray-300 rounded text-sm font-medium text-gray-600">
+                <Tag className="w-4 h-4" />
+                <span>Labels</span>
+              </button>
+              <button className="flex items-center space-x-2 px-3 py-1 border border-gray-200 hover:bg-gray-200 hover:border-gray-300 rounded text-sm font-medium text-gray-600">
+                <Clock className="w-4 h-4" />
+                <span>Dates</span>
+              </button>
+              <button className="flex items-center space-x-2 px-3 py-1 border border-gray-200 hover:bg-gray-200 hover:border-gray-300 rounded text-sm font-medium text-gray-600">
+                <CheckSquare className="w-4 h-4" />
+                <span>Checklist</span>
+              </button>
+              <button className="flex items-center space-x-2 px-3 py-1 border border-gray-200 hover:bg-gray-200 hover:border-gray-300 rounded text-sm font-medium text-gray-600">
+                <Users className="w-4 h-4" />
+                <span>Members</span>
+              </button>
+            </div>
+
+            {/* Description Section */}
+            <div className="mb-4">
+              <div className="flex items-center justify-between mb-3">
+                <div className="flex items-center space-x-2">
+                  <AlignLeft className="w-5 h-5 text-gray-600" />
+                  <span className="text-md font-bold text-gray-700">
+                    Description
+                  </span>
+                </div>
+                <button className="text-sm bg-gray-100 hover:bg-gray-200 rounded-sm px-3 py-1">
+                  Edit
+                </button>
+              </div>
+              <div className="text-sm leading-relaxed ml-6">
+                {children || "Testing one two three"}
+              </div>
+            </div>
           </div>
-          <div className="text-xl font-bold mt-px" onClick={onClose}>
-            {title}
+
+          {/* Right Panel - Comments and Activity */}
+          <div className="w-80 border-l border-gray-200 p-6 overflow-y-auto hidden md:block">
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center space-x-2">
+                <MessageCircle className="w-5 h-5 text-gray-600" />
+                <span className="font-medium text-gray-700">
+                  Comments and activity
+                </span>
+              </div>
+              <button className="text-sm bg-gray-100 hover:bg-gray-200 rounded-sm px-3 py-1">
+                Show details
+              </button>
+            </div>
+
+            <Input />
+            <Comment date={date} columnName={columnName} />
           </div>
         </div>
-        <div className="flex ml-8 text-gray-600 mt-1">
-          in list{" "}
-          <span
-            className="ml-1 underline hover:text-gray-900"
-            onClick={onClose}
-          >
-            {columnName}
-          </span>
-        </div>
-        <div className="flex mt-6 flex items-center">
-          <div className="w-4 mr-4">
-            <Image
-              src={textWithLines}
-              alt="text with lines"
-              layout="intrinsic"
-            />
-          </div>
-          <div className="text-lg leading-normal">Description</div>
-        </div>
-        <div className="flex my-2 p-6 hover:bg-gray-300 rounded">
-          {children}
-        </div>
-        <Input />
-        <Comment date={date} columnName={columnName} />
       </div>
     </div>
   );
