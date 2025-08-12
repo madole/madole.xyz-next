@@ -102,7 +102,7 @@ function Resume(): JSX.Element {
         ))}
       {experience.duties && (
         <Card>
-          Duties:
+          <span className="font-bold pb-1">Duties:</span>
           <Spacer />
           {experience.duties.map((duty, index) => (
             <div key={index}>
@@ -114,7 +114,7 @@ function Resume(): JSX.Element {
       )}
       {experience.experience && (
         <Card>
-          Experience:
+          <span className="font-bold pb-1">Experience:</span>
           <Spacer />
           {experience.experience.map((exp, index) => (
             <div key={index}>
@@ -145,7 +145,7 @@ function Resume(): JSX.Element {
       )}
       {experience.skills && (
         <Card>
-          Skills snapshot:
+          <span className="font-bold pb-1">Skills snapshot:</span>
           <Spacer />
           {experience.skills.map((skill, index) => (
             <div key={index}>
@@ -164,7 +164,7 @@ function Resume(): JSX.Element {
       )}
       {experience.notableProjects && (
         <Card>
-          Notable projects:
+          <span className="font-bold pb-1">Notable projects:</span>
           <Spacer />
           {experience.notableProjects.map((project, index) => (
             <div key={index}>
@@ -441,7 +441,7 @@ function Resume(): JSX.Element {
               ))}
             {resumeData.experience[0].duties && (
               <Card>
-                Duties:
+                <span className="font-bold pb-1">Duties:</span>
                 <Spacer />
                 {resumeData.experience[0].duties.map((duty, index) => (
                   <div key={index}>
@@ -453,7 +453,7 @@ function Resume(): JSX.Element {
             )}
             {resumeData.experience[0].experience && (
               <Card>
-                Experience:
+                <span className="font-bold pb-1">Experience:</span>
                 <Spacer />
                 {resumeData.experience[0].experience.map((exp, index) => (
                   <div key={index}>

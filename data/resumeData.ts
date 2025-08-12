@@ -327,8 +327,10 @@ export const resumeData: ResumeData = {
         "Get developers excited about 3D visualisations and geospatial applications",
         "Build out and manage our geospatial knowledge base",
         "Architect and pitch solutions to clients during the sales cycle and development cycle",
-        "Interview candidates for our frontend team",
+        "Interview candidates for our geospatial and frontend teams",
         "Work with clients during engagements to make sure we're delivering on their needs",
+        "Champion lean agile practices",
+        "Help the team integrate AI best practices into our software development process",
       ],
       experience: [
         {
