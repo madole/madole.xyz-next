@@ -97,7 +97,7 @@ const Index: React.FC = () => {
             >
               Andrew McDowell <br />
               <span className="block mt-2 text-3xl sm:text-4xl md:text-5xl">
-                Technical Lead, Geospatial Expert & Tech Writer
+                Technical Leader, Geospatial Expert & Tech Writer
               </span>
             </h1>
             <EarthCanvas />
