@@ -332,10 +332,20 @@ export const resumeData: ResumeData = {
       ],
       experience: [
         {
-          text: "Lead the frontend team to deliver a 3D fire prediction tool for NSW RFS using Mapbox and React.",
+          text: "Led the technical integration of Firestory into ESRI's ArcGIS platform",
         },
         {
-          text: "Architected and led the team delivering a Remote Fire Detection capability for",
+          text: "Worked with the Office of the NSW Chief Scientist to develop software for Forestry Corp to model Heavy Plant dry firefighting impact on bushfires through the",
+          link: {
+            url: "https://www.chiefscientist.nsw.gov.au/rd-action-plan/natural-hazards-technology-program",
+            text: "Natural Hazards Technology Program",
+          },
+        },
+        {
+          text: "Led the team to deliver a predictive capability for FRNSW to help them forward plan for periods with increased incident risk.",
+        },
+        {
+          text: "Architected and led the team delivering a Remote Fire Detection, Fire Prediction, Heavy Plant Response Planning and Fire Management capabilities for",
           link: {
             url: "https://firestory.io",
             text: "Firestory",
@@ -344,11 +354,21 @@ export const resumeData: ResumeData = {
             "Event Driven",
             "Serverless",
             "Modular architecture",
-            "NodeJS, Go, Typescript, React",
+            "NodeJS, Go, Typescript, React, Python",
           ],
         },
         {
-          text: "Exhibited at AFAC 2023 and the 2024 Office of the NSW Chief Scientist & Engineer Commercialisation showcase",
+          text: "Led the team to deliver an Automated Fireground Aviation Safety Assessment tool for NSW RFS which integrated BOM and Airservices Australia data. In the process, I became an SME on Aviation Weather Forecast data.",
+        },
+        {
+          text: "Led the frontend team to deliver a 3D fire prediction tool for NSW RFS (Athena) using Mapbox and React.",
+          link: {
+            url: "https://www.kablamo.com.au/case-study/nsw-rural-fire-service",
+            text: "NSW RFS Athena",
+          },
+        },
+        {
+          text: "Exhibited at AFAC 2023, 2024 and the 2024 Office of the NSW Chief Scientist & Engineer Commercialisation showcase",
         },
       ],
     },

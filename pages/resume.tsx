@@ -320,7 +320,7 @@ function Resume(): JSX.Element {
                 <div className="pb-1 font-bold">
                   {achievement.date}: {achievement.title}
                 </div>
-                <div>{achievement.description}</div>
+                <div className="pb-2">{achievement.description}</div>
                 <FlexCenter>
                   <Image
                     width={achievement.image.width}
