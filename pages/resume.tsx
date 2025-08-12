@@ -435,7 +435,9 @@ function Resume(): JSX.Element {
                     ✨Upgrade {upgrade.date}✨
                   </div>
                   <div className="pb-3">
-                    {upgrade.from ? upgrade.from + " ->" : ""} {upgrade.to}
+                    {upgrade.from
+                      ? `${upgrade.from} -> ${upgrade.to}`
+                      : upgrade.to}
                   </div>
                 </Card>
               ))}

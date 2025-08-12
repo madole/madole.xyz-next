@@ -27,7 +27,7 @@ const data = [
   {
     image: bandWrangler,
     title: "Band Wrangler",
-    imageAlt: "Band Wrangler",
+    imageAlt: "Band Wrangler events dashboard",
     description:
       "A tool to help you manage your community band's membership and gig schedule. Built with Tanstack Start, Shadcn UI, and Supabase.",
     link: "https://band-wrangler.net/",
