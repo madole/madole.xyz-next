@@ -92,14 +92,16 @@ const Index: React.FC = () => {
             className="flex flex-col pt-6 md:pt-0 md:justify-center flex-grow px-8 md:px-20 lg:px-32"
           >
             <h1
-              className="text-5xl md:text-6xl font-bold text-white mb-4"
+              className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4 text-center md:text-left"
               style={{ textShadow: "0 2px 8px rgba(0,0,0,0.4)" }}
             >
               Andrew McDowell <br />
-              Technical Lead, Geospatial Expert & Tech Writer
+              <span className="block mt-2 text-3xl sm:text-4xl md:text-5xl">
+                Technical Lead, Geospatial Expert & Tech Writer
+              </span>
             </h1>
             <EarthCanvas />
-            <div className="relative text-5xl md:text-6xl leading-none text-white h-32 md:h-24 md:leading-tight w-3/4 md:w-full">
+            <div className="relative text-5xl md:text-6xl leading-none text-white h-32 md:h-24 md:leading-tight w-3/4 md:w-full hidden md:block">
               <span key={title} className="animate-slowFadeIn absolute top-0">
                 {title}
               </span>
@@ -108,9 +110,11 @@ const Index: React.FC = () => {
                 className="animate-horizontalBounce absolute bottom-0 h-1 bg-white rounded md:h-2"
               />
             </div>
-            <div className="mt-4 text-2xl md:text-3xl font-light text-white w-full md:w-2/3">
-              Leading teams to build innovative geospatial solutions that make a
-              difference.
+            <div className="mt-4 text-2xl md:text-3xl font-light text-white w-full md:w-2/3 flex-grow flex flex-col-reverse md:flex-grow-0 pb-8 text-center md:text-left">
+              <div className="">
+                Leading teams to build innovative geospatial solutions that make
+                a difference.
+              </div>
             </div>
           </main>
 
@@ -124,12 +128,12 @@ const Index: React.FC = () => {
               Github
             </a>
             <a
-              href="https://twitter.com/madole"
+              href="https://bsky.app/profile/madole.bsky.social"
               target="_blank"
               className="font-light text-white no-underline opacity-75 hover:opacity-100"
               rel="noreferrer"
             >
-              Twitter
+              Bluesky
             </a>
             <a
               href="https://www.linkedin.com/in/andrew-mcdowell-0092649b/"
@@ -137,7 +141,7 @@ const Index: React.FC = () => {
               className="font-light text-white no-underline opacity-75 hover:opacity-100"
               rel="noreferrer"
             >
-              Linkedin
+              LinkedIn
             </a>
           </div>
         </div>
