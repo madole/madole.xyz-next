@@ -1,12 +1,10 @@
 import Link from "next/link";
-import * as React from "react";
 import { useState } from "react";
 import Dialog from "./Dialog";
 
 const VerticalBar = (): JSX.Element => (
   <div className="text-blue-500 text-lg align-middle p-2">|</div>
 );
-
 
 const Header = (): JSX.Element => {
   const [dialogOpen, setDialogOpen] = useState<boolean>(false);
@@ -20,7 +18,7 @@ const Header = (): JSX.Element => {
   };
 
   return (
-    <div className="py-2 flex justify-start">
+    <div className="py-2 flex justify-start bg-[#045C92] mb-2">
       <div className="flex">
         <Link
           href="/"
