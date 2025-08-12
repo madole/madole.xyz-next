@@ -7,6 +7,7 @@ import CardDialog from "../components/resume/CardDialog";
 import Column from "../components/resume/Column";
 import Header from "../components/resume/Header";
 import { differenceInCalendarYears } from "date-fns";
+import { resumeData } from "../data/resumeData";
 
 function getUrlSearchParam(searchParam: string): string | null {
   if (typeof window === "undefined") {
@@ -67,6 +68,115 @@ function Resume(): JSX.Element {
     }
   }, []);
 
+  const renderExperienceSection = (
+    experience: (typeof resumeData.experience)[0]
+  ) => (
+    <Column key={experience.period} title={experience.period}>
+      <Card>
+        <span className="pb-1 font-bold">{experience.title}</span>
+        {experience.company}
+      </Card>
+      <Card>
+        <Hr />
+      </Card>
+      {experience.logo && (
+        <Card>
+          <FlexCenter>
+            <Image
+              width={experience.logo.width}
+              height={experience.logo.height}
+              src={experience.logo.src}
+              alt={experience.logo.alt}
+            />
+          </FlexCenter>
+        </Card>
+      )}
+      {experience.upgrades &&
+        experience.upgrades.map((upgrade, index) => (
+          <Card key={index}>
+            <div className="font-bold pb-3">✨Upgrade {upgrade.date}✨</div>
+            <div className="pb-3">
+              {upgrade.from} -{">"} {upgrade.to}
+            </div>
+          </Card>
+        ))}
+      {experience.duties && (
+        <Card>
+          Duties:
+          <Spacer />
+          {experience.duties.map((duty, index) => (
+            <div key={index}>
+              - {duty}
+              <Spacer />
+            </div>
+          ))}
+        </Card>
+      )}
+      {experience.experience && (
+        <Card>
+          Experience:
+          <Spacer />
+          {experience.experience.map((exp, index) => (
+            <div key={index}>
+              - {exp.text}
+              {exp.link && (
+                <>
+                  {" "}
+                  <a
+                    href={exp.link.url}
+                    target="_blank"
+                    className="text-blue-800"
+                  >
+                    {exp.link.text}
+                  </a>
+                </>
+              )}
+              {exp.subItems && (
+                <ul className="ml-4">
+                  {exp.subItems.map((item, itemIndex) => (
+                    <li key={itemIndex}>- {item}</li>
+                  ))}
+                </ul>
+              )}
+              <Spacer />
+            </div>
+          ))}
+        </Card>
+      )}
+      {experience.skills && (
+        <Card>
+          Skills snapshot:
+          <Spacer />
+          {experience.skills.map((skill, index) => (
+            <div key={index}>
+              - {skill.text}
+              {skill.subItems && (
+                <div className="ml-4">
+                  {skill.subItems.map((item, itemIndex) => (
+                    <div key={itemIndex}>- {item}</div>
+                  ))}
+                </div>
+              )}
+              <Spacer />
+            </div>
+          ))}
+        </Card>
+      )}
+      {experience.notableProjects && (
+        <Card>
+          Notable projects:
+          <Spacer />
+          {experience.notableProjects.map((project, index) => (
+            <div key={index}>
+              - {project.text}
+              <Spacer />
+            </div>
+          ))}
+        </Card>
+      )}
+    </Column>
+  );
+
   return (
     <>
       <Head>
@@ -82,8 +192,10 @@ function Resume(): JSX.Element {
               <div>
                 Approx{" "}
                 {new Intl.NumberFormat().format(
-                  differenceInCalendarYears(new Date(), new Date(2010, 6, 1)) *
-                    2000
+                  differenceInCalendarYears(
+                    new Date(),
+                    new Date(resumeData.aboutMe.engineeringExperience.startDate)
+                  ) * resumeData.aboutMe.engineeringExperience.hoursPerYear
                 )}{" "}
                 hours
               </div>
@@ -94,53 +206,35 @@ function Resume(): JSX.Element {
               }}
               labels={[{ text: "Clickable", color: "#61bd4f" }]}
             >
-              Hobbies and interests
+              {resumeData.aboutMe.hobbies.title}
               <CardDialog
                 open={activeModal === "hobbies"}
                 onClose={() => {
                   setActiveModal(null);
                 }}
-                title="Hobbies and interests"
+                title={resumeData.aboutMe.hobbies.title}
                 columnName="About Me"
                 date="6th Oct 2020 at 20:10"
               >
                 <ul className="list-disc">
-                  <li className="pb-2">
-                    Samba drumming -{" "}
-                    <a
-                      className="text-blue-800 underline hover:text-blue-600"
-                      href="https://www.youtube.com/watch?v=uSLcPmbKSxM"
-                      target="_blank"
-                      rel="noreferrer noopener"
-                    >
-                      &nbsp;Bateria 61
-                    </a>
-                  </li>
-                  <li className="pb-2">
-                    Photography -
-                    <a
-                      className="text-blue-800 underline hover:text-blue-600"
-                      href="https://www.instagram.com/madoliole/"
-                      target="_blank"
-                      rel="noreferrer noopener"
-                    >
-                      &nbsp;The gram
-                    </a>
-                  </li>
-                  <li className="pb-2">
-                    Whiskey -{" "}
-                    <a
-                      className="text-blue-800 underline hover:text-blue-600"
-                      href="https://www.whiskeynerds.com/"
-                      target="_blank"
-                      rel="noreferrer noopener"
-                    >
-                      &nbsp;Whiskey Nerds
-                    </a>
-                  </li>
-                  <li className="pb-2">Skateboarding</li>
-                  <li className="pb-2">Baking sourdough bread</li>
-                  <li className="pb-2">Cats</li>
+                  {resumeData.aboutMe.hobbies.items.map((item, index) => (
+                    <li key={index} className="pb-2">
+                      {item.text}
+                      {item.link && (
+                        <>
+                          -{" "}
+                          <a
+                            className="text-blue-800 underline hover:text-blue-600"
+                            href={item.link.url}
+                            target="_blank"
+                            rel="noreferrer noopener"
+                          >
+                            &nbsp;{item.link.text}
+                          </a>
+                        </>
+                      )}
+                    </li>
+                  ))}
                 </ul>
               </CardDialog>
             </Card>
@@ -150,52 +244,30 @@ function Resume(): JSX.Element {
               }}
               labels={[{ text: "Clickable", color: "#61bd4f" }]}
             >
-              Social media
+              {resumeData.aboutMe.socialMedia.title}
               <CardDialog
                 open={activeModal === "social"}
                 onClose={() => {
                   setActiveModal(null);
                 }}
-                title="Social media"
+                title={resumeData.aboutMe.socialMedia.title}
                 columnName="About Me"
                 date="6th Oct 2020 at 20:20"
               >
                 <ul className="list-disc">
-                  <li className="pb-2">
-                    Coding - &nbsp;
-                    <a
-                      href={"https://github.com/madole"}
-                      className="text-blue-800 underline hover:text-blue-600"
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      Github
-                    </a>
-                  </li>
-                  <li className="pb-2">
-                    Musings - &nbsp;
-                    <a
-                      href={"https://twitter.com/madole"}
-                      className="text-blue-800 underline hover:text-blue-600"
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      Twitter
-                    </a>
-                  </li>
-                  <li className="pb-2">
-                    Lurking - &nbsp;
-                    <a
-                      href={
-                        "https://www.linkedin.com/in/andrew-mcdowell-0092649b/"
-                      }
-                      className="text-blue-800 underline hover:text-blue-600"
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      Linkedin
-                    </a>
-                  </li>
+                  {resumeData.aboutMe.socialMedia.items.map((item, index) => (
+                    <li key={index} className="pb-2">
+                      {item.label} - &nbsp;
+                      <a
+                        href={item.link.url}
+                        className="text-blue-800 underline hover:text-blue-600"
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        {item.link.text}
+                      </a>
+                    </li>
+                  ))}
                 </ul>
               </CardDialog>
             </Card>
@@ -205,200 +277,103 @@ function Resume(): JSX.Element {
               }}
               labels={[{ text: "Clickable", color: "#61bd4f" }]}
             >
-              Technologies
+              {resumeData.aboutMe.technologies.title}
               <CardDialog
                 open={activeModal === "tech"}
                 onClose={() => {
                   setActiveModal(null);
                 }}
-                title="Technologies"
+                title={resumeData.aboutMe.technologies.title}
                 columnName="About Me"
                 date="7th Oct 2020 at 20:20"
               >
                 <div className="flex flex-col lg:flex-row justify-evenly w-full max-h-almost-full">
-                  <div className="mb-4">
-                    <div className="font-bold mb-4 text-xl -ml-5">AI</div>
-                    <ul className="list-disc">
-                      {[
-                        "Github Copilot",
-                        "Cursor",
-                        "Claude",
-                        "Gemini",
-                        "Grok",
-                        "Vertex AI",
-                        "AWS Bedrock",
-                        "AWS Sagemaker",
-                        "AWS Rekognition",
-                        "AWS Polly",
-                        "OpenAI Whisper",
-                        "Ollama",
-                        "MCP",
-                        "Agentic AI",
-                        "Mastra AI",
-                      ].map((ai, index) => (
-                        <li key={index} className="pb-2">{ai}</li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div className="mb-4">
-                    <div className="font-bold mb-4 text-xl -ml-5">Frontend</div>
-                    <ul className="list-disc ">
-                      <li className="pb-2">Next</li>
-                      <li className="pb-2">SvelteKit</li>
-                      <li className="pb-2">React</li>
-                      <li className="pb-2">Mapbox</li>
-                      <li className="pb-2">Maplibre</li>
-                      <li className="pb-2">Turf</li>
-                      <li className="pb-2">NodeJS</li>
-                      <li className="pb-2">Bun</li>
-                      <li className="pb-2">Deno</li>
-                      <li className="pb-2">Leaflet</li>
-                      <li className="pb-2">Jest</li>
-                      <li className="pb-2">Vitest</li>
-                      <li className="pb-2">Webpack</li>
-                      <li className="pb-2">ESBuild</li>
-                      <li className="pb-2">Vite</li>
-                      <li className="pb-2">JS for embedded devices</li>
-                      <li className="pb-2">NPM</li>
-                      <li className="pb-2">Styled Components</li>
-                      <li className="pb-2">Cesium JS</li>
-                      <li className="pb-2">Tailwind CSS</li>
-                      <li className="pb-2">Gatsby</li>
-                    </ul>
-                  </div>
-                  <div className="mb-4">
-                    <div className="font-bold mb-4 text-xl -ml-5">
-                      BE ⸳ DevOps
-                    </div>
-                    <ul className="list-disc">
-                      <li className="pb-2">AWS</li>
-                      <li className="pb-2">Step Functions</li>
-                      <li className="pb-2">Terraform</li>
-                      <li className="pb-2">Cloudformation</li>
-                      <li className="pb-2">Python</li>
-                      <li className="pb-2">Pandas/Geopandas</li>
-                      <li className="pb-2">NumPy</li>
-                      <li className="pb-2">Scikit-learn</li>
-                      <li className="pb-2">Tensorflow/DafanoJS</li>
-                    </ul>
-                  </div>
-                  <div className="mb-4">
-                    <div className="font-bold mb-4 text-xl -ml-5">
-                      Agile ⸳ Product
-                    </div>
-                    <ul className="list-disc">
-                      <li className="pb-2">Jira</li>
-                      <li className="pb-2">Confluence</li>
-                      <li className="pb-2">Metabase</li>
-                      <li className="pb-2">Redash</li>
-                      <li className="pb-2">Intercom</li>
-                    </ul>
-                  </div>
+                  {resumeData.aboutMe.technologies.categories.map(
+                    (category, index) => (
+                      <div key={index} className="mb-4">
+                        <div className="font-bold mb-4 text-xl -ml-5">
+                          {category.name}
+                        </div>
+                        <ul className="list-disc">
+                          {category.items.map((item, itemIndex) => (
+                            <li key={itemIndex} className="pb-2">
+                              {item}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )
+                  )}
                 </div>
               </CardDialog>
             </Card>
           </Column>
           <Column title="Achievements">
-            <Card>
-              <div className="pb-1 font-bold">
-                MAR 2024: Completed NASA ARSET training
-              </div>
-              <div>Introduction to Lightning Observations and Applications</div>
-              <FlexCenter>
-                <Image
-                  width={250}
-                  height={300}
-                  src="/arset-introduction-to-lightning-observations.png"
-                  alt="ARSET Introduction to Lightning Observations and Applications certificate"
-                  priority={true}
-                  className="cursor-pointer"
-                  onClick={() => setOpenAchievement("lightning")}
-                />
-              </FlexCenter>
-            </Card>
-
-            <Card>
-              <div className="pb-1 font-bold">
-                NOV 2023: Completed NASA ARSET training
-              </div>
-              <div>Spectral Indices for Land and Aquatic Applications</div>
-              <FlexCenter>
-                <Image
-                  width={250}
-                  height={300}
-                  src="/arset-spectral-indicies.png"
-                  alt="ARSET Spectral Indicies certificate"
-                  priority={true}
-                  className="cursor-pointer"
-                  onClick={() => setOpenAchievement("spectral")}
-                />
-              </FlexCenter>
-            </Card>
-            <Card>
-              <div className="pb-1 font-bold">
-                OCT 2022: Completed NASA ARSET training
-              </div>
-              <div>
-                Accessing and Analyzing Air Quality Data from Geostationary
-                Satellites
-              </div>
-              <FlexCenter>
-                <Image
-                  width={250}
-                  height={300}
-                  src="/arset-analyzing-air-quality-data.png"
-                  alt="ARSET Accessing and Analyzing Air Quality Data from Geostationary Satellites certificate"
-                  priority={true}
-                  className="cursor-pointer"
-                  onClick={() => setOpenAchievement("airquality")}
-                />
-              </FlexCenter>
-            </Card>
+            {resumeData.achievements.map((achievement) => (
+              <Card key={achievement.id}>
+                <div className="pb-1 font-bold">
+                  {achievement.date}: {achievement.title}
+                </div>
+                <div>{achievement.description}</div>
+                <FlexCenter>
+                  <Image
+                    width={achievement.image.width}
+                    height={achievement.image.height}
+                    src={achievement.image.src}
+                    alt={achievement.image.alt}
+                    priority={true}
+                    className="cursor-pointer"
+                    onClick={() =>
+                      setOpenAchievement(
+                        achievement.id as
+                          | "lightning"
+                          | "spectral"
+                          | "airquality"
+                      )
+                    }
+                  />
+                </FlexCenter>
+              </Card>
+            ))}
             {/* Lightbox Dialog for Achievements */}
             <CardDialog
               open={openAchievement !== null}
               onClose={() => setOpenAchievement(null)}
               title={
-                openAchievement === "lightning"
-                  ? "NASA ARSET: Lightning Observations Certificate"
-                  : openAchievement === "spectral"
-                    ? "NASA ARSET: Spectral Indices Certificate"
-                    : openAchievement === "airquality"
-                      ? "NASA ARSET: Air Quality Data Certificate"
-                      : ""
+                openAchievement
+                  ? `NASA ARSET: ${resumeData.achievements
+                      .find((a) => a.id === openAchievement)
+                      ?.description.split(" ")
+                      .slice(-2)
+                      .join(" ")} Certificate`
+                  : ""
               }
               columnName="Achievements"
               date=""
             >
-              {openAchievement === "lightning" && (
+              {openAchievement && (
                 <FlexCenter>
                   <Image
-                    width={600}
-                    height={800}
-                    src="/arset-introduction-to-lightning-observations.png"
-                    alt="ARSET Introduction to Lightning Observations and Applications certificate"
-                    priority={true}
-                  />
-                </FlexCenter>
-              )}
-              {openAchievement === "spectral" && (
-                <FlexCenter>
-                  <Image
-                    width={600}
-                    height={800}
-                    src="/arset-spectral-indicies.png"
-                    alt="ARSET Spectral Indicies certificate"
-                    priority={true}
-                  />
-                </FlexCenter>
-              )}
-              {openAchievement === "airquality" && (
-                <FlexCenter>
-                  <Image
-                    width={600}
-                    height={800}
-                    src="/arset-analyzing-air-quality-data.png"
-                    alt="ARSET Accessing and Analyzing Air Quality Data from Geostationary Satellites certificate"
+                    width={
+                      resumeData.achievements.find(
+                        (a) => a.id === openAchievement
+                      )?.lightboxImage.width || 600
+                    }
+                    height={
+                      resumeData.achievements.find(
+                        (a) => a.id === openAchievement
+                      )?.lightboxImage.height || 800
+                    }
+                    src={
+                      resumeData.achievements.find(
+                        (a) => a.id === openAchievement
+                      )?.image.src || ""
+                    }
+                    alt={
+                      resumeData.achievements.find(
+                        (a) => a.id === openAchievement
+                      )?.image.alt || ""
+                    }
                     priority={true}
                   />
                 </FlexCenter>
@@ -425,267 +400,101 @@ function Resume(): JSX.Element {
               </Card>
             </Column>
           )}
-          <Column title="January 2021...">
+          <Column title={resumeData.experience[0].period}>
             <Card>
               <span className="pb-1 font-bold">
-                Senior Geospatial & Frontend Technical Lead
+                {resumeData.experience[0].title}
               </span>
-              Kablamo
+              {resumeData.experience[0].company}
             </Card>
             <Card>
               <Hr />
             </Card>
-            <Card>
-              <FlexCenter>
-                <Image
-                  width={100}
-                  height={200}
-                  src="/kablamo-logo.png"
-                  alt="Kablamo logo"
-                />
-              </FlexCenter>
-            </Card>
-            <Card>
-              <div className="font-bold pb-3">✨Upgrade March 2022✨</div>
-              <div className="pb-3">Tech Lead -{">"} Senior Tech Lead</div>
-            </Card>
-            <Card>
-              Duties:
-              <Spacer />
-              - Host the fortnightly frontend catchup where we discuss emerging
-              frontend technology and trends and showcase frontend work our team
-              has achieved.
-              <Spacer />
-              - Mentor frontend developers to reach their full potential
-              <Spacer />
-              - Consult on the geospatial projects
-              <Spacer />
-              - Build prototypes for client tenders
-              <Spacer />
-              - Get developers excited about 3D visualisations and geospatial
-              applications
-              <Spacer />
-              - Build out and manage our geospatial knowledge base
-              <Spacer />
-              - Architect and pitch solutions to clients during the sales cycle
-              and development cycle
-              <Spacer />
-              - Interview candidates for our frontend team
-              <Spacer />- Work with clients during engagements to make sure
-              we&apos;re delivering on their needs
-            </Card>
-            <Card>
-              Experience:
-              <Spacer />
-              - Lead the frontend team to deliver a 3D fire prediction tool for
-              NSW RFS using Mapbox and React.
-              <Spacer />- Architected and led the team delivering a Remote Fire
-              Detection capability for{" "}
-              <a
-                href={"https://firestory.io"}
-                target={"_blank"}
-                className={"text-blue-800"}
-              >
-                Firestory
-              </a>
-              <ul className={"ml-4"}>
-                <li>- Event Driven</li>
-                <li>- Serverless</li>
-                <li>- Modular architecture</li>
-                <li>- NodeJS, Go, Typescript, React</li>
-              </ul>
-              <Spacer />- Exhibited at AFAC 2023 and the 2024 Office of the NSW
-              Chief Scientist & Engineer Commercialisation showcase
-            </Card>
-          </Column>
-          <Column title="2016-December 2020">
-            <div className="pt-3">
+            {resumeData.experience[0].logo && (
               <Card>
-                <div className="pb-1 font-bold">
-                  <div>Senior Software Engineer /</div>
-                  <div>(Engineering) Head of Visualiser</div>
-                </div>
-                Propeller Aero
+                <FlexCenter>
+                  <Image
+                    width={resumeData.experience[0].logo.width}
+                    height={resumeData.experience[0].logo.height}
+                    src={resumeData.experience[0].logo.src}
+                    alt={resumeData.experience[0].logo.alt}
+                  />
+                </FlexCenter>
               </Card>
-              <Card>
-                <Hr />
-              </Card>
+            )}
+            {resumeData.experience[0].upgrades &&
+              resumeData.experience[0].upgrades.map((upgrade, index) => (
+                <Card key={index}>
+                  <div className="font-bold pb-3">
+                    ✨Upgrade {upgrade.date}✨
+                  </div>
+                  <div className="pb-3">
+                    {upgrade.from ? upgrade.from + " ->" : ""} {upgrade.to}
+                  </div>
+                </Card>
+              ))}
+            {resumeData.experience[0].duties && (
               <Card>
                 Duties:
                 <Spacer />
-                - Build and maintain 3D drone mapping visualisation tool
-                leveraging React, Redux and CesiumJS
-                <Spacer />
-                - Build and maintain the backend service written in Koa serving
-                both REST and GraphQL endpoints
-                <Spacer />
-                - Mentor junior developers on software best practices and run
-                workshops on the technologies and methodologies we use such as
-                React, Redux, Node, Koa, Express, TDD.
-                <Spacer />
-                - Scrum master for a small team of developers
-                <Spacer />
-                - Write and maintain webpack and CI tooling and configuration to
-                facilitate complex frontend builds
-                <Spacer />
-                - Deliver software demos to the company to showcase work
-                delivered
-                <Spacer />
-                - Lead hiring interviews for Software Engineers, QA Engineers,
-                Head of Engineering, Product Owners
-                <Spacer />
-                - Facilitate regular team retros and feedback sessions
-                <Spacer />
-                - Run One-to-Ones with the engineers
-                <Spacer />
-                - Champion best practices and standards
-                <Spacer />
-                - Visit customers to understand their needs and communicate back
-                to the teams
-                <Spacer />
-                - Translate technical concepts to non-technical stakeholders
-                <Spacer />
-                - Build technical roadmaps and documentation to facilitate
-                modernisation of an aging codebase
-                <Spacer />
-                - Build feature usage dashboards so we can make informed
-                data-driven decisions
-                <Spacer />
-                - Write Infrastructure-as-Code using Terraform to generate the
-                AWS cloud infrastructure to host our applications
-                <Spacer />- Architect simple solutions to complex problems with
-                the team of engineers
+                {resumeData.experience[0].duties.map((duty, index) => (
+                  <div key={index}>
+                    - {duty}
+                    <Spacer />
+                  </div>
+                ))}
               </Card>
+            )}
+            {resumeData.experience[0].experience && (
               <Card>
-                Skills snapshot:
+                Experience:
                 <Spacer />
-                - Expert level React
-                <Spacer />
-                - Expert level Node
-                <Spacer />
-                - Strong mapping skills
-                <Spacer />
-                <div className="ml-4">- CesiumJS</div>
-                <Spacer />
-                <div className="ml-4">- Resium</div>
-                <Spacer />
-                <div className="ml-4">- Leaflet</div>
-                <Spacer />
-                <div className="ml-4">- Mapbox</div>
-                <Spacer />
-                - Tech/Team Leading
-                <Spacer />
-                - Developer Experience
-                <Spacer />
-                - Agile ceremony facilitation
-                <Spacer />
-                - OKR planning
-                <Spacer />
-                - Mentoring
-                <Spacer />- Stakeholder management
+                {resumeData.experience[0].experience.map((exp, index) => (
+                  <div key={index}>
+                    - {exp.text}
+                    {exp.link && (
+                      <>
+                        {" "}
+                        <a
+                          href={exp.link.url}
+                          target="_blank"
+                          className="text-blue-800"
+                        >
+                          {exp.link.text}
+                        </a>
+                      </>
+                    )}
+                    {exp.subItems && (
+                      <ul className="ml-4">
+                        {exp.subItems.map((item, itemIndex) => (
+                          <li key={itemIndex}>- {item}</li>
+                        ))}
+                      </ul>
+                    )}
+                    <Spacer />
+                  </div>
+                ))}
               </Card>
-            </div>
+            )}
           </Column>
-          <Column title="2014-2016">
-            <Card>
-              <span className="pb-1 font-bold">Senior Software Engineer</span>
-              Mi9/Channel 9
-            </Card>
-            <Card>
-              <Hr />
-            </Card>
-            <Card>
-              Duties:
-              <Spacer />
-              - Work as part of a scrum team to create and maintain the whole of
-              Channel 9's network of websites
-              <Spacer />
-              - Leading teams to deliver these websites
-              <Spacer />
-              - Set the technical direction of the teams to ensure we're moving
-              forward and taking advantage of best practices and new technology
-              <Spacer />
-              - Helped deliver the first webpack built website in the network
-              and help transition away from gulp and grunt
-              <Spacer />
-              - Worked on the component library for Channel 9 to help share code
-              across different codebases
-              <Spacer />- Pushed for React adoption within the company and lead
-              the team building yourmovies.com.au in React
-            </Card>
-          </Column>
-          <Column title="2013-2014">
-            <Card>
-              <span className="pb-1 font-bold">Software Engineer</span>
-              Pace International, Sydney office
-            </Card>
-            <Card>
-              <Hr />
-            </Card>
-            <Card>
-              Duties:
-              <Spacer />
-              - Work as part of a small remote team to deliver Foxtel iQ3 UI
-              software written in HTML, CSS and JS
-              <Spacer />
-              - Deliver software demos to customer stakeholders
-              <Spacer />
-              - Work with other vendors to align on delivery and usage of APIs
-              <Spacer />- Work with set top box hardware to diagnose and solve
-              issues
-            </Card>
-          </Column>
-          <Column title="2010-2013">
-            <Card>
-              <span className="pb-1 font-bold">Software Engineer</span>
-              Asidua, Belfast
-            </Card>
-            <Card>
-              <Hr />
-            </Card>
-            <Card>
-              Duties:
-              <Spacer />
-              - Work as part of scrum teams on many projects across the business
-              <Spacer />
-              - Work onsite with customer teams to deliver software projects
-              <Spacer />- Communicate progress with external stakeholders on
-              behalf of the business
-            </Card>
-            <Card>
-              Notable projects:
-              <Spacer />
-              - Built a testing framework from scratch for set top box hardware
-              in Perl + HTML/CSS/JS
-              <Spacer />
-              - Rebuilt the BTVision set top box UI software with a focus on
-              reducing memory footprint in JS
-              <Spacer />- Worked on high speed communications ordering tool for
-              well known telecommunications company in Java + Angular JS
-            </Card>
-          </Column>
-          <Column title="2005-2010">
-            <Card>
-              <span className="pb-1 font-bold">
-                Bachelors of Engineering in Computer Science
-              </span>
-              Queens University Belfast
-            </Card>
-            <Card>
-              <Hr />
-            </Card>
-            <Card>
-              <span className="pb-1 font-bold">Java Demonstrator</span>
-              Queens University Belfast
-            </Card>
-            <Card>
-              <Hr />
-            </Card>
-            <Card>
-              <span className="pb-1 font-bold">Database Administrator</span>
-              Central Services Agency Northern Ireland
-            </Card>
-          </Column>
+          {resumeData.experience.slice(1).map(renderExperienceSection)}
+          {resumeData.education.map((education) => (
+            <Column key={education.period} title={education.period}>
+              {education.items.map((item, index) => (
+                <div key={index}>
+                  <Card>
+                    <span className="pb-1 font-bold">{item.title}</span>
+                    {item.institution}
+                  </Card>
+                  {index < education.items.length - 1 && (
+                    <Card>
+                      <Hr />
+                    </Card>
+                  )}
+                </div>
+              ))}
+            </Column>
+          ))}
         </div>
       </div>
     </>
