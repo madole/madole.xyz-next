@@ -24,7 +24,7 @@ const Label = (props: Label) => {
 
   return (
     <div
-      className="my-2 px-2 py-1 w-1/3 text-center mb-2 text-white font-bold rounded-sm"
+      className="my-2 px-2 py-1 w-1/3 text-center mb-2 text-white font-bold rounded-xl"
       style={{ backgroundColor: color }}
     >
       {text}
@@ -36,7 +36,7 @@ const Card = (props: Props): JSX.Element => {
   const { children, labels = [], onClick } = props;
   return (
     <div
-      className="bg-white p-2 rounded-sm my-1 text-xs hover:bg-gray-100 shadow flex flex-col"
+      className="bg-white p-3 rounded-xl my-1 text-xs hover:bg-gray-100 shadow flex flex-col"
       draggable
       onClick={() => onClick && onClick()}
     >

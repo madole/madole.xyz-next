@@ -33,3 +33,11 @@ a {
 * {
   box-sizing: border-box;
 }
+
+
+.scroll-container {
+  scrollbar-color: #C5CAD2 #E5E7EB; /* thumb, background */
+}
+
+
+
