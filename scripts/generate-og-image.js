@@ -32,19 +32,23 @@ const generateImage = async () => {
 
     const width = 1200;
     const height = 630;
+
+    // Pre-process the background image for better compression
+    const optimizedBackgroundBuffer = await sharp(Buffer.from(imageBuffer))
+      .resize(width, height)
+      .jpeg({ quality: 85, progressive: true })
+      .toBuffer();
     // Split title into lines of max 30 characters
-    const splitNewLineTitle = title
-      .split(' ')
-      .reduce((lines, word) => {
+    const splitNewLineTitle = title.split(" ").reduce((lines, word) => {
       if (!lines.length) return [word];
       const lastLine = lines[lines.length - 1];
-      if ((lastLine + ' ' + word).length <= 30) {
-        lines[lines.length - 1] = lastLine + ' ' + word;
+      if ((lastLine + " " + word).length <= 30) {
+        lines[lines.length - 1] = lastLine + " " + word;
       } else {
         lines.push(word);
       }
       return lines;
-      }, []);
+    }, []);
 
     const svgText = `
       <svg width="${width}" height="${height}">
@@ -73,11 +77,11 @@ const generateImage = async () => {
       <g style="background: rgba(0, 0, 0, 0.5);">
         <rect x="0" y="0" width="${width}" height="${height}" fill="rgba(0,0,0,0.4)" />
         ${splitNewLineTitle
-        .map(
-          (line, i) =>
-          `<text x="50%" y="${50 + i * TITLE_LINE_SPACING }%" dominant-baseline="middle" text-anchor="middle" class="title">${line.toUpperCase()}</text>`
-        )
-        .join('\n')}
+          .map(
+            (line, i) =>
+              `<text x="50%" y="${50 + i * TITLE_LINE_SPACING}%" dominant-baseline="middle" text-anchor="middle" class="title">${line.toUpperCase()}</text>`
+          )
+          .join("\n")}
         <text x="50%" y="${60 + splitNewLineTitle.length * SITE_NAME_SPACING}%" dominant-baseline="middle" text-anchor="middle" class="site-name">MADOLE.XYZ</text>
       </g>
       </svg>
@@ -87,11 +91,15 @@ const generateImage = async () => {
       process.cwd(),
       "public",
       "og",
-      `${slug}.png`
+      `${slug}.jpg`
     );
 
-    await sharp(imageBuffer)
-      .resize(width, height)
+    await sharp(optimizedBackgroundBuffer)
+      .jpeg({
+        quality: 80,
+        progressive: true,
+        mozjpeg: true,
+      })
       .composite([
         {
           input: Buffer.from(svgText),
@@ -105,7 +113,7 @@ const generateImage = async () => {
 
     const updatedAttributes = {
       ...postAttributes,
-      og_image: `/og/${slug}.png`,
+      og_image: `/og/${slug}.jpg`,
     };
     const updatedFileContent = `---
 ${yaml.dump(updatedAttributes)}---
