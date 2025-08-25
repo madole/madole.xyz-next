@@ -4,6 +4,9 @@ const sharp = require("sharp");
 const yaml = require("js-yaml");
 const frontMatter = require("front-matter");
 
+const TITLE_LINE_SPACING = 8
+const SITE_NAME_SPACING = 5
+
 const [slug, imageUrl] = process.argv.slice(2);
 
 if (!slug || !imageUrl) {
@@ -29,7 +32,7 @@ const generateImage = async () => {
 
     const width = 1200;
     const height = 630;
-    // Split title into lines of max 40 characters
+    // Split title into lines of max 30 characters
     const splitNewLineTitle = title
       .split(' ')
       .reduce((lines, word) => {
@@ -72,10 +75,10 @@ const generateImage = async () => {
         ${splitNewLineTitle
         .map(
           (line, i) =>
-          `<text x="50%" y="${50 + i * 8 }%" dominant-baseline="middle" text-anchor="middle" class="title">${line.toUpperCase()}</text>`
+          `<text x="50%" y="${50 + i * TITLE_LINE_SPACING }%" dominant-baseline="middle" text-anchor="middle" class="title">${line.toUpperCase()}</text>`
         )
         .join('\n')}
-        <text x="50%" y="${60 + splitNewLineTitle.length * 7}%" dominant-baseline="middle" text-anchor="middle" class="site-name">MADOLE.XYZ</text>
+        <text x="50%" y="${60 + splitNewLineTitle.length * SITE_NAME_SPACING}%" dominant-baseline="middle" text-anchor="middle" class="site-name">MADOLE.XYZ</text>
       </g>
       </svg>
     `;
