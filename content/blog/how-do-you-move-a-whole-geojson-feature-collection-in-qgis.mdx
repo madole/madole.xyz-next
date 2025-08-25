@@ -1,0 +1,70 @@
+---
+title: How do you move a whole GeoJSON feature collection in QGIS?
+date: '2025-08-25T00:48:25.716Z'
+tags:
+  - geospatial
+  - data
+  - geojson
+slug: how-do-you-move-a-whole-geojson-feature-collection-in-qgis
+og_image: /og/how-do-you-move-a-whole-geojson-feature-collection-in-qgis.png
+---
+As a software engineer working with geospatial data, I'm constantly creating or sourcing test data for my applications. Whether it's for stress-testing a map's rendering performance or validating a new location-based feature, having realistic data is crucial.
+
+Good test data is often time-consuming to create from scratch. You might have a perfect dataset like a fire spread prediction in GeoJSON format for a region on the NSW/ACT border, Australia, but you need it to test a scenario in British Columbia, Canada.
+
+How do you take a feature collection that's geographically anchored to one part of the world and simply move it to another?
+
+While you could write a script to iterate over every coordinate, I find it easier to take the visual approach using QGIS. Lets look at using the Affine Transformation tool to translate your vector data to any location on the globe.
+
+## Reusing geographically-locked data
+
+Let's stick with our scenario. We have a GeoJSON file representing a hypothetical wildfire spread near Canberra, Australia. Our application needs to be tested for a similar scenario in the Canadian wilderness. The shape, complexity, and attributes of our Australian data are perfect; only its location is wrong.
+
+The goal is to move the entire set of polygons from its source location to a new target destination without altering its shape or scale. This process is called `translation`, its a core geometric operation that the Affine Transformation tool in QGIS provides an interface for.
+
+### **The solution: A two-step math problem**
+
+All we need to do is calculate the difference in longitude (the x-axis) and latitude (the y-axis) between our starting point and our destination. This difference, or "offset," is what we'll provide to QGIS.
+
+#### **Step 1: Find your source and target coordinates**
+
+First, you need to identify a reference point in both your source and target locations. This can be the centroid of your data, a specific city, or just a general point in the area of interest. For our example, let's use the following coordinates:
+
+* **Source Location** (NSW/ACT Border, AU): `149.20576, -35.20385`  
+* **Target Location** (British Columbia, CA): `-120.7946, 54.7963`
+
+#### **Step 2: Calculate the translation offset**
+
+Now, we perform a simple subtraction to find the distance we need to move our data along each axis. The formula is straightforward: `Offset = Target Coordinate - Source Coordinate`.
+
+* **X-axis Difference** (Longitude): `(-120.7946) - 149.20576 = -270.00036`
+
+* **Y-axis Difference** (Latitude): `54.7963 - (-35.20385) = 90.00015`
+
+These two numbers are all we need. The negative value for the x-axis tells QGIS to move the data to the west, and the positive value for the y-axis tells it to move the data to the north.
+
+### **Applying the affine transformation in QGIS**
+
+With our offsets calculated, it's time to put them to work in QGIS.
+
+1. **`Load Your Data`**: First, open QGIS and load your source vector layer (e.g., your fire prediction GeoJSON file). You should see it displayed in its original location in Australia.  
+2. **`Open the Affine Transformation Tool`**: In the top menu, go to **`Processing > Toolbox`**. In the Processing Toolbox panel that appears, search for "Affine" and double-click the **`Affine Transformation`** tool under the **`Vector geometry`** section.  
+3. **`Configure the Transformation`**: In the Affine Transformation window, you'll see several fields. 
+   * **`Input layer`**: Select your source GeoJSON layer from the dropdown.  
+   * **`Translation (x-axis)`**: Enter the X-axis difference we calculated: `-270.00036`.  
+   * **`Translation (y-axis)`**: Enter the Y-axis difference we calculated: `90.00015`.  
+   * **`Scale (x-axis)`** & **`Scale (y-axis)`**: Leave these as `1.0`. We aren't resizing the data.  
+   * **`Rotation (z-axis)`**: Leave this as `0.0`. We aren't rotating the data.  
+   * **`Transformed`**: You can leave this as `[Create temporary layer]`. This allows you to preview the result before saving it permanently.  
+4. **`Run the Tool`**: Click the **`Run`** button.
+
+QGIS will instantly perform the calculation on every vertex in your layer and generate a new temporary layer named "Transformed." If you zoom to the target coordinates in Canada, you will see your data sitting perfectly in its new home.
+
+### **Save your new layer**
+
+The temporary layer only exists for your current QGIS session. To make it permanent, right-click on the **`Transformed`** layer in the Layers panel, go to **`Export > Save Features As...`**, and save it in your desired format, such as GeoJSON.
+
+We've successfully moved a complex geospatial dataset across the world without writing a single line of code. 
+
+The Affine Transformation tool is a great way to handle this classic data prep task, allowing you to repurpose test data for different geographic contexts and immediately inspect the results visually. 
+
