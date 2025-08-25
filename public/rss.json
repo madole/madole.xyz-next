@@ -12,7 +12,7 @@
     "items": [
         {
             "id": "https://madole.xyz/blog/how-do-you-move-a-whole-geojson-feature-collection-in-qgis",
-            "content_html": "<p>As a software engineer working with geospatial data, I&#39;m constantly creating or sourcing test data for my applications. Whether it&#39;s for stress-testing a map&#39;s rendering performance or validating a new location-based feature, having realistic data is</p>\n",
+            "content_html": "<p>As a software engineer working with geospatial data, I&#39;m constantly creating or sourcing test data for my applications. If you want to have realistic tests, you need realistic data.</p>\n<p>Good test data is time-consuming to create from scratch. You might </p>\n",
             "url": "https://madole.xyz/blog/how-do-you-move-a-whole-geojson-feature-collection-in-qgis",
             "title": "How do you move a whole GeoJSON feature collection in QGIS?",
             "summary": "Reading time: 4 min read",

@@ -4,7 +4,7 @@
         <title>Madole.xyz Blog</title>
         <link>http://madole.xyz/</link>
         <description>Blog posts from madole.xyz</description>
-        <lastBuildDate>Mon, 25 Aug 2025 04:04:06 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 25 Aug 2025 04:17:40 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -20,7 +20,8 @@
             <guid>https://madole.xyz/blog/how-do-you-move-a-whole-geojson-feature-collection-in-qgis</guid>
             <pubDate>Mon, 25 Aug 2025 00:48:25 GMT</pubDate>
             <description><![CDATA[Reading time: 4 min read]]></description>
-            <content:encoded><![CDATA[<p>As a software engineer working with geospatial data, I&#39;m constantly creating or sourcing test data for my applications. Whether it&#39;s for stress-testing a map&#39;s rendering performance or validating a new location-based feature, having realistic data is</p>
+            <content:encoded><![CDATA[<p>As a software engineer working with geospatial data, I&#39;m constantly creating or sourcing test data for my applications. If you want to have realistic tests, you need realistic data.</p>
+<p>Good test data is time-consuming to create from scratch. You might </p>
 ]]></content:encoded>
             <author>me@madole.dev (Andrew McDowell)</author>
         </item>
