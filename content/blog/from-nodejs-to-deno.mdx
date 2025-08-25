@@ -8,7 +8,7 @@ tags:
   - node
   - deno
 slug: from-nodejs-to-deno
-og_image: /og/from-nodejs-to-deno.webp
+og_image: /og/deno.png
 ---
 This article was originally published on the [Kablamo Engineering Blog](https://engineering.kablamo.com.au/posts/from-node-to-deno/).
 
@@ -26,7 +26,7 @@ Ryan Dahl is the creator of Node. He created Node after working in Ruby where he
 
 ## The Emergence of Deno
 
-Fast forward to 2018, Ryan Dahl re-emerged with Deno _(an anagram of Node)_. Deno was designed as a modern, secure runtime for JavaScript and TypeScript, aiming to address the architectural choices he came to regret in Node.js. It was built from scratch using Rust, Tokio (the async Rust runtime), and the V8 engine.
+Fast-forward to 2018, Ryan Dahl re-emerged with Deno _(an anagram of Node)_. Deno was designed as a modern, secure runtime for JavaScript and TypeScript, aiming to address the architectural choices he came to regret in Node.js. It was built from scratch using Rust, Tokio (the async Rust runtime), and the V8 engine.
 
 ## Deno's Core Philosophy
 
@@ -48,7 +48,7 @@ With that said, it became clear that the Deno team couldn't ignore Node.js's vas
 
 
 
-```TypeScript
+```ts
 import path from 'node:path';
 import lodash from 'npm:lodash';
 ```
@@ -68,7 +68,7 @@ Deno includes built-in support for environment variables, accessible directly th
 For TypeScript enthusiasts, Deno is a significant advantage. It supports TypeScript out of the box, meaning you can write and run TypeScript code directly without any transpilation or build steps. It also includes built-in type checking via `deno check`.
 
 ### Deno REPL
-Deno provides a REPL like Node.js which has the whole Deno ecosystem available to it. It's good for quick prototyping or checking snippets of code. Its worth knowing that it runs Typescript but it doesn't type check it. 
+Deno provides a REPL like Node.js which has the whole Deno ecosystem available to it. It's good for quick prototyping or checking snippets of code. It's worth knowing that it runs Typescript but it doesn't type check it. 
 
 ### Blazing Fast Linting
 
@@ -103,7 +103,7 @@ This one has had a rocky history where it was introduced early but then quickly 
 
 The main challenge for Deno currently is the fragmentation of the JavaScript package ecosystem. While JSR (jsr.io) is Deno's official, open-source package registry for modern JavaScript and TypeScript, the vast majority of existing packages reside on NPM. This creates a dilemma for developers: should they publish to JSR for Deno-native consumption, or stick to NPM for broader reach? While Deno's NPM compatibility helps, the ecosystem's credibility and the sheer volume of packages on JSR still need to grow to match NPM's dominance. Even so, JSR offers great features like package health stats and runtime compatibility icons, which are helpful. 
 
-I think an emerging issue will be package and org typo squatting, who's to say a package that is legit in npm and is also available in JSR is the same package? I'm sure fragmentation is not the goal here and over time there'll be a consolidation but we're just in that funny spot right now.
+I think an emerging issue will be package and org typo squatting, who's to say a package that is legit in npm and is also available in JSR is the same package? I'm sure fragmentation is not the goal here, and over time, there'll be a consolidation, but we're just in that funny spot right now.
 
 ## Conclusion
 
