@@ -1,6 +1,7 @@
 ---
 title: How do you move a whole GeoJSON feature collection in QGIS?
 date: '2025-08-25T00:48:25.716Z'
+description: Move an entire GeoJSON feature collection to a new location using QGIS’s Affine Transformation—no code required.
 tags:
   - geospatial
   - data
@@ -16,7 +17,7 @@ How do you take a feature collection that's geographically anchored to one part 
 
 While you could write a script to iterate over every coordinate, I find it easier to take the visual approach using QGIS. Lets look at using the Affine Transformation tool to translate your vector data to any location on the globe.
 
-## Reusing geographically-locked data
+## Reusing geographically locked data
 
 Let's stick with our scenario. We have a GeoJSON file representing a hypothetical wildfire spread near Canberra, Australia. Our application needs to be tested for a similar scenario in the Canadian wilderness. The shape, complexity, and attributes of our Australian data are perfect, but its location is wrong.
 
