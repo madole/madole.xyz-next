@@ -4,7 +4,7 @@
         <title>Madole.xyz Blog</title>
         <link>http://madole.xyz/</link>
         <description>Blog posts from madole.xyz</description>
-        <lastBuildDate>Tue, 12 Aug 2025 13:39:33 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 25 Aug 2025 05:18:29 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -14,6 +14,28 @@
             <link>http://madole.xyz/</link>
         </image>
         <copyright>All rights reserved 2022, Madole</copyright>
+        <item>
+            <title><![CDATA[How do you move a whole GeoJSON feature collection in QGIS?]]></title>
+            <link>https://madole.xyz/blog/how-do-you-move-a-whole-geojson-feature-collection-in-qgis</link>
+            <guid>https://madole.xyz/blog/how-do-you-move-a-whole-geojson-feature-collection-in-qgis</guid>
+            <pubDate>Mon, 25 Aug 2025 00:48:25 GMT</pubDate>
+            <description><![CDATA[Reading time: 4 min read]]></description>
+            <content:encoded><![CDATA[<p>As a software engineer working with geospatial data, I&#39;m constantly creating or sourcing test data for my applications. If you want to have realistic tests, you need realistic data.</p>
+<p>Good test data is time-consuming to create from scratch. You might </p>
+]]></content:encoded>
+            <author>me@madole.dev (Andrew McDowell)</author>
+        </item>
+        <item>
+            <title><![CDATA[From Node.js to Deno: A Modern Take on JavaScript Runtimes]]></title>
+            <link>https://madole.xyz/blog/from-nodejs-to-deno</link>
+            <guid>https://madole.xyz/blog/from-nodejs-to-deno</guid>
+            <pubDate>Fri, 15 Aug 2025 23:19:58 GMT</pubDate>
+            <description><![CDATA[Reading time: 7 min read]]></description>
+            <content:encoded><![CDATA[<p>This article was originally published on the <a href="https://engineering.kablamo.com.au/posts/from-node-to-deno/">Kablamo Engineering Blog</a>.</p>
+<p>The JavaScript ecosystem is always changing, <em>sometimes at comical speed</em>, driven by the constant need for faster, </p>
+]]></content:encoded>
+            <author>me@madole.dev (Andrew McDowell)</author>
+        </item>
         <item>
             <title><![CDATA[What if You Could Draw Your AI Prompts?]]></title>
             <link>https://madole.xyz/blog/what-if-you-could-draw-your-ai-prompts</link>

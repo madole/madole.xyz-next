@@ -11,6 +11,30 @@
     },
     "items": [
         {
+            "id": "https://madole.xyz/blog/how-do-you-move-a-whole-geojson-feature-collection-in-qgis",
+            "content_html": "<p>As a software engineer working with geospatial data, I&#39;m constantly creating or sourcing test data for my applications. If you want to have realistic tests, you need realistic data.</p>\n<p>Good test data is time-consuming to create from scratch. You might </p>\n",
+            "url": "https://madole.xyz/blog/how-do-you-move-a-whole-geojson-feature-collection-in-qgis",
+            "title": "How do you move a whole GeoJSON feature collection in QGIS?",
+            "summary": "Reading time: 4 min read",
+            "date_modified": "2025-08-25T00:48:25.716Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
+            "id": "https://madole.xyz/blog/from-nodejs-to-deno",
+            "content_html": "<p>This article was originally published on the <a href=\"https://engineering.kablamo.com.au/posts/from-node-to-deno/\">Kablamo Engineering Blog</a>.</p>\n<p>The JavaScript ecosystem is always changing, <em>sometimes at comical speed</em>, driven by the constant need for faster, </p>\n",
+            "url": "https://madole.xyz/blog/from-nodejs-to-deno",
+            "title": "From Node.js to Deno: A Modern Take on JavaScript Runtimes",
+            "summary": "Reading time: 7 min read",
+            "date_modified": "2025-08-15T23:19:58.250Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
             "id": "https://madole.xyz/blog/what-if-you-could-draw-your-ai-prompts",
             "content_html": "<p><img src=\"/blog-images/what-if-you-could-draw/og-image.png\" alt=\"TLDraw Computer\"></p>\n<p>Working with AI can often feel complex, abstract and impenetrable. </p>\n<blockquote>\n<p>What is all this jargon?&quot;</p>\n<p>&quot;How do I even get started?</p>\n</blockquote>\n<p>But what if interacting with AI models was more in</p>\n",
             "url": "https://madole.xyz/blog/what-if-you-could-draw-your-ai-prompts",

@@ -1,0 +1,110 @@
+---
+title: 'From Node.js to Deno: A Modern Take on JavaScript Runtimes'
+description: >-
+  A brief history of Node and a look at how Deno is modernising the server side
+  JavaScript ecosystem
+date: '2025-08-15T23:19:58.250Z'
+tags:
+  - node
+  - deno
+slug: from-nodejs-to-deno
+og_image: /og/deno.png
+---
+This article was originally published on the [Kablamo Engineering Blog](https://engineering.kablamo.com.au/posts/from-node-to-deno/).
+
+The JavaScript ecosystem is always changing, _sometimes at comical speed_, driven by the constant need for faster, more secure, and more efficient development tools and patterns. For years, Node.js has been the go-to for server-side JavaScript. However, the creator of Node.js, Ryan Dahl, later introduced Deno, a new runtime built with modern web standards and security in mind. To understand Deno, you first have to understand the story of Node.js.
+
+## Wait, what exactly is Node.js?
+
+For a quick refresher, Node.js is an open-source, cross-platform JavaScript runtime environment built on Chrome's V8 JavaScript engine. It enables JavaScript _(and more recently, TypeScript)_, traditionally executed in web browsers, to run on the server-side, allowing developers to build scalable and high-performance network applications.
+
+Node.js _(or Node for short)_ emerged in 2009, offering JavaScript developers the ability to build scalable network applications outside the browser. Its event-driven, non-blocking I/O model was a game-changer for backend development and made it possible for a single language to span both the frontend and backend.
+
+## The Mind Behind It: Ryan Dahl
+
+Ryan Dahl is the creator of Node. He created Node after working in Ruby where he got exposed to Rack (a simplified web server) at a Ruby conference, and doing some freelance work on Nginx where everything was asynchronous. The spark was ignited. He explored the idea of building web applications that could handle multiple concurrent connections without blocking using the newly released V8 JavaScript engine in Chrome. He hacked on his idea and presented Node.js at the European JSConf in 2009. It quickly gained adoption from those in the industry at the time, including myself. The idea of using one language across the stack was a breath of fresh air; I remember being blown away at the speed we could build things in Node. In January 2010, NPM was introduced, allowing engineers to easily share and reuse packages across the ecosystem. I remember the philosophy at the time, borrowing from the unix philosophy, _(for better or worse)_ was to make each package do one thing well and that could work together. This was taken to the extreme with packages like the now infamous [LeftPad](https://en.wikipedia.org/wiki/Npm_left-pad_incident) but in my opinion, this was a massive contributor to the success of Node and NPM in the early days. In 2012, Ryan left the Node.js project, expressing regret about certain design decisions, especially around the security of the module system and dependency handling.
+
+## The Emergence of Deno
+
+Fast-forward to 2018, Ryan Dahl re-emerged with Deno _(an anagram of Node)_. Deno was designed as a modern, secure runtime for JavaScript and TypeScript, aiming to address the architectural choices he came to regret in Node.js. It was built from scratch using Rust, Tokio (the async Rust runtime), and the V8 engine.
+
+## Deno's Core Philosophy
+
+Deno's philosophy centers on security, modern web standards, and a great developer experience. It aims to provide a complete and secure runtime environment out of the box, reducing the need for external tooling and complex build processes. Security is a top priority, with explicit permissions required for file system, network, or environment access.
+
+## What Makes Deno Shine?
+
+### Integrated Tooling and Standard Library
+
+One of Deno's most significant strengths is its integrated tooling. It ships with built-in tools for linting, formatting, and testing, along with a comprehensive standard library. This "batteries-included" approach means developers can get started without installing numerous third-party packages, simplifying project setup and maintenance.
+
+### A World Without `node_modules`
+
+Deno eliminates the `node_modules` folder. Instead, it imports modules directly from URLs, caching them locally on the first run. This design choice streamlines dependency management, avoids the "dependency hell" often associated with `npm`, and results in much smaller project directories.
+
+### Seamless Node.js and NPM Compatibility
+
+With that said, it became clear that the Deno team couldn't ignore Node.js's vast ecosystem, so Deno has made significant strides in compatibility. Developers can seamlessly import Node.js built-in modules using the `node:` prefix, and even leverage NPM packages directly from the `npm:` prefix, bridging the gap between the two runtimes.
+
+
+
+```ts
+import path from 'node:path';
+import lodash from 'npm:lodash';
+```
+
+This interoperability is crucial for migrating existing projects or utilizing libraries that are not yet native to Deno's ecosystem.
+
+### Simplified File I/O
+
+Deno simplifies common tasks like file operations. For instance, `Deno.writeTextFile` is a good example of Deno providing a concise API for common use cases like writing text to disk, which reduces boilerplate and makes file handling more intuitive.
+
+### Built-in Environment Variables
+
+Deno includes built-in support for environment variables, accessible directly through `Deno.env` and `deno run --env-file=./env main.ts`. This native integration simplifies configuration management and enhances security by allowing sensitive information to be passed to applications without hardcoding it.
+
+### TypeScript by Default, No Build Step
+
+For TypeScript enthusiasts, Deno is a significant advantage. It supports TypeScript out of the box, meaning you can write and run TypeScript code directly without any transpilation or build steps. It also includes built-in type checking via `deno check`.
+
+### Deno REPL
+Deno provides a REPL like Node.js which has the whole Deno ecosystem available to it. It's good for quick prototyping or checking snippets of code. It's worth knowing that it runs Typescript but it doesn't type check it. 
+
+### Blazing Fast Linting
+
+Deno's integrated linter, `deno lint`, is seriously fast, often outperforming traditional JavaScript linters like ESLint. This speed contributes to a more fluid development workflow, providing immediate feedback.
+
+
+
+```Bash
+$ time deno lint apps
+Checked 148 files
+deno lint apps  0.02s user 0.02s system 133% cpu 0.034 total
+```
+
+### Compile to a Single Executable
+
+One of Deno's handiest features is its ability to compile your entire application, including its dependencies, into a single executable file. This simplifies deployment and distribution, as users don't need Deno installed to run your application.
+
+
+
+```Bash
+deno compile ./main.ts
+```
+
+### Bundling
+For those cases where you need to a single optimised JS file, Deno uses ESBuild under the hood to provide bundling capability via `deno bundle -o bundle.js main.ts`
+
+This one has had a rocky history where it was introduced early but then quickly removed as it had some issues, it's back now to stay in the latest releases powered by the industry standard ESBuild project. 
+
+## Where Deno Still Faces Hurdles
+
+### JSR vs. NPM: Package Registry Fragmentation
+
+The main challenge for Deno currently is the fragmentation of the JavaScript package ecosystem. While JSR (jsr.io) is Deno's official, open-source package registry for modern JavaScript and TypeScript, the vast majority of existing packages reside on NPM. This creates a dilemma for developers: should they publish to JSR for Deno-native consumption, or stick to NPM for broader reach? While Deno's NPM compatibility helps, the ecosystem's credibility and the sheer volume of packages on JSR still need to grow to match NPM's dominance. Even so, JSR offers great features like package health stats and runtime compatibility icons, which are helpful. 
+
+I think an emerging issue will be package and org typo squatting, who's to say a package that is legit in npm and is also available in JSR is the same package? I'm sure fragmentation is not the goal here, and over time, there'll be a consolidation, but we're just in that funny spot right now.
+
+## Conclusion
+
+Deno represents an evolution in server-side JavaScript runtimes, directly addressing many of the historical pain points of Node.js. With its emphasis on security, integrated tooling, native TypeScript support, and a streamlined development experience, Deno offers a pretty good alternative for modern application development. While the challenge of package ecosystem fragmentation remains, Deno's continued development and growing community suggest it's here to stay. Competition is great for the ecosystem, and Deno is certainly pushing the boundaries. With Deno, Bun, and many other JS runtimes becoming viable options for production code, all with different strengths and weaknesses, it's never been a better time to write server-side JavaScript/TypeScript. We'll leave coverage of those to a future post.
