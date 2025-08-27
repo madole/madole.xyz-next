@@ -17,13 +17,13 @@ Good test data is time-consuming to create from scratch. You might have a perfec
 
 How do you take a feature collection that's geographically anchored to one part of the world and simply move it to another?
 
-While you could write a script to iterate over every coordinate, I find it easier to take the visual approach using QGIS. Lets look at using the Affine Transformation tool to translate your vector data to any location on the globe.
+While you could write a script to iterate over every coordinate, I find it easier to take the visual approach using QGIS. Lets look at using the Translate and Affine Transformation tools to translate your vector data to any location on the globe.
 
 ## Reusing geographically locked data
 
 Let's stick with our scenario. We have a GeoJSON file representing a hypothetical wildfire spread near Canberra, Australia. Our application needs to be tested for a similar scenario in the Canadian wilderness. The shape, complexity, and attributes of our Australian data are perfect, but its location is wrong.
 
-The goal is to move the entire set of polygons from its source location to a new target destination without altering its shape or scale. This process is called `translation`, its a core geometric operation that the Affine Transformation tool in QGIS provides an interface for.
+The goal is to move the entire set of polygons from its source location to a new target destination without altering its shape or scale. This process is called `translation`, its a core geometric operation that both the Tranlsate and the Affine Transformation tool in QGIS provides an interface for.
 
 ### **The solution: A two-step math problem**
 
