@@ -1,11 +1,12 @@
 ---
 title: GDAL Evolved - A guide to the new unified CLI
-date: '2025-10-16T09:26:15.799Z'
+date: "2025-10-16T09:26:15.799Z"
 tags:
   - geospatial
 slug: gdal-evolved
 og_image: /og/gdal-evolved.jpg
 ---
+
 I’ve always seen GDAL as the “VLC Player of geospatial data.” Much like the iconic media player that could handle pretty much any video format you threw at it, GDAL can open, read, and convert a mind-blowing array of raster and vector files. It's the undisputed Swiss Army knife propping up the geospatial industry. But like any software that has evolved for over 25 years, it developed some quirks. We've all been there: staring at the terminal, wondering if the input file comes before or after the output file, or why `gdal_translate` has a `-projwin` flag while `gdalwarp` uses `-te` for conceptually the same thing.
 
 For decades, we've navigated this maze of esoteric commands, memorising flags, and building up muscle memory for its quirks. It was a rite of passage. But things have changed. A significant, thoughtful, and long-overdue modernisation has arrived, sweeping away decades of technical debt and user friction.
@@ -21,7 +22,7 @@ Before we celebrate the new, let's appreciate the journey. The traditional GDAL 
 - **Dangerous defaults:** Some tools, like `gdal_translate`, would silently overwrite an existing file by default. Others would fail unless you explicitly added an `-overwrite` flag. This unpredictable behaviour was a recipe for disaster.
 - **Inconsistent arguments:** The same functionality often had different flag names across tools. Setting an extent was `-projwin` in one tool and `-te` in another. C++ utilities used single-dash options (`-projwin`), while Python scripts used double-dashes (`--overwrite`).
 
-We learned to live with these quirks, but they created a steep learning curve and introduced unnecessary cognitive overhead. The new GDAL CLI addresses every single one of these pain points.
+We learned to live with these quirks, but they created a steep learning curve and introduced unnecessary cognitive overhead. The new GDAL CLI addresses all of these pain points.
 
 ## A unified future: introducing the `gdal` command
 
