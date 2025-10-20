@@ -4,7 +4,7 @@
         <title>Madole.xyz Blog</title>
         <link>http://madole.xyz/</link>
         <description>Blog posts from madole.xyz</description>
-        <lastBuildDate>Mon, 25 Aug 2025 05:18:29 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 20 Oct 2025 06:04:14 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -15,11 +15,32 @@
         </image>
         <copyright>All rights reserved 2022, Madole</copyright>
         <item>
+            <title><![CDATA[GDAL Evolved - A guide to the new unified CLI]]></title>
+            <link>https://madole.xyz/blog/gdal-evolved</link>
+            <guid>https://madole.xyz/blog/gdal-evolved</guid>
+            <pubDate>Thu, 16 Oct 2025 09:26:15 GMT</pubDate>
+            <description><![CDATA[Reading time: 7 min read]]></description>
+            <content:encoded><![CDATA[<p><em>Originally posted at <a href="https://engineering.kablamo.com.au/posts/gdal-evolved/">https://engineering.kablamo.com.au/posts/gdal-evolved/</a></em></p>
+<p>I’ve always seen GDAL as the “VLC Player of geospatial data.” Much like the iconic media player that could handle pretty much any video format you threw at it, GDAL can op</p>
+]]></content:encoded>
+            <author>me@madole.dev (Andrew McDowell)</author>
+        </item>
+        <item>
+            <title><![CDATA[A mentors guide to effective 1-1s - Building trust and driving growth]]></title>
+            <link>https://madole.xyz/blog/a-mentors-guide-to-effective-1-1s</link>
+            <guid>https://madole.xyz/blog/a-mentors-guide-to-effective-1-1s</guid>
+            <pubDate>Thu, 16 Oct 2025 03:48:58 GMT</pubDate>
+            <description><![CDATA[Reading time: 6 min read]]></description>
+            <content:encoded><![CDATA[<p>Let&#39;s be honest, most one-on-one meetings are a waste of time. They&#39;re often rushed, unproductive check-ins that everyone dreads. A great 1:1 is different. It&#39;s the foundation of real mentorship, where you stop talking about tasks and start building </p>
+]]></content:encoded>
+            <author>me@madole.dev (Andrew McDowell)</author>
+        </item>
+        <item>
             <title><![CDATA[How do you move a whole GeoJSON feature collection in QGIS?]]></title>
             <link>https://madole.xyz/blog/how-do-you-move-a-whole-geojson-feature-collection-in-qgis</link>
             <guid>https://madole.xyz/blog/how-do-you-move-a-whole-geojson-feature-collection-in-qgis</guid>
             <pubDate>Mon, 25 Aug 2025 00:48:25 GMT</pubDate>
-            <description><![CDATA[Reading time: 4 min read]]></description>
+            <description><![CDATA[Reading time: 7 min read]]></description>
             <content:encoded><![CDATA[<p>As a software engineer working with geospatial data, I&#39;m constantly creating or sourcing test data for my applications. If you want to have realistic tests, you need realistic data.</p>
 <p>Good test data is time-consuming to create from scratch. You might </p>
 ]]></content:encoded>
