@@ -12,7 +12,7 @@
     "items": [
         {
             "id": "https://madole.xyz/blog/gdal-evolved",
-            "content_html": "<p>I’ve always seen GDAL as the “VLC Player of geospatial data.” Much like the iconic media player that could handle pretty much any video format you threw at it, GDAL can open, read, and convert a mind-blowing array of raster and vector files. It&#39;s the</p>\n",
+            "content_html": "<p><em>Originally posted at <a href=\"https://engineering.kablamo.com.au/posts/gdal-evolved/\">https://engineering.kablamo.com.au/posts/gdal-evolved/</a></em></p>\n<p>I’ve always seen GDAL as the “VLC Player of geospatial data.” Much like the iconic media player that could handle pretty much any video format you threw at it, GDAL can op</p>\n",
             "url": "https://madole.xyz/blog/gdal-evolved",
             "title": "GDAL Evolved - A guide to the new unified CLI",
             "summary": "Reading time: 7 min read",

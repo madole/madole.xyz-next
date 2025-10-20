@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>http://madole.xyz/</id>
     <title>Madole.xyz Blog</title>
-    <updated>2025-10-16T22:49:40.973Z</updated>
+    <updated>2025-10-20T06:04:14.991Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Andrew McDowell</name>
@@ -21,7 +21,8 @@
         <link href="https://madole.xyz/blog/gdal-evolved"/>
         <updated>2025-10-16T09:26:15.799Z</updated>
         <summary type="html"><![CDATA[Reading time: 7 min read]]></summary>
-        <content type="html"><![CDATA[<p>I’ve always seen GDAL as the “VLC Player of geospatial data.” Much like the iconic media player that could handle pretty much any video format you threw at it, GDAL can open, read, and convert a mind-blowing array of raster and vector files. It&#39;s the</p>
+        <content type="html"><![CDATA[<p><em>Originally posted at <a href="https://engineering.kablamo.com.au/posts/gdal-evolved/">https://engineering.kablamo.com.au/posts/gdal-evolved/</a></em></p>
+<p>I’ve always seen GDAL as the “VLC Player of geospatial data.” Much like the iconic media player that could handle pretty much any video format you threw at it, GDAL can op</p>
 ]]></content>
         <author>
             <name>Andrew McDowell</name>
