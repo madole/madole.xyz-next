@@ -1,0 +1,84 @@
+---
+title: When is a dashboard not a dashboard?
+date: '2025-10-20T05:53:48.208Z'
+tags:
+  - ux
+  - design
+  - learning
+slug: when-is-a-dashboard-not-a-dashboard
+og_image: /og/when-is-a-dashboard-not-a-dashboard.jpg
+---
+## Lessons learned in building dashboards for emergency services
+
+Our mission was to help an emergency response team prepare for crises by knowing what was coming. After all the hard work of understanding the problem, doing deep data analysis, and finding the insights the users needed, we turned to the problem of how to help them interpret these insights visually. Through a co-design process with the team, we built what we all thought was the answer: a state-of-the-art desktop dashboard for situational analysis and forward planning.
+
+When an actual crisis hit and the Ops Center sprang into action, we saw the dashboard on a 60-inch TV on the wall, used not as a tool for individual analysis, but as a beacon for shared situational awareness.
+
+That's when the real insight struck: we had designed one tool for a single user to review this information at their desktop, driven by interactions with a mouse, but the organisation's need for shared awareness was so great, this dashboard was now being asked to do two completely different jobs.
+
+## Uncovering hidden use cases
+
+That moment highlighted to us one of human-centered design’s core principles: you uncover the most critical needs by observing, not just asking.
+
+In our case, we had successfully co-designed for one valid use case (individual analysis), but it was observation during the crisis that revealed a second, hidden need that was purely environmental.
+
+Applying this HCD principle means observing users in their real environment. The goal is to understand the context they work in, not just the features they ask for. This leads you to ask broader, more open-ended questions like:
+
+"Can you walk me through how your team works during a crisis?"
+
+"How does information get shared between different team members right now?"
+
+"What else is competing for your attention in the room?"
+
+This is how you find the hidden use cases that feature requests alone will never reveal.
+
+## Isolate the "critical five" data points
+
+Once you’ve discovered the new wall display dashboard requirement and have decided to prioritize building it, the next challenge is deciding what to show.
+
+A great dashboard isn't everything to everybody. It’s the most critical information, delivered clearly. To cut through the noise, we ask one simple question:
+
+> "If you could only know five things during a crisis, what would they be?"
+
+The answer to that question becomes your design anchor. Your next job is to defend it. You have to aggressively deflect all other data from that screen.
+
+This doesn't mean ignoring other user needs, but instead channeling them constructively. Offer to roadmap a separate, more detailed dashboard for analysis later. Find other ways to satisfy requests that don't fit the glanceable mission of this screen. This kind of militant prioritization is essential.
+
+But of course, co-design is all about compromise. It's likely that by targeting five pieces of data, you'll land on eight or nine. This isn't a failure; it’s a successful negotiation. It shows you started from a strong, focused position while remaining flexible.
+
+## Wall displays vs. interactive tools
+
+A wall display is a beacon of situational awareness, not a tool for exploration. This fundamental difference means it has a unique set of non-negotiable design requirements.
+
+- **It must reflect the operational truth.** The data must be the verified, single source of truth for the team, leaving no room for ambiguity.
+- **It must be up-to-date and transparent.** The dashboard needs to refresh frequently, and every key metric must clearly display its last update timestamp (e.g., "Updated: 15 seconds ago"). This builds trust.
+- **It must indicate its own health.** The display needs a clear way to show when an upstream data source is failing, so the team immediately knows when the data *cannot* be trusted.
+- **It must be glanceable from a distance.**
+
+Of all these requirements, glanceability is arguably the most critical. A "glanceable" dashboard must be understood in seconds from across a room. This demands practical design choices: use high-contrast colors and large, clear fonts. Aggressively cut visual clutter by eliminating dense text, detailed tables, and complex charts. Instead, rely on oversized KPI numbers and simple, bold graphs.
+
+The goal is not deep analysis, but instant situational awareness.
+
+## Design principle: Keep it simple
+
+Fulfilling the requirements of a wall display comes down to one core design principle: Keep It Simple.
+
+This principle must be applied with discipline to every component on the screen. Here’s how we do it in practice:
+
+- **Use simple numbers in large text.** A single, oversized number is the fastest way to communicate a critical metric. Displaying "Active Incidents: 7" in a large, bold font can be understood in a fraction of a second from across the room. It answers a vital question directly with zero misinterpretation.
+- **Use simple charts.** Stick to simple charts like bar and line graphs. They show trends at a glance without forcing the viewer to stop and interpret the data. The goal is to show the trend, not make the user hunt for it.
+- **Use simple maps.** When location is critical, maps are essential, but their complexity must be ruthlessly managed. A simple map provides crucial spatial context by showing only what's necessary. A clean map with clear markers is always more effective than a cluttered one.
+
+## The discipline of simplicity
+
+In the world of data visualization, it’s tempting to believe that more data is always better.
+
+We have the ability to display countless metrics, so why not use it? But as we saw, a dashboard isn't always a dashboard. When its purpose is to serve as a high-level overview in a crisis, its value is defined not by how much it shows, but by how quickly and clearly it communicates what truly matters.
+
+This brings us to the designer's most difficult task: the discipline of simplicity.
+
+It's hard to identify the few essential data points and deprioritise the surrounding noise. It often involves tough conversations, a focus on the user's real-world environment and understanding exactly what they're doing with the information. Are they under pressure and need a quick snapshot of the situation to make a critical operational decision? Or are they planning the next 48-hour on-call roster? The same information being used in different ways might warrant a different delivery mechanism. It's tempting to roll both use cases into a single dashboard but you risk delivering a sub-par solution for both.
+
+So, just because this process of reduction is hard, doesn't mean it shouldn't be done. For a dashboard meant to guide emergency response, it's probably the most important work there is.
+
+If you take one thing away from this, it's that you don't find clarity by adding more noise. You find it by having the courage to delete things until only the critical parts are left.
