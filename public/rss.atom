@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>http://madole.xyz/</id>
     <title>Madole.xyz Blog</title>
-    <updated>2025-10-20T06:04:14.991Z</updated>
+    <updated>2025-10-23T05:14:14.168Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Andrew McDowell</name>
@@ -21,8 +21,8 @@
         <link href="https://madole.xyz/blog/gdal-evolved"/>
         <updated>2025-10-16T09:26:15.799Z</updated>
         <summary type="html"><![CDATA[Reading time: 7 min read]]></summary>
-        <content type="html"><![CDATA[<p><em>Originally posted at <a href="https://engineering.kablamo.com.au/posts/gdal-evolved/">https://engineering.kablamo.com.au/posts/gdal-evolved/</a></em></p>
-<p>I’ve always seen GDAL as the “VLC Player of geospatial data.” Much like the iconic media player that could handle pretty much any video format you threw at it, GDAL can op</p>
+        <content type="html"><![CDATA[<p><em>(This was originally posted on the <a href="https://engineering.kablamo.com.au/posts/gdal-evolved/">Kablamo Engineering Blog</a>)</em></p>
+<p>I’ve always seen GDAL as the “VLC Player of geospatial data.” Much like the iconic media player that could handle pretty much an</p>
 ]]></content>
         <author>
             <name>Andrew McDowell</name>
@@ -31,7 +31,7 @@
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[A mentors guide to effective 1-1s - Building trust and driving growth]]></title>
+        <title type="html"><![CDATA[A mentor's guide to effective 1-1s - Building trust and driving growth]]></title>
         <id>https://madole.xyz/blog/a-mentors-guide-to-effective-1-1s</id>
         <link href="https://madole.xyz/blog/a-mentors-guide-to-effective-1-1s"/>
         <updated>2025-10-16T03:48:58.756Z</updated>
