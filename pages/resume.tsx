@@ -41,7 +41,7 @@ function Resume(): JSX.Element {
 
   // New state for lightbox
   const [openAchievement, setOpenAchievement] = useState<
-    null | "lightning" | "spectral" | "airquality"
+    null | "genai" | "lightning" | "spectral" | "airquality"
   >(null);
 
   useEffect(() => {
@@ -332,6 +332,7 @@ function Resume(): JSX.Element {
                     onClick={() =>
                       setOpenAchievement(
                         achievement.id as
+                          | "genai"
                           | "lightning"
                           | "spectral"
                           | "airquality"
