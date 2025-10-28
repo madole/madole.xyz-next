@@ -1,0 +1,219 @@
+# Andrew McDowell - Resume
+
+## About
+- Name: Andrew McDowell
+- Website: https://madole.xyz
+- Tagline: "Leading teams to build innovative geospatial solutions that make a difference"
+- Professional Identity: Technical Leader, Geospatial Expert & Tech Writer
+- Roles: Full Stack Software Engineer, Systems Architect, Team Leader, Digital Cartologist, Samba Drummer, Whiskey Appreciator
+- Engineering Experience: 15+ years (since July 2010, ~30,000 hours)
+- Current Role: Senior Geospatial & Frontend Technical Lead at Kablamo (Firestory Technical Director)
+- Location: Sydney, Australia
+
+## Social Media
+- GitHub: https://github.com/madole
+- Bluesky: https://bsky.app/profile/madole.bsky.social
+- Twitter/X: https://x.com/madole
+- LinkedIn: https://www.linkedin.com/in/andrew-mcdowell-0092649b/
+- Instagram: https://www.instagram.com/madoliole/
+- Blog: https://madole.xyz/blog-index
+- Today I Learned: https://madole.xyz/today-i-learned
+
+## Achievements
+- SEP 2025: Google Cloud Certified - Generative AI Leader Certification
+- MAR 2024: Completed NASA ARSET training - Introduction to Lightning Observations and Applications
+- NOV 2023: Completed NASA ARSET training - Spectral Indices for Land and Aquatic Applications
+- OCT 2022: Completed NASA ARSET training - Accessing and Analyzing Air Quality Data from Geostationary Satellites
+
+## Core Expertise
+
+### Geospatial Technologies
+Mapbox, Maplibre, Turf, Leaflet, Cesium JS, Resium, Geopandas, GDAL, QGIS, ArcGIS Pro, ArcGIS Online, Geoserver, WFS, WMS, Phoenix Fire Prediction Engine
+
+### AI Technologies
+Github Copilot, Cursor, Claude, Gemini, Grok, Vertex AI, AWS Bedrock, AWS Sagemaker, AWS Rekognition, AWS Polly, OpenAI Whisper, Ollama, MCP, Agentic AI, Mastra AI
+
+### Frontend Development
+Next, SvelteKit, React, NodeJS, Bun, Deno, Jest, Vitest, Webpack, ESBuild, Vite, Styled Components, Tailwind CSS, Gatsby
+
+### Backend, DevOps & Data Science
+AWS, Step Functions, Terraform, Cloudformation, Python, Pandas/Geopandas, NumPy, Scikit-learn, Tensorflow/DanfoJS
+
+### Agile & Product
+Jira, Confluence, Metabase, Redash, Intercom
+
+## Professional Experience
+
+### January 2021 - Present: Senior Geospatial & Frontend Technical Lead, Kablamo
+- Promoted to Firestory Technical Director (January 2023)
+- Promoted to Senior Tech Lead (March 2022)
+
+#### Key Responsibilities
+- Host fortnightly frontend catchup discussing emerging technology and trends
+- Mentor frontend developers to reach their full potential
+- Consult on geospatial projects
+- Build prototypes for client tenders
+- Architect and pitch solutions to clients during sales and development cycles
+- Interview candidates for geospatial and frontend teams
+- Champion lean agile practices
+- Integrate AI best practices into software development process
+
+#### Notable Projects
+- Led technical integration of Firestory into ESRI's ArcGIS platform
+- Worked with Office of the NSW Chief Scientist to develop software for Forestry Corp modeling Heavy Plant dry firefighting impact on bushfires (Natural Hazards Technology Program: https://www.chiefscientist.nsw.gov.au/rd-action-plan/natural-hazards-technology-program)
+- Led team to deliver predictive capability for FRNSW for incident risk planning
+- Architected and led team delivering Remote Fire Detection, Fire Prediction, Heavy Plant Response Planning and Fire Management for Firestory (https://firestory.io) using Event Driven, Serverless, Modular architecture with NodeJS, Go, Typescript, React, Python
+- Led team to deliver Automated Fireground Aviation Safety Assessment tool for NSW RFS integrating BOM and Airservices Australia data (became SME on Aviation Weather Forecast data)
+- Led frontend team to deliver 3D fire prediction tool for NSW RFS (Athena) using Mapbox and React (https://www.kablamo.com.au/case-study/nsw-rural-fire-service)
+- Exhibited at AFAC 2023, 2024 and the 2024 Office of the NSW Chief Scientist & Engineer Commercialisation showcase
+
+### 2016 - December 2020: Senior Software Engineer / Head of Visualiser, Propeller Aero
+
+#### Key Responsibilities
+- Built and maintained 3D drone mapping visualisation tool using React, Redux and CesiumJS
+- Built and maintained backend service in Koa with REST and GraphQL endpoints
+- Mentored junior developers on best practices and ran workshops on React, Redux, Node, Koa, Express, TDD
+- Scrum master for small development team
+- Maintained webpack and CI tooling for complex frontend builds
+- Led hiring interviews for Software Engineers, QA Engineers, Head of Engineering, Product Owners
+- Facilitated team retros and feedback sessions
+- Ran one-to-ones with engineers
+- Visited customers to understand needs and communicate back to teams
+- Built technical roadmaps and documentation for modernizing aging codebase
+- Built feature usage dashboards for data-driven decisions
+- Wrote Infrastructure-as-Code using Terraform for AWS cloud infrastructure
+
+#### Skills Demonstrated
+Expert level React, Expert level Node, Strong mapping skills (CesiumJS, Resium, Leaflet, Mapbox), Tech/Team Leading, Developer Experience, Agile ceremony facilitation, OKR planning, Mentoring, Stakeholder management
+
+### 2014 - 2016: Senior Software Engineer, Mi9/Channel 9
+- Worked in scrum team to create and maintain Channel 9's network of websites
+- Led teams to deliver websites
+- Set technical direction ensuring adoption of best practices and new technology
+- Delivered first webpack-built website in the network, transitioning from gulp and grunt
+- Worked on component library for Channel 9 to share code across codebases
+- Pushed for React adoption and led team building yourmovies.com.au in React
+
+### 2013 - 2014: Software Engineer, Pace International (Sydney office)
+- Worked in small remote team to deliver Foxtel iQ3 UI software (HTML, CSS, JS)
+- Delivered software demos to customer stakeholders
+- Worked with other vendors to align on API delivery and usage
+- Worked with set top box hardware to diagnose and solve issues
+
+### 2010 - 2013: Software Engineer, Asidua (Belfast)
+- Worked in scrum teams on various projects across the business
+- Worked onsite with customer teams to deliver software projects
+- Communicated progress with external stakeholders on behalf of the business
+
+#### Notable Projects
+- Built testing framework from scratch for set top box hardware in Perl + HTML/CSS/JS
+- Rebuilt BTVision set top box UI software focusing on reducing memory footprint in JS
+- Worked on high speed communications ordering tool for telecommunications company in Java + Angular JS
+
+## Education
+
+### 2005 - 2010: Queens University Belfast
+- Bachelors of Engineering in Computer Science
+- Java Demonstrator at Queens University Belfast
+- Database Administrator at Central Services Agency Northern Ireland
+
+## Hobbies & Interests
+- Samba drumming (Bateria 61: https://www.youtube.com/watch?v=uSLcPmbKSxM)
+- Photography (https://www.instagram.com/madoliole/)
+- Blogging (https://madole.xyz/blog-index)
+- Whiskey tasting
+- Skateboarding
+- Cycling
+- Cooking
+- Baking bread
+- Cats
+
+## Side Projects
+Full portfolio available at: https://madole.xyz/side-projects
+
+### Recent Projects
+1. **Band Wrangler** (https://band-wrangler.net/)
+   - Tool to manage community band membership and gig schedules
+   - Built with Tanstack Start, Shadcn UI, and Supabase
+
+2. **Recipe Deguffer** (https://recipe-deguffer.madole.fun/)
+   - Transforms recipe websites into clean, readable formats
+   - Deno Fresh project with Tailwind CSS
+
+3. **Layered Earth** (https://layered.earth/)
+   - Geospatial toolkit for visually comparing geospatial datasets on the web
+
+4. **Fuel Charts** (https://fuel-charts.madole.dev/)
+   - Visualization of fuel prices in NSW, Australia using government open data
+
+### Geospatial & Data Visualization Tools
+5. **Bounding Box Utility Kit** (https://bbox-util.madole.dev/)
+   - Draw polygons, get bounding boxes, visualize in various formats
+
+6. **GEOJSON Editor** (https://geojson-editor.madole.dev/)
+   - Visualize and edit GEOJSON files with drag'n'drop support
+
+7. **KML Editor** (https://kml-editor.madole.dev/)
+   - Visualize and edit KML files with GeoJSON export
+
+8. **GPX Editor** (https://gpx-editor.madole.dev/)
+   - Visualize and edit GPX files with GeoJSON export
+
+9. **Mapbox GL Bounding Box View Bounds Comparison** (https://mapbox-gl-bounding-box-view-bounds-comparison.madole.dev/)
+   - Comparison tool for Mapbox GL bounds and view box
+
+10. **Mourne Walks** (https://mourne-walks.madole.dev/)
+    - 3D tour of Slieve Donard walk in Northern Ireland
+    - Built with Preact and Mapbox, configurable through GeoJSON
+
+### Cesium & 3D Experiments
+11. **Moon Bananas** (https://moon-bananas.madole.dev/)
+    - Cesium experiment dropping bananas on the moon from a UFO using Cesium Moon Tileset
+
+12. **ISS Banana Tracker** (https://banana-iss-tracker.madole.dev/)
+    - Real-time International Space Station tracker with banana visualization
+
+13. **Every Plane as Bananas** (https://banana-planes.madole.dev/)
+    - Real-time visualization of all planes in the sky as bananas
+
+14. **NSW Covid Bananas** (https://nsw-covid-bananas.madole.dev/)
+    - COVID location visualization with proximity detection
+
+### React Three Fiber & 3D Graphics
+15. **3D Colors** (https://3d-colors.madole.dev/)
+    - Processes images to create 3D visualizations using React Three Fiber
+
+16. **Gravity + 3D Text** (https://hardcore-murdock-e30d02.netlify.app/)
+    - Physics experiment using cannon library and React Three Fiber
+
+17. **Earth and Mars ThreeJS** (https://objective-yalow-40b72b.netlify.app/)
+    - ThreeJS experiment displaying Earth and Mars with UV and bump mapping
+
+18. **360 Panorama Viewer** (https://360-panorama.madole.dev/)
+    - Interactive panorama viewer using React Three Fiber and React Dropzone
+
+19. **House Tour Panorama** (https://greens-drive-pano.madole.dev/)
+    - Specific implementation of panorama viewer for virtual house tours
+
+## Content & Writing
+- **Blog**: 59+ technical articles covering JavaScript, geospatial technology, React, Node.js, webpack, performance optimization, testing, and software development best practices (https://madole.xyz/blog-index)
+- **Today I Learned (TIL)**: 25+ short-form technical learnings and tips (https://madole.xyz/today-i-learned)
+
+### Featured Blog Posts
+- "Efficiently Querying Large Geospatial Datasets with DuckDB, GeoParquet and S3"
+- "GDAL Evolved"
+- "A Mentor's Guide to Effective 1:1s"
+- "From Node.js to Deno"
+- "How to Move a Whole GeoJSON Feature Collection in QGIS"
+- "What if You Could Draw Your AI Prompts"
+- "A Day in the Life Of"
+- "Dropping Bananas on the Moon from a UFO"
+- "Real-time Transport Data Visualization with GTFS"
+- "How I Stress Tested Mapbox's Handling of Many Polygons"
+- "Spectral Indices"
+- "Finite State Machines and XState"
+- "JavaScript Interview Questions"
+- "How to Visualise Weather Stations on a Map"
+
+## Resume Page
+Full interactive resume available at: https://madole.xyz/resume
