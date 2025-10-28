@@ -34,7 +34,7 @@ Mapbox, Maplibre, Turf, Leaflet, Cesium JS, Resium, Geopandas, GDAL, QGIS, ArcGI
 Github Copilot, Cursor, Claude, Gemini, Grok, Vertex AI, AWS Bedrock, AWS Sagemaker, AWS Rekognition, AWS Polly, OpenAI Whisper, Ollama, MCP, Agentic AI, Mastra AI
 
 ### Frontend Development
-Next, SvelteKit, React, NodeJS, Bun, Deno, Jest, Vitest, Webpack, ESBuild, Vite, Styled Components, Tailwind CSS, Gatsby
+Next, SvelteKit, React, Node.js, Bun, Deno, Jest, Vitest, Webpack, ESBuild, Vite, Styled Components, Tailwind CSS, Gatsby
 
 ### Backend, DevOps & Data Science
 AWS, Step Functions, Terraform, Cloudformation, Python, Pandas/Geopandas, NumPy, Scikit-learn, Tensorflow/DanfoJS
@@ -62,7 +62,7 @@ Jira, Confluence, Metabase, Redash, Intercom
 - Led technical integration of Firestory into ESRI's ArcGIS platform
 - Worked with Office of the NSW Chief Scientist to develop software for Forestry Corp modeling Heavy Plant dry firefighting impact on bushfires (Natural Hazards Technology Program: https://www.chiefscientist.nsw.gov.au/rd-action-plan/natural-hazards-technology-program)
 - Led team to deliver predictive capability for FRNSW for incident risk planning
-- Architected and led team delivering Remote Fire Detection, Fire Prediction, Heavy Plant Response Planning and Fire Management for Firestory (https://firestory.io) using Event Driven, Serverless, Modular architecture with NodeJS, Go, Typescript, React, Python
+- Architected and led team delivering Remote Fire Detection, Fire Prediction, Heavy Plant Response Planning and Fire Management for Firestory (https://firestory.io) using Event Driven, Serverless, Modular architecture with Node.js, Go, Typescript, React, Python
 - Led team to deliver Automated Fireground Aviation Safety Assessment tool for NSW RFS integrating BOM and Airservices Australia data (became SME on Aviation Weather Forecast data)
 - Led frontend team to deliver 3D fire prediction tool for NSW RFS (Athena) using Mapbox and React (https://www.kablamo.com.au/case-study/nsw-rural-fire-service)
 - Exhibited at AFAC 2023, 2024 and the 2024 Office of the NSW Chief Scientist & Engineer Commercialisation showcase
@@ -144,9 +144,9 @@ Full portfolio available at: https://madole.xyz/side-projects
    - Geospatial toolkit for visually comparing geospatial datasets on the web
 
 4. **Fuel Charts** (https://fuel-charts.madole.dev/)
-   - Visualization of fuel prices in NSW, Australia using government open data
+   - Visualisation of fuel prices in NSW, Australia using government open data
 
-### Geospatial & Data Visualization Tools
+### Geospatial & Data Visualisation Tools
 5. **Bounding Box Utility Kit** (https://bbox-util.madole.dev/)
    - Draw polygons, get bounding boxes, visualize in various formats
 
@@ -208,7 +208,7 @@ Full portfolio available at: https://madole.xyz/side-projects
 - "What if You Could Draw Your AI Prompts"
 - "A Day in the Life Of"
 - "Dropping Bananas on the Moon from a UFO"
-- "Real-time Transport Data Visualization with GTFS"
+- "Real-time Transport Data Visualisation with GTFS"
 - "How I Stress Tested Mapbox's Handling of Many Polygons"
 - "Spectral Indices"
 - "Finite State Machines and XState"
