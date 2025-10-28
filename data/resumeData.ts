@@ -247,6 +247,22 @@ export const resumeData: ResumeData = {
   },
   achievements: [
     {
+      id: "genai",
+      date: "SEP 2025",
+      title: "Google Cloud Certified",
+      description: "Generative AI Leader Certification",
+      image: {
+        src: "/gen-ai-leader.webp",
+        alt: "Google Cloud Generative AI Leader Certification badge",
+        width: 250,
+        height: 250,
+      },
+      lightboxImage: {
+        width: 600,
+        height: 600,
+      },
+    },
+    {
       id: "lightning",
       date: "MAR 2024",
       title: "Completed NASA ARSET training",
