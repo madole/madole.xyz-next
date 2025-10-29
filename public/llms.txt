@@ -136,7 +136,7 @@ Full portfolio available at: https://madole.xyz/side-projects
    - Tool to manage community band membership and gig schedules
    - Built with Tanstack Start, Shadcn UI, and Supabase
 
-2. **Recipe Deguffer** (https://recipe-deguffer.madole.fun/)
+2. **Recipe Deguffer** (https://recipe-deguffer.madole.deno.net/)
    - Transforms recipe websites into clean, readable formats
    - Deno Fresh project with Tailwind CSS
 
