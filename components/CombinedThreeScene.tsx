@@ -22,20 +22,17 @@ const CombinedThreeScene: React.FC = () => {
   return (
     <>
       {/* Fullscreen clouds view container */}
-      <div
-        ref={cloudsRef}
-        className="fixed inset-0 animate-slowFadeIn z-0 motion-reduce:hidden"
-      />
+      <div ref={cloudsRef} className="fixed inset-0 z-0 motion-reduce:hidden" />
 
       {/* Positioned Earth view container - centered mobile, bottom-right desktop */}
       <div
         ref={earthRef}
-        className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:top-auto md:left-auto md:translate-x-0 md:translate-y-0 md:bottom-10 md:right-10 animate-slowFadeIn z-2 motion-reduce:hidden h-80 w-80 md:h-96 md:w-96 z-10"
+        className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:top-auto md:left-auto md:translate-x-0 md:translate-y-0 md:bottom-10 md:right-10 z-2 motion-reduce:hidden h-80 w-80 md:h-96 md:w-96 z-10"
       />
 
       {/* Single Canvas with multiple Views */}
       <Canvas
-        className="fixed inset-0"
+        className="fixed inset-0 opacity-0 animate-slowFadeIn"
         style={{ zIndex: 0 }}
         gl={{
           alpha: true,

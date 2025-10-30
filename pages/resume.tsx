@@ -183,7 +183,7 @@ function Resume(): React.ReactElement {
         <title>Resume | Madole.xyz</title>
       </Head>
 
-      <div className="absolute inset-0 bg-trello-blue overflow-hidden animate-slowFadeIn">
+      <div className="absolute inset-0 bg-trello-blue overflow-hidden animate-fadeIn">
         <Header />
         <div className="h-full flex overflow-x-scroll mx-2">
           <Column title="About me">
