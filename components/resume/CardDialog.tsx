@@ -69,7 +69,7 @@ interface Props {
   children: ReactNode;
 }
 
-const CardDialog = (props: Props): JSX.Element | null => {
+const CardDialog = (props: Props): React.ReactElement | null => {
   const { open, onClose, title, children, columnName, date } = props;
 
   if (!open) {

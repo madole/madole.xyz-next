@@ -1,9 +1,7 @@
-import { ClassAttributes, HTMLAttributes } from "react";
+import React from "react";
 
 export const Ul = (
-  props: JSX.IntrinsicAttributes &
-    ClassAttributes<HTMLUListElement> &
-    HTMLAttributes<HTMLUListElement>,
+  props: React.ComponentPropsWithoutRef<'ul'>,
 ) => {
   const { children } = props;
   return (

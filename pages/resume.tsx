@@ -31,7 +31,7 @@ function getUrlSearchParam(searchParam: string): string | null {
  * ?q=eyJjIjogIk5BU0EiLCJ0IjogIkNFTyJ9
  *
  */
-function Resume(): JSX.Element {
+function Resume(): React.ReactElement {
   const [futureTitle, setFutureTitle] = useState("Technical Lead");
   const [futureCompany, setFutureCompany] = useState("");
 

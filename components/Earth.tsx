@@ -20,8 +20,8 @@ const Earth = () => {
   const bumpMap = useTexture("/earth/earthbump1k.jpg");
   const specMap = useTexture("/earth/earthspec1k.jpg");
   const clouds = useTexture("/earth/clouds.webp");
-  const earthRef = useRef<SphereType>();
-  const cloudRef = useRef<SphereType>();
+  const earthRef = useRef<SphereType | null>(null);
+  const cloudRef = useRef<SphereType | null>(null);
 
   useFrame(() => {
     if (!earthRef.current || !cloudRef.current) return;
