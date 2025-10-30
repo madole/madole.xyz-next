@@ -25,9 +25,10 @@ const Earth = () => {
 
   useFrame(() => {
     if (!earthRef.current || !cloudRef.current) return;
-    earthRef.current.rotation.y = earthRef.current.rotation.y - 0.002;
-    cloudRef.current.rotation.y = cloudRef.current.rotation.y - 0.0005;
-    cloudRef.current.rotation.x = cloudRef.current.rotation.x - 0.0005;
+    earthRef.current.rotation.y = earthRef.current.rotation.y + 0.001;
+    cloudRef.current.rotation.y = cloudRef.current.rotation.y + 0.0015;
+    cloudRef.current.rotation.x =
+      cloudRef.current.rotation.x - Math.random() * 0.0001;
   });
 
   const [hovering, setHovering] = React.useState(false);

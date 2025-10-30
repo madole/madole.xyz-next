@@ -92,7 +92,7 @@ const Index: React.FC = () => {
           maxDelay={30_000}
         />
 
-        <div className="absolute inset-0 flex flex-col justify-between z-1 pointer-events-none">
+        <div className="absolute inset-0 flex flex-col justify-between z-1">
           <a href="#main-content" className="sr-only">
             Skip to main content
           </a>
@@ -110,14 +110,14 @@ const Index: React.FC = () => {
               style={{ textShadow: "0 2px 8px rgba(0,0,0,0.4)" }}
             >
               Andrew McDowell <br />
-              <span className="block mt-2 text-3xl sm:text-4xl md:text-5xl">
+              <span className="block mt-2 text-3xl md:text-2xl lg:text-5xl">
                 Technical Leader, Geospatial Expert & Tech Writer
               </span>
             </h1>
             <motion.div className="flex flex-col items-center justify-start text-center sm:mx-0 sm:mb-0 sm:flex-row">
               <LayoutTextFlip text="" words={titles} />
             </motion.div>
-            <div className="mt-4 text-2xl md:text-3xl font-light text-white w-full md:w-2/3 flex-grow flex flex-col-reverse md:flex-grow-0 pb-8 text-center md:text-left">
+            <div className="mt-4 text-2xl md:text-2xl lg:text-3xl font-light text-white w-full md:w-2/3 flex-grow flex flex-col-reverse md:flex-grow-0 pb-8 text-center md:text-left">
               <div className="">
                 Leading teams to build innovative geospatial solutions that make
                 a difference.
