@@ -19,7 +19,7 @@ const RssFeed = () => (
   </Link>
 );
 
-function Footer(): JSX.Element {
+function Footer(): React.ReactElement {
   return (
     <div className="mb-3 font-thin text-white flex flex-col items-center">
       &copy; {2021} by Madole.

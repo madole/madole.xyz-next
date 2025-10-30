@@ -18,7 +18,7 @@ function addSlashPrefix(slug: string) {
   return `/${slug}`;
 }
 
-export function IndexListItem(props: Props): JSX.Element {
+export function IndexListItem(props: Props): React.ReactElement {
   const { title, date, excerpt, slug, timeToRead, tags } = props;
   const postDate = useLocalDate(date);
 

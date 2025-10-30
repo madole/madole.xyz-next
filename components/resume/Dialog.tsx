@@ -5,7 +5,7 @@ interface Props {
   onClose: () => void;
 }
 
-const Dialog = (props: Props): JSX.Element | null => {
+const Dialog = (props: Props): React.ReactElement | null => {
   const { open, onClose } = props;
 
   function emailMe() {
