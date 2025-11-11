@@ -6,7 +6,7 @@ import {
   View,
   PerspectiveCamera,
 } from "@react-three/drei";
-import React, { Suspense, useRef } from "react";
+import React, { Suspense, useRef, useState } from "react";
 import Earth from "./Earth";
 
 /**
@@ -18,6 +18,7 @@ import Earth from "./Earth";
 const CombinedThreeScene: React.FC = () => {
   const cloudsRef = useRef<HTMLDivElement>(null);
   const earthRef = useRef<HTMLDivElement>(null);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   return (
     <>
@@ -32,8 +33,8 @@ const CombinedThreeScene: React.FC = () => {
 
       {/* Single Canvas with multiple Views */}
       <Canvas
-        className="fixed inset-0 opacity-0 animate-slowFadeIn"
-        style={{ zIndex: 0 }}
+        className="fixed inset-0 transition-opacity duration-[3000ms] ease-in-out"
+        style={{ zIndex: 0, opacity: isLoaded ? 1 : 0 }}
         gl={{
           alpha: true,
           antialias: true,
@@ -42,6 +43,12 @@ const CombinedThreeScene: React.FC = () => {
         }}
         dpr={[1, 2]}
         eventPrefix="client"
+        onCreated={() => {
+          // Wait for next frame to ensure everything is rendered
+          requestAnimationFrame(() => {
+            setIsLoaded(true);
+          });
+        }}
       >
         <Suspense fallback={null}>
           {/* Fullscreen clouds view */}
