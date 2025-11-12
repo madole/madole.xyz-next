@@ -6,7 +6,7 @@ import {
   View,
   PerspectiveCamera,
 } from "@react-three/drei";
-import React, { Suspense, useRef, useState } from "react";
+import React, { Suspense, useRef, useState, useEffect } from "react";
 import Earth from "./Earth";
 
 /**
@@ -19,6 +19,16 @@ const CombinedThreeScene: React.FC = () => {
   const cloudsRef = useRef<HTMLDivElement>(null);
   const earthRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
+
+  // Fallback: ensure we fade in even if content fails to load
+  // This handles cases where textures fail to load or other errors occur
+  useEffect(() => {
+    const fallbackTimeout = setTimeout(() => {
+      setIsLoaded(true);
+    }, 1500); // Fade in after 1.5 seconds max
+    
+    return () => clearTimeout(fallbackTimeout);
+  }, []);
 
   return (
     <>
@@ -43,12 +53,6 @@ const CombinedThreeScene: React.FC = () => {
         }}
         dpr={[1, 2]}
         eventPrefix="client"
-        onCreated={() => {
-          // Wait for next frame to ensure everything is rendered
-          requestAnimationFrame(() => {
-            setIsLoaded(true);
-          });
-        }}
       >
         <Suspense fallback={null}>
           {/* Fullscreen clouds view */}
