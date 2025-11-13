@@ -20,14 +20,22 @@ const CombinedThreeScene: React.FC = () => {
   const earthRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
 
-  // Fallback: ensure we fade in even if content fails to load
-  // This handles cases where textures fail to load or other errors occur
+  // Ensure smooth fade-in by waiting for initial render, then triggering opacity change
+  // This gives textures time to load and ensures CSS transition works properly
   useEffect(() => {
-    const fallbackTimeout = setTimeout(() => {
-      setIsLoaded(true);
-    }, 1500); // Fade in after 1.5 seconds max
+    let timeoutId: NodeJS.Timeout;
     
-    return () => clearTimeout(fallbackTimeout);
+    // Wait for next frame to ensure initial opacity: 0 is rendered
+    requestAnimationFrame(() => {
+      // Then wait for content to load before fading in
+      timeoutId = setTimeout(() => {
+        setIsLoaded(true);
+      }, 1500);
+    });
+    
+    return () => {
+      if (timeoutId) clearTimeout(timeoutId);
+    };
   }, []);
 
   return (
