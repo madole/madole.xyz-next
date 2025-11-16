@@ -20,31 +20,34 @@ const Earth = () => {
   const bumpMap = useTexture("/earth/earthbump1k.jpg");
   const specMap = useTexture("/earth/earthspec1k.jpg");
   const clouds = useTexture("/earth/clouds.webp");
-  const earthRef = useRef<SphereType>();
-  const cloudRef = useRef<SphereType>();
+  const earthRef = useRef<SphereType | null>(null);
+  const cloudRef = useRef<SphereType | null>(null);
 
   useFrame(() => {
     if (!earthRef.current || !cloudRef.current) return;
-    earthRef.current.rotation.y = earthRef.current.rotation.y - 0.002;
-    cloudRef.current.rotation.y = cloudRef.current.rotation.y - 0.0005;
-    cloudRef.current.rotation.x = cloudRef.current.rotation.x - 0.0005;
+    earthRef.current.rotation.y = earthRef.current.rotation.y + 0.001;
+    cloudRef.current.rotation.y = cloudRef.current.rotation.y + 0.0015;
+    cloudRef.current.rotation.x =
+      cloudRef.current.rotation.x - Math.random() * 0.0001;
   });
 
   const [hovering, setHovering] = React.useState(false);
 
   return (
-    <group position={[0, 0, 0]}>
+    <group position={[0, -1, 0]}>
       <ambientLight />
       <directionalLight position={[10, 10, 20]} />
       <Sphere
-        args={[1, 32, 32]}
+        args={[1.5, 32, 32]}
         /* @ts-ignore*/
         ref={earthRef}
         onPointerEnter={() => {
           setHovering(true);
+          document.body.style.cursor = "pointer";
         }}
         onPointerLeave={() => {
           setHovering(false);
+          document.body.style.cursor = "auto";
         }}
       >
         <meshPhongMaterial
@@ -66,7 +69,7 @@ const Earth = () => {
         )}
       </Sphere>
       {/* @ts-ignore*/}
-      <Sphere args={[1.02, 32, 32]} ref={cloudRef}>
+      <Sphere args={[1.52, 32, 32]} ref={cloudRef}>
         <meshPhongMaterial map={clouds} transparent={true} opacity={0.8} />
       </Sphere>
     </group>

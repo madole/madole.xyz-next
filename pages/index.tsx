@@ -3,14 +3,17 @@ import Head from "next/head";
 import React, { useState } from "react";
 import { Navigation } from "../components/Navigation";
 import useInterval from "../hooks/useInterval";
+import { LayoutTextFlip } from "@/components/ui/layout-text-flip";
+import { motion } from "motion/react";
+import { StarsBackground } from "@/components/ui/stars-background";
+import { ShootingStars } from "@/components/ui/shooting-stars";
 
-const FullpageClouds = dynamic(() => import("../components/FullPageClouds"), {
-  ssr: false,
-});
-
-const EarthCanvas = dynamic(() => import("../components/EarthCanvas"), {
-  ssr: false,
-});
+const CombinedThreeScene = dynamic(
+  () => import("../components/CombinedThreeScene"),
+  {
+    ssr: false,
+  }
+);
 
 export interface IndexProps {}
 
@@ -23,6 +26,7 @@ const titles = [
   "Samba Drummer",
   "Whiskey Appreciator",
   "Digital Cartologist",
+  "Agentic AI Wrangler",
 ];
 
 const Index: React.FC = () => {
@@ -77,15 +81,25 @@ const Index: React.FC = () => {
           }`}
         </script>
       </Head>
-      <div className="absolute inset-0 background">
-        <FullpageClouds />
+      <div className="fixed inset-0 background">
+        <CombinedThreeScene />
+        <StarsBackground />
+        <ShootingStars
+          starWidth={20}
+          maxSpeed={3}
+          minSpeed={1}
+          minDelay={10_000}
+          maxDelay={30_000}
+        />
 
         <div className="absolute inset-0 flex flex-col justify-between z-1">
           <a href="#main-content" className="sr-only">
             Skip to main content
           </a>
 
-          <Navigation />
+          <div className="pointer-events-auto">
+            <Navigation />
+          </div>
 
           <main
             id="main-content"
@@ -96,21 +110,14 @@ const Index: React.FC = () => {
               style={{ textShadow: "0 2px 8px rgba(0,0,0,0.4)" }}
             >
               Andrew McDowell <br />
-              <span className="block mt-2 text-3xl sm:text-4xl md:text-5xl">
+              <span className="block mt-2 text-3xl md:text-2xl lg:text-5xl">
                 Technical Leader, Geospatial Expert & Tech Writer
               </span>
             </h1>
-            <EarthCanvas />
-            <div className="relative text-5xl md:text-6xl leading-none text-white h-32 md:h-24 md:leading-tight w-3/4 md:w-full hidden md:block">
-              <span key={title} className="animate-slowFadeIn absolute top-0">
-                {title}
-              </span>
-              <hr
-                key={`${title}-hr`}
-                className="animate-horizontalBounce absolute bottom-0 h-1 bg-white rounded md:h-2"
-              />
-            </div>
-            <div className="mt-4 text-2xl md:text-3xl font-light text-white w-full md:w-2/3 flex-grow flex flex-col-reverse md:flex-grow-0 pb-8 text-center md:text-left">
+            <motion.div className="flex flex-col items-center justify-start text-center sm:mx-0 sm:mb-0 sm:flex-row">
+              <LayoutTextFlip text="" words={titles} />
+            </motion.div>
+            <div className="mt-4 text-2xl md:text-2xl lg:text-3xl font-light text-white w-full md:w-2/3 flex-grow flex flex-col-reverse md:flex-grow-0 pb-8 text-center md:text-left">
               <div className="">
                 Leading teams to build innovative geospatial solutions that make
                 a difference.
@@ -118,7 +125,7 @@ const Index: React.FC = () => {
             </div>
           </main>
 
-          <div className="flex justify-around pb-4">
+          <div className="flex justify-around pb-4 pointer-events-auto">
             <a
               href="https://github.com/madole"
               target="_blank"

@@ -14,7 +14,7 @@ import {
 } from "lucide-react";
 import Dialog from "./Dialog";
 
-const Header = (): JSX.Element => {
+const Header = (): React.ReactElement => {
   const [dialogOpen, setDialogOpen] = useState<boolean>(false);
 
   const handleClose = () => {

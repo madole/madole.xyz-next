@@ -25,7 +25,7 @@ interface Props {
   };
 }
 
-export default function BlogPost(props: Props): JSX.Element {
+export default function BlogPost(props: Props): React.ReactElement {
   const {
     attributes: { title, date, slug, tags, timeToRead, description, og_image },
     body,

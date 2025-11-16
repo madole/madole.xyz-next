@@ -38,7 +38,7 @@ const data = [
     imageAlt: "Recipe Deguffer",
     description:
       "Transform any recipe website into a clean, easy-to-read format. This is a Deno Fresh project styled with Tailwind CSS.",
-    link: "https://recipe-deguffer.madole.fun/",
+    link: "https://recipe-deguffer.madole.deno.net/",
   },
   {
     image: moonBananas,
@@ -190,7 +190,7 @@ const addInViewCallback = (entries: any[]) => {
 };
 
 const SideProjects = () => {
-  const observerRef = useRef<IntersectionObserver>();
+  const observerRef = useRef<IntersectionObserver | undefined>(undefined);
   useMultiIntersectionObserver(
     observerRef,
     "[data-side-project=true]",

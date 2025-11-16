@@ -1,0 +1,147 @@
+---
+title: GDAL Evolved - A guide to the new unified CLI
+date: "2025-10-16T09:26:15.799Z"
+tags:
+  - geospatial
+slug: gdal-evolved
+og_image: /og/gdal-evolved.jpg
+---
+
+_(This was originally posted on the [Kablamo Engineering Blog](https://engineering.kablamo.com.au/posts/gdal-evolved/))_
+
+I’ve always seen GDAL as the “VLC Player of geospatial data.” Much like the iconic media player that could handle pretty much any video format you threw at it, GDAL can open, read, and convert a mind-blowing array of raster and vector files. It's the undisputed Swiss Army knife propping up the geospatial industry. But like any software that has evolved for over 25 years, it developed some quirks. We've all been there: staring at the terminal, wondering if the input file comes before or after the output file, or why `gdal_translate` has a `-projwin` flag while `gdalwarp` uses `-te` for conceptually the same thing.
+
+For decades, we've navigated this maze of esoteric commands, memorising flags, and building up muscle memory for its quirks. It was a rite of passage. But things have changed. A significant, thoughtful, and long-overdue modernisation has arrived, sweeping away decades of technical debt and user friction.
+
+Released without much fanfare, at least in my circles, the new `gdal` command acts as a single, unified entry point for a reimagined CLI. Let’s take a look at how this cleanup job works and explore some of the cool new tricks it brings to the table.
+
+## The quirks of a classic: why a refactor was needed
+
+Before we celebrate the new, let's appreciate the journey. The traditional GDAL utilities, while brilliant, grew organically over many years. This organic growth, a testament to its power, naturally led to a host of inconsistencies that became rites of passage for users:
+
+- **Inconsistent command naming:** Commands were a mix of styles. We had `gdal_translate` and `gdal_rasterize` with underscores, but `gdalwarp` and `gdalinfo` without. Vector tools were prefixed with `ogr`, like `ogr2ogr`. _What's that about anyway? [Click here to find out](https://gdal.org/en/stable/faq.html#what-is-this-ogr-stuff)._ It was a lot to remember.
+- **Confusing file order:** This was the classic stumbling block. `gdal_translate` expected the input file first (`in.tif out.tif`), but `ogr2ogr` expected the output file first (`out.kml in.shp`). A simple mistake could lead to overwriting your source data.
+- **Dangerous defaults:** Some tools, like `gdal_translate`, would silently overwrite an existing file by default. Others would fail unless you explicitly added an `-overwrite` flag. This unpredictable behaviour was a recipe for disaster.
+- **Inconsistent arguments:** The same functionality often had different flag names across tools. Setting an extent was `-projwin` in one tool and `-te` in another. C++ utilities used single-dash options (`-projwin`), while Python scripts used double-dashes (`--overwrite`).
+
+We learned to live with these quirks, but they created a steep learning curve and introduced unnecessary cognitive overhead. The new GDAL CLI addresses all of these pain points.
+
+## A unified future: introducing the `gdal` command
+
+Everything now runs through a single `gdal` command using "git-style" sub-commands (like `gdal raster` or `gdal vector`). It's a simple change, but it makes everything way clearer and more consistent. Here's the basic idea:
+
+- **Logical grouping:** Commands are now logically grouped under `raster` and `vector` categories. Need to do something with a raster? It’s under `gdal raster`. Working with a vector? You’ll find it in `gdal vector`.
+- **Consistency throughout:**
+  - **File Order:** The input file **always** comes before the output file. No more guessing.
+  - **Arguments:** All commands use double-dashes for long options (`--overwrite`) and a single dash for short aliases (`-of` for `--output-format`).
+  - **Safe Overwriting:** Overwriting an existing output file **always** requires the `--overwrite` flag. No more accidental data loss.
+- **User-friendly by default:** The new CLI can detect typos in commands and options and will often suggest the correction, saving you time and frustration.
+
+  - _If you're a fan of [thefuck](https://github.com/nvbn/thefuck), GDAL now plays very well with it._
+
+  ```bash
+  $ gdal raster covert
+  ERROR 1: Algorithm 'covert' is unknown. Do you mean 'convert'?
+  $ fuck
+  gdal raster convert [enter/↑/↓/ctrl+c]
+  ```
+
+## Old vs. new commands
+
+The best way to appreciate the new structure is to see it in action. Let's compare some common workflows.
+
+### Vector conversion (`ogr2ogr`'s new life)
+
+Converting a Shapefile to a GeoPackage is a daily task for many. The old way with `ogr2ogr` was effective but felt backwards.
+
+**The old way:**
+
+```bash
+# Note the output file comes first 🫠!
+ogr2ogr -f "GPKG" output.gpkg input.shp
+```
+
+**The new way:** The new `gdal vector convert` command is intuitive and follows a natural, readable order.
+
+```bash
+# Input first, then output. Simple.
+gdal vector convert input.shp output.gpkg
+```
+
+The command itself tells you what it's doing: `gdal`, for a `vector`, `convert` this file to that file. It's beautifully self-documenting.
+
+### Raster reprojection
+
+Let's look at a fundamental raster task: reprojecting a GeoTIFF to a new coordinate reference system.
+
+**The old way:** You'd use the powerful but awkwardly named `gdalwarp` command.
+
+```bash
+# Reprojecting a raster with gdalwarp
+gdalwarp -t_srs EPSG:3857 input.tif output.tif
+```
+
+**The new way:** With the new CLI, the command is more intuitive and self-explanatory.
+
+```bash
+# Using the new `gdal raster reproject` command
+gdal raster reproject --dst-crs=EPSG:3857 input.tif output.tif
+```
+
+## Some cool new bits
+
+This is more than just a simple cleanup. The update also rolls out some powerful features that will change how you tackle complex jobs.
+
+### Chaining commands with GDALG pipelines
+
+#### What is GDALG?
+
+**GDALG: GDAL Streamed Algorithm**
+
+> GDALG is the contraction of GDAL and ALGorithm
+>
+> This is a read-only driver that reads a JSON file containing an invocation of the gdal command line interface, that results in an on-the-fly / streamed raster dataset when used as an input to GDALOpenEx(), or anywhere else in GDAL where a raster input dataset is expected.
+>
+> GDALG files are conceptually close to VRT (Virtual) files, although the implementation is substantially different. - _[https://gdal.org/en/stable/drivers/raster/gdalg.html](https://gdal.org/en/stable/drivers/raster/gdalg.html)_
+
+#### GDALG pipelines
+
+One of the most exciting innovations is the introduction of **GDALG pipelines**. This allows you to chain multiple processing steps into a single command without creating intermediate files. Each step is separated by a `!`.
+
+Imagine you want to read a file, reproject it, edit its metadata, and write it out as a COG.
+
+```bash
+gdal raster pipeline read in.tif ! \
+  reproject --dst-crs=EPSG:4326 ! \
+  edit --metadata TITLE=fancy-cloud-tif ! \
+  write out.tif --output-format=COG
+```
+
+This is incredibly powerful. The entire process happens on the fly, streaming data from one step to the next. You can even serialize these pipelines into a `.gdalg.json` file, which GDAL can open as a virtual, on-the-fly dataset.
+
+### Supercharged UX with bash completion
+
+To make the new CLI even more accessible, extensive bash completion has been added (it's enabled by default in the official Docker images and conda-forge packages). Just hit `Tab` and GDAL will help you out by completing:
+
+- Commands and subcommands (`gdal raster c` + `Tab` → `calc clean-collar clip ...`)
+- Option names (`--cr` + `Tab` → `--creation-option`)
+- Option values like output formats (`--output-format=` + `Tab` → `COG GTiff ...`)
+- Coordinate Reference System (CRS) codes.
+- Virtual File System (VSI) paths for cloud storage (e.g., `/vsis3/`).
+
+This feature dramatically lowers the barrier to entry and reduces the need to constantly consult the documentation.
+
+## GDAL for everyone
+
+The modernisation of the GDAL CLI is a monumental step forward for the entire geospatial community. By replacing a collection of inconsistent tools with a unified and predictable framework, the developers have addressed decades of user feedback and technical debt. They’ve lowered the barrier to entry for a growing population of developers who now find themselves wrangling geospatial data. Introducing features like Pipelines and even bash completion will really change how people interact with the tool, and I hope we see that impact in the geospatial products built with GDAL.
+
+We all built muscle memory for the classic commands, but this new toolset is a different story. The `gdal raster` and `gdal vector` commands are intuitive, the consistent file order is a relief, and the new features are a joy to use.
+
+If you haven't tried them yet, upgrade your GDAL installation and get stuck in.
+
+If you can't risk an upgrade, you can try it in isolation using docker by running the following commands:
+
+- `docker pull ghcr.io/osgeo/gdal:alpine-normal-latest`
+- `docker run -it ghcr.io/osgeo/gdal:alpine-normal-latest /bin/bash`
+
+You can find more dockerised GDAL packages at https://github.com/OSGeo/gdal/pkgs/container/gdal/versions. What are you waiting for?

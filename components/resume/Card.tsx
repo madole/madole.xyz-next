@@ -1,12 +1,12 @@
 import * as React from "react";
 
-export const Hr = (): JSX.Element => (
+export const Hr = (): React.ReactElement => (
   <div className="flex justify-center p-1">
     <hr className="text-gray-500 w-2/3 h-px" />
   </div>
 );
 
-export const Spacer = (): JSX.Element => <div className="p-2" />;
+export const Spacer = (): React.ReactElement => <div className="p-2" />;
 
 interface Label {
   color: string;
@@ -32,7 +32,7 @@ const Label = (props: Label) => {
   );
 };
 
-const Card = (props: Props): JSX.Element => {
+const Card = (props: Props): React.ReactElement => {
   const { children, labels = [], onClick } = props;
   return (
     <div

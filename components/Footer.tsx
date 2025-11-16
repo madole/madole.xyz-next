@@ -19,7 +19,7 @@ const RssFeed = () => (
   </Link>
 );
 
-function Footer(): JSX.Element {
+function Footer(): React.ReactElement {
   const thisYear = new Date().getFullYear();
   return (
     <div className="mb-3 font-thin text-white flex flex-col items-center">

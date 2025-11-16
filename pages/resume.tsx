@@ -31,7 +31,7 @@ function getUrlSearchParam(searchParam: string): string | null {
  * ?q=eyJjIjogIk5BU0EiLCJ0IjogIkNFTyJ9
  *
  */
-function Resume(): JSX.Element {
+function Resume(): React.ReactElement {
   const [futureTitle, setFutureTitle] = useState("Technical Lead");
   const [futureCompany, setFutureCompany] = useState("");
 
@@ -41,7 +41,7 @@ function Resume(): JSX.Element {
 
   // New state for lightbox
   const [openAchievement, setOpenAchievement] = useState<
-    null | "lightning" | "spectral" | "airquality"
+    null | "genai" | "lightning" | "spectral" | "airquality"
   >(null);
 
   useEffect(() => {
@@ -183,7 +183,7 @@ function Resume(): JSX.Element {
         <title>Resume | Madole.xyz</title>
       </Head>
 
-      <div className="absolute inset-0 bg-trello-blue overflow-hidden animate-slowFadeIn">
+      <div className="absolute inset-0 bg-trello-blue overflow-hidden animate-fadeIn">
         <Header />
         <div className="h-full flex overflow-x-scroll mx-2">
           <Column title="About me">
@@ -332,6 +332,7 @@ function Resume(): JSX.Element {
                     onClick={() =>
                       setOpenAchievement(
                         achievement.id as
+                          | "genai"
                           | "lightning"
                           | "spectral"
                           | "airquality"

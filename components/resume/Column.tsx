@@ -1,6 +1,6 @@
 import * as React from "react";
 
-const AddAnotherCard = (): JSX.Element => {
+const AddAnotherCard = (): React.ReactElement => {
   return (
     <div className="flex text-gray-600 hover:bg-gray-400 mt-2 p-1 rounded-sm items-center text-sm">
       <div className="pl-1 text-xl font-light">+</div>
