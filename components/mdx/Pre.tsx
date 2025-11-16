@@ -1,9 +1,9 @@
-import { ReactNode } from "react";
+import React from "react";
 import { twMerge } from "tailwind-merge";
 
 type Props = {
-  children: ReactNode;
-} & JSX.IntrinsicElements["pre"];
+  children: React.ReactNode;
+} & React.ComponentPropsWithoutRef<'pre'>;
 
 const Pre = ({ children, className, ...props }: Props) => {
   return (

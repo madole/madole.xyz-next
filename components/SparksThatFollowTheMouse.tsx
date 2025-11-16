@@ -12,7 +12,7 @@ export const SparksThatFollowTheMouse = () => {
   const camera = useThree((state) => state.camera);
   const [mousePosition, setMousePosition] = useState({ x: -20000, y: -200000 });
   const [isMouseMoving, setIsMouseMoving] = useState(false);
-  const sparklesRef = useRef<any>();
+  const sparklesRef = useRef<any>(null);
 
   useFrame(() => {
     const { x, y } = mousePosition;
