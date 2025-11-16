@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>http://madole.xyz/</id>
     <title>Madole.xyz Blog</title>
-    <updated>2025-11-16T20:21:53.606Z</updated>
+    <updated>2025-11-16T22:58:04.101Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Andrew McDowell</name>
@@ -15,6 +15,21 @@
     <logo>http://madole.xyz/bitmoji.png</logo>
     <icon>http://madole.xyz/favicon.ico</icon>
     <rights>All rights reserved 2022, Madole</rights>
+    <entry>
+        <title type="html"><![CDATA[When is a dashboard not a dashboard?]]></title>
+        <id>https://madole.xyz/blog/when-is-a-dashboard-not-a-dashboard</id>
+        <link href="https://madole.xyz/blog/when-is-a-dashboard-not-a-dashboard"/>
+        <updated>2025-10-20T05:53:48.208Z</updated>
+        <summary type="html"><![CDATA[Reading time: 6 min read]]></summary>
+        <content type="html"><![CDATA[<h2>Lessons learned in building dashboards for emergency services</h2>
+<p>Our mission was to help an emergency response team prepare for crises by knowing what was coming. After all the hard work of understanding the problem, doing deep data analysis, and fi</p>
+]]></content>
+        <author>
+            <name>Andrew McDowell</name>
+            <email>me@madole.dev</email>
+            <uri>https://madole.xyz</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[GDAL Evolved - A guide to the new unified CLI]]></title>
         <id>https://madole.xyz/blog/gdal-evolved</id>

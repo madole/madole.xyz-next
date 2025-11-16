@@ -11,6 +11,18 @@
     },
     "items": [
         {
+            "id": "https://madole.xyz/blog/when-is-a-dashboard-not-a-dashboard",
+            "content_html": "<h2>Lessons learned in building dashboards for emergency services</h2>\n<p>Our mission was to help an emergency response team prepare for crises by knowing what was coming. After all the hard work of understanding the problem, doing deep data analysis, and fi</p>\n",
+            "url": "https://madole.xyz/blog/when-is-a-dashboard-not-a-dashboard",
+            "title": "When is a dashboard not a dashboard?",
+            "summary": "Reading time: 6 min read",
+            "date_modified": "2025-10-20T05:53:48.208Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
             "id": "https://madole.xyz/blog/gdal-evolved",
             "content_html": "<p><em>(This was originally posted on the <a href=\"https://engineering.kablamo.com.au/posts/gdal-evolved/\">Kablamo Engineering Blog</a>)</em></p>\n<p>I’ve always seen GDAL as the “VLC Player of geospatial data.” Much like the iconic media player that could handle pretty much an</p>\n",
             "url": "https://madole.xyz/blog/gdal-evolved",
