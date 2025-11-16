@@ -1,4 +1,4 @@
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useFrame } from "@react-three/fiber";
 import {
   OrbitControls,
   Cloud,
@@ -6,8 +6,31 @@ import {
   View,
   PerspectiveCamera,
 } from "@react-three/drei";
-import React, { Suspense, useRef } from "react";
+import React, { Suspense, useRef, useState } from "react";
 import Earth from "./Earth";
+
+/**
+ * Component that triggers a callback after multiple frames are rendered
+ * This ensures all textures are loaded, uploaded to GPU, and actually rendered
+ */
+const SceneReadyDetector: React.FC<{ onReady: () => void }> = ({ onReady }) => {
+  const frameCount = useRef(0);
+  const hasCalledReady = useRef(false);
+  const FRAMES_TO_WAIT = 3; // Wait 3 frames to ensure GPU texture upload completion
+
+  useFrame(() => {
+    if (!hasCalledReady.current) {
+      frameCount.current += 1;
+
+      if (frameCount.current >= FRAMES_TO_WAIT) {
+        hasCalledReady.current = true;
+        onReady();
+      }
+    }
+  });
+
+  return null;
+};
 
 /**
  * Single WebGL context with multiple viewports using drei's View
@@ -18,6 +41,7 @@ import Earth from "./Earth";
 const CombinedThreeScene: React.FC = () => {
   const cloudsRef = useRef<HTMLDivElement>(null);
   const earthRef = useRef<HTMLDivElement>(null);
+  const [isSceneReady, setIsSceneReady] = useState(false);
 
   return (
     <>
@@ -32,7 +56,7 @@ const CombinedThreeScene: React.FC = () => {
 
       {/* Single Canvas with multiple Views */}
       <Canvas
-        className="fixed inset-0 opacity-0 animate-slowFadeIn"
+        className={`fixed inset-0 opacity-0 ${isSceneReady ? "animate-slowFadeIn" : ""}`}
         style={{ zIndex: 0 }}
         gl={{
           alpha: true,
@@ -84,6 +108,9 @@ const CombinedThreeScene: React.FC = () => {
             />
             <Earth />
           </View>
+
+          {/* Detector to trigger fade-in only after scene is fully loaded and rendered */}
+          <SceneReadyDetector onReady={() => setIsSceneReady(true)} />
         </Suspense>
       </Canvas>
     </>

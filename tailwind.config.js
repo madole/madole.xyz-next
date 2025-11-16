@@ -35,7 +35,7 @@ module.exports = {
       },
       animation: {
         fadeIn: "fadeIn 0.3s ease-in-out",
-        slowFadeIn: "fadeIn 3s ease-in-out 3s forwards",
+        slowFadeIn: "fadeIn 2s ease-in-out forwards",
         horizontalBounce: "horizontalBounce 5s ease-in-out alternate infinite",
       },
       colors: {
