@@ -314,7 +314,7 @@ export const resumeData: ResumeData = {
   ],
   experience: [
     {
-      period: "January 2021...",
+      period: "January 2021 - Present",
       title: "Senior Geospatial & Frontend Technical Lead",
       company: "Kablamo",
       logo: {
