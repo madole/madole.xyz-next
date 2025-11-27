@@ -474,6 +474,7 @@ function Resume(): React.ReactElement {
                             href={exp.link.url}
                             target="_blank"
                             className="text-blue-800"
+                            rel="noreferrer"
                           >
                             {exp.link.text}
                           </a>
