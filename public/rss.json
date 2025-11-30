@@ -11,6 +11,18 @@
     },
     "items": [
         {
+            "id": "https://madole.xyz/blog/six-things-about-how-ai-is-changing-software-engineering",
+            "content_html": "<p>Some Sunday morning thoughts on where we&#39;re at in the software engineering industry with the prevalence of Generative AI. I have many more thoughts on this topic but here are a few of them considering where we are at right now in November 2025.</p>\n<ul>\n<li>AI</li>\n</ul>\n",
+            "url": "https://madole.xyz/blog/six-things-about-how-ai-is-changing-software-engineering",
+            "title": "Six things about how AI is changing software engineering",
+            "summary": "Reading time: 4 min read",
+            "date_modified": "2025-11-30T10:00:00.000Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
             "id": "https://madole.xyz/blog/gdal-evolved",
             "content_html": "<p><em>(This was originally posted on the <a href=\"https://engineering.kablamo.com.au/posts/gdal-evolved/\">Kablamo Engineering Blog</a>)</em></p>\n<p>I’ve always seen GDAL as the “VLC Player of geospatial data.” Much like the iconic media player that could handle pretty much an</p>\n",
             "url": "https://madole.xyz/blog/gdal-evolved",
