@@ -27,8 +27,15 @@ const generateImage = async () => {
     const { attributes: postAttributes, body } = frontMatter(fileContent);
     const { title } = postAttributes;
 
-    const response = await fetch(imageUrl);
-    const imageBuffer = await response.arrayBuffer();
+    let imageBuffer;
+    if (imageUrl.startsWith("http://") || imageUrl.startsWith("https://")) {
+      const response = await fetch(imageUrl);
+      imageBuffer = await response.arrayBuffer();
+    } else {
+      // Local file path
+      const localPath = path.isAbsolute(imageUrl) ? imageUrl : path.join(process.cwd(), imageUrl);
+      imageBuffer = fs.readFileSync(localPath);
+    }
 
     const width = 1200;
     const height = 630;

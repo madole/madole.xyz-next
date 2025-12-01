@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>http://madole.xyz/</id>
     <title>Madole.xyz Blog</title>
-    <updated>2025-11-27T12:40:51.857Z</updated>
+    <updated>2025-12-01T00:42:12.391Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Andrew McDowell</name>
@@ -15,6 +15,20 @@
     <logo>http://madole.xyz/bitmoji.png</logo>
     <icon>http://madole.xyz/favicon.ico</icon>
     <rights>All rights reserved 2022, Madole</rights>
+    <entry>
+        <title type="html"><![CDATA[Six things about how AI is changing software engineering]]></title>
+        <id>https://madole.xyz/blog/six-things-about-how-ai-is-changing-software-engineering</id>
+        <link href="https://madole.xyz/blog/six-things-about-how-ai-is-changing-software-engineering"/>
+        <updated>2025-11-30T10:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Reading time: 4 min read]]></summary>
+        <content type="html"><![CDATA[<p>Some Sunday morning thoughts on where we&#39;re at in the software engineering industry with the prevalence of Generative AI. I have many more thoughts on this topic but here are a few observations considering where we are at right now in November 2025.</p>
+]]></content>
+        <author>
+            <name>Andrew McDowell</name>
+            <email>me@madole.dev</email>
+            <uri>https://madole.xyz</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[GDAL Evolved - A guide to the new unified CLI]]></title>
         <id>https://madole.xyz/blog/gdal-evolved</id>
