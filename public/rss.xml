@@ -4,7 +4,7 @@
         <title>Madole.xyz Blog</title>
         <link>http://madole.xyz/</link>
         <description>Blog posts from madole.xyz</description>
-        <lastBuildDate>Sun, 30 Nov 2025 10:25:14 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 01 Dec 2025 00:40:24 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -20,10 +20,7 @@
             <guid>https://madole.xyz/blog/six-things-about-how-ai-is-changing-software-engineering</guid>
             <pubDate>Sun, 30 Nov 2025 10:00:00 GMT</pubDate>
             <description><![CDATA[Reading time: 4 min read]]></description>
-            <content:encoded><![CDATA[<p>Some Sunday morning thoughts on where we&#39;re at in the software engineering industry with the prevalence of Generative AI. I have many more thoughts on this topic but here are a few of them considering where we are at right now in November 2025.</p>
-<ul>
-<li>AI</li>
-</ul>
+            <content:encoded><![CDATA[<p>Some Sunday morning thoughts on where we&#39;re at in the software engineering industry with the prevalence of Generative AI. I have many more thoughts on this topic but here are a few observations considering where we are at right now in November 2025.</p>
 ]]></content:encoded>
             <author>me@madole.dev (Andrew McDowell)</author>
         </item>

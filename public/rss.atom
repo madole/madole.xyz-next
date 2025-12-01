@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>http://madole.xyz/</id>
     <title>Madole.xyz Blog</title>
-    <updated>2025-11-30T10:25:14.806Z</updated>
+    <updated>2025-12-01T00:40:24.530Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Andrew McDowell</name>
@@ -21,10 +21,7 @@
         <link href="https://madole.xyz/blog/six-things-about-how-ai-is-changing-software-engineering"/>
         <updated>2025-11-30T10:00:00.000Z</updated>
         <summary type="html"><![CDATA[Reading time: 4 min read]]></summary>
-        <content type="html"><![CDATA[<p>Some Sunday morning thoughts on where we&#39;re at in the software engineering industry with the prevalence of Generative AI. I have many more thoughts on this topic but here are a few of them considering where we are at right now in November 2025.</p>
-<ul>
-<li>AI</li>
-</ul>
+        <content type="html"><![CDATA[<p>Some Sunday morning thoughts on where we&#39;re at in the software engineering industry with the prevalence of Generative AI. I have many more thoughts on this topic but here are a few observations considering where we are at right now in November 2025.</p>
 ]]></content>
         <author>
             <name>Andrew McDowell</name>
