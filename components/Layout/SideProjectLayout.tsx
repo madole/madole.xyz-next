@@ -5,7 +5,7 @@ import styles from "./layout.module.css";
 
 export const SideProjectLayout = (props: {
   children: React.ReactNode;
-}): JSX.Element => {
+}): React.ReactElement => {
   const { children } = props;
 
   return (
