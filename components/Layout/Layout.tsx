@@ -6,7 +6,7 @@ import styles from "./layout.module.css";
 export const Layout = (props: {
   children: React.ReactNode;
   isIndexPage?: boolean;
-}): JSX.Element => {
+}): React.ReactElement => {
   const { children } = props;
 
   return (

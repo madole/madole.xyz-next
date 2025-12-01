@@ -247,6 +247,22 @@ export const resumeData: ResumeData = {
   },
   achievements: [
     {
+      id: "genai",
+      date: "SEP 2025",
+      title: "Google Cloud Certified",
+      description: "Generative AI Leader Certification",
+      image: {
+        src: "/gen-ai-leader.webp",
+        alt: "Google Cloud Generative AI Leader Certification badge",
+        width: 250,
+        height: 250,
+      },
+      lightboxImage: {
+        width: 600,
+        height: 600,
+      },
+    },
+    {
       id: "lightning",
       date: "MAR 2024",
       title: "Completed NASA ARSET training",
@@ -298,7 +314,7 @@ export const resumeData: ResumeData = {
   ],
   experience: [
     {
-      period: "January 2021...",
+      period: "January 2021 - Present",
       title: "Senior Geospatial & Frontend Technical Lead",
       company: "Kablamo",
       logo: {
@@ -323,10 +339,15 @@ export const resumeData: ResumeData = {
         "Host the fortnightly frontend catchup where we discuss emerging frontend technology and trends and showcase frontend work our team has achieved.",
         "Mentor frontend developers to reach their full potential",
         "Consult on the geospatial projects",
-        "Build prototypes for client tenders",
+        "Rapid prototypes for client tenders",
+        "Engineering team design",
+        "Project scope validation and estimation",
+        "C4 Model architecture design",
+        "Infrastructure design",
+        "Build partnerships with complimentary businesses",
+        "Lead teams during planning, discovery and implementation phases of client engagements",
         "Get developers excited about 3D visualisations and geospatial applications",
         "Build out and manage our geospatial knowledge base",
-        "Architect and pitch solutions to clients during the sales cycle and development cycle",
         "Interview candidates for our geospatial and frontend teams",
         "Work with clients during engagements to make sure we're delivering on their needs",
         "Champion lean agile practices",
@@ -334,7 +355,7 @@ export const resumeData: ResumeData = {
       ],
       experience: [
         {
-          text: "Led the technical integration of Firestory into ESRI's ArcGIS platform",
+          text: "Led the technical integration of Firestory into ESRI's ArcGIS platform as part of ESRI Partnership",
         },
         {
           text: "Worked with the Office of the NSW Chief Scientist to develop software for Forestry Corp to model Heavy Plant dry firefighting impact on bushfires through the",
@@ -342,32 +363,92 @@ export const resumeData: ResumeData = {
             url: "https://www.chiefscientist.nsw.gov.au/rd-action-plan/natural-hazards-technology-program",
             text: "Natural Hazards Technology Program",
           },
+          subItems: [
+            "Typescript",
+            "NextJS",
+            "Drizzle",
+            "tRPC",
+            "NodeJS",
+            "AWS Step Functions",
+            "Lambda",
+            "SQS",
+            "Event Bridge",
+          ],
         },
         {
           text: "Led the team to deliver a predictive capability for FRNSW to help them forward plan for periods with increased incident risk.",
+          subItems: [
+            "Typescript",
+            "NextJS",
+            "Drizzle",
+            "tRPC",
+            "ShadCN UI",
+            "AWS Lambda",
+            "SQS",
+            "Event Bridge",
+            "Postgres/PostGIS",
+          ],
         },
         {
-          text: "Architected and led the team delivering a Remote Fire Detection, Fire Prediction, Heavy Plant Response Planning and Fire Management capabilities for",
+          text: "Architected and led the team delivering capabilities for",
           link: {
             url: "https://firestory.io",
             text: "Firestory",
           },
           subItems: [
-            "Event Driven",
-            "Serverless",
-            "Modular architecture",
-            "NodeJS, Go, Typescript, React, Python",
+            "Configurable Incident management system integration for fire agencies",
+            "Automated Remote Fire Detection using Australia-centric ML and thermal satellite data",
+            "Fire Prediction Capability Expansion for model swapping and comparison",
+            "Scenario Modelling for hazard reduction exercises with live weather",
+            "Automated Incident Comms Tool using Generative AI for multi-language bulletins",
+            "Watch Zone Notifications for area-specific event alerts",
+            "Event Driven, Serverless, Modular architecture",
+            "AWS EventBridge, SQS, Step Functions, Lambda, ECS/Fargate",
+            "NodeJS, Go, Typescript, Python, React, NextJS, DrizzleORM, Postgres/PostGIS",
           ],
         },
         {
           text: "Led the team to deliver an Automated Fireground Aviation Safety Assessment tool for NSW RFS which integrated BOM and Airservices Australia data. In the process, I became an SME on Aviation Weather Forecast data.",
+          subItems: ["AWS Lambda", "Golang", "React", "Typescript"],
         },
         {
-          text: "Led the frontend team to deliver a 3D fire prediction tool for NSW RFS (Athena) using Mapbox and React.",
+          text: "Led the frontend team to deliver a 3D fire prediction tool for NSW RFS (Athena).",
           link: {
             url: "https://www.kablamo.com.au/case-study/nsw-rural-fire-service",
             text: "NSW RFS Athena",
           },
+          subItems: [
+            "Typescript",
+            "Mapbox",
+            "React",
+            "Golang",
+            "Phoenix fire prediction engine",
+            "AWS",
+          ],
+        },
+        {
+          text: "Developed software that helps identify and report on cases of child exploitation (ICMEC)",
+          subItems: ["NextJS", "Postgres"],
+        },
+        {
+          text: "Built an internal AI Transcription tool for the ABC",
+          subItems: ["Typescript", "React", "NodeJS"],
+        },
+        {
+          text: "Built the notification mechanism for the ABC News App to send news notifications to Apple and Android apps",
+          subItems: [
+            "Typescript",
+            "React",
+            "NodeJS",
+            "AWS SNS",
+            "APNS",
+            "FMS",
+            "Lambda",
+          ],
+        },
+        {
+          text: "Delivered the Triple J Unearthed website upgrade and 2021 Hottest 100 voting website, contributing to the ABC 'Presentation Layer' design system",
+          subItems: ["Typescript", "React", "GraphQL"],
         },
         {
           text: "Exhibited at AFAC 2023, 2024 and the 2024 Office of the NSW Chief Scientist & Engineer Commercialisation showcase",

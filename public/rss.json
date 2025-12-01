@@ -11,6 +11,18 @@
     },
     "items": [
         {
+            "id": "https://madole.xyz/blog/six-things-about-how-ai-is-changing-software-engineering",
+            "content_html": "<p>Some Sunday morning thoughts on where we&#39;re at in the software engineering industry with the prevalence of Generative AI. I have many more thoughts on this topic but here are a few observations considering where we are at right now in November 2025.</p>\n",
+            "url": "https://madole.xyz/blog/six-things-about-how-ai-is-changing-software-engineering",
+            "title": "Six things about how AI is changing software engineering",
+            "summary": "Reading time: 4 min read",
+            "date_modified": "2025-11-30T10:00:00.000Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
             "id": "https://madole.xyz/blog/when-is-a-dashboard-not-a-dashboard",
             "content_html": "<h2>Lessons learned in building dashboards for emergency services</h2>\n<p>Our mission was to help an emergency response team prepare for crises by knowing what was coming. After all the hard work of understanding the problem, doing deep data analysis, and fi</p>\n",
             "url": "https://madole.xyz/blog/when-is-a-dashboard-not-a-dashboard",
@@ -23,10 +35,22 @@
             }
         },
         {
+            "id": "https://madole.xyz/blog/gdal-evolved",
+            "content_html": "<p><em>(This was originally posted on the <a href=\"https://engineering.kablamo.com.au/posts/gdal-evolved/\">Kablamo Engineering Blog</a>)</em></p>\n<p>I’ve always seen GDAL as the “VLC Player of geospatial data.” Much like the iconic media player that could handle pretty much an</p>\n",
+            "url": "https://madole.xyz/blog/gdal-evolved",
+            "title": "GDAL Evolved - A guide to the new unified CLI",
+            "summary": "Reading time: 7 min read",
+            "date_modified": "2025-10-16T09:26:15.799Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
             "id": "https://madole.xyz/blog/a-mentors-guide-to-effective-1-1s",
             "content_html": "<p>Let&#39;s be honest, most one-on-one meetings are a waste of time. They&#39;re often rushed, unproductive check-ins that everyone dreads. A great 1:1 is different. It&#39;s the foundation of real mentorship, where you stop talking about tasks and start building </p>\n",
             "url": "https://madole.xyz/blog/a-mentors-guide-to-effective-1-1s",
-            "title": "A mentors guide to effective 1-1s - Building trust and driving growth",
+            "title": "A mentor's guide to effective 1-1s - Building trust and driving growth",
             "summary": "Reading time: 6 min read",
             "date_modified": "2025-10-16T03:48:58.756Z",
             "author": {

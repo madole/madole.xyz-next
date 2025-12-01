@@ -31,7 +31,7 @@ function getUrlSearchParam(searchParam: string): string | null {
  * ?q=eyJjIjogIk5BU0EiLCJ0IjogIkNFTyJ9
  *
  */
-function Resume(): JSX.Element {
+function Resume(): React.ReactElement {
   const [futureTitle, setFutureTitle] = useState("Technical Lead");
   const [futureCompany, setFutureCompany] = useState("");
 
@@ -41,7 +41,7 @@ function Resume(): JSX.Element {
 
   // New state for lightbox
   const [openAchievement, setOpenAchievement] = useState<
-    null | "lightning" | "spectral" | "airquality"
+    null | "genai" | "lightning" | "spectral" | "airquality"
   >(null);
 
   useEffect(() => {
@@ -104,74 +104,78 @@ function Resume(): JSX.Element {
         <Card>
           <span className="font-bold pb-1">Duties:</span>
           <Spacer />
-          {experience.duties.map((duty, index) => (
-            <div key={index}>
-              - {duty}
-              <Spacer />
-            </div>
-          ))}
+          <ul className="list-disc ml-4">
+            {experience.duties.map((duty, index) => (
+              <li key={index} className="pb-1">
+                {duty}
+              </li>
+            ))}
+          </ul>
         </Card>
       )}
       {experience.experience && (
         <Card>
           <span className="font-bold pb-1">Experience:</span>
           <Spacer />
-          {experience.experience.map((exp, index) => (
-            <div key={index}>
-              - {exp.text}
-              {exp.link && (
-                <>
-                  {" "}
-                  <a
-                    href={exp.link.url}
-                    target="_blank"
-                    className="text-blue-800"
-                  >
-                    {exp.link.text}
-                  </a>
-                </>
-              )}
-              {exp.subItems && (
-                <ul className="ml-4">
-                  {exp.subItems.map((item, itemIndex) => (
-                    <li key={itemIndex}>- {item}</li>
-                  ))}
-                </ul>
-              )}
-              <Spacer />
-            </div>
-          ))}
+          <ul className="list-disc ml-4">
+            {experience.experience.map((exp, index) => (
+              <li key={index} className="pb-1">
+                {exp.text}
+                {exp.link && (
+                  <>
+                    {" "}
+                    <a
+                      href={exp.link.url}
+                      target="_blank"
+                      className="text-blue-800"
+                    >
+                      {exp.link.text}
+                    </a>
+                  </>
+                )}
+                {exp.subItems && (
+                  <ul className="list-disc ml-4">
+                    {exp.subItems.map((item, itemIndex) => (
+                      <li key={itemIndex}>{item}</li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ))}
+          </ul>
         </Card>
       )}
       {experience.skills && (
         <Card>
           <span className="font-bold pb-1">Skills snapshot:</span>
           <Spacer />
-          {experience.skills.map((skill, index) => (
-            <div key={index}>
-              - {skill.text}
-              {skill.subItems && (
-                <div className="ml-4">
-                  {skill.subItems.map((item, itemIndex) => (
-                    <div key={itemIndex}>- {item}</div>
-                  ))}
-                </div>
-              )}
-              <Spacer />
-            </div>
-          ))}
+          <ul className="list-disc ml-4">
+            {experience.skills.map((skill, index) => (
+              <li key={index} className="pb-1">
+                {skill.text}
+                {skill.subItems && (
+                  <ul className="list-disc ml-4">
+                    {skill.subItems.map((item, itemIndex) => (
+                      <li key={itemIndex}>{item}</li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ))}
+          </ul>
         </Card>
       )}
       {experience.notableProjects && (
         <Card>
           <span className="font-bold pb-1">Notable projects:</span>
           <Spacer />
-          {experience.notableProjects.map((project, index) => (
-            <div key={index}>
-              - {project.text}
-              <Spacer />
-            </div>
-          ))}
+          <ul className="list-disc ml-4">
+            {experience.notableProjects.map((project, index) => (
+              <li key={index} className="pb-1">
+                {project.text}
+              </li>
+            ))}
+          </ul>
         </Card>
       )}
     </Column>
@@ -183,7 +187,7 @@ function Resume(): JSX.Element {
         <title>Resume | Madole.xyz</title>
       </Head>
 
-      <div className="absolute inset-0 bg-trello-blue overflow-hidden animate-slowFadeIn">
+      <div className="absolute inset-0 bg-trello-blue overflow-hidden animate-fadeIn">
         <Header />
         <div className="h-full flex overflow-x-scroll mx-2">
           <Column title="About me">
@@ -332,6 +336,7 @@ function Resume(): JSX.Element {
                     onClick={() =>
                       setOpenAchievement(
                         achievement.id as
+                          | "genai"
                           | "lightning"
                           | "spectral"
                           | "airquality"
@@ -445,43 +450,46 @@ function Resume(): JSX.Element {
               <Card>
                 <span className="font-bold pb-1">Duties:</span>
                 <Spacer />
-                {resumeData.experience[0].duties.map((duty, index) => (
-                  <div key={index}>
-                    - {duty}
-                    <Spacer />
-                  </div>
-                ))}
+                <ul className="list-disc ml-4">
+                  {resumeData.experience[0].duties.map((duty, index) => (
+                    <li key={index} className="pb-1">
+                      {duty}
+                    </li>
+                  ))}
+                </ul>
               </Card>
             )}
             {resumeData.experience[0].experience && (
               <Card>
                 <span className="font-bold pb-1">Experience:</span>
                 <Spacer />
-                {resumeData.experience[0].experience.map((exp, index) => (
-                  <div key={index}>
-                    - {exp.text}
-                    {exp.link && (
-                      <>
-                        {" "}
-                        <a
-                          href={exp.link.url}
-                          target="_blank"
-                          className="text-blue-800"
-                        >
-                          {exp.link.text}
-                        </a>
-                      </>
-                    )}
-                    {exp.subItems && (
-                      <ul className="ml-4">
-                        {exp.subItems.map((item, itemIndex) => (
-                          <li key={itemIndex}>- {item}</li>
-                        ))}
-                      </ul>
-                    )}
-                    <Spacer />
-                  </div>
-                ))}
+                <ul className="list-disc ml-4">
+                  {resumeData.experience[0].experience.map((exp, index) => (
+                    <li key={index} className="pb-1">
+                      {exp.text}
+                      {exp.link && (
+                        <>
+                          {" "}
+                          <a
+                            href={exp.link.url}
+                            target="_blank"
+                            className="text-blue-800"
+                            rel="noreferrer"
+                          >
+                            {exp.link.text}
+                          </a>
+                        </>
+                      )}
+                      {exp.subItems && (
+                        <ul className="list-disc ml-4">
+                          {exp.subItems.map((item, itemIndex) => (
+                            <li key={itemIndex}>{item}</li>
+                          ))}
+                        </ul>
+                      )}
+                    </li>
+                  ))}
+                </ul>
               </Card>
             )}
           </Column>
