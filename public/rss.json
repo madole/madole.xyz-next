@@ -11,6 +11,18 @@
     },
     "items": [
         {
+            "id": "https://madole.xyz/blog/claude-code-fixed-my-wifi",
+            "content_html": "<p>I have an old MacBook Pro 2016 Intel version that I was hoping to breathe some life back into. At the same time\nI wanted to give the most hyped Linux distro <a href=\"https://omarchy.org/\">Omarchy</a> a go. I love an opportunity to kill 2 birds with one stone so</p>\n",
+            "url": "https://madole.xyz/blog/claude-code-fixed-my-wifi",
+            "title": "Claude Code fixed my WIFI",
+            "summary": "Reading time: 4 min read",
+            "date_modified": "2025-12-04T22:11:26.370Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
             "id": "https://madole.xyz/blog/things-i-learned-about-wildfires",
             "content_html": "<p>I&#39;ve worked in the fire technology space for 5 years now, leading teams building products and projects helping fire agencies figure out where fires are likely to go and surfacing the information to them at just the right time to help them make well-i</p>\n",
             "url": "https://madole.xyz/blog/things-i-learned-about-wildfires",

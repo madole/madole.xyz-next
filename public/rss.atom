@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>http://madole.xyz/</id>
     <title>Madole.xyz Blog</title>
-    <updated>2025-12-04T01:50:45.121Z</updated>
+    <updated>2025-12-04T23:10:02.657Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Andrew McDowell</name>
@@ -15,6 +15,21 @@
     <logo>http://madole.xyz/bitmoji.png</logo>
     <icon>http://madole.xyz/favicon.ico</icon>
     <rights>All rights reserved 2022, Madole</rights>
+    <entry>
+        <title type="html"><![CDATA[Claude Code fixed my WIFI]]></title>
+        <id>https://madole.xyz/blog/claude-code-fixed-my-wifi</id>
+        <link href="https://madole.xyz/blog/claude-code-fixed-my-wifi"/>
+        <updated>2025-12-04T22:11:26.370Z</updated>
+        <summary type="html"><![CDATA[Reading time: 4 min read]]></summary>
+        <content type="html"><![CDATA[<p>I have an old MacBook Pro 2016 Intel version that I was hoping to breathe some life back into. At the same time
+I wanted to give the most hyped Linux distro <a href="https://omarchy.org/">Omarchy</a> a go. I love an opportunity to kill 2 birds with one stone so</p>
+]]></content>
+        <author>
+            <name>Andrew McDowell</name>
+            <email>me@madole.dev</email>
+            <uri>https://madole.xyz</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Interesting facts I've learned about wildfires over the years]]></title>
         <id>https://madole.xyz/blog/things-i-learned-about-wildfires</id>
