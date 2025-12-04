@@ -4,7 +4,7 @@
         <title>Madole.xyz Blog</title>
         <link>http://madole.xyz/</link>
         <description>Blog posts from madole.xyz</description>
-        <lastBuildDate>Thu, 04 Dec 2025 01:50:45 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 04 Dec 2025 23:17:56 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -14,6 +14,17 @@
             <link>http://madole.xyz/</link>
         </image>
         <copyright>All rights reserved 2022, Madole</copyright>
+        <item>
+            <title><![CDATA[Claude Code fixed my WIFI]]></title>
+            <link>https://madole.xyz/blog/claude-code-fixed-my-wifi</link>
+            <guid>https://madole.xyz/blog/claude-code-fixed-my-wifi</guid>
+            <pubDate>Thu, 04 Dec 2025 22:11:26 GMT</pubDate>
+            <description><![CDATA[Reading time: 4 min read]]></description>
+            <content:encoded><![CDATA[<p>I have an old MacBook Pro 2016 Intel version that I was hoping to breathe some life back into. At the same time
+I wanted to give the most hyped Linux distro <a href="https://omarchy.org/">Omarchy</a> a go. I love an opportunity to kill 2 birds with one stone so</p>
+]]></content:encoded>
+            <author>me@madole.dev (Andrew McDowell)</author>
+        </item>
         <item>
             <title><![CDATA[Interesting facts I've learned about wildfires over the years]]></title>
             <link>https://madole.xyz/blog/things-i-learned-about-wildfires</link>
