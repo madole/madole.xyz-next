@@ -30,6 +30,16 @@ a {
   text-decoration: none;
 }
 
+/* Truncate long URLs in article content */
+article a[href^="http"] {
+  display: inline-block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: bottom;
+}
+
 * {
   box-sizing: border-box;
 }

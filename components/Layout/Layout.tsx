@@ -17,7 +17,7 @@ export const Layout = (props: {
         Skip to main content
       </a>
       <Navigation />
-      <div
+      <main
         className={`
           grid grid-cols-mobile lg:grid-cols-layout gap-4
           [&>section]max-w-[min(80ch,100%)]
@@ -35,7 +35,7 @@ export const Layout = (props: {
           `}
       >
         {children}
-      </div>
+      </main>
       <Footer />
     </div>
   );
