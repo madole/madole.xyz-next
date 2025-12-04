@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>http://madole.xyz/</id>
     <title>Madole.xyz Blog</title>
-    <updated>2025-12-01T00:42:12.391Z</updated>
+    <updated>2025-12-04T01:40:02.169Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Andrew McDowell</name>
@@ -15,6 +15,20 @@
     <logo>http://madole.xyz/bitmoji.png</logo>
     <icon>http://madole.xyz/favicon.ico</icon>
     <rights>All rights reserved 2022, Madole</rights>
+    <entry>
+        <title type="html"><![CDATA[Things I learned about wildfires]]></title>
+        <id>https://madole.xyz/blog/things-i-learned-about-wildfires</id>
+        <link href="https://madole.xyz/blog/things-i-learned-about-wildfires"/>
+        <updated>2025-12-03T23:43:43.698Z</updated>
+        <summary type="html"><![CDATA[Reading time: 25 min read]]></summary>
+        <content type="html"><![CDATA[<p>I&#39;ve worked in the fire technology space for 5 years now, leading teams building products and projects helping fire agencies figure out where fires are likely to go and surfacing the information to them at just the right time to help them make well-i</p>
+]]></content>
+        <author>
+            <name>Andrew McDowell</name>
+            <email>me@madole.dev</email>
+            <uri>https://madole.xyz</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Six things about how AI is changing software engineering]]></title>
         <id>https://madole.xyz/blog/six-things-about-how-ai-is-changing-software-engineering</id>

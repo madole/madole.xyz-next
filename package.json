@@ -51,6 +51,7 @@
     "@types/react": "^19.0.0",
     "@types/react-syntax-highlighter": "^15.5.13",
     "autoprefixer": "^10.4.19",
+    "baseline-browser-mapping": "^2.9.0",
     "eslint": "^9.7.0",
     "frontmatter-markdown-loader": "^3.7.0",
     "inquirer": "^9.2.19",
