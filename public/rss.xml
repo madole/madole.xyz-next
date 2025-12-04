@@ -4,7 +4,7 @@
         <title>Madole.xyz Blog</title>
         <link>http://madole.xyz/</link>
         <description>Blog posts from madole.xyz</description>
-        <lastBuildDate>Thu, 04 Dec 2025 01:40:02 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 04 Dec 2025 01:50:45 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -15,7 +15,7 @@
         </image>
         <copyright>All rights reserved 2022, Madole</copyright>
         <item>
-            <title><![CDATA[Things I learned about wildfires]]></title>
+            <title><![CDATA[Interesting facts I've learned about wildfires over the years]]></title>
             <link>https://madole.xyz/blog/things-i-learned-about-wildfires</link>
             <guid>https://madole.xyz/blog/things-i-learned-about-wildfires</guid>
             <pubDate>Wed, 03 Dec 2025 23:43:43 GMT</pubDate>
