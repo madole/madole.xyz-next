@@ -11,15 +11,15 @@ og_image: /og/claude-code-fixed-my-wifi.jpg
 ---
 
 I have an old MacBook Pro 2016 Intel version that I was hoping to breathe some life back into. At the same time
-I wanted to give the most hyped Linux distro [Omarchy](https://omarchy.org/) a go. I love an opportunity to kill 2 birds with one stone so
+I wanted to give the most hyped Linux distro [Omarchy](https://omarchy.org/) a go. I love an opportunity to kill two birds with one stone so
 I set aside a few hours.
 
 I downloaded the Omarchy ISO, burnt it onto an old USB pen drive using [balenaEtcher](https://etcher.balena.io/) and booted from it on my old machine. After a few set-up
 steps I had a nice new desktop that I was struggling to use, accidentally closing browsers and opening terminals
-all over the show while windows tiled smaller and smaller before my eyes. I'm getting flash backs to my first introduction
-to VI while ssh’d into a TV set-top box “anyone know how to save this file?”.
+all over the show while windows tiled smaller and smaller before my eyes. I'm getting flashbacks to my first introduction
+to VI while ssh’d into a TV set-top box, “Anyone know how to save this file?”
 
-Luckily, although it's heavily optimised for keyboard nav, you can use your mouse so I fumble my way through the UI
+Luckily, although it's heavily optimised for keyboard nav, you can use your mouse, so I fumble my way through the UI
 and attempt to connect to the internet. I fire up the [Impala TUI](https://github.com/pythops/impala), do a network scan and I can only see the 2.4Ghz
 connection, no 5Ghz connection. No worries, I'll just connect to the 2.4Ghz connection. I select it, enter my WIFI
 password and click enter. Operation Failed. No other information. Maybe I mistyped the password, I try 10 more times.
@@ -30,25 +30,25 @@ restart services, install packages, all to no avail. I should note here that aft
 from one computer to another, I was able to get online via USB tethering from my phone. This sped up the debugging
 process but still a fruitless endeavour. I'm still not online.
 
-Maybe Claude would know what to do. I provided a bunch of context to Claude web (there seems to be no arch Linux
-Claude app), and a few hours of back and forth and 100 reboots later, I'm intermittently connecting to Wifi but it's
+Maybe Claude would know what to do. I provided a bunch of context to Claude web (there seems to be no Arch Linux
+Claude app), and a few hours of back and forth and 100 reboots later, I'm intermittently connecting to WIFI but it's
 dropping out a lot.
 
-Then I get a brainwave. This is the perfect problem for an agentic loop. Why am I being the man in the middle copying
-context from logs and commands back and forth between the browser. An agentic loop can generate commands, digest responses
+Then I get a brainwave. This is the perfect problem for an agentic loop. Why was I being the man in the middle, copying
+context from logs and commands back and forth between the browser and the terminal? An agentic loop can generate commands, digest responses
 and steer the next commands to achieve the outcome. This is exactly what [Claude Code](https://www.claude.com/product/claude-code) does for code, do you think it would
 work without a codebase? Worth a try surely.
 
 From a security standpoint, I know this is an awful idea but this is a totally fresh install so I figure as long as I
 "OK" any command it wants to run, the risk factor is low enough for me in this case.
 
-So I take the same context I provided to Claude web and a few of the things I'd learned along the way. I set the
+So I took the same context I provided to Claude web and a few of the things I'd learned along the way. I set the
 outcome to ensure I can see the 5Ghz connection and connect to it and off it went. It did some debugging, some web
 searching and correctly identified a missing driver, it sourced the driver, downloaded it, copied it into the right
-place, set all the right Configs and rebooted a few times. Each time I used `claude --continue` to continue the session
-from where I left off. After about 20mins, I had a fully WIFI connected Omarchy setup.
+place, set all the right configs and rebooted a few times. Each time I used `claude --continue` to continue the session
+from where I left off. After about 20 minutes, I had a fully WIFI connected Omarchy setup.
 
 Had I thought of this at the start, I'd have saved about 6 hours of debugging over a few nights but then again,
 I wouldn't have learned all the internals of how WIFI is set up. Swings and roundabouts. I'm happy to
-report that I've got the hang of a few more key bindings now and set up some of my favourite Dev tools and I'm pretty
-happy with how it's all going on my rejuvenated Dev box.
+report that I've got the hang of a few more key bindings now and set up some of my favourite dev tools and I'm pretty
+happy with how it's all going on my rejuvenated dev box.
