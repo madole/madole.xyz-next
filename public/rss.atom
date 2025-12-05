@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>http://madole.xyz/</id>
     <title>Madole.xyz Blog</title>
-    <updated>2025-12-05T02:55:17.421Z</updated>
+    <updated>2025-12-05T03:17:46.968Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Andrew McDowell</name>
@@ -22,7 +22,7 @@
         <updated>2025-12-04T22:11:26.370Z</updated>
         <summary type="html"><![CDATA[Reading time: 4 min read]]></summary>
         <content type="html"><![CDATA[<p>I have an old MacBook Pro 2016 Intel version that I was hoping to breathe some life back into. At the same time
-I wanted to give the most hyped Linux distro <a href="https://omarchy.org/">Omarchy</a> a go. I love an opportunity to kill 2 birds with one stone so</p>
+I wanted to give the most hyped Linux distro <a href="https://omarchy.org/">Omarchy</a> a go. I love an opportunity to kill two birds with one stone </p>
 ]]></content>
         <author>
             <name>Andrew McDowell</name>
