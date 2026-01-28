@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://madole.xyz/sitemap.xml
+LLMs-txt: https://madole.xyz/llms.txt
