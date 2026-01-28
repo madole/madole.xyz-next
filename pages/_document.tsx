@@ -4,7 +4,12 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
-        {/* Optionally add hreflang links here for multilingual support */}
+        <link
+          rel="alternate"
+          type="text/plain"
+          href="/llms.txt"
+          title="LLM-readable information"
+        />
       </Head>
       <body>
         <Main />
