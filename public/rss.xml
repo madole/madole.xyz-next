@@ -4,7 +4,7 @@
         <title>Madole.xyz Blog</title>
         <link>http://madole.xyz/</link>
         <description>Blog posts from madole.xyz</description>
-        <lastBuildDate>Tue, 16 Jun 2026 07:31:07 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 16 Jun 2026 07:33:03 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -14,48 +14,6 @@
             <link>http://madole.xyz/</link>
         </image>
         <copyright>All rights reserved 2022, Madole</copyright>
-        <item>
-            <title><![CDATA[Test 1-2-3]]></title>
-            <link>https://madole.xyz/blog/test-1-2-3</link>
-            <guid>https://madole.xyz/blog/test-1-2-3</guid>
-            <pubDate>Tue, 16 Jun 2026 00:00:00 GMT</pubDate>
-            <description><![CDATA[Reading time: 1 min read]]></description>
-            <content:encoded><![CDATA[<Callout tone="tip">
-  HI This is a thing
-</Callout>
-
-
-
-<p>This is a test</p>
-<Callout tone="warning">
-  WARNING red snow alert
-</Callout>
-
-
-
-<p>and this</p>
-<Callout tone="info">
-  HI&#x20;
-</Callout>
-
-<p>&lt;Mermaid caption=&quot;A simple flowchart&quot; source={&quot;graph TD;\</p>
-]]></content:encoded>
-            <author>me@madole.dev (Andrew McDowell)</author>
-        </item>
-        <item>
-            <title><![CDATA[Content Components Demo]]></title>
-            <link>https://madole.xyz/blog/content-components-demo</link>
-            <guid>https://madole.xyz/blog/content-components-demo</guid>
-            <pubDate>Tue, 16 Jun 2026 00:00:00 GMT</pubDate>
-            <description><![CDATA[Reading time: 2 min read]]></description>
-            <content:encoded><![CDATA[<p>This post exercises every content component so we can verify rendering in the
-browser and in the Keystatic editor.</p>
-<h2>Inline Badge And Highlight</h2>
-<p>This section is <StatusBadge status="updated" /> and the flag
-<Highlight variant="mono">REACT_19_ACTI</p>
-]]></content:encoded>
-            <author>me@madole.dev (Andrew McDowell)</author>
-        </item>
         <item>
             <title><![CDATA[Claude Code fixed my WIFI]]></title>
             <link>https://madole.xyz/blog/claude-code-fixed-my-wifi</link>

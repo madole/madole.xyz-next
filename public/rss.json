@@ -11,30 +11,6 @@
     },
     "items": [
         {
-            "id": "https://madole.xyz/blog/test-1-2-3",
-            "content_html": "<Callout tone=\"tip\">\n  HI This is a thing\n</Callout>\n\n\n\n<p>This is a test</p>\n<Callout tone=\"warning\">\n  WARNING red snow alert\n</Callout>\n\n\n\n<p>and this</p>\n<Callout tone=\"info\">\n  HI&#x20;\n</Callout>\n\n<p>&lt;Mermaid caption=&quot;A simple flowchart&quot; source={&quot;graph TD;\\</p>\n",
-            "url": "https://madole.xyz/blog/test-1-2-3",
-            "title": "Test 1-2-3",
-            "summary": "Reading time: 1 min read",
-            "date_modified": "2026-06-16T00:00:00.000Z",
-            "author": {
-                "name": "Andrew McDowell",
-                "url": "https://madole.xyz"
-            }
-        },
-        {
-            "id": "https://madole.xyz/blog/content-components-demo",
-            "content_html": "<p>This post exercises every content component so we can verify rendering in the\nbrowser and in the Keystatic editor.</p>\n<h2>Inline Badge And Highlight</h2>\n<p>This section is <StatusBadge status=\"updated\" /> and the flag\n<Highlight variant=\"mono\">REACT_19_ACTI</p>\n",
-            "url": "https://madole.xyz/blog/content-components-demo",
-            "title": "Content Components Demo",
-            "summary": "Reading time: 2 min read",
-            "date_modified": "2026-06-16T00:00:00.000Z",
-            "author": {
-                "name": "Andrew McDowell",
-                "url": "https://madole.xyz"
-            }
-        },
-        {
             "id": "https://madole.xyz/blog/claude-code-fixed-my-wifi",
             "content_html": "<p>I have an old MacBook Pro 2016 Intel version that I was hoping to breathe some life back into. At the same time\nI wanted to give the most hyped Linux distro <a href=\"https://omarchy.org/\">Omarchy</a> a go. I love an opportunity to kill two birds with one stone </p>\n",
             "url": "https://madole.xyz/blog/claude-code-fixed-my-wifi",

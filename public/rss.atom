@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>http://madole.xyz/</id>
     <title>Madole.xyz Blog</title>
-    <updated>2026-06-16T07:31:07.398Z</updated>
+    <updated>2026-06-16T07:33:03.291Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Andrew McDowell</name>
@@ -15,56 +15,6 @@
     <logo>http://madole.xyz/bitmoji.png</logo>
     <icon>http://madole.xyz/favicon.ico</icon>
     <rights>All rights reserved 2022, Madole</rights>
-    <entry>
-        <title type="html"><![CDATA[Test 1-2-3]]></title>
-        <id>https://madole.xyz/blog/test-1-2-3</id>
-        <link href="https://madole.xyz/blog/test-1-2-3"/>
-        <updated>2026-06-16T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Reading time: 1 min read]]></summary>
-        <content type="html"><![CDATA[<Callout tone="tip">
-  HI This is a thing
-</Callout>
-
-
-
-<p>This is a test</p>
-<Callout tone="warning">
-  WARNING red snow alert
-</Callout>
-
-
-
-<p>and this</p>
-<Callout tone="info">
-  HI&#x20;
-</Callout>
-
-<p>&lt;Mermaid caption=&quot;A simple flowchart&quot; source={&quot;graph TD;\</p>
-]]></content>
-        <author>
-            <name>Andrew McDowell</name>
-            <email>me@madole.dev</email>
-            <uri>https://madole.xyz</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Content Components Demo]]></title>
-        <id>https://madole.xyz/blog/content-components-demo</id>
-        <link href="https://madole.xyz/blog/content-components-demo"/>
-        <updated>2026-06-16T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Reading time: 2 min read]]></summary>
-        <content type="html"><![CDATA[<p>This post exercises every content component so we can verify rendering in the
-browser and in the Keystatic editor.</p>
-<h2>Inline Badge And Highlight</h2>
-<p>This section is <StatusBadge status="updated" /> and the flag
-<Highlight variant="mono">REACT_19_ACTI</p>
-]]></content>
-        <author>
-            <name>Andrew McDowell</name>
-            <email>me@madole.dev</email>
-            <uri>https://madole.xyz</uri>
-        </author>
-    </entry>
     <entry>
         <title type="html"><![CDATA[Claude Code fixed my WIFI]]></title>
         <id>https://madole.xyz/blog/claude-code-fixed-my-wifi</id>
