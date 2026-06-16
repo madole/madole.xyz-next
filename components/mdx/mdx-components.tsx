@@ -5,6 +5,7 @@ import Code from "./Code";
 import CodeGroup from "./CodeGroup";
 import CodeTab from "./CodeTab";
 import Figure from "./Figure";
+import Highlight from "./Highlight";
 import Img from "./Img";
 import Kbd from "./Kbd";
 import MapBlock from "./Map";
@@ -14,6 +15,7 @@ import Paragraph from "./Paragraph";
 import Pre from "./Pre";
 import RedText from "./RedText";
 import Sandbox from "./Sandbox";
+import StatusBadge from "./StatusBadge";
 
 export const mdxComponents: import("mdx/types").MDXComponents = {
   Callout,
@@ -23,6 +25,8 @@ export const mdxComponents: import("mdx/types").MDXComponents = {
   Sandbox,
   CodeGroup,
   CodeTab,
+  StatusBadge,
+  Highlight,
   RedText,
   ClickyThing,
   inlineCode: Code,

@@ -1,8 +1,71 @@
 import { fields } from "@keystatic/core";
-import { block, repeating, wrapper } from "@keystatic/core/content-components";
+import {
+  block,
+  inline,
+  mark,
+  repeating,
+  wrapper,
+} from "@keystatic/core/content-components";
+import Callout from "../components/mdx/Callout";
 import MermaidRenderer from "../components/mdx/MermaidRenderer";
+import StatusBadge from "../components/mdx/StatusBadge";
+
+const highlightEditorStyles = {
+  yellow: { backgroundColor: "#fef3c7", color: "#422006" },
+  blue: { backgroundColor: "#e0f2fe", color: "#082f49" },
+  green: { backgroundColor: "#d1fae5", color: "#064e3b" },
+  red: { backgroundColor: "#fee2e2", color: "#7f1d1d" },
+  mono: {
+    backgroundColor: "#f1f5f9",
+    color: "#0f172a",
+    fontFamily: "monospace",
+  },
+  fluorescent: { backgroundColor: "#ccff00", color: "#0f172a" },
+} as const;
 
 export const blogContentComponents = {
+  StatusBadge: inline({
+    label: "StatusBadge",
+    schema: {
+      status: fields.select({
+        label: "Status",
+        options: [
+          { label: "Updated", value: "updated" },
+          { label: "Deprecated", value: "deprecated" },
+          { label: "Experimental", value: "experimental" },
+          { label: "Stable", value: "stable" },
+          { label: "Beta", value: "beta" },
+          { label: "New", value: "new" },
+        ],
+        defaultValue: "updated",
+      }),
+    },
+    ContentView: ({ value }) => <StatusBadge status={value.status} />,
+  }),
+  Highlight: mark({
+    label: "Highlight",
+    icon: <span>H</span>,
+    schema: {
+      variant: fields.select({
+        label: "Variant",
+        options: [
+          { label: "Yellow", value: "yellow" },
+          { label: "Blue", value: "blue" },
+          { label: "Green", value: "green" },
+          { label: "Red", value: "red" },
+          { label: "Monospace", value: "mono" },
+          { label: "Fluorescent", value: "fluorescent" },
+        ],
+        defaultValue: "yellow",
+      }),
+    },
+    tag: "mark",
+    style: ({ value }) => ({
+      borderRadius: "0.25rem",
+      padding: "0.125rem 0.25rem",
+      ...highlightEditorStyles[value.variant],
+    }),
+  }),
   Callout: wrapper({
     label: "Callout",
     schema: {
@@ -17,6 +80,9 @@ export const blogContentComponents = {
         defaultValue: "info",
       }),
     },
+    ContentView: ({ value, children }) => (
+      <Callout tone={value.tone}>{children}</Callout>
+    ),
   }),
   Mermaid: block({
     label: "Mermaid",
