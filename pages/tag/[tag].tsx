@@ -1,10 +1,10 @@
 import React from "react";
 import * as fs from "fs";
-import path from "path";
 import frontmatter from "front-matter";
 import { IndexListItem } from "../../components/IndexListItem";
 import readingTime from "reading-time";
 import { Layout } from "../../components/Layout/Layout";
+import { getBlogPostEntries } from "../../utils/blogPosts";
 
 function dedupeArray<T>(arr: T[]) {
   return Array.from(new Set(arr));
@@ -63,14 +63,9 @@ const TagPage: React.FC<TagPageProps> = (props) => {
 export default TagPage;
 
 export function getStaticPaths() {
-  const filenames = fs.readdirSync(path.join(process.cwd(), "content/blog"));
   const tags = dedupeArray<string>(
-    filenames.flatMap((filename) => {
-      // use frontmatter to read the titles of each blog post
-      const file = fs.readFileSync(
-        path.join(process.cwd(), "content/blog", filename),
-        "utf8",
-      );
+    getBlogPostEntries().flatMap(({ filePath }) => {
+      const file = fs.readFileSync(filePath, "utf8");
       const data = frontmatter<Post>(file);
       return data.attributes.tags as string[];
     }),
@@ -87,14 +82,9 @@ export const getStaticProps = (context: { params: { tag: string } }) => {
   const {
     params: { tag },
   } = context;
-  const filenames = fs.readdirSync(path.join(process.cwd(), "content/blog"));
-
-  const blogPostsMetadata = filenames
-    .map((filename) => {
-      const file = fs.readFileSync(
-        path.join(process.cwd(), "content/blog", filename),
-        "utf8",
-      );
+  const blogPostsMetadata = getBlogPostEntries()
+    .map(({ slug, filePath }) => {
+      const file = fs.readFileSync(filePath, "utf8");
       const data = frontmatter<Post>(file);
       const lowercaseTags =
         data.attributes.tags?.map((tag) => tag.toLowerCase()) ?? [];
@@ -109,7 +99,7 @@ export const getStaticProps = (context: { params: { tag: string } }) => {
         ...(data.attributes as {}),
         timeToRead,
         date: data.attributes.date.toString(),
-        slug: filename.split(".mdx")[0],
+        slug: data.attributes.slug ?? slug,
       };
     })
     .filter((post) => post !== null)

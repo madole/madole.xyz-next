@@ -1,7 +1,9 @@
 /** @type {import('next').NextConfig} */
 
+const isStaticExport = process.env.STATIC_EXPORT === "true";
+
 module.exports = {
-  output: "export",
+  ...(isStaticExport ? { output: "export" } : {}),
   reactStrictMode: true,
   turbopack: {},
   env: {

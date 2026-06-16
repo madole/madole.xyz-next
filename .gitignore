@@ -35,3 +35,6 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+# temporary Keystatic stash during static export builds
+.keystatic-stash/

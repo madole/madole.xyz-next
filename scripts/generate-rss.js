@@ -4,6 +4,7 @@ const path = require("path");
 const frontmatter = require("front-matter");
 const readingTime = require("reading-time");
 const { marked } = require("marked");
+const { getBlogPostEntries } = require("../utils/blogPosts");
 
 const feed = new Feed({
   title: "Madole.xyz Blog",
@@ -26,14 +27,9 @@ const feed = new Feed({
 });
 
 const generateRss = () => {
-  const filenames = fs.readdirSync(path.join(process.cwd(), "content/blog"));
-  const blogPostsMetadata = filenames
-    .map((filename) => {
-      // use frontmatter to read the titles of each blog post
-      const file = fs.readFileSync(
-        path.join(process.cwd(), "content/blog", filename),
-        "utf8",
-      );
+  const blogPostsMetadata = getBlogPostEntries()
+    .map(({ slug, filePath }) => {
+      const file = fs.readFileSync(filePath, "utf8");
       const data = frontmatter(file);
       const timeToRead = readingTime(data.body);
       return {
@@ -42,7 +38,7 @@ const generateRss = () => {
         timeToRead,
         exerpt: data.body.slice(0, 250),
         date: data.attributes.date.toString(),
-        slug: filename.split(".mdx")[0],
+        slug: data.attributes.slug ?? slug,
       };
     })
     .sort((a, b) => (new Date(a.date) < new Date(b.date) ? 1 : -1));

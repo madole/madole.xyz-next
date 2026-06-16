@@ -1,14 +1,18 @@
+import Callout from "./Callout";
 import Citation from "./Citation";
 import ClickyThing from "./ClickyThing";
 import Code from "./Code";
 import Img from "./Img";
 import Kbd from "./Kbd";
 import MeetTheTeamBackup from "./MeetTheTeamBackup";
+import Mermaid from "./Mermaid";
 import Paragraph from "./Paragraph";
 import Pre from "./Pre";
 import RedText from "./RedText";
 
 export const mdxComponents: import("mdx/types").MDXComponents = {
+  Callout,
+  Mermaid,
   RedText,
   ClickyThing,
   inlineCode: Code,

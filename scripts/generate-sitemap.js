@@ -1,27 +1,12 @@
-
 const fs = require('fs');
 const path = require('path');
 const frontmatter = require('front-matter');
-
-const getMdxFiles = (dir) => {
-  let files = [];
-  const items = fs.readdirSync(dir, { withFileTypes: true });
-  for (const item of items) {
-    const fullPath = path.join(dir, item.name);
-    if (item.isDirectory()) {
-      files = [...files, ...getMdxFiles(fullPath)];
-    } else if (path.extname(item.name) === '.mdx') {
-      files.push(fullPath);
-    }
-  }
-  return files;
-};
+const { getBlogPostEntries } = require('../utils/blogPosts');
+const { getTilPostEntries } = require('../utils/tilPosts');
 
 async function generateSitemap() {
   const pagesDir = path.join(process.cwd(), 'pages');
-  const contentDir = path.join(process.cwd(), 'content');
   const publicDir = path.join(process.cwd(), 'public');
-
   const siteUrl = 'https://madole.xyz';
 
   const staticPages = fs
@@ -32,16 +17,16 @@ async function generateSitemap() {
       return `${siteUrl}/${slug === 'index' ? '' : slug}`;
     });
 
-  const blogPosts = getMdxFiles(path.join(contentDir, 'blog')).map((file) => {
-    const fileContent = fs.readFileSync(file, 'utf8');
+  const blogPosts = getBlogPostEntries().map(({ slug, filePath }) => {
+    const fileContent = fs.readFileSync(filePath, 'utf8');
     const { attributes } = frontmatter(fileContent);
-    return `${siteUrl}/blog/${attributes.slug}`;
+    return `${siteUrl}/blog/${attributes.slug ?? slug}`;
   });
-  
-  const tilPosts = getMdxFiles(path.join(contentDir, 'today-i-learned')).map((file) => {
-    const fileContent = fs.readFileSync(file, 'utf8');
+
+  const tilPosts = getTilPostEntries().map(({ slug, filePath }) => {
+    const fileContent = fs.readFileSync(filePath, 'utf8');
     const { attributes } = frontmatter(fileContent);
-    return `${siteUrl}/today-i-learned/${attributes.slug}`;
+    return `${siteUrl}/today-i-learned/${attributes.slug ?? slug}`;
   });
 
   const allUrls = [...staticPages, ...blogPosts, ...tilPosts];

@@ -1,10 +1,10 @@
 ---
-title: "Serverside CSS Modules with babel"
-date: "2016-08-21T21:09:38.000Z"
-slug: serverside-css-modules-with-babel
-tags: ["code"]
+date: '2016-08-21'
+title: Serverside CSS Modules with babel
+description: Set up CSS Modules with server-side rendering using babel-plugin-css-modules-transform.
+tags:
+  - code
 ---
-
 I had a requirement to use CSS modules with serverside rendering, it took me a while to figure out so I thought I'd write the process down.
 
 In order to set css modules, we need babel to turn our generic classnames (`.container`) into localised class names like this `.style__container___fK43b`. There is a module called [babel plugin css modules transform](https://github.com/michalkvasnicak/babel-plugin-css-modules-transform) to help us with this task.

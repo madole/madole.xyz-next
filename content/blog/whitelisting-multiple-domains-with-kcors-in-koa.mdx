@@ -1,11 +1,9 @@
 ---
-title: "Whitelisting multiple domains with kcors in Koa"
-date: "2017-02-17T12:16:22.000Z"
-slug: whitelisting-multiple-domains-with-kcors-in-koa
+date: '2017-02-17'
+title: Whitelisting multiple domains with kcors in Koa
+description: Whitelist more than one origin with kcors in Koa using a function on the origin option.
+tags: []
 ---
-
-import RedText from "../../components/mdx/RedText";
-
 # [Kcors](https://www.npmjs.com/package/kcors)
 
 The Koa CORs library `kcors` has documentation which is a bit light on how to actually whitelist more than one domain for your node server.
@@ -78,7 +76,7 @@ app.use(convert(cors({ origin: checkOriginAgainstWhitelist })));
 
 Now any request coming from an origin in your whitelist will pass it's pre-flight request and your browser will allow the request to take place, any that don't satisfy the whitelist check will chuck and error to be handled by your error handler middleware and your browser will give you feedback similar to this:
 
-<RedText>
+<Callout tone="warning">
   Fetch API cannot load https://myunsafeorigin.com/stuff
   <br />
   Response to preflight request doesn't pass access control check: No
@@ -89,4 +87,4 @@ Now any request coming from an origin in your whitelist will pass it's pre-fligh
   The response had HTTP status code 500. If an opaque response serves your
   needs, set the request's mode to 'no-cors' to fetch the resource with CORS
   disabled.
-</RedText>
+</Callout>
