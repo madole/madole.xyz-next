@@ -4,7 +4,7 @@
         <title>Madole.xyz Blog</title>
         <link>http://madole.xyz/</link>
         <description>Blog posts from madole.xyz</description>
-        <lastBuildDate>Fri, 05 Dec 2025 03:17:46 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 16 Jun 2026 07:33:03 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -18,7 +18,7 @@
             <title><![CDATA[Claude Code fixed my WIFI]]></title>
             <link>https://madole.xyz/blog/claude-code-fixed-my-wifi</link>
             <guid>https://madole.xyz/blog/claude-code-fixed-my-wifi</guid>
-            <pubDate>Thu, 04 Dec 2025 22:11:26 GMT</pubDate>
+            <pubDate>Thu, 04 Dec 2025 00:00:00 GMT</pubDate>
             <description><![CDATA[Reading time: 4 min read]]></description>
             <content:encoded><![CDATA[<p>I have an old MacBook Pro 2016 Intel version that I was hoping to breathe some life back into. At the same time
 I wanted to give the most hyped Linux distro <a href="https://omarchy.org/">Omarchy</a> a go. I love an opportunity to kill two birds with one stone </p>
@@ -29,7 +29,7 @@ I wanted to give the most hyped Linux distro <a href="https://omarchy.org/">Omar
             <title><![CDATA[Interesting facts I've learned about wildfires over the years]]></title>
             <link>https://madole.xyz/blog/things-i-learned-about-wildfires</link>
             <guid>https://madole.xyz/blog/things-i-learned-about-wildfires</guid>
-            <pubDate>Wed, 03 Dec 2025 23:43:43 GMT</pubDate>
+            <pubDate>Wed, 03 Dec 2025 00:00:00 GMT</pubDate>
             <description><![CDATA[Reading time: 25 min read]]></description>
             <content:encoded><![CDATA[<p>I&#39;ve worked in the fire technology space for 5 years now, leading teams building products and projects helping fire agencies figure out where fires are likely to go and surfacing the information to them at just the right time to help them make well-i</p>
 ]]></content:encoded>
@@ -39,7 +39,7 @@ I wanted to give the most hyped Linux distro <a href="https://omarchy.org/">Omar
             <title><![CDATA[Six things about how AI is changing software engineering]]></title>
             <link>https://madole.xyz/blog/six-things-about-how-ai-is-changing-software-engineering</link>
             <guid>https://madole.xyz/blog/six-things-about-how-ai-is-changing-software-engineering</guid>
-            <pubDate>Sun, 30 Nov 2025 10:00:00 GMT</pubDate>
+            <pubDate>Sun, 30 Nov 2025 00:00:00 GMT</pubDate>
             <description><![CDATA[Reading time: 4 min read]]></description>
             <content:encoded><![CDATA[<p>Some Sunday morning thoughts on where we&#39;re at in the software engineering industry with the prevalence of Generative AI. I have many more thoughts on this topic but here are a few observations considering where we are at right now in November 2025.</p>
 ]]></content:encoded>
@@ -49,7 +49,7 @@ I wanted to give the most hyped Linux distro <a href="https://omarchy.org/">Omar
             <title><![CDATA[GDAL Evolved - A guide to the new unified CLI]]></title>
             <link>https://madole.xyz/blog/gdal-evolved</link>
             <guid>https://madole.xyz/blog/gdal-evolved</guid>
-            <pubDate>Thu, 16 Oct 2025 09:26:15 GMT</pubDate>
+            <pubDate>Thu, 16 Oct 2025 00:00:00 GMT</pubDate>
             <description><![CDATA[Reading time: 7 min read]]></description>
             <content:encoded><![CDATA[<p><em>(This was originally posted on the <a href="https://engineering.kablamo.com.au/posts/gdal-evolved/">Kablamo Engineering Blog</a>)</em></p>
 <p>I’ve always seen GDAL as the “VLC Player of geospatial data.” Much like the iconic media player that could handle pretty much an</p>
@@ -60,7 +60,7 @@ I wanted to give the most hyped Linux distro <a href="https://omarchy.org/">Omar
             <title><![CDATA[A mentor's guide to effective 1-1s - Building trust and driving growth]]></title>
             <link>https://madole.xyz/blog/a-mentors-guide-to-effective-1-1s</link>
             <guid>https://madole.xyz/blog/a-mentors-guide-to-effective-1-1s</guid>
-            <pubDate>Thu, 16 Oct 2025 03:48:58 GMT</pubDate>
+            <pubDate>Thu, 16 Oct 2025 00:00:00 GMT</pubDate>
             <description><![CDATA[Reading time: 6 min read]]></description>
             <content:encoded><![CDATA[<p>Let&#39;s be honest, most one-on-one meetings are a waste of time. They&#39;re often rushed, unproductive check-ins that everyone dreads. A great 1:1 is different. It&#39;s the foundation of real mentorship, where you stop talking about tasks and start building </p>
 ]]></content:encoded>
@@ -70,7 +70,7 @@ I wanted to give the most hyped Linux distro <a href="https://omarchy.org/">Omar
             <title><![CDATA[How do you move a whole GeoJSON feature collection in QGIS?]]></title>
             <link>https://madole.xyz/blog/how-do-you-move-a-whole-geojson-feature-collection-in-qgis</link>
             <guid>https://madole.xyz/blog/how-do-you-move-a-whole-geojson-feature-collection-in-qgis</guid>
-            <pubDate>Mon, 25 Aug 2025 00:48:25 GMT</pubDate>
+            <pubDate>Mon, 25 Aug 2025 00:00:00 GMT</pubDate>
             <description><![CDATA[Reading time: 7 min read]]></description>
             <content:encoded><![CDATA[<p>As a software engineer working with geospatial data, I&#39;m constantly creating or sourcing test data for my applications. If you want to have realistic tests, you need realistic data.</p>
 <p>Good test data is time-consuming to create from scratch. You might </p>
@@ -81,7 +81,7 @@ I wanted to give the most hyped Linux distro <a href="https://omarchy.org/">Omar
             <title><![CDATA[From Node.js to Deno: A Modern Take on JavaScript Runtimes]]></title>
             <link>https://madole.xyz/blog/from-nodejs-to-deno</link>
             <guid>https://madole.xyz/blog/from-nodejs-to-deno</guid>
-            <pubDate>Fri, 15 Aug 2025 23:19:58 GMT</pubDate>
+            <pubDate>Fri, 15 Aug 2025 00:00:00 GMT</pubDate>
             <description><![CDATA[Reading time: 7 min read]]></description>
             <content:encoded><![CDATA[<p>This article was originally published on the <a href="https://engineering.kablamo.com.au/posts/from-node-to-deno/">Kablamo Engineering Blog</a>.</p>
 <p>The JavaScript ecosystem is always changing, <em>sometimes at comical speed</em>, driven by the constant need for faster, </p>
@@ -92,7 +92,7 @@ I wanted to give the most hyped Linux distro <a href="https://omarchy.org/">Omar
             <title><![CDATA[What if You Could Draw Your AI Prompts?]]></title>
             <link>https://madole.xyz/blog/what-if-you-could-draw-your-ai-prompts</link>
             <guid>https://madole.xyz/blog/what-if-you-could-draw-your-ai-prompts</guid>
-            <pubDate>Thu, 31 Jul 2025 10:54:57 GMT</pubDate>
+            <pubDate>Thu, 31 Jul 2025 00:00:00 GMT</pubDate>
             <description><![CDATA[Reading time: 4 min read]]></description>
             <content:encoded><![CDATA[<p><img src="/blog-images/what-if-you-could-draw/og-image.png" alt="TLDraw Computer"></p>
 <p>Working with AI can often feel complex, abstract and impenetrable. </p>
@@ -108,7 +108,7 @@ I wanted to give the most hyped Linux distro <a href="https://omarchy.org/">Omar
             <title><![CDATA[Efficiently querying large geospatial datasets with DuckDB, GeoParquet and S3]]></title>
             <link>https://madole.xyz/blog/efficiently-querying-large-geospatial-datasets-with-duckdb-geoparquet-and-s3</link>
             <guid>https://madole.xyz/blog/efficiently-querying-large-geospatial-datasets-with-duckdb-geoparquet-and-s3</guid>
-            <pubDate>Thu, 05 Jun 2025 11:32:29 GMT</pubDate>
+            <pubDate>Thu, 05 Jun 2025 00:00:00 GMT</pubDate>
             <description><![CDATA[Reading time: 9 min read]]></description>
             <content:encoded><![CDATA[<p>How do you query millions of Australian building footprints – a 4.3GB GeoJSON beast from the Microsoft Global ML Building Footprints dataset – efficiently from a tiny AWS Lambda function? This isn&#39;t just an academic exercise; it&#39;s critical for urban </p>
 ]]></content:encoded>
@@ -118,7 +118,7 @@ I wanted to give the most hyped Linux distro <a href="https://omarchy.org/">Omar
             <title><![CDATA[WTF are Popcorn Tasks?]]></title>
             <link>https://madole.xyz/blog/wtf-are-popcorn-tasks</link>
             <guid>https://madole.xyz/blog/wtf-are-popcorn-tasks</guid>
-            <pubDate>Tue, 04 Feb 2025 00:22:52 GMT</pubDate>
+            <pubDate>Tue, 04 Feb 2025 00:00:00 GMT</pubDate>
             <description><![CDATA[Reading time: 3 min read]]></description>
             <content:encoded><![CDATA[<h1>Popcorn tasks</h1>
 <p>A term that originated in my previous job at Propeller Aero. It is the name given to the stream of random high priority tasks that pop up out of nowhere.</p>
@@ -130,7 +130,7 @@ I wanted to give the most hyped Linux distro <a href="https://omarchy.org/">Omar
             <title><![CDATA[Real-time Transport Data Visualization with GTFS]]></title>
             <link>https://madole.xyz/blog/real-time-transport-data-visualization-with-gtfs</link>
             <guid>https://madole.xyz/blog/real-time-transport-data-visualization-with-gtfs</guid>
-            <pubDate>Mon, 27 Jan 2025 09:13:04 GMT</pubDate>
+            <pubDate>Mon, 27 Jan 2025 00:00:00 GMT</pubDate>
             <description><![CDATA[Reading time: 7 min read]]></description>
             <content:encoded><![CDATA[<p>For real-time transport data visualization, there is a standard called GTFS built on top of Protocol Buffers.</p>
 <p><strong>GTFS</strong> stands for <strong>General Transit Feed Specification</strong></p>
@@ -143,7 +143,7 @@ I wanted to give the most hyped Linux distro <a href="https://omarchy.org/">Omar
             <title><![CDATA[Creating a gif from static image files]]></title>
             <link>https://madole.xyz/blog/creating-a-gif-from-static-image-files</link>
             <guid>https://madole.xyz/blog/creating-a-gif-from-static-image-files</guid>
-            <pubDate>Tue, 03 Dec 2024 02:42:53 GMT</pubDate>
+            <pubDate>Tue, 03 Dec 2024 00:00:00 GMT</pubDate>
             <description><![CDATA[Reading time: 1 min read]]></description>
             <content:encoded><![CDATA[<p>Today I wanted to create a gif of some weather imagery I exported from QGIS. I was able to use the timeline functionality in QGIS to export individual static frames for each timestamp of weather data I had.</p>
 <p>For example, I&#39;ve got a bunch of images li</p>
@@ -154,7 +154,7 @@ I wanted to give the most hyped Linux distro <a href="https://omarchy.org/">Omar
             <title><![CDATA[Dropping bananas on the Moon from a UFO]]></title>
             <link>https://madole.xyz/blog/dropping-bananas-on-the-moon-from-a-ufo</link>
             <guid>https://madole.xyz/blog/dropping-bananas-on-the-moon-from-a-ufo</guid>
-            <pubDate>Sun, 18 Aug 2024 23:29:20 GMT</pubDate>
+            <pubDate>Sun, 18 Aug 2024 00:00:00 GMT</pubDate>
             <description><![CDATA[Reading time: 9 min read]]></description>
             <content:encoded><![CDATA[<p><a href="https://cesium.com/">Cesium</a> have released their new <a href="https://cesium.com/blog/2024/08/06/introducing-cesium-moon-terrain/">Moon tileset via their Cesium Ion service</a>! This is huge as it provides high quality terrain in 3D tile format to their Cesium</p>
 ]]></content:encoded>
@@ -164,7 +164,7 @@ I wanted to give the most hyped Linux distro <a href="https://omarchy.org/">Omar
             <title><![CDATA[Pop the console of JS library websites to demo the library]]></title>
             <link>https://madole.xyz/blog/pop-the-console-of-js-library-websites-to-demo-the-library</link>
             <guid>https://madole.xyz/blog/pop-the-console-of-js-library-websites-to-demo-the-library</guid>
-            <pubDate>Tue, 13 Aug 2024 01:07:09 GMT</pubDate>
+            <pubDate>Tue, 13 Aug 2024 00:00:00 GMT</pubDate>
             <description><![CDATA[Reading time: 1 min read]]></description>
             <content:encoded><![CDATA[<p>Did you know that often you can pop the console of a JS library website to demo the library?</p>
 <p>This is a great way to quickly test out a library without having to set up a project or write any code.</p>
@@ -179,7 +179,7 @@ I wanted to give the most hyped Linux distro <a href="https://omarchy.org/">Omar
             <title><![CDATA[A quick glance at the React 19 Beta feature set]]></title>
             <link>https://madole.xyz/blog/a-quick-glance-at-the-react-19-beta-feature-set</link>
             <guid>https://madole.xyz/blog/a-quick-glance-at-the-react-19-beta-feature-set</guid>
-            <pubDate>Sun, 28 Apr 2024 04:59:49 GMT</pubDate>
+            <pubDate>Sun, 28 Apr 2024 00:00:00 GMT</pubDate>
             <description><![CDATA[Reading time: 3 min read]]></description>
             <content:encoded><![CDATA[<p>The React 19 Beta release is out and the accompanying <a href="https://react.dev/blog/2024/04/25/react-19">blog post</a> is a great read. Here&#39;s a quick glance at the
 new features and improvements that are part of this release.</p>
@@ -193,7 +193,7 @@ new features and improvements that are part of this release.</p>
             <title><![CDATA[What are Spectral Indices in Remote Sensing?]]></title>
             <link>https://madole.xyz/blog/spectral-indices</link>
             <guid>https://madole.xyz/blog/spectral-indices</guid>
-            <pubDate>Mon, 18 Dec 2023 23:48:15 GMT</pubDate>
+            <pubDate>Mon, 18 Dec 2023 00:00:00 GMT</pubDate>
             <description><![CDATA[Reading time: 6 min read]]></description>
             <content:encoded><![CDATA[<h2>What are Spectral Indices in Remote Sensing?</h2>
 <p>Spectral Indices are a set of mathematical equations performed on a per-pixel basis on data coming from multispectral remote sensing (satellite) data.</p>
@@ -205,7 +205,7 @@ new features and improvements that are part of this release.</p>
             <title><![CDATA[Setting up ESLint on Webstorm when using Yarn Berry with Plug'n'Play]]></title>
             <link>https://madole.xyz/blog/setting-up-eslint-on-webstorm-when-using-yarn-berry-with-pnp</link>
             <guid>https://madole.xyz/blog/setting-up-eslint-on-webstorm-when-using-yarn-berry-with-pnp</guid>
-            <pubDate>Fri, 07 Jan 2022 04:35:22 GMT</pubDate>
+            <pubDate>Fri, 07 Jan 2022 00:00:00 GMT</pubDate>
             <description><![CDATA[Reading time: 2 min read]]></description>
             <content:encoded><![CDATA[<h2>Yarn Berry</h2>
 <p><img src="https://media.giphy.com/media/jRZeoFYjBO2joRHPoQ/giphy-downsized-large.gif" alt="What is that?"></p>
@@ -218,7 +218,7 @@ up giving it a totally different </p>
             <title><![CDATA[How I stress tested mapbox's handling of many polygons]]></title>
             <link>https://madole.xyz/blog/how-i-stress-tested-mapboxs-handling-of-many-polygons</link>
             <guid>https://madole.xyz/blog/how-i-stress-tested-mapboxs-handling-of-many-polygons</guid>
-            <pubDate>Fri, 07 Jan 2022 01:37:23 GMT</pubDate>
+            <pubDate>Fri, 07 Jan 2022 00:00:00 GMT</pubDate>
             <description><![CDATA[Reading time: 5 min read]]></description>
             <content:encoded><![CDATA[<h2>Question</h2>
 <p>How many polygons can I get mapbox to render before it starts to get slow?</p>
@@ -232,7 +232,7 @@ up giving it a totally different </p>
             <title><![CDATA[How to visualise Australia's weather stations on a map]]></title>
             <link>https://madole.xyz/blog/how-to-visualise-weather-stations-on-a-map</link>
             <guid>https://madole.xyz/blog/how-to-visualise-weather-stations-on-a-map</guid>
-            <pubDate>Tue, 04 Jan 2022 04:40:33 GMT</pubDate>
+            <pubDate>Tue, 04 Jan 2022 00:00:00 GMT</pubDate>
             <description><![CDATA[Reading time: 7 min read]]></description>
             <content:encoded><![CDATA[<h2>Tech we&#39;ll be using</h2>
 <ul>
@@ -264,7 +264,7 @@ up giving it a totally different </p>
             <title><![CDATA[Kablamo taps McDowell for geo-spatial expertise]]></title>
             <link>https://madole.xyz/blog/kablamo-taps-mcdowell-for-geo-spatial-expertise</link>
             <guid>https://madole.xyz/blog/kablamo-taps-mcdowell-for-geo-spatial-expertise</guid>
-            <pubDate>Sun, 14 Mar 2021 11:52:36 GMT</pubDate>
+            <pubDate>Sun, 14 Mar 2021 00:00:00 GMT</pubDate>
             <description><![CDATA[Reading time: 2 min read]]></description>
             <content:encoded><![CDATA[<p>I got interviewed about joining Kablamo, you can read it here <a href="https://www.itwire.com/people-moves/kablamo-taps-mcdowell-for-geo-spatial-expertise.html">https://www.itwire.com/people-moves/kablamo-taps-mcdowell-for-geo-spatial-expertise.html</a></p>
 <p>![Head</p>
@@ -275,20 +275,9 @@ up giving it a totally different </p>
             <title><![CDATA[Analysing codebase metadata to make refactoring more impactful]]></title>
             <link>https://madole.xyz/blog/analysing-codebase-metadata-to-make-refactoring-more-impactful</link>
             <guid>https://madole.xyz/blog/analysing-codebase-metadata-to-make-refactoring-more-impactful</guid>
-            <pubDate>Wed, 11 Nov 2020 23:31:20 GMT</pubDate>
+            <pubDate>Wed, 11 Nov 2020 00:00:00 GMT</pubDate>
             <description><![CDATA[Reading time: 3 min read]]></description>
             <content:encoded><![CDATA[<p>Let&#39;s say you&#39;ve inherited a codebase that is in a bit of a dire state. The business wants to continue to add features to this codebase for the next X years. You attempt to write some code to implement a feature. In doing so, you introduce 4 bugs due</p>
-]]></content:encoded>
-            <author>me@madole.dev (Andrew McDowell)</author>
-        </item>
-        <item>
-            <title><![CDATA[Building Software is much like buying a house]]></title>
-            <link>https://madole.xyz/blog/building-software-is-much-like-buying-a-house</link>
-            <guid>https://madole.xyz/blog/building-software-is-much-like-buying-a-house</guid>
-            <pubDate>Tue, 20 Oct 2020 23:18:57 GMT</pubDate>
-            <description><![CDATA[Reading time: 2 min read]]></description>
-            <content:encoded><![CDATA[<p><strong>Warning:</strong> This is a stream of consiousness. It is a hot-take that is not meant to fit every case.</p>
-<p>When buying a house, if you&#39;ve got time, you&#39;ll shop around to get a good rate on your mortgage, if you&#39;re in a rush, you&#39;ll take a bad mortgage rat</p>
 ]]></content:encoded>
             <author>me@madole.dev (Andrew McDowell)</author>
         </item>
@@ -296,7 +285,7 @@ up giving it a totally different </p>
             <title><![CDATA[Upgrading an old Flow codebase]]></title>
             <link>https://madole.xyz/blog/upgrading-an-old-flow-codebase</link>
             <guid>https://madole.xyz/blog/upgrading-an-old-flow-codebase</guid>
-            <pubDate>Tue, 20 Oct 2020 01:11:34 GMT</pubDate>
+            <pubDate>Tue, 20 Oct 2020 00:00:00 GMT</pubDate>
             <description><![CDATA[Reading time: 2 min read]]></description>
             <content:encoded><![CDATA[<p>We&#39;ve been gradually migrating our codebases from Flow to Typescript but sometimes we have to upgrade an old Flow codebase to a newer version of Flow.</p>
 <p>We&#39;ve got many old codebases and some are more than 50 Flow versions behind. Flow has been activel</p>
@@ -304,10 +293,21 @@ up giving it a totally different </p>
             <author>me@madole.dev (Andrew McDowell)</author>
         </item>
         <item>
+            <title><![CDATA[Building Software is much like buying a house]]></title>
+            <link>https://madole.xyz/blog/building-software-is-much-like-buying-a-house</link>
+            <guid>https://madole.xyz/blog/building-software-is-much-like-buying-a-house</guid>
+            <pubDate>Tue, 20 Oct 2020 00:00:00 GMT</pubDate>
+            <description><![CDATA[Reading time: 2 min read]]></description>
+            <content:encoded><![CDATA[<p><strong>Warning:</strong> This is a stream of consiousness. It is a hot-take that is not meant to fit every case.</p>
+<p>When buying a house, if you&#39;ve got time, you&#39;ll shop around to get a good rate on your mortgage, if you&#39;re in a rush, you&#39;ll take a bad mortgage rat</p>
+]]></content:encoded>
+            <author>me@madole.dev (Andrew McDowell)</author>
+        </item>
+        <item>
             <title><![CDATA[Cutting our Codeship Pro CI build time in half]]></title>
             <link>https://madole.xyz/blog/cutting-our-codeship-pro-ci-build-time-in-half</link>
             <guid>https://madole.xyz/blog/cutting-our-codeship-pro-ci-build-time-in-half</guid>
-            <pubDate>Fri, 25 Sep 2020 05:54:05 GMT</pubDate>
+            <pubDate>Fri, 25 Sep 2020 00:00:00 GMT</pubDate>
             <description><![CDATA[Reading time: 3 min read]]></description>
             <content:encoded><![CDATA[<p>We have noticed recently our Codeship Pro builds have been taking a very long time. Upwards of 20minutes to get through all our steps.</p>
 <p>We lived with this for a while, but as we started to put more strict conditions around what checks need to pass to</p>
@@ -318,7 +318,7 @@ up giving it a totally different </p>
             <title><![CDATA[Meet the team - Andrew McDowell]]></title>
             <link>https://madole.xyz/blog/meet-the-team</link>
             <guid>https://madole.xyz/blog/meet-the-team</guid>
-            <pubDate>Sun, 01 Dec 2019 01:15:33 GMT</pubDate>
+            <pubDate>Sun, 01 Dec 2019 00:00:00 GMT</pubDate>
             <description><![CDATA[Reading time: 1 min read]]></description>
             <content:encoded><![CDATA[<p>I got interviewed for work, you can see it
 here <a href="https://www.propelleraero.com/blog/meet-your-engineering-team-andrew-mcdowell/">https://www.propelleraero.com/blog/meet-your-engineering-team-andrew-mcdowell/</a></p>
@@ -330,7 +330,7 @@ here <a href="https://www.propelleraero.com/blog/meet-your-engineering-team-andr
             <title><![CDATA[Getting organised in work]]></title>
             <link>https://madole.xyz/blog/getting-organised-in-work</link>
             <guid>https://madole.xyz/blog/getting-organised-in-work</guid>
-            <pubDate>Mon, 04 Nov 2019 07:12:35 GMT</pubDate>
+            <pubDate>Mon, 04 Nov 2019 00:00:00 GMT</pubDate>
             <description><![CDATA[Reading time: 5 min read]]></description>
             <content:encoded><![CDATA[<p>Since taking on a leadership role, I’ve had to <strong>get organised.</strong></p>
 <p>Being a developer for most of my career, I’ve been able to get my head down and attend minimal meetings. Those which I did attend were always organised for me.</p>
@@ -342,7 +342,7 @@ here <a href="https://www.propelleraero.com/blog/meet-your-engineering-team-andr
             <title><![CDATA[Lessons from creating a component library]]></title>
             <link>https://madole.xyz/blog/lessons-from-creating-a-component-library</link>
             <guid>https://madole.xyz/blog/lessons-from-creating-a-component-library</guid>
-            <pubDate>Mon, 23 Sep 2019 21:58:40 GMT</pubDate>
+            <pubDate>Mon, 23 Sep 2019 00:00:00 GMT</pubDate>
             <description><![CDATA[Reading time: 4 min read]]></description>
             <content:encoded><![CDATA[<p>If you work in a place that has lots of separate apps that all need a consistent look, creating a shared component library is a good idea. This allows you to pull in components as packages and use them throughout the different projects to maintain a </p>
 ]]></content:encoded>
@@ -352,7 +352,7 @@ here <a href="https://www.propelleraero.com/blog/meet-your-engineering-team-andr
             <title><![CDATA[Debugging minified code]]></title>
             <link>https://madole.xyz/blog/debugging-minified-code</link>
             <guid>https://madole.xyz/blog/debugging-minified-code</guid>
-            <pubDate>Thu, 12 Sep 2019 11:00:34 GMT</pubDate>
+            <pubDate>Thu, 12 Sep 2019 00:00:00 GMT</pubDate>
             <description><![CDATA[Reading time: 4 min read]]></description>
             <content:encoded><![CDATA[<p>As developers, we tend to like to optimise our processes, including debugging issues.</p>
 <p>In the front-end development world, its possible to ship an asset called a sourcemap along with your bundled, mangled and minified code.</p>
@@ -361,10 +361,10 @@ here <a href="https://www.propelleraero.com/blog/meet-your-engineering-team-andr
             <author>me@madole.dev (Andrew McDowell)</author>
         </item>
         <item>
-            <title><![CDATA[A day in the life of ]]></title>
+            <title><![CDATA[A day in the life of]]></title>
             <link>https://madole.xyz/blog/a-day-in-the-life-of</link>
             <guid>https://madole.xyz/blog/a-day-in-the-life-of</guid>
-            <pubDate>Wed, 11 Sep 2019 17:45:00 GMT</pubDate>
+            <pubDate>Wed, 11 Sep 2019 00:00:00 GMT</pubDate>
             <description><![CDATA[Reading time: 4 min read]]></description>
             <content:encoded><![CDATA[<p>My good friend Chris Laughlin over at <a href="https://www.thedyslexicdeveloper.com">https://www.thedyslexicdeveloper.com</a> put out a call for what his next blog post should be, I asked him for a run down of his typical day as we have similar titles, but I wa</p>
 ]]></content:encoded>
@@ -374,7 +374,7 @@ here <a href="https://www.propelleraero.com/blog/meet-your-engineering-team-andr
             <title><![CDATA[Unexpected promise in the bagging area]]></title>
             <link>https://madole.xyz/blog/unexpected-promise-in-the-bagging-area</link>
             <guid>https://madole.xyz/blog/unexpected-promise-in-the-bagging-area</guid>
-            <pubDate>Tue, 27 Aug 2019 07:34:00 GMT</pubDate>
+            <pubDate>Tue, 27 Aug 2019 00:00:00 GMT</pubDate>
             <description><![CDATA[Reading time: 2 min read]]></description>
             <content:encoded><![CDATA[<p>This week I came across an odd behaviour that it took me a little while to figure out.
 Take the following example:</p>
@@ -389,7 +389,7 @@ const promiseThatWillReject = new Promise((resolve, reject) =&gt;
             <title><![CDATA[How I approach an algorithmic code challenge]]></title>
             <link>https://madole.xyz/blog/how-i-approach-an-algorithmic-code-challenge</link>
             <guid>https://madole.xyz/blog/how-i-approach-an-algorithmic-code-challenge</guid>
-            <pubDate>Fri, 12 Jul 2019 05:59:56 GMT</pubDate>
+            <pubDate>Fri, 12 Jul 2019 00:00:00 GMT</pubDate>
             <description><![CDATA[Reading time: 3 min read]]></description>
             <content:encoded><![CDATA[<p>I approach different challenges in different ways. If it’s algorithmic, I’ll usually get the whiteboard out or if I’m not near a whiteboard, my iPad Pro is a good alternative. Before I put pen to <del>paper</del> whiteboard, I’ll do the necessary background</p>
 ]]></content:encoded>
@@ -399,7 +399,7 @@ const promiseThatWillReject = new Promise((resolve, reject) =&gt;
             <title><![CDATA[How to download an image to file on disk when scraping a website]]></title>
             <link>https://madole.xyz/blog/how-to-download-an-image-to-file-on-disk-when-scraping-a-website</link>
             <guid>https://madole.xyz/blog/how-to-download-an-image-to-file-on-disk-when-scraping-a-website</guid>
-            <pubDate>Thu, 07 Feb 2019 07:59:56 GMT</pubDate>
+            <pubDate>Thu, 07 Feb 2019 00:00:00 GMT</pubDate>
             <description><![CDATA[Reading time: 1 min read]]></description>
             <content:encoded><![CDATA[<p>Recently I was recovering data from one of my websites that had been unceremoniously taken down while I was on holidays when I got stomped for a little while on how to scrape an image and save it to file using NodeJS.</p>
 <p>Let’s say you are using puppete</p>
@@ -410,7 +410,7 @@ const promiseThatWillReject = new Promise((resolve, reject) =&gt;
             <title><![CDATA[Using Async/Await to batch asynchronous requests]]></title>
             <link>https://madole.xyz/blog/batching-with-async-await</link>
             <guid>https://madole.xyz/blog/batching-with-async-await</guid>
-            <pubDate>Sun, 24 Jun 2018 10:28:07 GMT</pubDate>
+            <pubDate>Sun, 24 Jun 2018 00:00:00 GMT</pubDate>
             <description><![CDATA[Reading time: 2 min read]]></description>
             <content:encoded><![CDATA[<p>Lets say you have written a file uploader app and your users might upload 100s of files at a time. You could just loop the files and send off a request per file. This might overload your server, interrupt downloads or just fail due to hitting a maxim</p>
 ]]></content:encoded>
@@ -420,7 +420,7 @@ const promiseThatWillReject = new Promise((resolve, reject) =&gt;
             <title><![CDATA[Migrating data from Ghost to GatsbyJS]]></title>
             <link>https://madole.xyz/blog/migrating-data-from-ghost-to-gatsby</link>
             <guid>https://madole.xyz/blog/migrating-data-from-ghost-to-gatsby</guid>
-            <pubDate>Mon, 18 Jun 2018 10:28:07 GMT</pubDate>
+            <pubDate>Mon, 18 Jun 2018 00:00:00 GMT</pubDate>
             <description><![CDATA[Reading time: 3 min read]]></description>
             <content:encoded><![CDATA[<h2>What is Gatsby?</h2>
 <blockquote>
@@ -435,7 +435,7 @@ const promiseThatWillReject = new Promise((resolve, reject) =&gt;
             <title><![CDATA[Building node-canvas in Amazon Linux AMI for Lambdas]]></title>
             <link>https://madole.xyz/blog/building-node-canvas-in-amazon-linux-ami-for-lambdas</link>
             <guid>https://madole.xyz/blog/building-node-canvas-in-amazon-linux-ami-for-lambdas</guid>
-            <pubDate>Sun, 08 Oct 2017 18:06:13 GMT</pubDate>
+            <pubDate>Sun, 08 Oct 2017 00:00:00 GMT</pubDate>
             <description><![CDATA[Reading time: 2 min read]]></description>
             <content:encoded><![CDATA[<p>Building node-canvas for use inside an AWS Lambda is tricky as it requires some dependencies to be built by node-gyp against the target architecture. If you build these dependencies locally before deploying your lambda, they&#39;ll be built on against yo</p>
 ]]></content:encoded>
@@ -445,7 +445,7 @@ const promiseThatWillReject = new Promise((resolve, reject) =&gt;
             <title><![CDATA[Building a Raspberry Pi internet speed checker with NodeJS and GoogleDocs]]></title>
             <link>https://madole.xyz/blog/building-a-raspberrypi-internet-speed-checker-with-nodejs-and-googledocs</link>
             <guid>https://madole.xyz/blog/building-a-raspberrypi-internet-speed-checker-with-nodejs-and-googledocs</guid>
-            <pubDate>Sat, 18 Mar 2017 16:25:23 GMT</pubDate>
+            <pubDate>Sat, 18 Mar 2017 00:00:00 GMT</pubDate>
             <description><![CDATA[Reading time: 4 min read]]></description>
             <content:encoded><![CDATA[<p>I frequently experience periods of internet drop outs and wanted to build something to monitor my internet without any manual intervention. I wanted this to create an automated report for me so I could then email it off to my ISP and complain.</p>
 <p>So I </p>
@@ -456,12 +456,11 @@ const promiseThatWillReject = new Promise((resolve, reject) =&gt;
             <title><![CDATA[Whitelisting multiple domains with kcors in Koa]]></title>
             <link>https://madole.xyz/blog/whitelisting-multiple-domains-with-kcors-in-koa</link>
             <guid>https://madole.xyz/blog/whitelisting-multiple-domains-with-kcors-in-koa</guid>
-            <pubDate>Fri, 17 Feb 2017 12:16:22 GMT</pubDate>
+            <pubDate>Fri, 17 Feb 2017 00:00:00 GMT</pubDate>
             <description><![CDATA[Reading time: 3 min read]]></description>
-            <content:encoded><![CDATA[<p>import RedText from &quot;../../components/mdx/RedText&quot;;</p>
-<h1><a href="https://www.npmjs.com/package/kcors">Kcors</a></h1>
+            <content:encoded><![CDATA[<h1><a href="https://www.npmjs.com/package/kcors">Kcors</a></h1>
 <p>The Koa CORs library <code>kcors</code> has documentation which is a bit light on how to actually whitelist more than one domain for your node server.</p>
-<p>It has a</p>
+<p>It has a decent JSDoc which tells you the the <code>origin</code> option</p>
 ]]></content:encoded>
             <author>me@madole.dev (Andrew McDowell)</author>
         </item>
@@ -469,7 +468,7 @@ const promiseThatWillReject = new Promise((resolve, reject) =&gt;
             <title><![CDATA[Mocking relative dependencies in Jest with jest.mock()]]></title>
             <link>https://madole.xyz/blog/mocking-relative-dependencies-in-jest-with-jest-mock</link>
             <guid>https://madole.xyz/blog/mocking-relative-dependencies-in-jest-with-jest-mock</guid>
-            <pubDate>Wed, 07 Dec 2016 15:31:07 GMT</pubDate>
+            <pubDate>Wed, 07 Dec 2016 00:00:00 GMT</pubDate>
             <description><![CDATA[Reading time: 2 min read]]></description>
             <content:encoded><![CDATA[<p>If you&#39;re like me and have just entered the world of Jest for testing your React application. You might be familiar with a mocking library called Proxyquire.</p>
 <p><strong>Proxyquire -</strong> _&quot;nodejs require in order to allow overriding dependencies during testing.</p>
@@ -480,7 +479,7 @@ const promiseThatWillReject = new Promise((resolve, reject) =&gt;
             <title><![CDATA[Putting Yarn Package Manager to the test]]></title>
             <link>https://madole.xyz/blog/yarn-package-manager</link>
             <guid>https://madole.xyz/blog/yarn-package-manager</guid>
-            <pubDate>Tue, 22 Nov 2016 17:26:37 GMT</pubDate>
+            <pubDate>Tue, 22 Nov 2016 00:00:00 GMT</pubDate>
             <description><![CDATA[Reading time: 3 min read]]></description>
             <content:encoded><![CDATA[<h3>What is Yarn?</h3>
 <blockquote>
@@ -495,7 +494,7 @@ const promiseThatWillReject = new Promise((resolve, reject) =&gt;
             <title><![CDATA[My favourite VSCode plugins]]></title>
             <link>https://madole.xyz/blog/my-favourite-vscode-plugins</link>
             <guid>https://madole.xyz/blog/my-favourite-vscode-plugins</guid>
-            <pubDate>Sun, 06 Nov 2016 14:35:03 GMT</pubDate>
+            <pubDate>Sun, 06 Nov 2016 00:00:00 GMT</pubDate>
             <description><![CDATA[Reading time: 7 min read]]></description>
             <content:encoded><![CDATA[<p>A while ago I published a comprehensive list of my favourite Atom Editor plugins, I&#39;ve since moved to VSCode for the majority of my development so I thought I&#39;d gather together a similar list for it.</p>
 <hr>
@@ -507,7 +506,7 @@ const promiseThatWillReject = new Promise((resolve, reject) =&gt;
             <title><![CDATA[Webpack-dev-server: Where does your CSS go?]]></title>
             <link>https://madole.xyz/blog/webpack-dev-server-where-does-your-css-go</link>
             <guid>https://madole.xyz/blog/webpack-dev-server-where-does-your-css-go</guid>
-            <pubDate>Wed, 14 Sep 2016 16:29:10 GMT</pubDate>
+            <pubDate>Wed, 14 Sep 2016 00:00:00 GMT</pubDate>
             <description><![CDATA[Reading time: 1 min read]]></description>
             <content:encoded><![CDATA[<p>You might have noticed when using webpack-dev-server that the CSS seems to appear on the page as if by magic. If you have a look at the build <a href="https://www.npmjs.com/package/webpack-manifest-plugin">manifest</a>, you&#39;ll see your <code>main.js</code> file listed but</p>
 ]]></content:encoded>
@@ -517,7 +516,7 @@ const promiseThatWillReject = new Promise((resolve, reject) =&gt;
             <title><![CDATA[Serverside CSS Modules with babel]]></title>
             <link>https://madole.xyz/blog/serverside-css-modules-with-babel</link>
             <guid>https://madole.xyz/blog/serverside-css-modules-with-babel</guid>
-            <pubDate>Sun, 21 Aug 2016 21:09:38 GMT</pubDate>
+            <pubDate>Sun, 21 Aug 2016 00:00:00 GMT</pubDate>
             <description><![CDATA[Reading time: 2 min read]]></description>
             <content:encoded><![CDATA[<p>I had a requirement to use CSS modules with serverside rendering, it took me a while to figure out so I thought I&#39;d write the process down.</p>
 <p>In order to set css modules, we need babel to turn our generic classnames (<code>.container</code>) into localised class</p>
@@ -528,7 +527,7 @@ const promiseThatWillReject = new Promise((resolve, reject) =&gt;
             <title><![CDATA[babel-loader's hidden feature - babelrc:false]]></title>
             <link>https://madole.xyz/blog/babel-loaders-hidden-feature-babelrc-false</link>
             <guid>https://madole.xyz/blog/babel-loaders-hidden-feature-babelrc-false</guid>
-            <pubDate>Sun, 21 Aug 2016 19:59:31 GMT</pubDate>
+            <pubDate>Sun, 21 Aug 2016 00:00:00 GMT</pubDate>
             <description><![CDATA[Reading time: 2 min read]]></description>
             <content:encoded><![CDATA[<p>I&#39;ve spent 3 days configuring Webpack and babel to deal with CSS Modules while doing server-side rendering. I&#39;ve just discovered an undocumented setting in Webpack&#39;s babel-loader that solves the mystery of disappearing css.</p>
 <p>On the server, I&#39;ve got a</p>
@@ -539,7 +538,7 @@ const promiseThatWillReject = new Promise((resolve, reject) =&gt;
             <title><![CDATA[NPM uses your .gitignore file]]></title>
             <link>https://madole.xyz/blog/npm-uses-your-gitignore-file</link>
             <guid>https://madole.xyz/blog/npm-uses-your-gitignore-file</guid>
-            <pubDate>Sun, 03 Jul 2016 02:59:42 GMT</pubDate>
+            <pubDate>Sun, 03 Jul 2016 00:00:00 GMT</pubDate>
             <description><![CDATA[Reading time: 2 min read]]></description>
             <content:encoded><![CDATA[<p>###The Problem</p>
 <p>I recently published a package to npm and got an issue raised on Github to tell me that the build artifact hadn&#39;t been published.</p>
@@ -551,7 +550,7 @@ const promiseThatWillReject = new Promise((resolve, reject) =&gt;
             <title><![CDATA[Using console.time to profile performance in your node application]]></title>
             <link>https://madole.xyz/blog/using-console-time-to-profile-performance-in-your-node-app</link>
             <guid>https://madole.xyz/blog/using-console-time-to-profile-performance-in-your-node-app</guid>
-            <pubDate>Thu, 09 Jun 2016 15:27:36 GMT</pubDate>
+            <pubDate>Thu, 09 Jun 2016 00:00:00 GMT</pubDate>
             <description><![CDATA[Reading time: 3 min read]]></description>
             <content:encoded><![CDATA[<p>I was writing an express application, when I started to notice one of the routes was taking quite a while to respond to a request. The route was doing some heavy lifting shaping data from an API .</p>
 <p>I needed to figure out where the bottleneck was and </p>
@@ -562,7 +561,7 @@ const promiseThatWillReject = new Promise((resolve, reject) =&gt;
             <title><![CDATA[Error handling in Express with Async/Await routes]]></title>
             <link>https://madole.xyz/blog/error-handling-in-express-with-async-await-routes</link>
             <guid>https://madole.xyz/blog/error-handling-in-express-with-async-await-routes</guid>
-            <pubDate>Wed, 25 May 2016 03:01:50 GMT</pubDate>
+            <pubDate>Wed, 25 May 2016 00:00:00 GMT</pubDate>
             <description><![CDATA[Reading time: 3 min read]]></description>
             <content:encoded><![CDATA[<blockquote>
 <p><em>Async/Await for me is one of the best things to not quite happen to JavaScript yet.</em></p>
@@ -576,7 +575,7 @@ const promiseThatWillReject = new Promise((resolve, reject) =&gt;
             <title><![CDATA[babel-plugin-transform-async-to-module-method gotcha]]></title>
             <link>https://madole.xyz/blog/babel-plugin-transform-async-to-module-method-gotcha</link>
             <guid>https://madole.xyz/blog/babel-plugin-transform-async-to-module-method-gotcha</guid>
-            <pubDate>Sun, 08 May 2016 02:41:11 GMT</pubDate>
+            <pubDate>Sun, 08 May 2016 00:00:00 GMT</pubDate>
             <description><![CDATA[Reading time: 2 min read]]></description>
             <content:encoded><![CDATA[<p>We have been using ES7 Async/Await with <code>babel-plugin-transform-async-to-module-method</code> and bluebird co-routines for about a month now.</p>
 <p>This has been working great for us in most cases.</p>
@@ -588,7 +587,7 @@ const promiseThatWillReject = new Promise((resolve, reject) =&gt;
             <title><![CDATA[Asset hashing with webpack]]></title>
             <link>https://madole.xyz/blog/asset-hashing-with-webpack</link>
             <guid>https://madole.xyz/blog/asset-hashing-with-webpack</guid>
-            <pubDate>Fri, 15 Apr 2016 14:32:57 GMT</pubDate>
+            <pubDate>Fri, 15 Apr 2016 00:00:00 GMT</pubDate>
             <description><![CDATA[Reading time: 5 min read]]></description>
             <content:encoded><![CDATA[<h3>Why would you hash your assets?</h3>
 <p>If you&#39;re creating a website that has a caching layer sitting in front of it, you&#39;re going to need a way to bust the cache every time you make a release so your cache doesn&#39;t continue to serve up your old files.</p>
@@ -599,7 +598,7 @@ const promiseThatWillReject = new Promise((resolve, reject) =&gt;
             <title><![CDATA[Using webpack to set up polyfills in your site]]></title>
             <link>https://madole.xyz/blog/using-webpack-to-set-up-polyfills-in-your-site</link>
             <guid>https://madole.xyz/blog/using-webpack-to-set-up-polyfills-in-your-site</guid>
-            <pubDate>Sun, 03 Apr 2016 21:40:03 GMT</pubDate>
+            <pubDate>Sun, 03 Apr 2016 00:00:00 GMT</pubDate>
             <description><![CDATA[Reading time: 3 min read]]></description>
             <content:encoded><![CDATA[<p>Webpack&#39;s Provide Plugin allows you to set up variables that get injected into your code when they are used in your codebase.</p>
 <p>This means that if I want to polyfill the new ES6 native promise for older browsers, I can do it at build time.</p>
@@ -611,7 +610,7 @@ const promiseThatWillReject = new Promise((resolve, reject) =&gt;
             <title><![CDATA[Writing a Gulpfile in ES6]]></title>
             <link>https://madole.xyz/blog/writing-a-gulpfile-in-es6</link>
             <guid>https://madole.xyz/blog/writing-a-gulpfile-in-es6</guid>
-            <pubDate>Wed, 30 Mar 2016 15:36:06 GMT</pubDate>
+            <pubDate>Wed, 30 Mar 2016 00:00:00 GMT</pubDate>
             <description><![CDATA[Reading time: 1 min read]]></description>
             <content:encoded><![CDATA[<p>So you&#39;ve written your app in ES6 and you&#39;re using babel to transpile to ES5.</p>
 <p>But your build process uses Gulp and it requires you to write your Gulpfile in ES5 meaning you can&#39;t take advantage of all the latest JavaScript features you&#39;re using else</p>
@@ -622,7 +621,7 @@ const promiseThatWillReject = new Promise((resolve, reject) =&gt;
             <title><![CDATA[ASYNC/AWAIT ES7]]></title>
             <link>https://madole.xyz/blog/async-await-es7</link>
             <guid>https://madole.xyz/blog/async-await-es7</guid>
-            <pubDate>Sat, 12 Mar 2016 21:56:32 GMT</pubDate>
+            <pubDate>Sat, 12 Mar 2016 00:00:00 GMT</pubDate>
             <description><![CDATA[Reading time: 4 min read]]></description>
             <content:encoded><![CDATA[<p>Async/Await is a JavaScript ES7/ES2016 language feature that allows you to write asynchronous code that looks synchronous.</p>
 <p>This feature has been available in other languages like C# and Visual Basic for a while.</p>
@@ -634,7 +633,7 @@ const promiseThatWillReject = new Promise((resolve, reject) =&gt;
             <title><![CDATA[My favourite Atom packages of 2015]]></title>
             <link>https://madole.xyz/blog/my-favourite-atom-packages-of-2015</link>
             <guid>https://madole.xyz/blog/my-favourite-atom-packages-of-2015</guid>
-            <pubDate>Sat, 02 Jan 2016 06:29:19 GMT</pubDate>
+            <pubDate>Sat, 02 Jan 2016 00:00:00 GMT</pubDate>
             <description><![CDATA[Reading time: 3 min read]]></description>
             <content:encoded><![CDATA[<h4>A comprehensive list of my favourite Atom packages from 2015</h4>
 <h3><a href="https://github.com/Chris911/Ask-Stack-Atom.git">ask-stack</a></h3>
@@ -644,10 +643,56 @@ const promiseThatWillReject = new Promise((resolve, reject) =&gt;
             <author>me@madole.dev (Andrew McDowell)</author>
         </item>
         <item>
+            <title><![CDATA[WhatsApp sharing from the mobile browser]]></title>
+            <link>https://madole.xyz/blog/whatsapp-sharing-from-the-mobile-browser</link>
+            <guid>https://madole.xyz/blog/whatsapp-sharing-from-the-mobile-browser</guid>
+            <pubDate>Sat, 07 Nov 2015 00:00:00 GMT</pubDate>
+            <description><![CDATA[Reading time: 2 min read]]></description>
+            <content:encoded><![CDATA[<p>####BuzzFeed Says:</p>
+<blockquote>
+<p>iPhone users are clicking their new WhatsApp button more than Twitter&#39;s. This was enough for us to build a WhatsApp sharing button generator, so you can easily create your own.</p>
+</blockquote>
+<p>They have a built a button generator, for you to g</p>
+]]></content:encoded>
+            <author>me@madole.dev (Andrew McDowell)</author>
+        </item>
+        <item>
+            <title><![CDATA[Some useful everyday linux commands]]></title>
+            <link>https://madole.xyz/blog/some-useful-l</link>
+            <guid>https://madole.xyz/blog/some-useful-l</guid>
+            <pubDate>Sat, 07 Nov 2015 00:00:00 GMT</pubDate>
+            <description><![CDATA[Reading time: 2 min read]]></description>
+            <content:encoded><![CDATA[<p>I decided to write down a list of every day commands that I use in the the Bash command line in Linux.
+This is by no means a definitive list and it will grow as I remember or come across commands that make
+my life easier</p>
+<h3>ls</h3>
+<ul>
+<li><pre><code>  list informa
+</code></pre>
+</li>
+</ul>
+]]></content:encoded>
+            <author>me@madole.dev (Andrew McDowell)</author>
+        </item>
+        <item>
+            <title><![CDATA[Setting up webpack dev middleware in express]]></title>
+            <link>https://madole.xyz/blog/setting-up-webpack-dev-middleware-in-express</link>
+            <guid>https://madole.xyz/blog/setting-up-webpack-dev-middleware-in-express</guid>
+            <pubDate>Sat, 07 Nov 2015 00:00:00 GMT</pubDate>
+            <description><![CDATA[Reading time: 3 min read]]></description>
+            <content:encoded><![CDATA[<p>[[[ <strong>THIS BLOG POST IS 2 YEARS OLD, CHECK OUT <a href="https://webpack.js.org">WEBPACK2</a> INSTEAD</strong>]]]</p>
+<p><strong>What is webpack dev server?</strong></p>
+<p>Webpack dev server is a live reloading server for webpack.</p>
+<p><strong>What is webpack dev middleware?</strong></p>
+<p>It&#39;s a simple wrapper mi</p>
+]]></content:encoded>
+            <author>me@madole.dev (Andrew McDowell)</author>
+        </item>
+        <item>
             <title><![CDATA[Semver - the sane way]]></title>
             <link>https://madole.xyz/blog/semver-the-sane-way</link>
             <guid>https://madole.xyz/blog/semver-the-sane-way</guid>
-            <pubDate>Sat, 07 Nov 2015 13:05:03 GMT</pubDate>
+            <pubDate>Sat, 07 Nov 2015 00:00:00 GMT</pubDate>
             <description><![CDATA[Reading time: 4 min read]]></description>
             <content:encoded><![CDATA[<blockquote>
 <p><strong>Semantic Versioning 2.0.0</strong> - <a href="https://semver.org">https://semver.org</a></p>
@@ -660,38 +705,10 @@ const promiseThatWillReject = new Promise((resolve, reject) =&gt;
             <author>me@madole.dev (Andrew McDowell)</author>
         </item>
         <item>
-            <title><![CDATA[Setting up webpack dev middleware in express]]></title>
-            <link>https://madole.xyz/blog/setting-up-webpack-dev-middleware-in-express</link>
-            <guid>https://madole.xyz/blog/setting-up-webpack-dev-middleware-in-express</guid>
-            <pubDate>Sat, 07 Nov 2015 13:04:33 GMT</pubDate>
-            <description><![CDATA[Reading time: 3 min read]]></description>
-            <content:encoded><![CDATA[<p>[[[ <strong>THIS BLOG POST IS 2 YEARS OLD, CHECK OUT <a href="https://webpack.js.org">WEBPACK2</a> INSTEAD</strong>]]]</p>
-<p><strong>What is webpack dev server?</strong></p>
-<p>Webpack dev server is a live reloading server for webpack.</p>
-<p><strong>What is webpack dev middleware?</strong></p>
-<p>It&#39;s a simple wrapper mi</p>
-]]></content:encoded>
-            <author>me@madole.dev (Andrew McDowell)</author>
-        </item>
-        <item>
-            <title><![CDATA[WhatsApp sharing from the mobile browser]]></title>
-            <link>https://madole.xyz/blog/whatsapp-sharing-from-the-mobile-browser</link>
-            <guid>https://madole.xyz/blog/whatsapp-sharing-from-the-mobile-browser</guid>
-            <pubDate>Sat, 07 Nov 2015 13:03:16 GMT</pubDate>
-            <description><![CDATA[Reading time: 2 min read]]></description>
-            <content:encoded><![CDATA[<p>####BuzzFeed Says:</p>
-<blockquote>
-<p>iPhone users are clicking their new WhatsApp button more than Twitter&#39;s. This was enough for us to build a WhatsApp sharing button generator, so you can easily create your own.</p>
-</blockquote>
-<p>They have a built a button generator, for you to g</p>
-]]></content:encoded>
-            <author>me@madole.dev (Andrew McDowell)</author>
-        </item>
-        <item>
             <title><![CDATA[Selenium ActionSequence]]></title>
             <link>https://madole.xyz/blog/selenium-actionsequence</link>
             <guid>https://madole.xyz/blog/selenium-actionsequence</guid>
-            <pubDate>Sat, 07 Nov 2015 12:34:54 GMT</pubDate>
+            <pubDate>Sat, 07 Nov 2015 00:00:00 GMT</pubDate>
             <description><![CDATA[Reading time: 2 min read]]></description>
             <content:encoded><![CDATA[<h2>How to click outside the center of a div in a selenium test</h2>
 <h3>Selenium test</h3>
@@ -707,7 +724,7 @@ driver.findElement(web
             <title><![CDATA[JsFiddle - Firebug lite]]></title>
             <link>https://madole.xyz/blog/jsfiddle-firebug-lite</link>
             <guid>https://madole.xyz/blog/jsfiddle-firebug-lite</guid>
-            <pubDate>Sat, 07 Nov 2015 12:31:46 GMT</pubDate>
+            <pubDate>Sat, 07 Nov 2015 00:00:00 GMT</pubDate>
             <description><![CDATA[Reading time: 2 min read]]></description>
             <content:encoded><![CDATA[<p>I recently discovered a cool feature in JSFiddle which changed the way I use it.</p>
 <p>Until now, I&#39;ve been hopping on to JSFiddle to test out little bits of code and logging out to the console.</p>
@@ -716,31 +733,14 @@ driver.findElement(web
             <author>me@madole.dev (Andrew McDowell)</author>
         </item>
         <item>
-            <title><![CDATA[Some useful everyday linux commands]]></title>
-            <link>https://madole.xyz/blog/some-useful-l</link>
-            <guid>https://madole.xyz/blog/some-useful-l</guid>
-            <pubDate>Sat, 07 Nov 2015 12:22:16 GMT</pubDate>
-            <description><![CDATA[Reading time: 2 min read]]></description>
-            <content:encoded><![CDATA[<p>I decided to write down a list of every day commands that I use in the the Bash command line in Linux.
-This is by no means a definitive list and it will grow as I remember or come across commands that make
-my life easier</p>
-<h3>ls</h3>
-<ul>
-<li><pre><code>  list informa
-</code></pre>
-</li>
-</ul>
-]]></content:encoded>
-            <author>me@madole.dev (Andrew McDowell)</author>
-        </item>
-        <item>
-            <title><![CDATA[Creating SVG animation with WalkwayJS]]></title>
-            <link>https://madole.xyz/blog/creating-svg-animation-with-walkwayjs</link>
-            <guid>https://madole.xyz/blog/creating-svg-animation-with-walkwayjs</guid>
-            <pubDate>Sun, 01 Nov 2015 01:01:07 GMT</pubDate>
-            <description><![CDATA[Reading time: 2 min read]]></description>
-            <content:encoded><![CDATA[<p>A few days ago this link (<a href="https://www.connoratherton.com/walkway">https://www.connoratherton.com/walkway</a>) popped up on Reddit’s <a href="https://reddit.com/r/javascript">/r/javascript</a>.</p>
-<p>I liked how it looked so I set about having a go. Turns out Connor Atherton’s library has made this super easy </p>
+            <title><![CDATA[Javascript Toolbox]]></title>
+            <link>https://madole.xyz/blog/javascript-toolbox</link>
+            <guid>https://madole.xyz/blog/javascript-toolbox</guid>
+            <pubDate>Sun, 01 Nov 2015 00:00:00 GMT</pubDate>
+            <description><![CDATA[Reading time: 6 min read]]></description>
+            <content:encoded><![CDATA[<p>I write Javascript most days and have done so for a few years now. I still find new tools, websites, frameworks and
+ways to do things. I thought I&#39;d write them down and get the list online as it may help other people discover some
+useful tools of the</p>
 ]]></content:encoded>
             <author>me@madole.dev (Andrew McDowell)</author>
         </item>
@@ -748,7 +748,7 @@ my life easier</p>
             <title><![CDATA[Javascript Interview Questions]]></title>
             <link>https://madole.xyz/blog/javascript-interview-questions</link>
             <guid>https://madole.xyz/blog/javascript-interview-questions</guid>
-            <pubDate>Sun, 01 Nov 2015 00:29:11 GMT</pubDate>
+            <pubDate>Sun, 01 Nov 2015 00:00:00 GMT</pubDate>
             <description><![CDATA[Reading time: 11 min read]]></description>
             <content:encoded><![CDATA[<p>I was asked recently by a friend of mine to come up with a list of interview questions that you can get asked during
 a Javascript interview. I looked by to my last interview and came up with a few topics for him to brush up on.
@@ -757,14 +757,13 @@ I thought I&#39;d write th</p>
             <author>me@madole.dev (Andrew McDowell)</author>
         </item>
         <item>
-            <title><![CDATA[Javascript Toolbox]]></title>
-            <link>https://madole.xyz/blog/javascript-toolbox</link>
-            <guid>https://madole.xyz/blog/javascript-toolbox</guid>
-            <pubDate>Sun, 01 Nov 2015 00:27:54 GMT</pubDate>
-            <description><![CDATA[Reading time: 6 min read]]></description>
-            <content:encoded><![CDATA[<p>I write Javascript most days and have done so for a few years now. I still find new tools, websites, frameworks and
-ways to do things. I thought I&#39;d write them down and get the list online as it may help other people discover some
-useful tools of the</p>
+            <title><![CDATA[Creating SVG animation with WalkwayJS]]></title>
+            <link>https://madole.xyz/blog/creating-svg-animation-with-walkwayjs</link>
+            <guid>https://madole.xyz/blog/creating-svg-animation-with-walkwayjs</guid>
+            <pubDate>Sun, 01 Nov 2015 00:00:00 GMT</pubDate>
+            <description><![CDATA[Reading time: 2 min read]]></description>
+            <content:encoded><![CDATA[<p>A few days ago this link (<a href="https://www.connoratherton.com/walkway">https://www.connoratherton.com/walkway</a>) popped up on Reddit’s <a href="https://reddit.com/r/javascript">/r/javascript</a>.</p>
+<p>I liked how it looked so I set about having a go. Turns out Connor Atherton’s library has made this super easy </p>
 ]]></content:encoded>
             <author>me@madole.dev (Andrew McDowell)</author>
         </item>

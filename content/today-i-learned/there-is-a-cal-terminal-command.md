@@ -1,7 +1,6 @@
 ---
-title: 'There is a cal terminal command'
-date: '2025-10-23T05:02:59.980Z'
-slug: 'there-is-a-cal-terminal-command'
+date: "2025-10-23"
+title: There is a cal terminal command
 ---
 Today I learned that on Mac and Linux there is a terminal command that shows a calendar
 and highlights the exact date. 

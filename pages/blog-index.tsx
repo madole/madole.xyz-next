@@ -1,12 +1,12 @@
 import frontmatter from "front-matter";
 import * as fs from "fs";
 import Head from "next/head";
-import path from "path";
 import React from "react";
 import readingTime from "reading-time";
 import { IndexListItem } from "../components/IndexListItem";
 import { Layout } from "../components/Layout/Layout";
 import RssIcon from "../components/RSSIcon";
+import { getBlogPostEntries } from "../utils/blogPosts";
 
 interface Post {
   title: string;
@@ -65,21 +65,16 @@ const BlogIndex: React.FC<BlogIndexProps> = (props) => {
 export default BlogIndex;
 
 export const getStaticProps = () => {
-  const filenames = fs.readdirSync(path.join(process.cwd(), "content/blog"));
-  const blogPostsMetadata = filenames
-    .map((filename) => {
-      // use frontmatter to read the titles of each blog post
-      const file = fs.readFileSync(
-        path.join(process.cwd(), "content/blog", filename),
-        "utf8"
-      );
+  const blogPostsMetadata = getBlogPostEntries()
+    .map(({ slug, filePath }) => {
+      const file = fs.readFileSync(filePath, "utf8");
       const data = frontmatter<Post>(file);
       const timeToRead = readingTime(data.body);
       return {
         ...(data.attributes as {}),
         timeToRead,
         date: data.attributes.date.toString(),
-        slug: data.attributes.slug ?? filename.split(".mdx")[0],
+        slug: data.attributes.slug ?? slug,
       };
     })
     .sort((a, b) => (new Date(a.date) < new Date(b.date) ? 1 : -1));

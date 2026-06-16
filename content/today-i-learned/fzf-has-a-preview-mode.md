@@ -1,12 +1,10 @@
 ---
-title: "fzf has a preview mode"
-date: "2024-06-13T00:23:25.028Z"
-slug: "fzf-has-a-preview-mode"
+date: "2025-06-16"
+title: fzf has a preview mode
 ---
-
 Today I learned that fzf has a preview mode.
 
-> _fzf is a general-purpose command-line fuzzy finder_
+> *fzf is a general-purpose command-line fuzzy finder*
 
 Now you can not only find any file using fuzzy searching on your computer but you can also
 preview the contents of the file before opening it.
@@ -23,7 +21,7 @@ which gives me syntax highlighting.
 You can see the the standard fzf search interface on the left and now on the right, we have bat displaying
 the contents of the file with syntax highlighting.
 
-![fzf-preview.png](/blog-images/fzf-preview.png "fzf Preview")
+!\[fzf-preview\.png]\(/blog-images/fzf-preview\.png "fzf Preview")
 
 ## Alias
 
@@ -35,6 +33,5 @@ alias fzfp='fzf --preview "bat --color=always {}"'
 
 ## Github Links
 
-- [fzf](https://github.com/junegunn/fzf)
-
-- [bat](https://github.com/sharkdp/bat)
+* [fzf](https://github.com/junegunn/fzf)
+* [bat](https://github.com/sharkdp/bat)

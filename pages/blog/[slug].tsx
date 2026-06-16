@@ -1,28 +1,19 @@
-import fs from "fs";
 import { MDXRemote } from "next-mdx-remote";
-import { serialize } from "next-mdx-remote/serialize";
 import Head from "next/head";
-import path from "path";
 import "prismjs/themes/prism-tomorrow.css";
 import { Layout } from "../../components/Layout/Layout";
 import OpenGraphHeadTags from "../../components/OpenGraphHeadTags";
 import { Tags } from "../../components/Tags";
 import { useLocalDate } from "../../hooks/useLocalDate";
-import { parseMdxContent } from "../../utils/parseMdxContent";
+import { mdxComponents } from "../../components/mdx/mdx-components";
+import {
+  getRenderedPost,
+  listPostSlugs,
+  type RenderedPost,
+} from "../../utils/getRenderedPost";
 
 interface Props {
-  data: {
-    attributes: {
-      title: string;
-      date: string;
-      slug: string;
-      tags: string[];
-      timeToRead: string;
-      description?: string;
-      og_image?: string;
-    };
-    body: string;
-  };
+  data: RenderedPost;
 }
 
 export default function BlogPost(props: Props): React.ReactElement {
@@ -58,8 +49,7 @@ export default function BlogPost(props: Props): React.ReactElement {
           {postDate} &mdash; {timeToRead}
         </div>
         <article className="prose prose-slate break-words md:break-normal w-full text-pretty">
-          {/* @ts-ignore */}
-          <MDXRemote {...body} />
+          <MDXRemote {...body} components={mdxComponents} />
         </article>
         <div className="m-6 flex justify-center">
           <Tags tags={tags} />
@@ -69,28 +59,15 @@ export default function BlogPost(props: Props): React.ReactElement {
   );
 }
 
-export function getStaticPaths() {
-  const filenames = fs.readdirSync(path.join(process.cwd(), "content/blog"));
+export async function getStaticPaths() {
+  const slugs = await listPostSlugs();
   return {
-    paths: filenames.map((filename) => "/blog/" + filename.replace(".mdx", "")),
+    paths: slugs.map((slug) => `/blog/${slug}`),
     fallback: false,
   };
 }
 
-interface PostAttributes {
-  timeToRead: string;
-  title: string;
-  date: string;
-  slug: string;
-  tags: string[];
-}
-
 export async function getStaticProps({ params }: { params: { slug: string } }) {
-  const slug = params.slug + ".mdx";
-  const content = fs.readFileSync(
-    path.join(process.cwd(), "content/blog", slug),
-    "utf8"
-  );
-  const data = await parseMdxContent<PostAttributes>(content, serialize);
+  const data = await getRenderedPost(params.slug);
   return { props: { data } };
 }

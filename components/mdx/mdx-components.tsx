@@ -1,14 +1,32 @@
+import Callout from "./Callout";
 import Citation from "./Citation";
 import ClickyThing from "./ClickyThing";
 import Code from "./Code";
+import CodeGroup from "./CodeGroup";
+import CodeTab from "./CodeTab";
+import Figure from "./Figure";
+import Highlight from "./Highlight";
 import Img from "./Img";
 import Kbd from "./Kbd";
+import MapBlock from "./Map";
 import MeetTheTeamBackup from "./MeetTheTeamBackup";
+import Mermaid from "./Mermaid";
 import Paragraph from "./Paragraph";
 import Pre from "./Pre";
 import RedText from "./RedText";
+import Sandbox from "./Sandbox";
+import StatusBadge from "./StatusBadge";
 
 export const mdxComponents: import("mdx/types").MDXComponents = {
+  Callout,
+  Mermaid,
+  Figure,
+  Map: MapBlock,
+  Sandbox,
+  CodeGroup,
+  CodeTab,
+  StatusBadge,
+  Highlight,
   RedText,
   ClickyThing,
   inlineCode: Code,

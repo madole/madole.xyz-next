@@ -1,9 +1,7 @@
-import fs from "fs";
 import { MDXRemote } from "next-mdx-remote";
 import { serialize } from "next-mdx-remote/serialize";
 import Head from "next/head";
 import Link from "next/link";
-import path from "path";
 import "prismjs/themes/prism-tomorrow.css";
 import React from "react";
 import { Layout } from "../../components/Layout/Layout";
@@ -11,6 +9,10 @@ import { mdxComponents } from "../../components/mdx/mdx-components";
 import OpenGraphHeadTags from "../../components/OpenGraphHeadTags";
 import { useLocalDate } from "../../hooks/useLocalDate";
 import { parseMdxContent } from "../../utils/parseMdxContent";
+import {
+  getTilPostEntries,
+  readTilPostBySlug,
+} from "../../utils/tilPosts";
 
 export interface TodayILearnedProps extends PostAttributes {
   data: {
@@ -81,13 +83,8 @@ const TodayILearned: React.FC<TodayILearnedProps> = (props) => {
 export default TodayILearned;
 
 export function getStaticPaths() {
-  const filenames = fs.readdirSync(
-    path.join(process.cwd(), "content/today-i-learned")
-  );
   return {
-    paths: filenames.map(
-      (filename) => "/today-i-learned/" + filename.replace(".md", "")
-    ),
+    paths: getTilPostEntries().map(({ slug }) => `/today-i-learned/${slug}`),
     fallback: false,
   };
 }
@@ -102,11 +99,7 @@ interface PostAttributes {
 }
 
 export async function getStaticProps({ params }: { params: { slug: string } }) {
-  const slug = params.slug + ".md";
-  const content = fs.readFileSync(
-    path.join(process.cwd(), "content/today-i-learned", slug),
-    "utf8"
-  );
+  const content = readTilPostBySlug(params.slug);
   const data = await parseMdxContent<PostAttributes>(content, serialize);
   return { props: { data, slug: params.slug } };
 }

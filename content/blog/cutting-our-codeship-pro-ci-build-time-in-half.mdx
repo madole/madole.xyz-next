@@ -1,14 +1,12 @@
 ---
+date: "2020-09-25"
 title: Cutting our Codeship Pro CI build time in half
-date: 2020-09-25T05:54:05.132Z
 description: Dockerfile layer caching is very important code Codeship Pro CI performance
 tags:
   - caching
   - codeship
   - docker
-slug: cutting-our-codeship-pro-ci-build-time-in-half
 ---
-
 We have noticed recently our Codeship Pro builds have been taking a very long time. Upwards of 20minutes to get through all our steps.
 
 We lived with this for a while, but as we started to put more strict conditions around what checks need to pass to be able to merge into the mainline, we started hearing feedback that it was hard to get a clear merge window.

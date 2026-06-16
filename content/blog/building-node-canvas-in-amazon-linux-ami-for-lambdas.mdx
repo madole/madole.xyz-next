@@ -1,10 +1,10 @@
 ---
-title: "Building node-canvas in Amazon Linux AMI for Lambdas"
-date: "2017-10-08T18:06:13.000Z"
-slug: building-node-canvas-in-amazon-linux-ami-for-lambdas
-tags: ["code"]
+date: '2017-10-08'
+title: Building node-canvas in Amazon Linux AMI for Lambdas
+description: node-canvas on AWS Lambda needs native deps built for Amazon Linux. Here is how to do it with Docker.
+tags:
+  - code
 ---
-
 Building node-canvas for use inside an AWS Lambda is tricky as it requires some dependencies to be built by node-gyp against the target architecture. If you build these dependencies locally before deploying your lambda, they'll be built on against your computer's architecture.
 
 Amazon Lambdas run Amazon Linux AMI instances. Luckily this distro is available in docker the docker hub (https://hub.docker.com/_/amazonlinux/)
