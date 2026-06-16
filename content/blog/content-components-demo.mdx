@@ -1,0 +1,61 @@
+---
+date: 2026-06-16
+title: Content Components Demo
+description: A sample post exercising every Keystatic MDX content component.
+tags:
+  - demo
+---
+
+This post exercises every content component so we can verify rendering in the
+browser and in the Keystatic editor.
+
+## Callout
+
+<Callout tone="info">
+  This is an info callout.
+</Callout>
+
+<Callout tone="warning">
+  This is a warning callout.
+</Callout>
+
+<Callout tone="tip">
+  This is a tip callout.
+</Callout>
+
+<Callout tone="til">
+  This is a TIL callout.
+</Callout>
+
+## Mermaid
+
+<Mermaid caption="A simple flowchart" source={"graph TD;\n  A[Start] --> B{Is it working?};\n  B -->|Yes| C[Ship it];\n  B -->|No| D[Debug];\n  D --> B;"} />
+
+## Figure
+
+<Figure image="/blog-images/figures/sample.png" alt="Leva controls panel" caption="A figure with a caption" />
+
+## Map
+
+<Map geojsonUrl="https://raw.githubusercontent.com/datasets/geo-countries/master/data/countries.geojson" center="151.21,-33.87" zoom={3} styleUrl="https://demotiles.maplibre.org/style.json" />
+
+## Sandbox
+
+<Sandbox provider="stackblitz" id="react-ts" height={500} />
+
+## Code Group
+
+<CodeGroup>
+  <CodeTab label="JavaScript">
+    ```js
+    export const greet = (name) => `Hello, ${name}`;
+    ```
+  </CodeTab>
+  <CodeTab label="TypeScript">
+    ```ts
+    export const greet = (name: string): string => `Hello, ${name}`;
+    ```
+  </CodeTab>
+</CodeGroup>
+
+Done.
