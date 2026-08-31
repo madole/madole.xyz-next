@@ -11,7 +11,7 @@ export const Layout = (props: {
 
   return (
     <div
-      className={`flex flex-col background ${styles.backgroundPattern} items-center`}
+      className={`flex flex-col ${styles.backgroundPattern} items-center`}
     >
       <a href="#main-content" className="sr-only">
         Skip to main content
