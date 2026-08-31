@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { useRef } from "react";
 import { SideProjectLayout } from "../components/Layout/SideProjectLayout";
+import { SideProjectBlobClips } from "../components/SideProjectBlobClips";
 import { useMultiIntersectionObserver } from "../hooks/useMultiIntersectionObserver";
 import pano360 from "../images/360-pano.png";
 import threedcolors from "../images/3d-colors.png";
@@ -202,6 +203,7 @@ const SideProjects = () => {
       <Head>
         <title>Side Projects | Madole.xyz</title>
       </Head>
+      <SideProjectBlobClips />
       <section className="flex flex-col w-full justify-evenly items-center">
         {data.map(({ image, imageAlt, title, description, link }, index) => (
           <div
