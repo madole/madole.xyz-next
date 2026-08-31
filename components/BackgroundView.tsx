@@ -57,11 +57,22 @@ export const BackgroundView: React.FC = () => (
     <ambientLight intensity={0.3} />
     <PointerParallax />
 
+    {/*
+      `factor` is the only size knob drei exposes: it seeds a per-star size of
+      (0.5 + 0.5 * random) * factor, which the shader turns into
+      gl_PointSize = size * (30 / -z) * (3 + sin(time)).
+
+      At factor 3, with stars sitting 80-120 units out, that worked out to
+      roughly 1-3.5 device pixels - under half a CSS pixel at the small end on a
+      2x display, which is why they read as dust on the screen rather than sky.
+      7 puts the typical star near 2.5 CSS px, still small but unmistakably a
+      star, and `fade` keeps the edges soft so they do not turn into squares.
+    */}
     <Stars
       radius={80}
       depth={40}
       count={1200}
-      factor={3}
+      factor={7}
       saturation={0}
       fade
       speed={0.4}
