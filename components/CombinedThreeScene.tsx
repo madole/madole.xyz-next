@@ -54,10 +54,19 @@ const CombinedThreeScene: React.FC = () => {
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:top-auto md:left-auto md:translate-x-0 md:translate-y-0 md:bottom-10 md:right-10 z-10 motion-reduce:hidden h-80 w-80 md:h-96 md:w-96"
       />
 
-      {/* Single Canvas with multiple Views */}
+      {/* Single Canvas with multiple Views.
+
+          Positioning has to go through `style`, not `className`. r3f renders its
+          wrapper div with an inline `position: relative; width: 100%; height: 100%`
+          and spreads `style` over the top, so an inline rule is the only thing that
+          can override it - a `fixed` utility class loses to inline styles every
+          time. Until this section existed the canvas sat inside a `fixed inset-0`
+          parent, so `relative` filled that parent and looked correct by accident.
+          Here the parent is a flex column, so a relative canvas becomes a flex item
+          a full viewport tall and pushes the hero content down below the fold. */}
       <Canvas
-        className={`fixed inset-0 opacity-0 ${isSceneReady ? "animate-slowFadeIn" : ""}`}
-        style={{ zIndex: 0 }}
+        className={`opacity-0 ${isSceneReady ? "animate-slowFadeIn" : ""}`}
+        style={{ position: "fixed", inset: 0, zIndex: 0 }}
         gl={{
           alpha: true,
           antialias: true,
