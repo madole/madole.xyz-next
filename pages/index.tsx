@@ -74,12 +74,19 @@ const Index: React.FC = () => {
       <style jsx global>{`
         html,
         body {
-          background: #05060f;
+          background: #070c22;
         }
       `}</style>
 
-      {/* Fixed behind the whole document, so it stays put as the page scrolls. */}
-      <div className="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(ellipse_at_50%_0%,#111a3a_0%,#080b1c_45%,#05060f_100%)]" />
+      {/*
+        Fixed behind the whole document, so it stays put as the page scrolls.
+
+        Every stop is a deliberate navy rather than a near-black: the earlier
+        #05060f base read as plain black on most screens, which lost the sense of
+        looking at sky. It has to match the html/body colour above or overscroll
+        shows a seam.
+      */}
+      <div className="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(ellipse_at_50%_0%,#16234d_0%,#0c1533_45%,#070c22_100%)]" />
 
       <a
         href="#main-content"
