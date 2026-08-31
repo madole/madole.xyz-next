@@ -20,9 +20,9 @@
     "@mdx-js/loader": "^3.0.1",
     "@mdx-js/mdx": "^3.0.1",
     "@next/mdx": "^16.0.0",
-    "@react-three/drei": "^10.0.0",
-    "@react-three/fiber": "^9.0.0",
-    "@types/three": "^0.166.0",
+    "@react-three/drei": "^10.7.8",
+    "@react-three/fiber": "^9.7.0",
+    "@types/three": "^0.185.4",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "date-fns": "^3.6.0",
@@ -41,7 +41,7 @@
     "sharp": "^0.33.4",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7",
-    "three": "^0.166.1"
+    "three": "^0.185.1"
   },
   "devDependencies": {
     "@babel/core": "^7.24.9",
