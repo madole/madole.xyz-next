@@ -1,8 +1,7 @@
 import dynamic from "next/dynamic";
 import Head from "next/head";
-import React, { useState } from "react";
+import React from "react";
 import { Navigation } from "../components/Navigation";
-import useInterval from "../hooks/useInterval";
 import { LayoutTextFlip } from "@/components/ui/layout-text-flip";
 import { motion } from "motion/react";
 import { StarsBackground } from "@/components/ui/stars-background";
@@ -17,8 +16,6 @@ const CombinedThreeScene = dynamic(
 
 export interface IndexProps {}
 
-const TITLE_SWITCH_INTERVAL = 5000;
-
 const titles = [
   "Full Stack Software Engineer",
   "Systems Architect",
@@ -30,16 +27,6 @@ const titles = [
 ];
 
 const Index: React.FC = () => {
-  const [title, setTitle] = useState(titles[0]);
-
-  useInterval(() => {
-    const index = titles.findIndex((value) => value === title);
-    if (index < titles.length - 1) {
-      setTitle(titles[index + 1]);
-    } else {
-      setTitle(titles[0]);
-    }
-  }, TITLE_SWITCH_INTERVAL);
   return (
     <>
       <Head>
@@ -81,7 +68,7 @@ const Index: React.FC = () => {
           }`}
         </script>
       </Head>
-      <div className="fixed inset-0 background">
+      <div className="fixed inset-0">
         <CombinedThreeScene />
         <StarsBackground />
         <ShootingStars
