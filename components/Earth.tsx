@@ -1,12 +1,13 @@
 import { useCursor, useTexture } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
-import React, { useCallback, useMemo, useRef, useState } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import {
   AdditiveBlending,
   BackSide,
   Group,
   Mesh,
   MeshStandardMaterial,
+  NoColorSpace,
   SRGBColorSpace,
   Texture,
   Vector3,
@@ -67,31 +68,35 @@ const Earth: React.FC = () => {
     state.gl.capabilities.getMaxAnisotropy()
   );
 
-  const onTexturesLoaded = useCallback(
-    (loaded: Texture | Texture[] | Record<string, Texture>) => {
-      const { day, night, brc } = loaded as EarthTextures;
+  const { day, night, brc } = useTexture({
+    day: "/earth/earth-day-2048.webp",
+    night: "/earth/earth-night-2048.webp",
+    brc: "/earth/earth-brc-1024.webp",
+  }) as EarthTextures;
 
-      // Neither three's TextureLoader nor drei's useTexture sets colorSpace, so
-      // the default is NoColorSpace. The albedo and city lights are sRGB-encoded
-      // and must say so or they render with the wrong gamma. The packed texture
-      // is non-colour data and must stay linear.
-      day.colorSpace = SRGBColorSpace;
-      night.colorSpace = SRGBColorSpace;
-      day.anisotropy = maxAnisotropy;
-      night.anisotropy = maxAnisotropy;
-      brc.anisotropy = maxAnisotropy;
-    },
-    [maxAnisotropy]
-  );
-
-  const { day, night, brc } = useTexture(
-    {
-      day: "/earth/earth-day-2048.webp",
-      night: "/earth/earth-night-2048.webp",
-      brc: "/earth/earth-brc-1024.webp",
-    },
-    onTexturesLoaded
-  ) as EarthTextures;
+  /**
+   * Configured here rather than through useTexture's onLoad callback. Given an
+   * object of urls, drei hands the callback the raw useLoader result - a
+   * positional array - and only the value it returns is keyed back up. So
+   * destructuring names out of the callback argument yields undefined, and the
+   * first assignment throws.
+   *
+   * useMemo rather than an effect because three bakes colorSpace into the
+   * shader program: it has to be right before the materials below first
+   * compile, not a frame later.
+   */
+  useMemo(() => {
+    // Neither three's TextureLoader nor drei's useTexture sets colorSpace, so
+    // the default is NoColorSpace. The albedo and city lights are sRGB-encoded
+    // and must say so or they render with the wrong gamma. The packed texture
+    // is non-colour data and must stay linear.
+    day.colorSpace = SRGBColorSpace;
+    night.colorSpace = SRGBColorSpace;
+    brc.colorSpace = NoColorSpace;
+    day.anisotropy = maxAnisotropy;
+    night.anisotropy = maxAnisotropy;
+    brc.anisotropy = maxAnisotropy;
+  }, [day, night, brc, maxAnisotropy]);
 
   const earthRef = useRef<Mesh>(null);
   const cloudRef = useRef<Mesh>(null);
