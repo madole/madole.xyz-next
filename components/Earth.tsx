@@ -218,9 +218,22 @@ const Earth: React.FC = () => {
 
   return (
     <group ref={groupRef} position={[0, -1, 0]}>
+      {/*
+        Higher than it looks. three has been physically correct since r155, so a
+        directional light's diffuse term carries a 1/PI factor, and r3f defaults
+        the canvas to ACES filmic tone mapping, whose toe crushes shadows.
+
+        The Blue Marble albedo is also strongly bimodal - ocean sits near 0.02
+        linear luminance while ice and cloud are close to 1.0 - so raising the
+        sun moves the two ends at very different rates. Pushing it through the
+        ACES curve, ocean lands at sRGB 16 at intensity 2.6, 29 at 4.5 and 41 at
+        6, while the ice caps go 217 / 232 / 240. 6 roughly doubles the apparent
+        brightness of the water, which is what reads as "dark", and still leaves
+        headroom in the highlights. Past about 8 the caps start flattening out.
+      */}
       <directionalLight
         position={SUN_DIRECTION.clone().multiplyScalar(SUN_DISTANCE)}
-        intensity={2.6}
+        intensity={6}
       />
       {/* Just enough to keep the night side from crushing to pure black. */}
       <ambientLight intensity={0.03} />
