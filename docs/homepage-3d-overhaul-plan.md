@@ -17,7 +17,7 @@ The homepage (`pages/index.tsx`) renders a fixed, non-scrolling hero with a WebG
 
 | # | Finding | Location |
 |---|---|---|
-| B1 | **The Earth is not interactive at all.** `StarsBackground`'s canvas, `ShootingStars`' SVG and the content overlay are all `absolute inset-0` with `pointer-events: auto`, painting above the WebGL canvas. The empty `earthRef` tracking div sits at `z-10` above everything and swallows pointer events over the globe. `OrbitControls` drag, the hover `Outlines` and the cursor change are all dead paths in production. | `index.tsx:95`, `CombinedThreeScene.tsx:54` |
+| B1 | ~~The Earth is not interactive at all.~~ **Corrected during phase 03 — this was wrong.** drei's `View` connects the R3F event layer to the tracking div (`web/View.js:126-131`, `setEvents({ connected: track.current })`) and its `compute` only fires when `event.target === track.current`. The `earthRef` div at `z-10` with `pointer-events: auto` is therefore exactly right, and the Earth was already interactive. The real defect is narrower: the overlay lacks `pointer-events-none` to pair with the `pointer-events-auto` already on its nav and footer children, and `earthRef` at `z-10` outranks the nav and footer links at `z-auto`. | `index.tsx:95` |
 | B2 | **Day map is sampled as linear, not sRGB.** three's `TextureLoader` does not set `colorSpace` (verified in source) and neither does drei's `useTexture`. Default is `NoColorSpace`. The Earth's albedo has been rendering with the wrong gamma. | `Earth.tsx:19` |
 | B3 | **`ShootingStars` does one full React render per frame.** `setStar` → state change → effect re-runs → schedules next rAF. ~60 reconciliations/second, forever. | `ui/shooting-stars.tsx:110-116` |
 | B4 | **`ShootingStars` leaks its timer chain.** `setTimeout(createStar, randomDelay)` recurses; the effect cleanup is `return () => {}`. On unmount or prop change the chain keeps firing `setState` on a dead component, and prop changes stack parallel chains. | `ui/shooting-stars.tsx:77-80` |
@@ -236,7 +236,9 @@ Establish one explicit stacking contract:
 | Layer | z-index | pointer-events |
 |---|---|---|
 | WebGL `<Canvas>` | `0` | `auto` |
-| View tracking divs (`cloudsRef`, `earthRef`) | `0` | **`none`** — layout probes only |
+| `cloudsRef` tracking div | `0` | `auto` — **drei connects the event layer here** |
+| `earthRef` tracking div | `10` | `auto` — **drei connects the event layer here** |
+| Star / shooting-star layers | `auto` | **`none`** |
 | Content overlay | `20` | **`none`** |
 | Nav / links / cards inside the overlay | — | `auto` |
 
@@ -249,11 +251,11 @@ Establish one explicit stacking contract:
    styles as frosted glass (`bg-white/10 backdrop-blur border-white/20 text-white`) rather than
    relying on a `dark:` variant that never activates (B8).
 
-**Verify during implementation:** with the Canvas at `pointer-events: auto` across the viewport,
-confirm drei's `<View>` scopes `<OrbitControls>` drag to the Earth view's rect and a drag elsewhere
-on the page does not rotate the globe. If it does not scope cleanly, drop `OrbitControls` and drive
-rotation from `onPointerDown`/`onPointerMove` on the mesh — simpler for a decorative globe and it
-removes `three-stdlib`'s controls from the critical path.
+**Resolved from source rather than a browser:** drei's `View` scopes events to each tracking div,
+so `<OrbitControls>` inside the Earth view only responds within that div's rect. No fallback needed.
+
+**Still needs a browser:** this dev container has no Chrome, so the visual and interaction pass on
+this phase is unverified locally. Check drag, hover outline, and keyboard focus on the skip link.
 
 **Acceptance:** the Earth can be dragged and shows its hover outline — for the first time in production.
 
