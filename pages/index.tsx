@@ -4,8 +4,6 @@ import React from "react";
 import { Navigation } from "../components/Navigation";
 import { LayoutTextFlip } from "@/components/ui/layout-text-flip";
 import { motion } from "motion/react";
-import { StarsBackground } from "@/components/ui/stars-background";
-import { ShootingStars } from "@/components/ui/shooting-stars";
 
 const CombinedThreeScene = dynamic(
   () => import("../components/CombinedThreeScene"),
@@ -70,15 +68,6 @@ const Index: React.FC = () => {
       </Head>
       <div className="fixed inset-0">
         <CombinedThreeScene />
-        <StarsBackground className="pointer-events-none" />
-        <ShootingStars
-          className="pointer-events-none"
-          starWidth={20}
-          maxSpeed={3}
-          minSpeed={1}
-          minDelay={10_000}
-          maxDelay={30_000}
-        />
 
         <div className="absolute inset-0 flex flex-col justify-between z-20 pointer-events-none">
           <a

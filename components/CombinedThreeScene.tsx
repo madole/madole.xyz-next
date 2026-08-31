@@ -1,12 +1,7 @@
 import { Canvas, useFrame } from "@react-three/fiber";
-import {
-  OrbitControls,
-  Cloud,
-  Float,
-  View,
-  PerspectiveCamera,
-} from "@react-three/drei";
+import { OrbitControls, View, PerspectiveCamera } from "@react-three/drei";
 import React, { Suspense, useRef, useState } from "react";
+import BackgroundView from "./BackgroundView";
 import Earth from "./Earth";
 
 /**
@@ -71,21 +66,11 @@ const CombinedThreeScene: React.FC = () => {
         eventPrefix="client"
       >
         <Suspense fallback={null}>
-          {/* Fullscreen clouds view */}
+          {/* Fullscreen background view: stars, clouds, shooting stars */}
           {/* @ts-expect-error - Its fine */}
           <View track={cloudsRef} index={1}>
             <PerspectiveCamera makeDefault position={[0, 0, 5]} />
-            <ambientLight intensity={0.3} />
-            <Float>
-              <Cloud
-                seed={20}
-                color={"black"}
-                opacity={0.4}
-                speed={0.05}
-                concentrate={"random"}
-                position={[0, 0, 0]}
-              />
-            </Float>
+            <BackgroundView />
           </View>
 
           {/* Positioned Earth view */}
