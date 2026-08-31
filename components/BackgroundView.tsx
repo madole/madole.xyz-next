@@ -92,7 +92,7 @@ export const BackgroundView: React.FC = () => (
           seed={20}
           bounds={[6, 1.5, 1.5]}
           volume={5}
-          color="#2b3566"
+          color="#0a0c17"
           opacity={0.22}
           speed={0.05}
           concentrate="random"
@@ -102,7 +102,7 @@ export const BackgroundView: React.FC = () => (
           seed={7}
           bounds={[8, 2, 1]}
           volume={4}
-          color="#1d2547"
+          color="#141a33"
           opacity={0.16}
           speed={0.08}
           concentrate="outside"
