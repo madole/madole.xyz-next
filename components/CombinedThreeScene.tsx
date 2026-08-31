@@ -89,22 +89,18 @@ const CombinedThreeScene: React.FC = () => {
           <View track={earthRef} index={2}>
             <PerspectiveCamera makeDefault position={[0, 0, 5]} />
             <OrbitControls
-              autoRotate={true}
+              makeDefault
+              autoRotate
               autoRotateSpeed={0.2}
+              enableDamping
+              dampingFactor={0.08}
+              rotateSpeed={0.5}
               enableRotate
               enableZoom={false}
               target={[0, -1, 0]}
             />
-            <hemisphereLight intensity={0.85} />
-            <ambientLight intensity={1} />
-            <spotLight
-              position={[-200, 100, 50]}
-              angle={0.3}
-              penumbra={0.5}
-              intensity={0.8}
-              castShadow
-              color={"white"}
-            />
+            {/* Lighting lives in Earth: the sun direction is shared with the
+                night-lights shader mask, so the two cannot drift apart. */}
             <Earth />
           </View>
 

@@ -92,8 +92,8 @@ export const BackgroundView: React.FC = () => (
           seed={20}
           bounds={[6, 1.5, 1.5]}
           volume={5}
-          color="black"
-          opacity={0.35}
+          color="#0a0c17"
+          opacity={0.22}
           speed={0.05}
           concentrate="random"
           position={[0, 0, 0]}
@@ -102,8 +102,8 @@ export const BackgroundView: React.FC = () => (
           seed={7}
           bounds={[8, 2, 1]}
           volume={4}
-          color="black"
-          opacity={0.2}
+          color="#141a33"
+          opacity={0.16}
           speed={0.08}
           concentrate="outside"
           position={[-1.5, -0.6, -1.5]}
@@ -112,8 +112,8 @@ export const BackgroundView: React.FC = () => (
           seed={13}
           bounds={[5, 1.5, 1]}
           volume={3}
-          color="black"
-          opacity={0.25}
+          color="#33306b"
+          opacity={0.18}
           speed={0.04}
           concentrate="inside"
           position={[2, 0.8, -0.8]}

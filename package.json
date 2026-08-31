@@ -12,7 +12,8 @@
     "new-post": "node scripts/new-post.mjs",
     "generate-rss": "node scripts/generate-rss.js",
     "generate-sitemap": "node scripts/generate-sitemap.js",
-    "generate-og-image": "node scripts/generate-og-image.js"
+    "generate-og-image": "node scripts/generate-og-image.js",
+    "earth-textures": "node scripts/fetch-earth-textures.mjs"
   },
   "dependencies": {
     "@eslint/js": "^9.7.0",
