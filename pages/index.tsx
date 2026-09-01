@@ -22,6 +22,7 @@ const titles = [
   "Whiskey Appreciator",
   "Digital Cartologist",
   "Agentic AI Wrangler",
+  "Space Enthusiast",
 ];
 
 const Index: React.FC = () => {
@@ -29,19 +30,19 @@ const Index: React.FC = () => {
     <>
       <Head>
         <title>
-          Madole.xyz | Geospatial Web Apps & Portfolio of Andrew McDowell
+          Madole.xyz | Satellite &amp; Geospatial Software by Andrew McDowell
         </title>
         <meta
           name="description"
-          content="Andrew McDowell's portfolio: geospatial web applications, software engineering, and leadership projects."
+          content="Andrew McDowell turns geospatial data into decisions. Fifteen years in software, ten building geospatial and 3D web applications."
         />
         <meta
           property="og:title"
-          content="Andrew McDowell | Geospatial Web Applications & Portfolio"
+          content="Andrew McDowell | Satellite & Geospatial Software"
         />
         <meta
           property="og:description"
-          content="Portfolio of geospatial web applications and projects by Andrew McDowell."
+          content="Earth observation data, 3D web visualisation, and the teams that ship it. Portfolio and writing by Andrew McDowell."
         />
         <meta property="og:image" content="https://madole.xyz/bitmoji.png" />
         <meta property="og:image:alt" content="A bitmoji of Andrew McDowell" />
@@ -57,12 +58,12 @@ const Index: React.FC = () => {
               "https://x.com/madole",
               "https://www.linkedin.com/in/andrew-mcdowell-0092649b/"
             ],
-            "jobTitle": "Full Stack Software Engineer, Tech Lead, Geospatial Expert, & Tech Writer",
+            "jobTitle": "Technical Lead, Geospatial & Earth Observation Software Engineer, & Tech Writer",
             "worksFor": {
               "@type": "Organization",
               "name": "Madole.xyz"
             },
-            "description": "Andrew McDowell's portfolio of geospatial web applications and projects."
+            "description": "Andrew McDowell turns geospatial data into decisions, building 3D web applications and leading the teams behind them."
           }`}
         </script>
       </Head>
@@ -125,18 +126,27 @@ const Index: React.FC = () => {
               className="pointer-events-auto mb-4 w-fit self-center text-center text-4xl font-bold text-white sm:text-5xl md:self-start md:text-left md:text-6xl"
               style={{ textShadow: "0 2px 8px rgba(0,0,0,0.4)" }}
             >
-              Andrew McDowell <br />
-              <span className="mt-2 block text-3xl md:text-2xl lg:text-5xl">
-                Technical Leader, Geospatial Expert &amp; Tech Writer
-              </span>
+              Andrew McDowell
             </h1>
             <motion.div className="flex flex-col items-center justify-start text-center sm:mx-0 sm:mb-0 sm:flex-row">
               <LayoutTextFlip words={titles} />
             </motion.div>
-            <div className="mt-4 flex w-full flex-grow flex-col-reverse pb-8 text-center text-2xl font-light text-white md:w-2/3 md:flex-grow-0 md:text-left md:text-2xl lg:text-3xl">
+            {/*
+              The claim sits below the flipper so the hero reads big to small:
+              name, rotating chip, claim, detail. It is deliberately a size
+              under the chip's md:text-4xl and lighter than its bold, so the
+              two never compete at the same breakpoint.
+            */}
+            <p
+              className="pointer-events-auto mt-6 w-fit self-center text-center text-2xl font-semibold text-white md:self-start md:text-left md:text-3xl lg:text-4xl"
+              style={{ textShadow: "0 2px 8px rgba(0,0,0,0.4)" }}
+            >
+              I turn geospatial data into decisions
+            </p>
+            <div className="mt-4 flex w-full flex-grow flex-col-reverse pb-8 text-center text-lg font-light text-white/80 md:w-2/3 md:flex-grow-0 md:text-left md:text-xl lg:text-2xl">
               <div className="pointer-events-auto">
-                Leading teams to build innovative geospatial solutions that make
-                a difference.
+                Fifteen years in software. Ten building geospatial and 3D
+                applications for the web, and leading the teams behind them.
               </div>
             </div>
           </main>
