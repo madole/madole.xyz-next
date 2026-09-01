@@ -33,7 +33,7 @@ const SATELLITE_ORBIT_RADIUS = EARTH_RADIUS * 1.28;
 
 /** Radians per second, applied against delta so the rate is display independent. */
 const EARTH_SPIN = 0.02;
-const CLOUD_SPIN = 0.03;
+const CLOUD_SPIN = 0.05;
 
 type EarthTextures = {
   day: Texture;
