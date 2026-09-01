@@ -5,25 +5,37 @@ const frontmatter = require("front-matter");
 const readingTime = require("reading-time");
 const { marked } = require("marked");
 
-const feed = new Feed({
-  title: "Madole.xyz Blog",
-  description: "Blog posts from madole.xyz",
-  id: "http://madole.xyz/",
-  link: "http://madole.xyz/",
-  language: "en", // optional, used only in RSS 2.0, possible values: http://www.w3.org/TR/REC-html40/struct/dirlang.html#langcodes
-  image: "http://madole.xyz/bitmoji.png",
-  favicon: "http://madole.xyz/favicon.ico",
-  copyright: "All rights reserved 2022, Madole",
-  feedLinks: {
-    json: "https://madole.xyz/json",
-    atom: "https://madole.xyz/atom",
-  },
-  author: {
-    name: "Andrew McDowell",
-    email: "me@madole.dev",
-    link: "https://madole.xyz/",
-  },
-});
+/**
+ * Left unset, the feed library stamps `updated` (and RSS 2.0's `lastBuildDate`)
+ * with the current time, so every run of this script produces a diff even when
+ * no post has changed. CI regenerates the feeds and auto-commits the result on
+ * every pull request, which turned that into a "RSS feeds updated" commit per
+ * push and a guaranteed conflict in rss.atom/rss.xml on every rebase.
+ *
+ * Deriving it from the newest post instead makes the output a pure function of
+ * content/blog: the feeds only change when the posts do.
+ */
+const buildFeed = (updated) =>
+  new Feed({
+    title: "Madole.xyz Blog",
+    description: "Blog posts from madole.xyz",
+    id: "http://madole.xyz/",
+    link: "http://madole.xyz/",
+    language: "en", // optional, used only in RSS 2.0, possible values: http://www.w3.org/TR/REC-html40/struct/dirlang.html#langcodes
+    image: "http://madole.xyz/bitmoji.png",
+    favicon: "http://madole.xyz/favicon.ico",
+    copyright: "All rights reserved 2022, Madole",
+    updated,
+    feedLinks: {
+      json: "https://madole.xyz/json",
+      atom: "https://madole.xyz/atom",
+    },
+    author: {
+      name: "Andrew McDowell",
+      email: "me@madole.dev",
+      link: "https://madole.xyz/",
+    },
+  });
 
 const generateRss = () => {
   const filenames = fs.readdirSync(path.join(process.cwd(), "content/blog"));
@@ -46,6 +58,11 @@ const generateRss = () => {
       };
     })
     .sort((a, b) => (new Date(a.date) < new Date(b.date) ? 1 : -1));
+
+  // Sorted newest first, so the head post is the last time the feed changed.
+  const feed = buildFeed(
+    blogPostsMetadata.length ? new Date(blogPostsMetadata[0].date) : undefined
+  );
 
   blogPostsMetadata.forEach((post) => {
     feed.addItem({

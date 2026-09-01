@@ -46,16 +46,27 @@ const CombinedThreeScene: React.FC = () => {
           event.target === track.current. They must keep pointer-events: auto. */}
       <div ref={cloudsRef} className="fixed inset-0 z-0 motion-reduce:hidden" />
 
-      {/* Positioned Earth view container - centered mobile, bottom-right desktop */}
+      {/* Positioned Earth view container - centered mobile, bottom-right desktop.
+          Absolute rather than fixed: the hero section is the containing block, so
+          the globe scrolls away with the hero instead of tracking the viewport. */}
       <div
         ref={earthRef}
-        className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:top-auto md:left-auto md:translate-x-0 md:translate-y-0 md:bottom-10 md:right-10 z-10 motion-reduce:hidden h-80 w-80 md:h-96 md:w-96"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:top-auto md:left-auto md:translate-x-0 md:translate-y-0 md:bottom-10 md:right-10 z-10 motion-reduce:hidden h-80 w-80 md:h-96 md:w-96"
       />
 
-      {/* Single Canvas with multiple Views */}
+      {/* Single Canvas with multiple Views.
+
+          Positioning has to go through `style`, not `className`. r3f renders its
+          wrapper div with an inline `position: relative; width: 100%; height: 100%`
+          and spreads `style` over the top, so an inline rule is the only thing that
+          can override it - a `fixed` utility class loses to inline styles every
+          time. Until this section existed the canvas sat inside a `fixed inset-0`
+          parent, so `relative` filled that parent and looked correct by accident.
+          Here the parent is a flex column, so a relative canvas becomes a flex item
+          a full viewport tall and pushes the hero content down below the fold. */}
       <Canvas
-        className={`fixed inset-0 opacity-0 ${isSceneReady ? "animate-slowFadeIn" : ""}`}
-        style={{ zIndex: 0 }}
+        className={`opacity-0 ${isSceneReady ? "animate-slowFadeIn" : ""}`}
+        style={{ position: "fixed", inset: 0, zIndex: 0 }}
         gl={{
           alpha: true,
           antialias: true,
@@ -78,22 +89,18 @@ const CombinedThreeScene: React.FC = () => {
           <View track={earthRef} index={2}>
             <PerspectiveCamera makeDefault position={[0, 0, 5]} />
             <OrbitControls
-              autoRotate={true}
+              makeDefault
+              autoRotate
               autoRotateSpeed={0.2}
+              enableDamping
+              dampingFactor={0.08}
+              rotateSpeed={0.5}
               enableRotate
               enableZoom={false}
               target={[0, -1, 0]}
             />
-            <hemisphereLight intensity={0.85} />
-            <ambientLight intensity={1} />
-            <spotLight
-              position={[-200, 100, 50]}
-              angle={0.3}
-              penumbra={0.5}
-              intensity={0.8}
-              castShadow
-              color={"white"}
-            />
+            {/* Lighting lives in Earth: the sun direction is shared with the
+                night-lights shader mask, so the two cannot drift apart. */}
             <Earth />
           </View>
 
