@@ -145,7 +145,7 @@ const Index: React.FC = () => {
             </p>
             <div className="mt-4 flex w-full flex-grow flex-col-reverse pb-8 text-center text-lg font-light text-white/80 md:w-2/3 md:flex-grow-0 md:text-left md:text-xl lg:text-2xl">
               <div className="pointer-events-auto">
-                Over fifteen years in software. Ten building geospatial and 3D
+                Over fifteen years in the software industry. Ten building geospatial and 3D
                 applications for the web, and leading the teams behind them.
               </div>
             </div>
