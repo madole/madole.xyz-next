@@ -1,0 +1,17 @@
+{
+  "image": "node:lts",
+  "remoteUser": "node",
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": false,
+      "username": "node",
+      "upgradePackages": true
+    },
+    "ghcr.io/madole/ai-dev-container/claude-dev:1": {
+      "extraAllowedDomains": "fonts.googleapis.com,fonts.gstatic.com,https://eoimages.gsfc.nasa.gov"
+    }
+  },
+  "appPort": [
+    3000
+  ]
+}
