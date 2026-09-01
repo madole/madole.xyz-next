@@ -38,3 +38,7 @@ yarn-error.log*
 
 # earth texture download cache
 /.earth-sources
+
+# git worktrees created by Claude Code - never committable, they are
+# separate checkouts and git records them as bare gitlinks
+.claude/worktrees/
