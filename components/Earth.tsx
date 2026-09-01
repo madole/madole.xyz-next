@@ -13,6 +13,7 @@ import {
   Vector3,
 } from "three";
 import { AtmosphereMaterial } from "./earthAtmosphere";
+import Satellite from "./Satellite";
 
 /**
  * Direction the sun comes from, in world space. The directional light and the
@@ -26,6 +27,9 @@ const EARTH_RADIUS = 1.5;
 const CLOUD_RADIUS = EARTH_RADIUS * 1.012;
 const ATMOSPHERE_RADIUS = EARTH_RADIUS * 1.035;
 const SEGMENTS = 64;
+
+/** Clear of the atmosphere shell, and still inside the view's scissor box. */
+const SATELLITE_ORBIT_RADIUS = EARTH_RADIUS * 1.28;
 
 /** Radians per second, applied against delta so the rate is display independent. */
 const EARTH_SPIN = 0.02;
@@ -263,6 +267,8 @@ const Earth: React.FC = () => {
           side={BackSide}
         />
       </mesh>
+
+      <Satellite orbitRadius={SATELLITE_ORBIT_RADIUS} />
     </group>
   );
 };
