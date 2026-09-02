@@ -1,8 +1,15 @@
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, View, PerspectiveCamera } from "@react-three/drei";
-import React, { Suspense, useRef, useState } from "react";
+import React, { Suspense, lazy, useRef, useState } from "react";
 import BackgroundView from "./BackgroundView";
 import Earth from "./Earth";
+import type { RocketMode } from "../hooks/useRocketMode";
+
+/**
+ * The hidden-mode rocket is split into its own chunk and only requested once
+ * someone types the code, so the homepage's first load carries none of it.
+ */
+const Rocket = lazy(() => import("./Rocket"));
 
 /**
  * Component that triggers a callback after multiple frames are rendered
@@ -33,7 +40,17 @@ const SceneReadyDetector: React.FC<{ onReady: () => void }> = ({ onReady }) => {
  * - Earth view: positioned (centered mobile, bottom-right desktop)
  * This prevents "Context Lost" errors from multiple WebGL contexts
  */
-const CombinedThreeScene: React.FC = () => {
+export interface CombinedThreeSceneProps {
+  /** Hidden rocket mode; "off" mounts nothing at all. */
+  rocketMode?: RocketMode;
+  /** Called once the departing rocket is off screen and can be unmounted. */
+  onRocketExited?: () => void;
+}
+
+const CombinedThreeScene: React.FC<CombinedThreeSceneProps> = ({
+  rocketMode = "off",
+  onRocketExited = () => {},
+}) => {
   const cloudsRef = useRef<HTMLDivElement>(null);
   const earthRef = useRef<HTMLDivElement>(null);
   const [isSceneReady, setIsSceneReady] = useState(false);
@@ -82,6 +99,16 @@ const CombinedThreeScene: React.FC = () => {
           <View track={cloudsRef} index={1}>
             <PerspectiveCamera makeDefault position={[0, 0, 5]} />
             <BackgroundView />
+            {/* Its own Suspense boundary: without one, the chunk loading
+                would suspend the outer boundary and blank the whole scene. */}
+            {rocketMode !== "off" && (
+              <Suspense fallback={null}>
+                <Rocket
+                  leaving={rocketMode === "leaving"}
+                  onExited={onRocketExited}
+                />
+              </Suspense>
+            )}
           </View>
 
           {/* Positioned Earth view */}
