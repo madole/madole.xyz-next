@@ -4,6 +4,7 @@ import React from "react";
 import { Navigation } from "../components/Navigation";
 import { LayoutTextFlip } from "@/components/ui/layout-text-flip";
 import { motion } from "motion/react";
+import { useRocketMode } from "../hooks/useRocketMode";
 
 const CombinedThreeScene = dynamic(
   () => import("../components/CombinedThreeScene"),
@@ -26,6 +27,10 @@ const titles = [
 ];
 
 const Index: React.FC = () => {
+  // Hidden mode: type "rocket" anywhere on the page. Everything beyond this
+  // one keydown listener is lazy-loaded on activation.
+  const { mode: rocketMode, onExited: onRocketExited } = useRocketMode();
+
   return (
     <>
       <Head>
@@ -104,7 +109,10 @@ const Index: React.FC = () => {
         hero instead of following the viewport down the page.
       */}
       <section className="relative flex min-h-dvh flex-col justify-between overflow-hidden">
-        <CombinedThreeScene />
+        <CombinedThreeScene
+          rocketMode={rocketMode}
+          onRocketExited={onRocketExited}
+        />
 
         {/*
           pointer-events-none so a drag anywhere over the hero reaches the
@@ -179,6 +187,22 @@ const Index: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/*
+        Always in the DOM so assistive tech treats it as a live region; it only
+        has content while the rocket is flying. Fixed, so it can never shift
+        layout, and pointer-events-none so it never steals a click.
+      */}
+      <div
+        aria-live="polite"
+        className="pointer-events-none fixed inset-x-0 bottom-6 z-30 flex justify-center"
+      >
+        {rocketMode === "on" && (
+          <p className="animate-toast rounded-full bg-black/60 px-4 py-2 text-sm text-white shadow-lg backdrop-blur">
+            Rocket mode. Arrow keys to fly, Esc to leave.
+          </p>
+        )}
+      </div>
 
       {/* Filled with recent writing in phase 08. */}
       <section

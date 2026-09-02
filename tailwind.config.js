@@ -18,6 +18,12 @@ module.exports = {
             opacity: 1,
           },
         },
+        toast: {
+          "0%": { opacity: 0, transform: "translateY(8px)" },
+          "10%": { opacity: 1, transform: "translateY(0)" },
+          "85%": { opacity: 1, transform: "translateY(0)" },
+          "100%": { opacity: 0, transform: "translateY(0)" },
+        },
         horizontalBounce: {
           "0%": {
             width: "10px",
@@ -36,6 +42,7 @@ module.exports = {
       animation: {
         fadeIn: "fadeIn 0.3s ease-in-out",
         slowFadeIn: "fadeIn 2s ease-in-out forwards",
+        toast: "toast 5s ease-in-out forwards",
         horizontalBounce: "horizontalBounce 5s ease-in-out alternate infinite",
       },
       colors: {
