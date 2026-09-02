@@ -4,6 +4,7 @@ import React, { Suspense, lazy, useRef, useState } from "react";
 import BackgroundView from "./BackgroundView";
 import Earth from "./Earth";
 import type { RocketMode } from "../hooks/useRocketMode";
+import { VIEW_CAMERA_Z, VIEW_FOV } from "./sceneConstants";
 
 /**
  * The hidden-mode rocket is split into its own chunk and only requested once
@@ -97,7 +98,11 @@ const CombinedThreeScene: React.FC<CombinedThreeSceneProps> = ({
           {/* Fullscreen background view: stars, clouds, shooting stars */}
           {/* @ts-expect-error - Its fine */}
           <View track={cloudsRef} index={1}>
-            <PerspectiveCamera makeDefault position={[0, 0, 5]} />
+            <PerspectiveCamera
+              makeDefault
+              position={[0, 0, VIEW_CAMERA_Z]}
+              fov={VIEW_FOV}
+            />
             <BackgroundView />
             {/* Its own Suspense boundary: without one, the chunk loading
                 would suspend the outer boundary and blank the whole scene. */}
@@ -106,6 +111,7 @@ const CombinedThreeScene: React.FC<CombinedThreeSceneProps> = ({
                 <Rocket
                   leaving={rocketMode === "leaving"}
                   onExited={onRocketExited}
+                  earthTrackRef={earthRef}
                 />
               </Suspense>
             )}
@@ -114,7 +120,11 @@ const CombinedThreeScene: React.FC<CombinedThreeSceneProps> = ({
           {/* Positioned Earth view */}
           {/* @ts-expect-error - Its fine */}
           <View track={earthRef} index={2}>
-            <PerspectiveCamera makeDefault position={[0, 0, 5]} />
+            <PerspectiveCamera
+              makeDefault
+              position={[0, 0, VIEW_CAMERA_Z]}
+              fov={VIEW_FOV}
+            />
             <OrbitControls
               makeDefault
               autoRotate

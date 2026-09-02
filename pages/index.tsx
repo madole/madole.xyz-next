@@ -199,7 +199,7 @@ const Index: React.FC = () => {
       >
         {rocketMode === "on" && (
           <p className="animate-toast rounded-full bg-black/60 px-4 py-2 text-sm text-white shadow-lg backdrop-blur">
-            Rocket mode. Arrow keys to fly, Esc to leave.
+            Rocket mode. Arrows to fly, coast near Earth to orbit, Esc to leave.
           </p>
         )}
       </div>

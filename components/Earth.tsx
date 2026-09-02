@@ -23,7 +23,8 @@ import Satellite from "./Satellite";
 export const SUN_DIRECTION = new Vector3(-1.4, 0.4, 0.9).normalize();
 const SUN_DISTANCE = 12;
 
-const EARTH_RADIUS = 1.5;
+/** Exported for the rocket's orbit, which is sized off the globe's screen footprint. */
+export const EARTH_RADIUS = 1.5;
 const CLOUD_RADIUS = EARTH_RADIUS * 1.012;
 const ATMOSPHERE_RADIUS = EARTH_RADIUS * 1.035;
 const SEGMENTS = 64;
