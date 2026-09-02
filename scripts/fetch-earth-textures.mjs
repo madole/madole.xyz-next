@@ -3,7 +3,7 @@
  * Fetch NASA public-domain earth imagery and produce the packed texture set.
  *
  * Outputs into public/earth/:
- *   earth-day-2048.webp     albedo                       (sample as sRGB)
+ *   earth-day-2048.webp     albedo, ocean lifted         (sample as sRGB)
  *   earth-night-2048.webp   city lights                  (sample as sRGB)
  *   earth-brc-1024.webp     R=bump G=roughness B=clouds  (sample as NoColorSpace)
  *
@@ -167,10 +167,57 @@ async function download(name, url) {
 }
 
 /**
- * Ocean mask derived from the Blue Marble albedo. Open water is the only large
+ * Ocean test against the Blue Marble albedo. Open water is the only large
  * feature that is consistently blue-dominant and dark, so `blue > red` with a
  * margin separates it cleanly from land, ice and cloud.
  *
+ * Calibrated against world.topo.bathy: the mask holds steady around 72% ocean
+ * by surface area (true figure 70.8%) from margin 10 through 17, then collapses
+ * to 58% at 18 because deep ocean in this map sits at almost exactly b-r = 17.
+ * 15 keeps a couple of steps of clearance from that cliff.
+ *
+ * The abyssal plains sit right on that cliff and some of their pixels fall
+ * through the margin anyway. They are unambiguously water - nothing else on the
+ * map is this dark and at least as blue as it is red - so the second clause
+ * catches them. Without it they survive the ocean lift below as black speckles
+ * scattered across the deep Pacific.
+ */
+function isWater(r, g, b) {
+  const MARGIN = 15;
+  return b > r + MARGIN || (b >= r && (r + g + b) / 3 < 45);
+}
+
+/**
+ * Blue Marble renders ocean depth, so the deep Pacific comes out near-black
+ * (mean rgb 3,7,24) while the shallower Atlantic reads 15,23,42. On a globe
+ * that is not perceived as bathymetry, only as dark blotches on one side.
+ *
+ * NASA publishes no lighter variant - the non-bathymetry Blue Marble is flat,
+ * not brighter, and its asset URLs 404 - so flatten it here instead: blend
+ * every water pixel toward a single mid-ocean blue. Land is untouched, and at
+ * 0.62 the mid-ocean ridges still show through faintly.
+ */
+async function liftOcean(dayFile, width, height) {
+  const OCEAN = [20, 52, 96];
+  const LIFT = 0.62;
+
+  const { data } = await sharp(dayFile)
+    .resize(width, height)
+    .removeAlpha()
+    .raw()
+    .toBuffer({ resolveWithObject: true });
+
+  for (let i = 0; i < width * height; i += 1) {
+    const p = i * 3;
+    if (!isWater(data[p], data[p + 1], data[p + 2])) continue;
+    for (let c = 0; c < 3; c += 1) {
+      data[p + c] = Math.round(data[p + c] + (OCEAN[c] - data[p + c]) * LIFT);
+    }
+  }
+  return data;
+}
+
+/**
  * Returns roughness: 255 = rough (land), 0 = smooth (water), so sunlight glints
  * off the oceans and not off the continents.
  */
@@ -182,11 +229,6 @@ async function deriveRoughness(dayFile, width) {
     .raw()
     .toBuffer({ resolveWithObject: true });
 
-  // Calibrated against world.topo.bathy: the mask holds steady around 72% ocean
-  // by surface area (true figure 70.8%) from margin 10 through 17, then collapses
-  // to 58% at 18 because deep ocean in this map sits at almost exactly b-r = 17.
-  // 15 keeps a couple of steps of clearance from that cliff.
-  const MARGIN = 15;
   const out = Buffer.alloc(width * height);
 
   // Equirectangular over-represents the poles, so weight the sanity check by
@@ -198,10 +240,10 @@ async function deriveRoughness(dayFile, width) {
     const weight = Math.cos((y / height - 0.5) * Math.PI);
     for (let x = 0; x < width; x += 1) {
       const i = y * width + x;
-      const isWater = data[i * 3 + 2] > data[i * 3] + MARGIN;
-      out[i] = isWater ? 10 : 235;
+      const water = isWater(data[i * 3], data[i * 3 + 1], data[i * 3 + 2]);
+      out[i] = water ? 10 : 235;
       weightedTotal += weight;
-      if (isWater) weightedWater += weight;
+      if (water) weightedWater += weight;
     }
   }
 
@@ -261,7 +303,11 @@ async function main() {
   // q78 rather than the usual q82: it saves 38KB and keeps the whole set under
   // the 400KB budget, and the globe renders at 384 CSS px so the difference is
   // not resolvable.
-  await sharp(files.day).resize(2048, 1024).webp({ quality: 78 })
+  const DAY_W = 2048;
+  const DAY_H = DAY_W / 2;
+  const day = await liftOcean(files.day, DAY_W, DAY_H);
+  await sharp(day, { raw: { width: DAY_W, height: DAY_H, channels: 3 } })
+    .webp({ quality: 78 })
     .toFile(path.join(OUT, "earth-day-2048.webp"));
   await sharp(files.night).resize(2048, 1024).webp({ quality: 80 })
     .toFile(path.join(OUT, "earth-night-2048.webp"));
