@@ -13,6 +13,13 @@ import { VIEW_CAMERA_Z, VIEW_FOV } from "./sceneConstants";
 const Rocket = lazy(() => import("./Rocket"));
 
 /**
+ * The banner rocket is a separate chunk from the playable one: it carries the
+ * artwork but none of the flight or orbit code, and it is only fetched when
+ * useRocketHint decides someone should actually see it.
+ */
+const HintRocket = lazy(() => import("./HintRocket"));
+
+/**
  * Component that triggers a callback after multiple frames are rendered
  * This ensures all textures are loaded, uploaded to GPU, and actually rendered
  */
@@ -46,11 +53,17 @@ export interface CombinedThreeSceneProps {
   rocketMode?: RocketMode;
   /** Called once the departing rocket is off screen and can be unmounted. */
   onRocketExited?: () => void;
+  /** Whether the banner rocket should make its single pass across the sky. */
+  hintFlying?: boolean;
+  /** Called once that pass has cleared the far edge. */
+  onHintDone?: () => void;
 }
 
 const CombinedThreeScene: React.FC<CombinedThreeSceneProps> = ({
   rocketMode = "off",
   onRocketExited = () => {},
+  hintFlying = false,
+  onHintDone = () => {},
 }) => {
   const cloudsRef = useRef<HTMLDivElement>(null);
   const earthRef = useRef<HTMLDivElement>(null);
@@ -106,6 +119,11 @@ const CombinedThreeScene: React.FC<CombinedThreeSceneProps> = ({
             <BackgroundView />
             {/* Its own Suspense boundary: without one, the chunk loading
                 would suspend the outer boundary and blank the whole scene. */}
+            {hintFlying && rocketMode === "off" && (
+              <Suspense fallback={null}>
+                <HintRocket onDone={onHintDone} />
+              </Suspense>
+            )}
             {rocketMode !== "off" && (
               <Suspense fallback={null}>
                 <Rocket
