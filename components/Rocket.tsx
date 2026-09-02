@@ -186,6 +186,7 @@ const Rocket: React.FC<RocketProps> = ({ leaving, onExited }) => {
       vel.y = Math.min(MAX_SPEED * 1.3, vel.y + EXIT_SPEED * dt * 2);
       ship.position.x += vel.x * dt;
       ship.position.y += vel.y * dt;
+      heading.current = UP_HEADING;
       if (ship.position.y > halfH + 1.5 && !exited.current) {
         exited.current = true;
         onExited();
