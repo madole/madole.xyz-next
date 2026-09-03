@@ -60,8 +60,10 @@ const DROOP = 0.05;
 const HEADING_RIGHT = -Math.PI / 2;
 
 /**
- * Painted at a size that stays crisp on a 2x display: the banner covers a bit
- * under a third of the view width, so ~800 device pixels is the worst case.
+ * Painted at a size that stays crisp on a 2x display. The banner covers about
+ * an eighth of the view width, which on a large high-density desktop screen is
+ * still under 1024 device pixels - and this is desktop only, so 3x phone
+ * screens are not a case.
  */
 const TEXTURE_WIDTH = 1024;
 const TEXTURE_HEIGHT = Math.round(

@@ -15,37 +15,12 @@ import {
  */
 export const HINT_TEXT = "Type 'rocket'";
 
-/**
- * How long to leave someone alone before advertising the easter egg.
- *
- * TEMPORARY: lowered from 25s to 5s while the hint is being worked on. Put it
- * back to 25_000 before this ships.
- */
-const DELAY_MS = 5_000;
+/** How long to leave someone alone before advertising the easter egg. */
+const DELAY_MS = 25_000;
 /** How often to re-check once the delay has passed but conditions are not right. */
 const RECHECK_MS = 2_000;
 /** The hero must still be roughly on screen, measured against the viewport. */
 const HERO_SCROLL_FRACTION = 0.5;
-
-/**
- * Add ?rocket-hint to the URL to replay the banner.
- *
- * The two "already seen it" flags are deliberately sticky, which makes the
- * hint awkward to work on: the session flag survives a refresh (sessionStorage
- * lives until the tab closes, not until the page reloads) and the found flag
- * is permanent, so typing the code even once retires the banner on that
- * browser for good. This bypasses both, without setting either, and reports
- * what every gate decided so a hint that still refuses to fly explains itself.
- */
-const FORCE_PARAM = "rocket-hint";
-
-function isForced(): boolean {
-  try {
-    return new URLSearchParams(window.location.search).has(FORCE_PARAM);
-  } catch {
-    return false;
-  }
-}
 
 /**
  * Decides whether the banner rocket should fly, and when.
@@ -56,7 +31,11 @@ function isForced(): boolean {
  *   advertising it to someone on a phone promises what it cannot deliver.
  * - Reduced motion never sees it, matching the background view it flies in,
  *   which is hidden under that preference anyway.
- * - Anyone who has already flown the rocket never sees it again.
+ * - Anyone who has already flown the rocket never sees it again. Both
+ *   "already seen it" flags are stickier than they look: the session one
+ *   survives a reload, since sessionStorage lives until the tab closes, and
+ *   the found one never expires. To see the banner again, clear
+ *   madole:rocket-hinted (session) and madole:rocket-found (local).
  * - At most once per session, and only while the tab is actually visible and
  *   the hero is still on screen. Without the visibility check the one pass
  *   would run down in a background tab, where rAF is throttled, and be wasted.
@@ -79,25 +58,15 @@ export function useRocketHint(suppressed: boolean): {
       return;
     }
 
-    const forced = isForced();
     const wantsMotion = !window.matchMedia("(prefers-reduced-motion: reduce)")
       .matches;
     const finePointer = window.matchMedia("(pointer: fine)").matches;
-    const found = hasFoundRocket();
-    const hinted = hasHintedThisSession();
-
-    if (forced) {
-      // eslint-disable-next-line no-console
-      console.info("[rocket-hint] gates", {
-        finePointer,
-        wantsMotion,
-        alreadyFound: found,
-        alreadyHintedThisSession: hinted,
-        note: "found/hinted are bypassed by ?rocket-hint",
-      });
-    }
-
-    if (!wantsMotion || !finePointer || (!forced && (found || hinted))) {
+    if (
+      !wantsMotion ||
+      !finePointer ||
+      hasFoundRocket() ||
+      hasHintedThisSession()
+    ) {
       setState("done");
       return;
     }
@@ -111,8 +80,7 @@ export function useRocketHint(suppressed: boolean): {
     const attempt = () => {
       if (!readyToFly()) return;
       if (recheck) clearInterval(recheck);
-      // Not recorded when forced, so repeated refreshes keep replaying it.
-      if (!forced) markHintedThisSession();
+      markHintedThisSession();
       setState("flying");
     };
 
