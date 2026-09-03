@@ -34,7 +34,7 @@ const ROLL_SPEED = 1.3;
  * and the moving group carries this scale, so ship, rope, banner, ripple and
  * droop always shrink together and the proportions cannot drift apart.
  */
-const TOW_SCALE = 0.3;
+const TOW_SCALE = 0.4;
 
 const SHIP_SCALE = 0.55;
 /** Where the nozzle ends up once the ship is turned to point along +X. */
