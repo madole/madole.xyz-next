@@ -29,6 +29,13 @@ const BOB_SPEED = 0.9;
 const ROLL_AMPLITUDE = 0.05;
 const ROLL_SPEED = 1.3;
 
+/**
+ * One knob for the whole tow. Everything below is authored in tow-local units
+ * and the moving group carries this scale, so ship, rope, banner, ripple and
+ * droop always shrink together and the proportions cannot drift apart.
+ */
+const TOW_SCALE = 0.7;
+
 const SHIP_SCALE = 0.55;
 /** Where the nozzle ends up once the ship is turned to point along +X. */
 const NOZZLE_OFFSET = -0.32 * SHIP_SCALE;
@@ -162,8 +169,13 @@ const HintRocket: React.FC<HintRocketProps> = ({ onDone }) => {
   /** The plane's vertices as generated, before any ripple is applied. */
   const restPositions = useRef<Float32Array | null>(null);
 
-  /** Nose to banner tail: how far past the edge the group must travel. */
-  const towLength = ROPE_LENGTH + BANNER_WIDTH + 1;
+  /**
+   * Group origin back to the banner's tail, in world units, plus a margin so
+   * the tow starts and finishes entirely off screen. Derived rather than
+   * hand-tuned so it follows TOW_SCALE.
+   */
+  const towLength =
+    (Math.abs(NOZZLE_OFFSET) + ROPE_LENGTH + BANNER_WIDTH) * TOW_SCALE + 0.5;
 
   useFrame((state, delta) => {
     const group = groupRef.current;
@@ -229,7 +241,7 @@ const HintRocket: React.FC<HintRocketProps> = ({ onDone }) => {
   });
 
   return (
-    <group ref={groupRef} position={[0, -100, FLIGHT_Z]}>
+    <group ref={groupRef} position={[0, -100, FLIGHT_Z]} scale={TOW_SCALE}>
       {/* The background view carries only a dim ambient light for the clouds;
           the hull needs a key light to read as a solid. */}
       <directionalLight position={[2, 3, 5]} intensity={2.2} />
