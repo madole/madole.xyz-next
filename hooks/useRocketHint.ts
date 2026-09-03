@@ -31,11 +31,11 @@ const HERO_SCROLL_FRACTION = 0.5;
  *   advertising it to someone on a phone promises what it cannot deliver.
  * - Reduced motion never sees it, matching the background view it flies in,
  *   which is hidden under that preference anyway.
- * - Anyone who has already flown the rocket never sees it again. Both
- *   "already seen it" flags are stickier than they look: the session one
+ * - Anyone who has flown the rocket in the last six months does not see it.
+ *   Both "already seen it" flags are stickier than they look: the session one
  *   survives a reload, since sessionStorage lives until the tab closes, and
- *   the found one never expires. To see the banner again, clear
- *   madole:rocket-hinted (session) and madole:rocket-found (local).
+ *   the found one lasts half a year. To see the banner again without waiting,
+ *   clear madole:rocket-hinted (session) and madole:rocket-found (local).
  * - At most once per session, and only while the tab is actually visible and
  *   the hero is still on screen. Without the visibility check the one pass
  *   would run down in a background tab, where rAF is throttled, and be wasted.
