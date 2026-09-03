@@ -5,12 +5,13 @@ import { Navigation } from "../components/Navigation";
 import { LayoutTextFlip } from "@/components/ui/layout-text-flip";
 import { motion } from "motion/react";
 import { useRocketMode } from "../hooks/useRocketMode";
+import { HINT_TEXT, useRocketHint } from "../hooks/useRocketHint";
 
 const CombinedThreeScene = dynamic(
   () => import("../components/CombinedThreeScene"),
   {
     ssr: false,
-  }
+  },
 );
 
 export interface IndexProps {}
@@ -30,6 +31,9 @@ const Index: React.FC = () => {
   // Hidden mode: type "rocket" anywhere on the page. Everything beyond this
   // one keydown listener is lazy-loaded on activation.
   const { mode: rocketMode, onExited: onRocketExited } = useRocketMode();
+  // A rocket tows a banner past once to advertise the mode, on desktop only
+  // and never twice. See useRocketHint for the full set of gates.
+  const { hintFlying, onHintDone } = useRocketHint(rocketMode !== "off");
 
   return (
     <>
@@ -112,6 +116,8 @@ const Index: React.FC = () => {
         <CombinedThreeScene
           rocketMode={rocketMode}
           onRocketExited={onRocketExited}
+          hintFlying={hintFlying}
+          onHintDone={onHintDone}
         />
 
         {/*
@@ -153,8 +159,9 @@ const Index: React.FC = () => {
             </p>
             <div className="mt-4 flex w-full flex-grow flex-col-reverse pb-8 text-center text-lg font-light text-white/80 md:w-2/3 md:flex-grow-0 md:text-left md:text-xl lg:text-2xl">
               <div className="pointer-events-auto">
-                Over fifteen years in the software industry. Ten building geospatial and 3D
-                applications for the web, and leading the teams behind them.
+                Over fifteen years in the software industry. Ten building
+                geospatial and 3D applications for the web, and leading the
+                teams behind them.
               </div>
             </div>
           </main>
@@ -197,11 +204,18 @@ const Index: React.FC = () => {
         aria-live="polite"
         className="pointer-events-none fixed inset-x-0 bottom-6 z-30 flex justify-center"
       >
-        {rocketMode === "on" && (
+        {rocketMode === "on" ? (
           <p className="animate-toast rounded-full bg-black/60 px-4 py-2 text-sm text-white shadow-lg backdrop-blur">
             Rocket mode. Arrows to fly, coast near Earth to orbit, Esc to leave.
           </p>
-        )}
+        ) : hintFlying ? (
+          /* The banner is painted into WebGL, so it does not exist for a
+             screen reader. Same words, announced politely, so the hint is not
+             purely visual. */
+          <p className="sr-only">
+            {HINT_TEXT} to fly a rocket around the page.
+          </p>
+        ) : null}
       </div>
 
       {/* Filled with recent writing in phase 08. */}

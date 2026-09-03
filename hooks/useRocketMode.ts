@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { useKeySequence } from "./useKeySequence";
+import { markRocketFound } from "./rocketDiscovery";
 
 /**
  * off: nothing mounted, nothing listening beyond the sequence hook.
@@ -32,7 +33,12 @@ export function useRocketMode(): {
     ) {
       return;
     }
-    setMode((current) => (current === "off" ? "on" : "leaving"));
+    setMode((current) => {
+      if (current !== "off") return "leaving";
+      // They are in the club now, so the hint banner retires for good.
+      markRocketFound();
+      return "on";
+    });
   }, []);
 
   useKeySequence(SEQUENCE, toggle);
