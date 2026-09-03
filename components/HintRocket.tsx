@@ -36,27 +36,27 @@ const ROPE_LENGTH = 0.3;
 const ROPE_RADIUS = 0.008;
 const ROPE_COLOR = "#cfd6e4";
 
-const BANNER_WIDTH = 1.8;
-const BANNER_HEIGHT = 0.45;
+const BANNER_WIDTH = 1.4;
+const BANNER_HEIGHT = 0.35;
 /** Segments across the banner; the ripple is applied per vertex each frame. */
 const BANNER_SEGMENTS_X = 24;
 const BANNER_SEGMENTS_Y = 3;
 
 /** Travelling wave along the banner: amplitude in world units, frequency per unit. */
-const WAVE_AMPLITUDE = 0.09;
-const WAVE_FREQUENCY = 7;
+const WAVE_AMPLITUDE = 0.07;
+const WAVE_FREQUENCY = 9;
 const WAVE_SPEED = 5;
 /** How far the free end sags below the tow point. */
-const DROOP = 0.06;
+const DROOP = 0.05;
 
 /** Ship points +Y in its own space; -PI/2 turns it to fly along +X. */
 const HEADING_RIGHT = -Math.PI / 2;
 
 /**
  * Painted at a size that stays crisp on a 2x display: the banner covers a bit
- * under half the view width, so ~1500 device pixels is the worst case.
+ * under a third of the view width, so ~800 device pixels is the worst case.
  */
-const TEXTURE_WIDTH = 1536;
+const TEXTURE_WIDTH = 1024;
 const TEXTURE_HEIGHT = Math.round(
   (TEXTURE_WIDTH * BANNER_HEIGHT) / BANNER_WIDTH,
 );
