@@ -4,7 +4,6 @@ import { serialize } from "next-mdx-remote/serialize";
 import Head from "next/head";
 import Link from "next/link";
 import path from "path";
-import "prismjs/themes/prism-tomorrow.css";
 import React from "react";
 import { Layout } from "../../components/Layout/Layout";
 import { mdxComponents } from "../../components/mdx/mdx-components";

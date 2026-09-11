@@ -3,7 +3,6 @@ import { MDXRemote } from "next-mdx-remote";
 import { serialize } from "next-mdx-remote/serialize";
 import Head from "next/head";
 import path from "path";
-import "prismjs/themes/prism-tomorrow.css";
 import { Layout } from "../../components/Layout/Layout";
 import OpenGraphHeadTags from "../../components/OpenGraphHeadTags";
 import { Tags } from "../../components/Tags";

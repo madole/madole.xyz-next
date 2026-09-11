@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import * as gtag from "../components/gtag";
 import { mdxComponents } from "../components/mdx/mdx-components";
 import "../styles/globals.css";
+import "../styles/syntax-highlight.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
