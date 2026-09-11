@@ -28,18 +28,27 @@ export interface BlogIndexProps {
 const BlogIndex: React.FC<BlogIndexProps> = (props) => {
   const { blogPostsMetadata } = props;
   return (
-    <Layout isIndexPage>
+    <Layout minimal>
       <Head>
         <title>Blog | Madole.xyz</title>
         <meta name="description" content="Blog index for Madole.xyz" />
       </Head>
-      <section id="main-content">
-        <h1 className="prose text-2xl font-semibold text-center lg:text-4xl flex justify-center items-center  w-full">
-          Latest Blog Posts
-          <a href="feed://madole.xyz/rss.atom" className="pl-3" title="RSS">
-            <RssIcon />
-          </a>
-        </h1>
+      <header className="mb-8 flex items-center justify-between">
+        <div>
+          <h1 className="text-2xl font-semibold tracking-tight">Blog</h1>
+          <p className="mt-1 text-sm font-light text-neutral-500">
+            {blogPostsMetadata.length} posts
+          </p>
+        </div>
+        <a
+          href="feed://madole.xyz/rss.atom"
+          title="RSS"
+          className="text-neutral-400 hover:text-neutral-900"
+        >
+          <RssIcon />
+        </a>
+      </header>
+      <div>
         {blogPostsMetadata.map((post) => (
           <IndexListItem
             title={post.title}
@@ -54,10 +63,7 @@ const BlogIndex: React.FC<BlogIndexProps> = (props) => {
             key={post.title}
           />
         ))}
-        <div className="flex justify-center">
-          Post count: {blogPostsMetadata.length}
-        </div>
-      </section>
+      </div>
     </Layout>
   );
 };

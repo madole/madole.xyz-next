@@ -1,13 +1,13 @@
 import Link from "next/link";
 
-const RssFeed = () => (
+const RssFeed = (props?: { minimal?: boolean }) => (
   <Link href={"/rss.xml"}>
     <svg
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"
       stroke="currentColor"
-      className="w-8 text-white"
+      className={props?.minimal ? "w-5 text-neutral-400 hover:text-neutral-900" : "w-8 text-white"}
     >
       <path
         strokeLinecap="round"
@@ -19,7 +19,15 @@ const RssFeed = () => (
   </Link>
 );
 
-function Footer(): React.ReactElement {
+function Footer(props?: { minimal?: boolean }): React.ReactElement {
+  if (props?.minimal) {
+    return (
+      <div className="flex w-full max-w-2xl items-center justify-between px-6 py-8 text-sm font-light text-neutral-400">
+        <span>&copy; {2021} Madole.</span>
+        <RssFeed minimal />
+      </div>
+    );
+  }
   return (
     <div className="mb-3 font-thin text-white flex flex-col items-center">
       &copy; {2021} by Madole.

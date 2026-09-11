@@ -1,12 +1,46 @@
 import * as React from "react";
 import Link from "next/link";
-import { withRouter } from "next/router";
+import { useRouter } from "next/router";
 import { useState } from "react";
 
-export const Navigation = withRouter(({ router }) => {
-  const { pathname } = router;
+export const Navigation = (props?: { minimal?: boolean }) => {
+  const router = useRouter();
+  const pathname = router?.pathname ?? "";
   const [menuOpen, setMenuOpen] = useState(false);
   const isHomepage = pathname === "/";
+  const { minimal } = props ?? {};
+
+  if (minimal) {
+    const link = "text-sm text-neutral-500 hover:text-neutral-900 hover:underline underline-offset-4";
+    const active = "text-neutral-900 underline underline-offset-4";
+    return (
+      <nav className="flex w-full max-w-2xl items-center justify-between px-6 py-6">
+        <Link href="/" className="text-sm font-semibold tracking-tight text-neutral-900">
+          madole.xyz
+        </Link>
+        <div className="flex items-center gap-5">
+          <Link href="/blog-index" className={pathname.includes("/blog") ? active : link}>
+            Blog
+          </Link>
+          <Link
+            href="/today-i-learned"
+            className={pathname.includes("/today-i-learned") ? active : link}
+          >
+            TIL
+          </Link>
+          <Link
+            href="/side-projects"
+            className={pathname.includes("/side-projects") ? active : link}
+          >
+            Projects
+          </Link>
+          <Link href="/resume" className={pathname.includes("/resume") ? active : link}>
+            Resume
+          </Link>
+        </div>
+      </nav>
+    );
+  }
 
   return (
     <>
@@ -124,4 +158,4 @@ export const Navigation = withRouter(({ router }) => {
       </nav>
     </>
   );
-});
+};

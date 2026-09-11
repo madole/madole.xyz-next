@@ -25,17 +25,17 @@ export function IndexListItem(props: Props): React.ReactElement {
   if (!slug) throw new Error("No slug provided for " + title);
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col gap-1 border-b border-neutral-200 py-6 first:pt-0 last:border-0">
       <Link
         href={addSlashPrefix(slug)}
-        className="hover:text-white hover:bg-blue-400 prose pb-2 text-lg lg:text-3xl md:font-light prose-a:no-underline md:p-1 rounded"
+        className="text-xl font-medium tracking-tight text-neutral-900 decoration-neutral-300 decoration-1 underline-offset-4 hover:underline"
       >
         {title}
       </Link>
-      <div className="md:px-2 text-sm font-light">
+      <div className="text-sm font-light text-neutral-500">
         {postDate} &mdash; {timeToRead}
       </div>
-      <div className="pt-2">{excerpt}</div>
+      {excerpt ? <div className="pt-1 text-sm text-neutral-600">{excerpt}</div> : null}
       <Tags tags={tags} />
     </div>
   );

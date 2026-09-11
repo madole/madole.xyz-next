@@ -34,7 +34,7 @@ export default function BlogPost(props: Props): React.ReactElement {
   const postDate = useLocalDate(date);
 
   return (
-    <Layout>
+    <Layout minimal>
       <Head>
         <title>{title} | Madole.xyz</title>
         <OpenGraphHeadTags
@@ -50,21 +50,21 @@ export default function BlogPost(props: Props): React.ReactElement {
           tags={tags}
         />
       </Head>
-      <section id="main-content">
-        <h1 className="prose pb-1 text-2xl md:text-4xl font-semibold text-center">
+      <header className="mb-8">
+        <h1 className="text-balance text-3xl font-semibold tracking-tight md:text-4xl">
           {title}
         </h1>
-        <div className="prose pt-2 font-light text-center">
+        <div className="mt-2 text-sm font-light text-neutral-500">
           {postDate} &mdash; {timeToRead}
         </div>
-        <article className="prose prose-slate break-words md:break-normal w-full text-pretty">
-          {/* @ts-ignore */}
-          <MDXRemote {...body} />
-        </article>
-        <div className="m-6 flex justify-center">
-          <Tags tags={tags} />
-        </div>
-      </section>
+      </header>
+      <article className="prose prose-neutral prose-a:font-normal prose-a:text-neutral-900 prose-a:underline prose-a:decoration-neutral-300 prose-a:underline-offset-4 hover:prose-a:decoration-neutral-900 w-full max-w-none break-words text-pretty">
+        {/* @ts-ignore */}
+        <MDXRemote {...body} />
+      </article>
+      <div className="mt-10 border-t border-neutral-200 pt-6">
+        <Tags tags={tags} />
+      </div>
     </Layout>
   );
 }
