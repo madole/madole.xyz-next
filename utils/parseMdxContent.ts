@@ -1,8 +1,9 @@
-import rehypePrism from "@mapbox/rehype-prism";
+import { remarkHighlightCodeBlocks } from "@tanstack/highlight/remark";
 import frontmatter from "front-matter";
 import { serialize } from "next-mdx-remote/serialize";
 import readingTime from "reading-time";
 import remarkGfm from "remark-gfm";
+import { highlighter } from "./highlighter";
 
 interface BaseMdxContent {
   title: string;
@@ -16,9 +17,8 @@ export async function parseMdxContent<T extends BaseMdxContent>(
   const timeToRead = readingTime(data.body).text;
   const compiledBody = await mdxSerialize(data.body, {
     mdxOptions: {
-      rehypePlugins: [rehypePrism],
       // @ts-ignore
-      remarkPlugins: [remarkGfm],
+      remarkPlugins: [remarkGfm, [remarkHighlightCodeBlocks, { highlighter }]],
     },
   });
   return {
