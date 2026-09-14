@@ -9,6 +9,14 @@ import Header from "../components/resume/Header";
 import { differenceInCalendarYears } from "date-fns";
 import { resumeData } from "../data/resumeData";
 
+/*
+ * resumeData is annotated as ResumeData, which types achievement ids as
+ * plain strings, so this is `string` rather than a union of the actual ids.
+ * It still beats the hardcoded union it replaced: that one silently went
+ * stale whenever an achievement was added, because the call site cast to it.
+ */
+type AchievementId = (typeof resumeData.achievements)[number]["id"];
+
 function getUrlSearchParam(searchParam: string): string | null {
   if (typeof window === "undefined") {
     return null;
@@ -39,10 +47,11 @@ function Resume(): React.ReactElement {
     "hobbies" | "social" | "tech" | null
   >(null);
 
-  // New state for lightbox
-  const [openAchievement, setOpenAchievement] = useState<
-    null | "genai" | "lightning" | "spectral" | "airquality"
-  >(null);
+  // New state for lightbox. The id type comes from the data so adding an
+  // achievement does not need a matching edit here.
+  const [openAchievement, setOpenAchievement] = useState<AchievementId | null>(
+    null
+  );
 
   useEffect(() => {
     const q = getUrlSearchParam("q");
@@ -333,15 +342,7 @@ function Resume(): React.ReactElement {
                     alt={achievement.image.alt}
                     priority={true}
                     className="cursor-pointer"
-                    onClick={() =>
-                      setOpenAchievement(
-                        achievement.id as
-                          | "genai"
-                          | "lightning"
-                          | "spectral"
-                          | "airquality"
-                      )
-                    }
+                    onClick={() => setOpenAchievement(achievement.id)}
                   />
                 </FlexCenter>
               </Card>
