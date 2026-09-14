@@ -4,6 +4,9 @@ import path from "path";
 import frontmatter from "front-matter";
 import { IndexListItem } from "../../components/IndexListItem";
 import readingTime from "reading-time";
+import Head from "next/head";
+import Link from "next/link";
+import { IndexHeader } from "../../components/IndexHeader";
 import { Layout } from "../../components/Layout/Layout";
 
 function dedupeArray<T>(arr: T[]) {
@@ -30,14 +33,26 @@ export interface TagPageProps {
 const TagPage: React.FC<TagPageProps> = (props) => {
   const { blogPostsMetadata, tag } = props;
   return (
-    <Layout>
-      <section
-        id="main-content"
-        className="w-11/12 p-8 md:py-8 md:px-20 my-4 overflow-hidden bg-white rounded lg:w-4/6 lg:shadow-lg h-full mb-6 "
-      >
-        <h1 className="prose pb-1 text-2xl font-semibold text-center lg:text-4xl">
-          Tag: {tag}
-        </h1>
+    <Layout reading>
+      <Head>
+        <title>{`#${tag}`} | Madole.xyz</title>
+        <meta name="description" content={`Posts tagged ${tag} on Madole.xyz`} />
+      </Head>
+      <IndexHeader
+        title={`#${tag}`}
+        subtitle={`${blogPostsMetadata.length} ${
+          blogPostsMetadata.length === 1 ? "post" : "posts"
+        }`}
+        action={
+          <Link
+            href="/blog-index"
+            className="text-sm text-neutral-500 hover:text-neutral-900"
+          >
+            All posts
+          </Link>
+        }
+      />
+      <div>
         {blogPostsMetadata.map((post) => (
           <IndexListItem
             title={post.title}
@@ -52,10 +67,7 @@ const TagPage: React.FC<TagPageProps> = (props) => {
             key={post.title}
           />
         ))}
-        <div className="flex justify-center">
-          Post count: {blogPostsMetadata.length}
-        </div>
-      </section>
+      </div>
     </Layout>
   );
 };
@@ -76,8 +88,12 @@ export function getStaticPaths() {
     }),
   );
   return {
+    /*
+      Lowercased to match both the comparison in getStaticProps and the hrefs
+      the Tags components emit, so a generated page finds its own posts.
+    */
     paths: tags.map(
-      (tag) => "/tag/" + tag?.split(" ").join("-").toLocaleUpperCase(),
+      (tag) => "/tag/" + tag?.split(" ").join("-").toLocaleLowerCase(),
     ),
     fallback: false,
   };
