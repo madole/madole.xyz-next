@@ -217,5 +217,69 @@ article a[href^="http"] {
   }
 }
 
+/*
+ * The resume exists as two documents: the Trello board on screen, and a
+ * conventional resume for print. Both render from the same structured data
+ * in resumeData; this only decides which one is visible.
+ *
+ * The board prints badly by nature - horizontally scrolling columns of cards
+ * clip to one page and carry app chrome like "Add another card" - so print
+ * swaps in the document a reader actually expects.
+ */
+.printable-resume {
+  display: none;
+}
 
+@media print {
+  .resume-screen {
+    display: none !important;
+  }
 
+  .printable-resume {
+    display: block;
+  }
+
+  @page {
+    margin: 14mm;
+  }
+
+  body {
+    background: #fff !important;
+  }
+
+  /*
+   * Break rules. `break-inside: avoid` is deliberately NOT used on roles or
+   * sections: the longest role is taller than a page, so the browser cannot
+   * honour it and pushes the whole block to a fresh page, buying a page of
+   * whitespace and still overflowing.
+   *
+   * Instead the small units that genuinely fit are kept whole, and headings
+   * are tied to the content that follows them.
+   */
+  .print-entry > div:first-child,
+  .print-section > h2 {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  .printable-resume li,
+  .print-subhead {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* Never strand a heading in the last line or two of a page. */
+  .print-section > h2 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  .print-section {
+    margin-bottom: 12pt;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+}

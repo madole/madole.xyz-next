@@ -6,8 +6,18 @@ import Card, { Hr, Spacer } from "../components/resume/Card";
 import CardDialog from "../components/resume/CardDialog";
 import Column from "../components/resume/Column";
 import Header from "../components/resume/Header";
+import PrintableResume from "../components/resume/PrintableResume";
+import { useBoardFilter } from "../components/resume/useBoardFilter";
 import { differenceInCalendarYears } from "date-fns";
 import { resumeData } from "../data/resumeData";
+
+/*
+ * resumeData is annotated as ResumeData, which types achievement ids as
+ * plain strings, so this is `string` rather than a union of the actual ids.
+ * It still beats the hardcoded union it replaced: that one silently went
+ * stale whenever an achievement was added, because the call site cast to it.
+ */
+type AchievementId = (typeof resumeData.achievements)[number]["id"];
 
 function getUrlSearchParam(searchParam: string): string | null {
   if (typeof window === "undefined") {
@@ -35,14 +45,17 @@ function Resume(): React.ReactElement {
   const [futureTitle, setFutureTitle] = useState("Technical Lead");
   const [futureCompany, setFutureCompany] = useState("");
 
+  const { query, setQuery, matches } = useBoardFilter("#resume-board");
+
   const [activeModal, setActiveModal] = useState<
     "hobbies" | "social" | "tech" | null
   >(null);
 
-  // New state for lightbox
-  const [openAchievement, setOpenAchievement] = useState<
-    null | "genai" | "lightning" | "spectral" | "airquality"
-  >(null);
+  // New state for lightbox. The id type comes from the data so adding an
+  // achievement does not need a matching edit here.
+  const [openAchievement, setOpenAchievement] = useState<AchievementId | null>(
+    null
+  );
 
   useEffect(() => {
     const q = getUrlSearchParam("q");
@@ -187,9 +200,21 @@ function Resume(): React.ReactElement {
         <title>Resume | Madole.xyz</title>
       </Head>
 
-      <div className="absolute inset-0 bg-trello-blue overflow-hidden animate-fadeIn">
-        <Header />
-        <div className="h-full flex overflow-x-scroll mx-2">
+      <div className="resume-screen absolute inset-0 bg-trello-blue overflow-hidden animate-fadeIn">
+        <Header query={query} onQueryChange={setQuery} />
+        {matches === 0 ? (
+          <div className="mx-4 mb-2 rounded bg-white/15 px-4 py-3 text-sm text-white">
+            No cards match &ldquo;{query}&rdquo;.{" "}
+            <button
+              type="button"
+              onClick={() => setQuery("")}
+              className="underline underline-offset-4 hover:no-underline"
+            >
+              Clear search
+            </button>
+          </div>
+        ) : null}
+        <div id="resume-board" className="resume-board h-full flex overflow-x-scroll mx-2">
           <Column title="About me">
             <Card>
               <div className="pb-1 font-bold">Engineering Experience</div>
@@ -333,15 +358,7 @@ function Resume(): React.ReactElement {
                     alt={achievement.image.alt}
                     priority={true}
                     className="cursor-pointer"
-                    onClick={() =>
-                      setOpenAchievement(
-                        achievement.id as
-                          | "genai"
-                          | "lightning"
-                          | "spectral"
-                          | "airquality"
-                      )
-                    }
+                    onClick={() => setOpenAchievement(achievement.id)}
                   />
                 </FlexCenter>
               </Card>
@@ -513,6 +530,13 @@ function Resume(): React.ReactElement {
           ))}
         </div>
       </div>
+
+      {/*
+        Hidden on screen, shown when printing - see .printable-resume in
+        globals.css. Renders the same resumeData as a conventional document,
+        because the board itself prints as clipped columns of app chrome.
+      */}
+      <PrintableResume />
     </>
   );
 }

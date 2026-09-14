@@ -247,6 +247,22 @@ export const resumeData: ResumeData = {
   },
   achievements: [
     {
+      id: "claude-architect",
+      date: "SEP 2026",
+      title: "Claude Certified Architect",
+      description: "Foundations Certification",
+      image: {
+        src: "/claude-certified-architect.png",
+        alt: "Claude Certified Architect Foundations certification badge",
+        width: 250,
+        height: 250,
+      },
+      lightboxImage: {
+        width: 600,
+        height: 600,
+      },
+    },
+    {
       id: "genai",
       date: "SEP 2025",
       title: "Google Cloud Certified",
