@@ -217,5 +217,49 @@ article a[href^="http"] {
   }
 }
 
+/*
+ * The resume exists as two documents: the Trello board on screen, and a
+ * conventional resume for print. Both render from the same structured data
+ * in resumeData; this only decides which one is visible.
+ *
+ * The board prints badly by nature - horizontally scrolling columns of cards
+ * clip to one page and carry app chrome like "Add another card" - so print
+ * swaps in the document a reader actually expects.
+ */
+.printable-resume {
+  display: none;
+}
 
+@media print {
+  .resume-screen {
+    display: none !important;
+  }
 
+  .printable-resume {
+    display: block;
+  }
+
+  @page {
+    margin: 14mm;
+  }
+
+  body {
+    background: #fff !important;
+  }
+
+  /* Keep a role and its bullets together rather than splitting mid-entry. */
+  .print-entry,
+  .print-section {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .print-section {
+    margin-bottom: 14pt;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+}
