@@ -49,6 +49,101 @@ article a[href^="http"] {
   scrollbar-color: #C5CAD2 #E5E7EB; /* thumb, background */
 }
 
+/*
+ * Mobile navigation menu.
+ *
+ * The menu stays mounted and is hidden with `display: none`, so it can
+ * animate in both directions. `transition-behavior: allow-discrete` lets
+ * `display` participate in the transition - without it the element would
+ * vanish on the first frame of the close and there would be nothing left to
+ * fade. `@starting-style` supplies the values to animate FROM on entry,
+ * since an element appearing from `display: none` has no previous style to
+ * interpolate against.
+ *
+ * Browsers without @starting-style (Safari before 17.5, Firefox before 129)
+ * skip the entry animation and show the menu immediately, which is a fine
+ * fallback - the menu still opens and closes correctly.
+ */
+.nav-menu {
+  display: none;
+  opacity: 0;
+  translate: 0 -0.5rem;
+  transition:
+    opacity 200ms ease,
+    translate 200ms ease,
+    display 200ms allow-discrete;
+}
+
+.nav-menu[data-open="true"] {
+  display: flex;
+  opacity: 1;
+  translate: 0 0;
+}
+
+@starting-style {
+  .nav-menu[data-open="true"] {
+    opacity: 0;
+    translate: 0 -0.5rem;
+  }
+}
+
+/*
+ * The row the button sits in turns white as the menu opens, so the button
+ * and the panel below it read as one surface rather than a white sheet
+ * hanging off a coloured bar.
+ */
+.nav-bar-row {
+  transition: background-color 200ms ease;
+}
+
+.nav-bar-row:has([data-open="true"]) {
+  background-color: #fdfdfd;
+}
+
+/*
+ * The bars fold into a cross, so the button reads as a toggle. They take
+ * their colour from the button so a single `color` transition carries them
+ * from white-on-gradient to black-on-white as the row turns.
+ */
+.nav-bar {
+  background-color: currentColor;
+  transition:
+    translate 200ms ease,
+    rotate 200ms ease,
+    opacity 150ms ease;
+}
+
+.nav-toggle {
+  transition: color 200ms ease;
+}
+
+.nav-toggle[data-open="true"] {
+  color: #171717;
+}
+
+[data-open="true"] > .nav-bar:nth-child(1) {
+  translate: 0 0.5rem;
+  rotate: 45deg;
+}
+
+[data-open="true"] > .nav-bar:nth-child(2) {
+  opacity: 0;
+}
+
+[data-open="true"] > .nav-bar:nth-child(3) {
+  translate: 0 -0.5rem;
+  rotate: -45deg;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-menu,
+  .nav-bar,
+  .nav-bar-row,
+  .nav-toggle {
+    transition-duration: 1ms;
+  }
+}
+
 
 
 

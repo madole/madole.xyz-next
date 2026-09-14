@@ -5,7 +5,7 @@ import Head from "next/head";
 import path from "path";
 import { Layout } from "../../components/Layout/Layout";
 import OpenGraphHeadTags from "../../components/OpenGraphHeadTags";
-import { Tags } from "../../components/Tags";
+import { RailBackLink, RailBlock, RailTags } from "../../components/PostRail";
 import { useLocalDate } from "../../hooks/useLocalDate";
 import { parseMdxContent } from "../../utils/parseMdxContent";
 
@@ -33,7 +33,17 @@ export default function BlogPost(props: Props): React.ReactElement {
   const postDate = useLocalDate(date);
 
   return (
-    <Layout>
+    <Layout
+      reading
+      rail={
+        <>
+          <RailBackLink href="/blog-index">All posts</RailBackLink>
+          <RailBlock label="Published">{postDate}</RailBlock>
+          {timeToRead ? <RailBlock label="Reading time">{timeToRead}</RailBlock> : null}
+        </>
+      }
+      railFooter={<RailTags tags={tags} />}
+    >
       <Head>
         <title>{title} | Madole.xyz</title>
         <OpenGraphHeadTags
@@ -49,21 +59,13 @@ export default function BlogPost(props: Props): React.ReactElement {
           tags={tags}
         />
       </Head>
-      <section id="main-content">
-        <h1 className="prose pb-1 text-2xl md:text-4xl font-semibold text-center">
-          {title}
-        </h1>
-        <div className="prose pt-2 font-light text-center">
-          {postDate} &mdash; {timeToRead}
-        </div>
-        <article className="prose prose-slate break-words md:break-normal w-full text-pretty">
-          {/* @ts-ignore */}
-          <MDXRemote {...body} />
-        </article>
-        <div className="m-6 flex justify-center">
-          <Tags tags={tags} />
-        </div>
-      </section>
+      <h1 className="mb-8 max-w-[680px] text-balance text-4xl font-semibold tracking-tight text-neutral-900 md:text-[44px] md:leading-[1.1]">
+        {title}
+      </h1>
+      <article className="prose prose-neutral max-w-[680px] break-words text-pretty prose-a:font-normal prose-a:text-neutral-900 prose-a:underline prose-a:decoration-neutral-300 prose-a:underline-offset-4 hover:prose-a:decoration-neutral-900">
+        {/* @ts-ignore */}
+        <MDXRemote {...body} />
+      </article>
     </Layout>
   );
 }

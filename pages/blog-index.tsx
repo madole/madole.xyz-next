@@ -5,6 +5,7 @@ import path from "path";
 import React from "react";
 import readingTime from "reading-time";
 import { IndexListItem } from "../components/IndexListItem";
+import { IndexHeader } from "../components/IndexHeader";
 import { Layout } from "../components/Layout/Layout";
 import RssIcon from "../components/RSSIcon";
 
@@ -28,18 +29,26 @@ export interface BlogIndexProps {
 const BlogIndex: React.FC<BlogIndexProps> = (props) => {
   const { blogPostsMetadata } = props;
   return (
-    <Layout isIndexPage>
+    <Layout reading>
       <Head>
         <title>Blog | Madole.xyz</title>
         <meta name="description" content="Blog index for Madole.xyz" />
       </Head>
-      <section id="main-content">
-        <h1 className="prose text-2xl font-semibold text-center lg:text-4xl flex justify-center items-center  w-full">
-          Latest Blog Posts
-          <a href="feed://madole.xyz/rss.atom" className="pl-3" title="RSS">
+      <IndexHeader
+        title="Blog"
+        subtitle={`${blogPostsMetadata.length} posts`}
+        action={
+          <a
+            href="feed://madole.xyz/rss.atom"
+            title="RSS"
+            aria-label="RSS feed"
+            className="text-neutral-500 hover:text-neutral-900"
+          >
             <RssIcon />
           </a>
-        </h1>
+        }
+      />
+      <div>
         {blogPostsMetadata.map((post) => (
           <IndexListItem
             title={post.title}
@@ -54,10 +63,7 @@ const BlogIndex: React.FC<BlogIndexProps> = (props) => {
             key={post.title}
           />
         ))}
-        <div className="flex justify-center">
-          Post count: {blogPostsMetadata.length}
-        </div>
-      </section>
+      </div>
     </Layout>
   );
 };
