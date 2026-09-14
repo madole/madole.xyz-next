@@ -5,6 +5,7 @@ import path from "path";
 import React from "react";
 import readingTime from "reading-time";
 import { IndexListItem } from "../components/IndexListItem";
+import { IndexHeader } from "../components/IndexHeader";
 import { Layout } from "../components/Layout/Layout";
 import RssIcon from "../components/RSSIcon";
 
@@ -28,26 +29,25 @@ export interface BlogIndexProps {
 const BlogIndex: React.FC<BlogIndexProps> = (props) => {
   const { blogPostsMetadata } = props;
   return (
-    <Layout minimal>
+    <Layout reading>
       <Head>
         <title>Blog | Madole.xyz</title>
         <meta name="description" content="Blog index for Madole.xyz" />
       </Head>
-      <header className="mb-8 flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-semibold tracking-tight">Blog</h1>
-          <p className="mt-1 text-sm font-light text-neutral-500">
-            {blogPostsMetadata.length} posts
-          </p>
-        </div>
-        <a
-          href="feed://madole.xyz/rss.atom"
-          title="RSS"
-          className="text-neutral-400 hover:text-neutral-900"
-        >
-          <RssIcon />
-        </a>
-      </header>
+      <IndexHeader
+        title="Blog"
+        subtitle={`${blogPostsMetadata.length} posts`}
+        action={
+          <a
+            href="feed://madole.xyz/rss.atom"
+            title="RSS"
+            aria-label="RSS feed"
+            className="text-neutral-500 hover:text-neutral-900"
+          >
+            <RssIcon />
+          </a>
+        }
+      />
       <div>
         {blogPostsMetadata.map((post) => (
           <IndexListItem

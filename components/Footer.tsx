@@ -1,13 +1,13 @@
 import Link from "next/link";
 
-const RssFeed = (props?: { minimal?: boolean }) => (
-  <Link href={"/rss.xml"}>
+const RssFeed = (props?: { reading?: boolean }) => (
+  <Link href={"/rss.xml"} aria-label="RSS feed">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"
       stroke="currentColor"
-      className={props?.minimal ? "w-5 text-neutral-400 hover:text-neutral-900" : "w-8 text-white"}
+      className={props?.reading ? "w-5 text-neutral-500 hover:text-neutral-900" : "w-8 text-white"}
     >
       <path
         strokeLinecap="round"
@@ -19,13 +19,25 @@ const RssFeed = (props?: { minimal?: boolean }) => (
   </Link>
 );
 
-function Footer(props?: { minimal?: boolean }): React.ReactElement {
-  if (props?.minimal) {
+function Footer(props?: { reading?: boolean }): React.ReactElement {
+  if (props?.reading) {
     return (
-      <div className="flex w-full max-w-2xl items-center justify-between px-6 py-8 text-sm font-light text-neutral-400">
-        <span>&copy; {2021} Madole.</span>
-        <RssFeed minimal />
-      </div>
+      <footer className="border-t border-neutral-200">
+        <div className="mx-auto flex w-full max-w-[1060px] items-center justify-between px-6 py-7 text-sm text-neutral-500 md:px-14">
+          <span>&copy; {2021} by Madole.</span>
+          <div className="flex items-center gap-5">
+            <a
+              href="https://github.com/madole"
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-neutral-900"
+            >
+              GitHub
+            </a>
+            <RssFeed reading />
+          </div>
+        </div>
+      </footer>
     );
   }
   return (
