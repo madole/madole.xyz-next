@@ -127,7 +127,7 @@ export const PrintableResume = (): React.ReactElement => {
 
               {role.experience?.length ? (
                 <div className="mt-2">
-                  <div className="font-semibold">Selected work</div>
+                  <div className="print-subhead font-semibold">Selected work</div>
                   <Bullets
                     items={role.experience.map((item) => ({
                       text: item.link
@@ -145,14 +145,14 @@ export const PrintableResume = (): React.ReactElement => {
 
               {role.notableProjects?.length ? (
                 <div className="mt-1.5">
-                  <div className="font-semibold">Notable projects</div>
+                  <div className="print-subhead font-semibold">Notable projects</div>
                   <Bullets items={role.notableProjects} />
                 </div>
               ) : null}
 
               {role.skills?.length ? (
                 <div className="mt-2">
-                  <div className="font-semibold">Skills</div>
+                  <div className="print-subhead font-semibold">Skills</div>
                   <Bullets
                     items={role.skills.map((skill) => ({
                       text: skill.text,

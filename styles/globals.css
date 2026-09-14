@@ -247,15 +247,35 @@ article a[href^="http"] {
     background: #fff !important;
   }
 
-  /* Keep a role and its bullets together rather than splitting mid-entry. */
-  .print-entry,
-  .print-section {
+  /*
+   * Break rules. `break-inside: avoid` is deliberately NOT used on roles or
+   * sections: the longest role is taller than a page, so the browser cannot
+   * honour it and pushes the whole block to a fresh page, buying a page of
+   * whitespace and still overflowing.
+   *
+   * Instead the small units that genuinely fit are kept whole, and headings
+   * are tied to the content that follows them.
+   */
+  .print-entry > div:first-child,
+  .print-section > h2 {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  .printable-resume li,
+  .print-subhead {
     break-inside: avoid;
     page-break-inside: avoid;
   }
 
+  /* Never strand a heading in the last line or two of a page. */
+  .print-section > h2 {
+    orphans: 3;
+    widows: 3;
+  }
+
   .print-section {
-    margin-bottom: 14pt;
+    margin-bottom: 12pt;
   }
 
   a {
