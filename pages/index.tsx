@@ -206,7 +206,8 @@ const Index: React.FC = () => {
       >
         {rocketMode === "on" ? (
           <p className="animate-toast rounded-full bg-black/60 px-4 py-2 text-sm text-white shadow-lg backdrop-blur">
-            Rocket mode. Arrows to fly, coast near Earth to orbit, Esc to leave.
+            Rocket mode. Arrows to fly, coast near Earth to orbit, B to barrel
+            roll, Esc to leave.
           </p>
         ) : hintFlying ? (
           /* The banner is painted into WebGL, so it does not exist for a

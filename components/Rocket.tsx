@@ -56,6 +56,9 @@ const HEADING_MIN_SPEED = 0.15;
 /** How fast z eases back to the flight plane after leaving orbit, per second. */
 const DEPTH_RETURN_RATE = 5;
 
+/** Seconds a full barrel roll takes when B is pressed. */
+const ROLL_DURATION = 0.75;
+
 /** Seconds the entrance tween takes to bring the rocket up from the bottom edge. */
 const LAUNCH_DURATION = 0.9;
 /** Where the entrance ends, as a fraction of the half-height below centre. */
@@ -201,6 +204,7 @@ const Rocket: React.FC<RocketProps> = ({
   earthTrackRef,
 }) => {
   const shipRef = useRef<Group>(null);
+  const rollRef = useRef<Group>(null);
   const nozzleRef = useRef<Group>(null);
   const flameRef = useRef<Mesh>(null);
   const trailRef = useRef<MeshLineGeometry>(null);
@@ -213,6 +217,9 @@ const Rocket: React.FC<RocketProps> = ({
   const frameCount = useRef(0);
   const styledMaterial = useRef<Material | null>(null);
   const exited = useRef(false);
+  /** Barrel roll: elapsed seconds into the current roll, and whether one is running. */
+  const rollElapsed = useRef(0);
+  const rolling = useRef(false);
 
   const anchor = useRef<EarthAnchor>({ valid: false, cx: 0, cy: 0, radius: 0 });
   /** Cleared on capture and escape; set again once the rocket leaves the ring. */
@@ -278,11 +285,20 @@ const Rocket: React.FC<RocketProps> = ({
    * preventDefault only while the rocket is mounted: otherwise arrows would
    * stop scrolling the page for everyone, and Lighthouse would never see this
    * listener anyway because the component is not mounted until activation.
+   *
+   * B is a one-shot barrel roll rather than a held control, so it is handled
+   * on keydown and restarts the tween if pressed again mid-roll.
    */
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
-      if (!ARROW_KEYS.has(event.key)) return;
       if (event.ctrlKey || event.metaKey || event.altKey) return;
+      if (event.key.toLowerCase() === "b") {
+        if (phase.current === "exiting") return;
+        rolling.current = true;
+        rollElapsed.current = 0;
+        return;
+      }
+      if (!ARROW_KEYS.has(event.key)) return;
       event.preventDefault();
       // Recorded in every phase, consumed only while flying: a key pressed
       // during the launch tween would otherwise never register, since a held
@@ -478,6 +494,19 @@ const Rocket: React.FC<RocketProps> = ({
     const turn = 1 - Math.exp(-TURN_RATE * dt);
     ship.rotation.z += angleDelta(ship.rotation.z, want) * turn;
 
+    // Barrel roll: one eased turn about the nose axis (local +Y), nested
+    // inside the ship group so it follows the heading rather than fighting it.
+    const roll = rollRef.current;
+    if (rolling.current && roll) {
+      rollElapsed.current += dt;
+      const t = Math.min(1, rollElapsed.current / ROLL_DURATION);
+      roll.rotation.y = easeInOutCubic(t) * Math.PI * 2;
+      if (t >= 1) {
+        rolling.current = false;
+        roll.rotation.y = 0;
+      }
+    }
+
     // Partial perspective compensation, see DEPTH_SCALE_POWER.
     const distance = camera.position.z - ship.position.z;
     ship.scale.setScalar(
@@ -490,6 +519,7 @@ const Rocket: React.FC<RocketProps> = ({
       const burning =
         phase.current === "launching" ||
         phase.current === "exiting" ||
+        rolling.current ||
         (phase.current === "flying" && held.current.size > 0);
       const base = burning ? 1 : 0.35;
       const flicker = 0.85 + 0.15 * Math.sin(state.clock.elapsedTime * 47);
@@ -547,7 +577,9 @@ const Rocket: React.FC<RocketProps> = ({
       />
 
       <group ref={shipRef} position={[0, -100, FLIGHT_Z]} scale={SHIP_SCALE}>
-        <RocketMesh nozzleRef={nozzleRef} flameRef={flameRef} />
+        <group ref={rollRef}>
+          <RocketMesh nozzleRef={nozzleRef} flameRef={flameRef} />
+        </group>
       </group>
     </group>
   );
