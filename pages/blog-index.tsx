@@ -1,6 +1,7 @@
 import frontmatter from "front-matter";
 import * as fs from "fs";
 import Head from "next/head";
+import Link from "next/link";
 import path from "path";
 import React from "react";
 import readingTime from "reading-time";
@@ -38,14 +39,22 @@ const BlogIndex: React.FC<BlogIndexProps> = (props) => {
         title="Blog"
         subtitle={`${blogPostsMetadata.length} posts`}
         action={
-          <a
-            href="feed://madole.xyz/rss.atom"
-            title="RSS"
-            aria-label="RSS feed"
-            className="text-neutral-500 hover:text-neutral-900"
-          >
-            <RssIcon />
-          </a>
+          <div className="flex items-center gap-4">
+            <Link
+              href="/tags"
+              className="text-sm text-neutral-400 underline-offset-4 hover:text-neutral-900 hover:underline"
+            >
+              Tags
+            </Link>
+            <a
+              href="feed://madole.xyz/rss.atom"
+              title="RSS"
+              aria-label="RSS feed"
+              className="text-neutral-500 hover:text-neutral-900"
+            >
+              <RssIcon />
+            </a>
+          </div>
         }
       />
       <div>
