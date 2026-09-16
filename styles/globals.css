@@ -44,9 +44,8 @@ article a[href^="http"] {
   box-sizing: border-box;
 }
 
-
 .scroll-container {
-  scrollbar-color: #C5CAD2 #E5E7EB; /* thumb, background */
+  scrollbar-color: #c5cad2 #e5e7eb; /* thumb, background */
 }
 
 /*
@@ -144,10 +143,6 @@ article a[href^="http"] {
   }
 }
 
-
-
-
-
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -203,10 +198,6 @@ article a[href^="http"] {
     --chart-5: 340 75% 55%;
   }
 }
-
-
-
-
 
 @layer base {
   * {

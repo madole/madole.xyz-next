@@ -1,5 +1,6 @@
 import Link from "next/link";
 import * as React from "react";
+import { tagItems } from "../utils/tags";
 
 /*
  * A labelled fact in the post rail.
@@ -54,15 +55,21 @@ export const RailBackLink = (props: {
       strokeWidth={2}
       aria-hidden="true"
     >
-      <path strokeLinecap="round" strokeLinejoin="round" d="M19 12H5m0 0l7 7m-7-7l7-7" />
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M19 12H5m0 0l7 7m-7-7l7-7"
+      />
     </svg>
     {props.children}
   </Link>
 );
 
-export const RailTags = (props: { tags?: string[] }): React.ReactElement | null => {
-  const { tags } = props;
-  if (!tags?.length) return null;
+export const RailTags = (props: {
+  tags?: string[];
+}): React.ReactElement | null => {
+  const tags = tagItems(props.tags);
+  if (!tags.length) return null;
   return (
     /*
       Below lg this sits after the article, so it gets a rule to separate it
@@ -74,13 +81,13 @@ export const RailTags = (props: { tags?: string[] }): React.ReactElement | null 
         Tags
       </span>
       <ul className="flex flex-row flex-wrap gap-x-3 gap-y-1 lg:flex-col lg:gap-1.5">
-        {tags.map((tag) => (
-          <li key={tag}>
+        {tags.map(({ name, slug }) => (
+          <li key={slug}>
             <Link
-              href={`/tag/${tag.split(" ").join("-")}`}
+              href={`/tag/${slug}`}
               className="text-sm text-neutral-600 underline-offset-4 hover:text-neutral-900 hover:underline"
             >
-              #{tag}
+              #{name}
             </Link>
           </li>
         ))}

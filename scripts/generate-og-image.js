@@ -4,8 +4,8 @@ const sharp = require("sharp");
 const yaml = require("js-yaml");
 const frontMatter = require("front-matter");
 
-const TITLE_LINE_SPACING = 8
-const SITE_NAME_SPACING = 5
+const TITLE_LINE_SPACING = 8;
+const SITE_NAME_SPACING = 5;
 
 const [slug, imageUrl] = process.argv.slice(2);
 
@@ -33,7 +33,9 @@ const generateImage = async () => {
       imageBuffer = await response.arrayBuffer();
     } else {
       // Local file path
-      const localPath = path.isAbsolute(imageUrl) ? imageUrl : path.join(process.cwd(), imageUrl);
+      const localPath = path.isAbsolute(imageUrl)
+        ? imageUrl
+        : path.join(process.cwd(), imageUrl);
       imageBuffer = fs.readFileSync(localPath);
     }
 
@@ -86,7 +88,7 @@ const generateImage = async () => {
         ${splitNewLineTitle
           .map(
             (line, i) =>
-              `<text x="50%" y="${50 + i * TITLE_LINE_SPACING}%" dominant-baseline="middle" text-anchor="middle" class="title">${line.toUpperCase()}</text>`
+              `<text x="50%" y="${50 + i * TITLE_LINE_SPACING}%" dominant-baseline="middle" text-anchor="middle" class="title">${line.toUpperCase()}</text>`,
           )
           .join("\n")}
         <text x="50%" y="${60 + splitNewLineTitle.length * SITE_NAME_SPACING}%" dominant-baseline="middle" text-anchor="middle" class="site-name">MADOLE.XYZ</text>
@@ -98,7 +100,7 @@ const generateImage = async () => {
       process.cwd(),
       "public",
       "og",
-      `${slug}.jpg`
+      `${slug}.jpg`,
     );
 
     await sharp(optimizedBackgroundBuffer)

@@ -49,7 +49,7 @@ export const AtmosphereMaterial = shaderMaterial(
       float alpha = fresnel * uIntensity * mix(0.12, 1.0, daylight);
       gl_FragColor = vec4(uColor, clamp(alpha, 0.0, 1.0));
     }
-  `
+  `,
 );
 
 extend({ AtmosphereMaterial });

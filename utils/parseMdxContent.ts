@@ -11,7 +11,7 @@ interface BaseMdxContent {
 }
 export async function parseMdxContent<T extends BaseMdxContent>(
   content: string,
-  mdxSerialize: typeof serialize
+  mdxSerialize: typeof serialize,
 ) {
   const data = frontmatter<T>(content);
   const timeToRead = readingTime(data.body).text;

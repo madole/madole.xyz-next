@@ -3,7 +3,7 @@ import { twMerge } from "tailwind-merge";
 
 type Props = {
   children: React.ReactNode;
-} & React.ComponentPropsWithoutRef<'pre'>;
+} & React.ComponentPropsWithoutRef<"pre">;
 
 const Pre = ({ children, className, ...props }: Props) => {
   return (

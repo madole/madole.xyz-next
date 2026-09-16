@@ -195,7 +195,7 @@ const SideProjects = () => {
   useMultiIntersectionObserver(
     observerRef,
     "[data-side-project=true]",
-    addInViewCallback
+    addInViewCallback,
   );
 
   return (

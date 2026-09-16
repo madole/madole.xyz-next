@@ -5,7 +5,11 @@ import { MobileMenu, MobileMenuLink } from "./MobileMenu";
 
 const NAV_LINKS: MobileMenuLink[] = [
   { href: "/blog-index", label: "Blog", match: "/blog" },
-  { href: "/today-i-learned", label: "Today I learned", match: "/today-i-learned" },
+  {
+    href: "/today-i-learned",
+    label: "Today I learned",
+    match: "/today-i-learned",
+  },
   { href: "/side-projects", label: "Side Projects", match: "/side-projects" },
   { href: "/resume", label: "Resume", match: "/resume" },
 ];
@@ -36,7 +40,10 @@ export const Navigation = (props?: { variant?: "dark" | "light" }) => {
         */}
         <div className="nav-bar-row flex w-full items-center justify-end px-4 py-4 md:px-6">
           <nav className="hidden items-center gap-6 md:flex">
-            <Link href="/" className="text-sm text-neutral-500 hover:text-neutral-900">
+            <Link
+              href="/"
+              className="text-sm text-neutral-500 hover:text-neutral-900"
+            >
               Home
             </Link>
             {NAV_LINKS.map((link) => {
@@ -102,7 +109,10 @@ export const Navigation = (props?: { variant?: "dark" | "light" }) => {
               pathname.includes(link.match) ? "bg-blue-600 shadow-lg" : ""
             }`}
           >
-            <Link href={link.href} className="whitespace-nowrap text-white hover:underline">
+            <Link
+              href={link.href}
+              className="whitespace-nowrap text-white hover:underline"
+            >
               {link.label}
             </Link>
           </div>

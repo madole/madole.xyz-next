@@ -38,7 +38,8 @@ const TIMEOUT = 45_000;
 /** Visible Earth record pages, scraped when the direct candidates fail. */
 const RECORDS = {
   day: "https://visibleearth.nasa.gov/images/73909/december-blue-marble-next-generation-w-topography-and-bathymetry",
-  night: "https://visibleearth.nasa.gov/images/144898/earth-at-night-black-marble-2016-color-maps",
+  night:
+    "https://visibleearth.nasa.gov/images/144898/earth-at-night-black-marble-2016-color-maps",
   clouds: "https://visibleearth.nasa.gov/images/57747/blue-marble-clouds",
   topo: "https://visibleearth.nasa.gov/images/73934/topography",
 };
@@ -77,10 +78,17 @@ function withTimeout(ms) {
  * the ETIMEDOUTs seen on the 73909 and 73934 paths.
  */
 async function probeUrl(url) {
-  for (const init of [{ method: "HEAD" }, { method: "GET", headers: { Range: "bytes=0-0" } }]) {
+  for (const init of [
+    { method: "HEAD" },
+    { method: "GET", headers: { Range: "bytes=0-0" } },
+  ]) {
     const t = withTimeout(TIMEOUT);
     try {
-      const res = await fetch(url, { ...init, redirect: "follow", signal: t.signal });
+      const res = await fetch(url, {
+        ...init,
+        redirect: "follow",
+        signal: t.signal,
+      });
       t.done();
       if (res.ok || res.status === 206) {
         const range = res.headers.get("content-range");
@@ -93,7 +101,12 @@ async function probeUrl(url) {
     } catch (err) {
       t.done();
       if (init.method === "GET") {
-        return { failed: err.name === "AbortError" ? "timeout" : err.cause?.code || err.message };
+        return {
+          failed:
+            err.name === "AbortError"
+              ? "timeout"
+              : err.cause?.code || err.message,
+        };
       }
     }
   }
@@ -115,16 +128,23 @@ async function discover(name) {
     const html = await res.text();
     const found = [
       ...new Set(
-        [...html.matchAll(/https:\/\/(?:eoimages\.gsfc|assets\.science)\.nasa\.gov\/(?!dynamicimage)[^\s"'<>)]+\.(?:jpg|jpeg|png|tif)/gi)]
-          .map((m) => m[0])
+        [
+          ...html.matchAll(
+            /https:\/\/(?:eoimages\.gsfc|assets\.science)\.nasa\.gov\/(?!dynamicimage)[^\s"'<>)]+\.(?:jpg|jpeg|png|tif)/gi,
+          ),
+        ].map((m) => m[0]),
       ),
     ];
-    console.log(`  ${name.padEnd(10)} record page lists ${found.length} asset(s):`);
+    console.log(
+      `  ${name.padEnd(10)} record page lists ${found.length} asset(s):`,
+    );
     found.forEach((u) => console.log(`             ${u}`));
     return found;
   } catch (err) {
     t.done();
-    console.log(`  ${name.padEnd(10)} record page failed (${err.name === "AbortError" ? "timeout" : err.message})`);
+    console.log(
+      `  ${name.padEnd(10)} record page failed (${err.name === "AbortError" ? "timeout" : err.message})`,
+    );
     return [];
   }
 }
@@ -133,7 +153,9 @@ async function resolveAsset(name) {
   for (const url of CANDIDATES[name] ?? []) {
     const r = await probeUrl(url);
     if (r.url) {
-      console.log(`  ${name.padEnd(10)} OK   ${mb(r.size).padStart(8)}  via ${r.via}  ${url}`);
+      console.log(
+        `  ${name.padEnd(10)} OK   ${mb(r.size).padStart(8)}  via ${r.via}  ${url}`,
+      );
       return r;
     }
     console.log(`  ${name.padEnd(10)} ${String(r.failed).padEnd(12)} ${url}`);
@@ -144,7 +166,9 @@ async function resolveAsset(name) {
   for (const url of await discover(name)) {
     const r = await probeUrl(url);
     if (r.url) {
-      console.log(`  ${name.padEnd(10)} OK   ${mb(r.size).padStart(8)}  discovered  ${url}`);
+      console.log(
+        `  ${name.padEnd(10)} OK   ${mb(r.size).padStart(8)}  discovered  ${url}`,
+      );
       return r;
     }
   }
@@ -250,10 +274,12 @@ async function deriveRoughness(dayFile, width) {
   const fraction = weightedWater / weightedTotal;
   console.log(
     `  roughness  derived from albedo: ${(fraction * 100).toFixed(1)}% ocean by area ` +
-      `(Earth is 70.8%)`
+      `(Earth is 70.8%)`,
   );
   if (fraction < 0.6 || fraction > 0.8) {
-    console.log("  roughness  WARNING: outside the expected range, check the result visually");
+    console.log(
+      "  roughness  WARNING: outside the expected range, check the result visually",
+    );
   }
   // A light blur hides JPEG blocking along coastlines. Stay in raw single-channel
   // form: sharp's png() encoder would widen this to 3-channel sRGB and the packing
@@ -274,7 +300,8 @@ async function main() {
   }
 
   const resolved = {};
-  for (const name of Object.keys(CANDIDATES)) resolved[name] = await resolveAsset(name);
+  for (const name of Object.keys(CANDIDATES))
+    resolved[name] = await resolveAsset(name);
 
   const missing = REQUIRED.filter((n) => !resolved[n]);
   if (missing.length) {
@@ -284,10 +311,14 @@ async function main() {
     return;
   }
   if (!resolved.topo) {
-    console.log("\n  topo unavailable - packing a flat bump channel; the material omits bumpMap.");
+    console.log(
+      "\n  topo unavailable - packing a flat bump channel; the material omits bumpMap.",
+    );
   }
   if (PROBE) {
-    console.log("\nAll required sources resolve. Re-run without --probe to download and process.");
+    console.log(
+      "\nAll required sources resolve. Re-run without --probe to download and process.",
+    );
     return;
   }
 
@@ -309,23 +340,41 @@ async function main() {
   await sharp(day, { raw: { width: DAY_W, height: DAY_H, channels: 3 } })
     .webp({ quality: 78 })
     .toFile(path.join(OUT, "earth-day-2048.webp"));
-  await sharp(files.night).resize(2048, 1024).webp({ quality: 80 })
+  await sharp(files.night)
+    .resize(2048, 1024)
+    .webp({ quality: 80 })
     .toFile(path.join(OUT, "earth-night-2048.webp"));
 
   const W = 1024;
   const H = W / 2;
   const flat = Buffer.alloc(W * H, 0);
   const bump = files.topo
-    ? await sharp(files.topo).resize(W, H).greyscale().toColourspace("b-w").raw().toBuffer()
+    ? await sharp(files.topo)
+        .resize(W, H)
+        .greyscale()
+        .toColourspace("b-w")
+        .raw()
+        .toBuffer()
     : flat;
   const rough = await deriveRoughness(files.day, W);
-  const cloud = await sharp(files.clouds).resize(W, H).greyscale().toColourspace("b-w").raw().toBuffer();
+  const cloud = await sharp(files.clouds)
+    .resize(W, H)
+    .greyscale()
+    .toColourspace("b-w")
+    .raw()
+    .toBuffer();
 
   // Each source must be exactly one byte per pixel or the packing loop below
   // silently reads with the wrong stride and the channel comes out striped.
-  for (const [name, buf] of [["bump", bump], ["roughness", rough], ["clouds", cloud]]) {
+  for (const [name, buf] of [
+    ["bump", bump],
+    ["roughness", rough],
+    ["clouds", cloud],
+  ]) {
     if (buf.length !== W * H) {
-      throw new Error(`${name}: expected ${W * H} bytes (1 channel), got ${buf.length}`);
+      throw new Error(
+        `${name}: expected ${W * H} bytes (1 channel), got ${buf.length}`,
+      );
     }
   }
 
@@ -341,13 +390,21 @@ async function main() {
 
   console.log("\nWrote to public/earth/:");
   let total = 0;
-  for (const f of ["earth-day-2048.webp", "earth-night-2048.webp", "earth-brc-1024.webp"]) {
+  for (const f of [
+    "earth-day-2048.webp",
+    "earth-night-2048.webp",
+    "earth-brc-1024.webp",
+  ]) {
     const s = fs.statSync(path.join(OUT, f)).size;
     total += s;
     console.log(`  ${f.padEnd(24)} ${kb(s).padStart(8)}`);
   }
-  console.log(`  ${"TOTAL".padEnd(24)} ${kb(total).padStart(8)}   (replacing 3527KB)`);
-  console.log(`  bumpMap: ${files.topo ? "packed in R" : "not available, R is flat"}`);
+  console.log(
+    `  ${"TOTAL".padEnd(24)} ${kb(total).padStart(8)}   (replacing 3527KB)`,
+  );
+  console.log(
+    `  bumpMap: ${files.topo ? "packed in R" : "not available, R is flat"}`,
+  );
 
   if (!KEEP) {
     fs.rmSync(CACHE, { recursive: true, force: true });
@@ -355,4 +412,7 @@ async function main() {
   }
 }
 
-main().catch((e) => { console.error("\n" + e.stack); process.exit(1); });
+main().catch((e) => {
+  console.error("\n" + e.stack);
+  process.exit(1);
+});

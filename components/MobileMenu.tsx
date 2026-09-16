@@ -29,7 +29,13 @@ export const MobileMenu = (props: {
   includeHome?: boolean;
   className?: string;
 }): React.ReactElement => {
-  const { links, pathname, barTone = "dark", includeHome = true, className = "" } = props;
+  const {
+    links,
+    pathname,
+    barTone = "dark",
+    includeHome = true,
+    className = "",
+  } = props;
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
 
@@ -63,7 +69,8 @@ export const MobileMenu = (props: {
     them to black as the row behind turns white - see .nav-toggle in
     globals.css.
   */
-  const closedBarColor = barTone === "light" ? "text-white" : "text-neutral-900";
+  const closedBarColor =
+    barTone === "light" ? "text-white" : "text-neutral-900";
   const linkClass = "py-2 text-base text-neutral-500 hover:text-neutral-900";
   const activeLinkClass = "py-2 text-base font-medium text-neutral-900";
 

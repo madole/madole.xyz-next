@@ -39,7 +39,9 @@ export default function BlogPost(props: Props): React.ReactElement {
         <>
           <RailBackLink href="/blog-index">All posts</RailBackLink>
           <RailBlock label="Published">{postDate}</RailBlock>
-          {timeToRead ? <RailBlock label="Reading time">{timeToRead}</RailBlock> : null}
+          {timeToRead ? (
+            <RailBlock label="Reading time">{timeToRead}</RailBlock>
+          ) : null}
         </>
       }
       railFooter={<RailTags tags={tags} />}
@@ -90,7 +92,7 @@ export async function getStaticProps({ params }: { params: { slug: string } }) {
   const slug = params.slug + ".mdx";
   const content = fs.readFileSync(
     path.join(process.cwd(), "content/blog", slug),
-    "utf8"
+    "utf8",
   );
   const data = await parseMdxContent<PostAttributes>(content, serialize);
   return { props: { data } };

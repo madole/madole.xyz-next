@@ -63,8 +63,8 @@ export const PrintableResume = (): React.ReactElement => {
   const hours = new Intl.NumberFormat().format(
     differenceInCalendarYears(
       new Date(),
-      new Date(aboutMe.engineeringExperience.startDate)
-    ) * aboutMe.engineeringExperience.hoursPerYear
+      new Date(aboutMe.engineeringExperience.startDate),
+    ) * aboutMe.engineeringExperience.hoursPerYear,
   );
 
   return (
@@ -87,8 +87,8 @@ export const PrintableResume = (): React.ReactElement => {
       <Section title="Profile">
         <p>
           Software engineer with approximately {hours} hours of engineering
-          experience, specialising in geospatial and 3D web applications and
-          the teams that build them.
+          experience, specialising in geospatial and 3D web applications and the
+          teams that build them.
         </p>
       </Section>
 
@@ -127,7 +127,9 @@ export const PrintableResume = (): React.ReactElement => {
 
               {role.experience?.length ? (
                 <div className="mt-2">
-                  <div className="print-subhead font-semibold">Selected work</div>
+                  <div className="print-subhead font-semibold">
+                    Selected work
+                  </div>
                   <Bullets
                     items={role.experience.map((item) => ({
                       text: item.link
@@ -145,7 +147,9 @@ export const PrintableResume = (): React.ReactElement => {
 
               {role.notableProjects?.length ? (
                 <div className="mt-1.5">
-                  <div className="print-subhead font-semibold">Notable projects</div>
+                  <div className="print-subhead font-semibold">
+                    Notable projects
+                  </div>
                   <Bullets items={role.notableProjects} />
                 </div>
               ) : null}

@@ -1,6 +1,5 @@
 import { useState } from "react";
 
-
 const ClickyThing = () => {
   const [count, setCount] = useState(0);
   return (

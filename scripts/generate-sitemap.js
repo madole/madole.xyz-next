@@ -1,7 +1,6 @@
-
-const fs = require('fs');
-const path = require('path');
-const frontmatter = require('front-matter');
+const fs = require("fs");
+const path = require("path");
+const frontmatter = require("front-matter");
 
 const getMdxFiles = (dir) => {
   let files = [];
@@ -10,7 +9,7 @@ const getMdxFiles = (dir) => {
     const fullPath = path.join(dir, item.name);
     if (item.isDirectory()) {
       files = [...files, ...getMdxFiles(fullPath)];
-    } else if (path.extname(item.name) === '.mdx') {
+    } else if (path.extname(item.name) === ".mdx") {
       files.push(fullPath);
     }
   }
@@ -18,31 +17,36 @@ const getMdxFiles = (dir) => {
 };
 
 async function generateSitemap() {
-  const pagesDir = path.join(process.cwd(), 'pages');
-  const contentDir = path.join(process.cwd(), 'content');
-  const publicDir = path.join(process.cwd(), 'public');
+  const pagesDir = path.join(process.cwd(), "pages");
+  const contentDir = path.join(process.cwd(), "content");
+  const publicDir = path.join(process.cwd(), "public");
 
-  const siteUrl = 'https://madole.xyz';
+  const siteUrl = "https://madole.xyz";
 
   const staticPages = fs
     .readdirSync(pagesDir)
-    .filter((file) => !file.startsWith('_') && !file.startsWith('[') && file.endsWith('.tsx'))
+    .filter(
+      (file) =>
+        !file.startsWith("_") && !file.startsWith("[") && file.endsWith(".tsx"),
+    )
     .map((file) => {
-      const slug = file.replace('.tsx', '');
-      return `${siteUrl}/${slug === 'index' ? '' : slug}`;
+      const slug = file.replace(".tsx", "");
+      return `${siteUrl}/${slug === "index" ? "" : slug}`;
     });
 
-  const blogPosts = getMdxFiles(path.join(contentDir, 'blog')).map((file) => {
-    const fileContent = fs.readFileSync(file, 'utf8');
+  const blogPosts = getMdxFiles(path.join(contentDir, "blog")).map((file) => {
+    const fileContent = fs.readFileSync(file, "utf8");
     const { attributes } = frontmatter(fileContent);
     return `${siteUrl}/blog/${attributes.slug}`;
   });
-  
-  const tilPosts = getMdxFiles(path.join(contentDir, 'today-i-learned')).map((file) => {
-    const fileContent = fs.readFileSync(file, 'utf8');
-    const { attributes } = frontmatter(fileContent);
-    return `${siteUrl}/today-i-learned/${attributes.slug}`;
-  });
+
+  const tilPosts = getMdxFiles(path.join(contentDir, "today-i-learned")).map(
+    (file) => {
+      const fileContent = fs.readFileSync(file, "utf8");
+      const { attributes } = frontmatter(fileContent);
+      return `${siteUrl}/today-i-learned/${attributes.slug}`;
+    },
+  );
 
   const allUrls = [...staticPages, ...blogPosts, ...tilPosts];
 
@@ -59,10 +63,10 @@ async function generateSitemap() {
     </url>
   `;
     })
-    .join('')}
+    .join("")}
 </urlset>`;
 
-  fs.writeFileSync(path.join(publicDir, 'sitemap.xml'), sitemap);
+  fs.writeFileSync(path.join(publicDir, "sitemap.xml"), sitemap);
 }
 
 generateSitemap();

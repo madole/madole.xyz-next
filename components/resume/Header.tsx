@@ -109,7 +109,12 @@ const Header = (props: Props): React.ReactElement => {
           ) : null}
         </div>
 
-        <Link href="/" aria-label="Back to madole.xyz" title="Home" className={iconButton}>
+        <Link
+          href="/"
+          aria-label="Back to madole.xyz"
+          title="Home"
+          className={iconButton}
+        >
           <Home className="h-5 w-5" aria-hidden="true" />
         </Link>
 
@@ -158,7 +163,10 @@ const Header = (props: Props): React.ReactElement => {
                   onClick={() => setMenuOpen(false)}
                   className="flex items-center gap-3 px-3 py-2 text-sm text-neutral-700 hover:bg-neutral-100"
                 >
-                  <Icon className="h-4 w-4 text-neutral-500" aria-hidden="true" />
+                  <Icon
+                    className="h-4 w-4 text-neutral-500"
+                    aria-hidden="true"
+                  />
                   {label}
                 </a>
               ))}
@@ -168,7 +176,10 @@ const Header = (props: Props): React.ReactElement => {
                 onClick={() => setMenuOpen(false)}
                 className="flex items-center gap-3 px-3 py-2 text-sm text-neutral-700 hover:bg-neutral-100"
               >
-                <MailIcon className="h-4 w-4 text-neutral-500" aria-hidden="true" />
+                <MailIcon
+                  className="h-4 w-4 text-neutral-500"
+                  aria-hidden="true"
+                />
                 Email me
               </a>
               <div className="my-1 h-px bg-neutral-200" />
@@ -181,7 +192,10 @@ const Header = (props: Props): React.ReactElement => {
                 }}
                 className="flex w-full items-center gap-3 px-3 py-2 text-left text-sm text-neutral-700 hover:bg-neutral-100"
               >
-                <Printer className="h-4 w-4 text-neutral-500" aria-hidden="true" />
+                <Printer
+                  className="h-4 w-4 text-neutral-500"
+                  aria-hidden="true"
+                />
                 Print / save as PDF
               </button>
             </div>

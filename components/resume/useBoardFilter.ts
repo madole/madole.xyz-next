@@ -19,9 +19,11 @@ export function useBoardFilter(boardSelector: string) {
     const board = document.querySelector(boardSelector);
     if (!board) return;
 
-    const cards = Array.from(board.querySelectorAll<HTMLElement>("[data-card]"));
+    const cards = Array.from(
+      board.querySelectorAll<HTMLElement>("[data-card]"),
+    );
     const columns = Array.from(
-      board.querySelectorAll<HTMLElement>("[data-column]")
+      board.querySelectorAll<HTMLElement>("[data-column]"),
     );
     const needle = query.trim().toLowerCase();
 
@@ -46,9 +48,12 @@ export function useBoardFilter(boardSelector: string) {
     columns.forEach((column) => {
       const title = (column.dataset.column ?? "").toLowerCase();
       const hasVisibleCard = Array.from(
-        column.querySelectorAll<HTMLElement>("[data-card]")
+        column.querySelectorAll<HTMLElement>("[data-card]"),
       ).some((card) => !card.hasAttribute("hidden"));
-      column.toggleAttribute("hidden", !hasVisibleCard && !title.includes(needle));
+      column.toggleAttribute(
+        "hidden",
+        !hasVisibleCard && !title.includes(needle),
+      );
     });
 
     setMatches(visible);

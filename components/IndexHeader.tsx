@@ -12,7 +12,9 @@ export const IndexHeader = (props: {
 }): React.ReactElement => (
   <header className="mb-4 flex items-end justify-between gap-4">
     <div className="flex flex-col gap-2">
-      <h1 className="text-4xl font-semibold tracking-tight text-neutral-900">{props.title}</h1>
+      <h1 className="text-4xl font-semibold tracking-tight text-neutral-900">
+        {props.title}
+      </h1>
       {props.subtitle ? (
         <p className="text-base text-neutral-500">{props.subtitle}</p>
       ) : null}

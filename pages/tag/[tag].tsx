@@ -8,9 +8,19 @@ import Head from "next/head";
 import Link from "next/link";
 import { IndexHeader } from "../../components/IndexHeader";
 import { Layout } from "../../components/Layout/Layout";
+import { tagItems } from "../../utils/tags";
 
-function dedupeArray<T>(arr: T[]) {
-  return Array.from(new Set(arr));
+function readBlogPosts(): {
+  filename: string;
+  attributes: Post;
+  body: string;
+}[] {
+  const dir = path.join(process.cwd(), "content/blog");
+  return fs.readdirSync(dir).map((filename) => {
+    const file = fs.readFileSync(path.join(dir, filename), "utf8");
+    const data = frontmatter<Post>(file);
+    return { filename, attributes: data.attributes, body: data.body };
+  });
 }
 
 interface Post {
@@ -36,7 +46,10 @@ const TagPage: React.FC<TagPageProps> = (props) => {
     <Layout reading>
       <Head>
         <title>{`#${tag}`} | Madole.xyz</title>
-        <meta name="description" content={`Posts tagged ${tag} on Madole.xyz`} />
+        <meta
+          name="description"
+          content={`Posts tagged ${tag} on Madole.xyz`}
+        />
       </Head>
       <IndexHeader
         title={`#${tag}`}
@@ -75,26 +88,16 @@ const TagPage: React.FC<TagPageProps> = (props) => {
 export default TagPage;
 
 export function getStaticPaths() {
-  const filenames = fs.readdirSync(path.join(process.cwd(), "content/blog"));
-  const tags = dedupeArray<string>(
-    filenames.flatMap((filename) => {
-      // use frontmatter to read the titles of each blog post
-      const file = fs.readFileSync(
-        path.join(process.cwd(), "content/blog", filename),
-        "utf8",
-      );
-      const data = frontmatter<Post>(file);
-      return data.attributes.tags as string[];
-    }),
-  );
+  /*
+    Every tag page is keyed by its normalised slug, and the set is a Set so
+    "Javascript" and "javascript" cannot produce the same path twice.
+  */
+  const slugs = new Set<string>();
+  for (const { attributes } of readBlogPosts()) {
+    for (const { slug } of tagItems(attributes.tags)) slugs.add(slug);
+  }
   return {
-    /*
-      Lowercased to match both the comparison in getStaticProps and the hrefs
-      the Tags components emit, so a generated page finds its own posts.
-    */
-    paths: tags.map(
-      (tag) => "/tag/" + tag?.split(" ").join("-").toLocaleLowerCase(),
-    ),
+    paths: Array.from(slugs).map((slug) => "/tag/" + slug),
     fallback: false,
   };
 }
@@ -103,28 +106,16 @@ export const getStaticProps = (context: { params: { tag: string } }) => {
   const {
     params: { tag },
   } = context;
-  const filenames = fs.readdirSync(path.join(process.cwd(), "content/blog"));
 
-  const blogPostsMetadata = filenames
-    .map((filename) => {
-      const file = fs.readFileSync(
-        path.join(process.cwd(), "content/blog", filename),
-        "utf8",
-      );
-      const data = frontmatter<Post>(file);
-      const lowercaseTags =
-        data.attributes.tags?.map((tag) => tag.toLowerCase()) ?? [];
-      if (
-        !lowercaseTags.includes(tag) &&
-        !lowercaseTags.includes(tag.split("-").join(" "))
-      ) {
-        return null;
-      }
-      const timeToRead = readingTime(data.body);
+  const blogPostsMetadata = readBlogPosts()
+    .map(({ filename, attributes, body }) => {
+      const slugs = tagItems(attributes.tags).map((item) => item.slug);
+      if (!slugs.includes(tag)) return null;
+      const timeToRead = readingTime(body);
       return {
-        ...(data.attributes as {}),
+        ...(attributes as {}),
         timeToRead,
-        date: data.attributes.date.toString(),
+        date: attributes.date.toString(),
         slug: filename.split(".mdx")[0],
       };
     })

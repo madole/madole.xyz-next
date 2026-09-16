@@ -15,22 +15,22 @@ The homepage (`pages/index.tsx`) renders a fixed, non-scrolling hero with a WebG
 
 ### Bugs
 
-| # | Finding | Location |
-|---|---|---|
-| B1 | ~~The Earth is not interactive at all.~~ **Corrected during phase 03 — this was wrong.** drei's `View` connects the R3F event layer to the tracking div (`web/View.js:126-131`, `setEvents({ connected: track.current })`) and its `compute` only fires when `event.target === track.current`. The `earthRef` div at `z-10` with `pointer-events: auto` is therefore exactly right, and the Earth was already interactive. The real defect is narrower: the overlay lacks `pointer-events-none` to pair with the `pointer-events-auto` already on its nav and footer children, and `earthRef` at `z-10` outranks the nav and footer links at `z-auto`. | `index.tsx:95` |
-| B2 | **Day map is sampled as linear, not sRGB.** three's `TextureLoader` does not set `colorSpace` (verified in source) and neither does drei's `useTexture`. Default is `NoColorSpace`. The Earth's albedo has been rendering with the wrong gamma. | `Earth.tsx:19` |
-| B3 | **`ShootingStars` does one full React render per frame.** `setStar` → state change → effect re-runs → schedules next rAF. ~60 reconciliations/second, forever. | `ui/shooting-stars.tsx:110-116` |
-| B4 | **`ShootingStars` leaks its timer chain.** `setTimeout(createStar, randomDelay)` recurses; the effect cleanup is `return () => {}`. On unmount or prop change the chain keeps firing `setState` on a dead component, and prop changes stack parallel chains. | `ui/shooting-stars.tsx:77-80` |
-| B5 | **Dead title state.** `title`/`setTitle` + `useInterval` compute a rotating title that is never rendered. Forces a full page re-render every 5s for nothing. `LayoutTextFlip` already runs its own 3s interval over the same array. | `index.tsx:33-42` |
-| B6 | **`z-1` and `z-2` are not Tailwind classes.** The default z scale is `0,10,20,30,40,50,auto`. Both are no-ops; current stacking works by DOM order, accidentally. | `index.tsx:95`, `CombinedThreeScene.tsx:54` |
-| B7 | **Skip link is unreachable.** Bare `sr-only` with no `focus:not-sr-only` — keyboard users can never see it. | `index.tsx:96`, `Layout/Layout.tsx` |
-| B8 | **`LayoutTextFlip` is permanently light-mode.** `darkMode: ["class"]` and nothing ever adds the `dark` class, so the chip is a hard white box on the gradient. | `ui/layout-text-flip.tsx:36` |
-| B9 | **`LayoutTextFlip` effect has stale deps.** `[]` while closing over `words` and `duration`. | `ui/layout-text-flip.tsx:23` |
-| B10 | **Frame-rate dependent rotation.** Fixed per-frame increments — the Earth spins 2x as fast at 120Hz. Also `rotation.x -= Math.random() * 0.0001` is a one-directional random walk that accumulates permanent drift, not jitter. | `Earth.tsx:26-32` |
-| B11 | **Cursor leak.** Direct `document.body.style.cursor` mutation with no cleanup; unmount while hovering leaves a pointer cursor. | `Earth.tsx:46,50` |
-| B12 | **`.background` class does not exist** anywhere in CSS or Tailwind output. Inert. | `index.tsx:84`, `Layout/Layout.tsx` |
-| B13 | **`castShadow` with no receivers** and no `shadows` on the `<Canvas>`. Setup cost, zero effect. | `CombinedThreeScene.tsx:106` |
-| B14 | **`motion-reduce:hidden` hides the probes, not the render.** The Canvas still mounts, compiles shaders, uploads textures and renders every frame. Full cost, no visual. | `CombinedThreeScene.tsx:49,54` |
+| #   | Finding                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | Location                                    |
+| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------- |
+| B1  | ~~The Earth is not interactive at all.~~ **Corrected during phase 03 — this was wrong.** drei's `View` connects the R3F event layer to the tracking div (`web/View.js:126-131`, `setEvents({ connected: track.current })`) and its `compute` only fires when `event.target === track.current`. The `earthRef` div at `z-10` with `pointer-events: auto` is therefore exactly right, and the Earth was already interactive. The real defect is narrower: the overlay lacks `pointer-events-none` to pair with the `pointer-events-auto` already on its nav and footer children, and `earthRef` at `z-10` outranks the nav and footer links at `z-auto`. | `index.tsx:95`                              |
+| B2  | **Day map is sampled as linear, not sRGB.** three's `TextureLoader` does not set `colorSpace` (verified in source) and neither does drei's `useTexture`. Default is `NoColorSpace`. The Earth's albedo has been rendering with the wrong gamma.                                                                                                                                                                                                                                                                                                                                                                                                        | `Earth.tsx:19`                              |
+| B3  | **`ShootingStars` does one full React render per frame.** `setStar` → state change → effect re-runs → schedules next rAF. ~60 reconciliations/second, forever.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | `ui/shooting-stars.tsx:110-116`             |
+| B4  | **`ShootingStars` leaks its timer chain.** `setTimeout(createStar, randomDelay)` recurses; the effect cleanup is `return () => {}`. On unmount or prop change the chain keeps firing `setState` on a dead component, and prop changes stack parallel chains.                                                                                                                                                                                                                                                                                                                                                                                           | `ui/shooting-stars.tsx:77-80`               |
+| B5  | **Dead title state.** `title`/`setTitle` + `useInterval` compute a rotating title that is never rendered. Forces a full page re-render every 5s for nothing. `LayoutTextFlip` already runs its own 3s interval over the same array.                                                                                                                                                                                                                                                                                                                                                                                                                    | `index.tsx:33-42`                           |
+| B6  | **`z-1` and `z-2` are not Tailwind classes.** The default z scale is `0,10,20,30,40,50,auto`. Both are no-ops; current stacking works by DOM order, accidentally.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | `index.tsx:95`, `CombinedThreeScene.tsx:54` |
+| B7  | **Skip link is unreachable.** Bare `sr-only` with no `focus:not-sr-only` — keyboard users can never see it.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | `index.tsx:96`, `Layout/Layout.tsx`         |
+| B8  | **`LayoutTextFlip` is permanently light-mode.** `darkMode: ["class"]` and nothing ever adds the `dark` class, so the chip is a hard white box on the gradient.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | `ui/layout-text-flip.tsx:36`                |
+| B9  | **`LayoutTextFlip` effect has stale deps.** `[]` while closing over `words` and `duration`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | `ui/layout-text-flip.tsx:23`                |
+| B10 | **Frame-rate dependent rotation.** Fixed per-frame increments — the Earth spins 2x as fast at 120Hz. Also `rotation.x -= Math.random() * 0.0001` is a one-directional random walk that accumulates permanent drift, not jitter.                                                                                                                                                                                                                                                                                                                                                                                                                        | `Earth.tsx:26-32`                           |
+| B11 | **Cursor leak.** Direct `document.body.style.cursor` mutation with no cleanup; unmount while hovering leaves a pointer cursor.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | `Earth.tsx:46,50`                           |
+| B12 | **`.background` class does not exist** anywhere in CSS or Tailwind output. Inert.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | `index.tsx:84`, `Layout/Layout.tsx`         |
+| B13 | **`castShadow` with no receivers** and no `shadows` on the `<Canvas>`. Setup cost, zero effect.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | `CombinedThreeScene.tsx:106`                |
+| B14 | **`motion-reduce:hidden` hides the probes, not the render.** The Canvas still mounts, compiles shaders, uploads textures and renders every frame. Full cost, no visual.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | `CombinedThreeScene.tsx:49,54`              |
 
 ### Dead code
 
@@ -45,20 +45,21 @@ asset on the site, for a sphere rendered at 384 CSS px. Total Earth textures: **
 ### Lighting
 
 The Earth is lit by **five** lights across two files: `hemisphereLight 0.85` + `ambientLight 1.0`
-+ `spotLight 0.8` in `CombinedThreeScene.tsx:99-108`, plus another `ambientLight` and
-`directionalLight` in `Earth.tsx:38-39`. Result: uniform illumination, no day/night terminator,
-flat ball. The terminator is the entire aesthetic of an earth render.
+
+- `spotLight 0.8` in `CombinedThreeScene.tsx:99-108`, plus another `ambientLight` and
+  `directionalLight` in `Earth.tsx:38-39`. Result: uniform illumination, no day/night terminator,
+  flat ball. The terminator is the entire aesthetic of an earth render.
 
 ---
 
 ## Decisions taken
 
-| Decision | Choice |
-|---|---|
-| **Backdrop** | Dark space on the homepage only. Other pages keep `--bg-gradient` (`#8900fe → #12b3dd`). |
-| **Layout** | Scroll below the fold. Hero at 100vh with the 3D fixed behind it; recent posts scroll underneath. |
-| **Globe scope** | Full interactive story — Belfast → Sydney markers, great-circle arc, hover labels, click-to-fly. |
-| **Textures** | NASA (public domain). three.js example textures rejected — see below. |
+| Decision        | Choice                                                                                            |
+| --------------- | ------------------------------------------------------------------------------------------------- |
+| **Backdrop**    | Dark space on the homepage only. Other pages keep `--bg-gradient` (`#8900fe → #12b3dd`).          |
+| **Layout**      | Scroll below the fold. Hero at 100vh with the 3D fixed behind it; recent posts scroll underneath. |
+| **Globe scope** | Full interactive story — Belfast → Sydney markers, great-circle arc, hover labels, click-to-fly.  |
+| **Textures**    | NASA (public domain). three.js example textures rejected — see below.                             |
 
 ### Texture provenance verdict
 
@@ -77,13 +78,13 @@ normally licensed to course students.
 
 ### Sources (all NASA Visible Earth, public domain)
 
-| Channel | Source | Target |
-|---|---|---|
-| Day / albedo | Blue Marble NG w/ Topography & Bathymetry (`world.topo.bathy.*.3x5400x2700.jpg`) | 2048x1024 webp, **SRGBColorSpace** |
-| Night lights | Black Marble 2016 (`BlackMarble_2016_01deg.jpg`) | 2048x1024 webp, **SRGBColorSpace** |
-| **R** = bump | Blue Marble NG topography (`gebco_08_rev_elev_*.png`) | packed 1024x512 webp, NoColorSpace |
-| **G** = roughness | Blue Marble NG water mask (`world.watermask.*.png`), inverted | packed |
-| **B** = clouds | Blue Marble clouds (`cloud_combined_2048.jpg`) | packed |
+| Channel           | Source                                                                           | Target                             |
+| ----------------- | -------------------------------------------------------------------------------- | ---------------------------------- |
+| Day / albedo      | Blue Marble NG w/ Topography & Bathymetry (`world.topo.bathy.*.3x5400x2700.jpg`) | 2048x1024 webp, **SRGBColorSpace** |
+| Night lights      | Black Marble 2016 (`BlackMarble_2016_01deg.jpg`)                                 | 2048x1024 webp, **SRGBColorSpace** |
+| **R** = bump      | Blue Marble NG topography (`gebco_08_rev_elev_*.png`)                            | packed 1024x512 webp, NoColorSpace |
+| **G** = roughness | Blue Marble NG water mask (`world.watermask.*.png`), inverted                    | packed                             |
+| **B** = clouds    | Blue Marble clouds (`cloud_combined_2048.jpg`)                                   | packed                             |
 
 Packing three data channels into one RGB texture follows the modern three.js earth pattern.
 `sharp` (already a dependency) does it with `extractChannel` + `joinChannel`.
@@ -92,12 +93,12 @@ Packing three data channels into one RGB texture follows the modern three.js ear
 
 Benchmarks run against the equivalent three.js set to size the target:
 
-| | Current | Target |
-|---|---|---|
-| day / albedo | `earthmap1k.jpg` 336 KB @ 1000x500 | 2048 webp q82 → **~156 KB** |
-| night lights | *(none)* | 2048 webp q80 → **~70 KB** |
-| bump + roughness + clouds | 89 + 114 + **2988** KB | packed 1024 webp q85 → **~100 KB** |
-| **Total** | **3527 KB** | **~326 KB** |
+|                           | Current                            | Target                             |
+| ------------------------- | ---------------------------------- | ---------------------------------- |
+| day / albedo              | `earthmap1k.jpg` 336 KB @ 1000x500 | 2048 webp q82 → **~156 KB**        |
+| night lights              | _(none)_                           | 2048 webp q80 → **~70 KB**         |
+| bump + roughness + clouds | 89 + 114 + **2988** KB             | packed 1024 webp q85 → **~100 KB** |
+| **Total**                 | **3527 KB**                        | **~326 KB**                        |
 
 **~11x smaller at 2x albedo resolution, and gains night lights + a real roughness map.**
 
@@ -120,12 +121,12 @@ images fetched manually.
 
 ## Dependency upgrade
 
-| Package | Current | Target |
-|---|---|---|
-| `three` | 0.166.1 (Jul 2024) | **0.185.1** |
-| `@types/three` | 0.166.0 | **0.185.4** |
-| `@react-three/fiber` | 9.4.0 | **9.7.0** |
-| `@react-three/drei` | 10.7.6 | **10.7.8** |
+| Package              | Current            | Target      |
+| -------------------- | ------------------ | ----------- |
+| `three`              | 0.166.1 (Jul 2024) | **0.185.1** |
+| `@types/three`       | 0.166.0            | **0.185.4** |
+| `@react-three/fiber` | 9.4.0              | **9.7.0**   |
+| `@react-three/drei`  | 10.7.6             | **10.7.8**  |
 
 Peers all satisfied: drei wants `three >=0.159`, `react ^19`, `@react-three/fiber ^9.0.0`;
 fiber wants `three >=0.156`, `react >=19 <19.3`. Project is on React 19.2.0.
@@ -140,13 +141,13 @@ goes through drei/fiber.
 
 Filtered from the official three.js migration guide:
 
-| Release | Change | Impact |
-|---|---|---|
-| r169→r170 | Mipmaps always generated when `generateMipmaps` is true, regardless of filter settings | Slight VRAM increase; accounted for above |
-| r180→r181 | Indirect specular light computation for PBR materials changed | **Relevant** — tune lighting *after* the upgrade, not before |
-| r180→r181 | PMREM reflections improved | Only if `<Environment>` is used (it is not — see CDN traps) |
-| r181→r182 | `PCFSoftShadowMap` deprecated for `WebGLRenderer`, use `PCFShadowMap` | Moot — `castShadow` is removed |
-| r176→r177 | `ColorManagement.toWorkingColorSpace()` → `colorSpaceToWorking()` | Not used directly; drei handles it |
+| Release   | Change                                                                                 | Impact                                                       |
+| --------- | -------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| r169→r170 | Mipmaps always generated when `generateMipmaps` is true, regardless of filter settings | Slight VRAM increase; accounted for above                    |
+| r180→r181 | Indirect specular light computation for PBR materials changed                          | **Relevant** — tune lighting _after_ the upgrade, not before |
+| r180→r181 | PMREM reflections improved                                                             | Only if `<Environment>` is used (it is not — see CDN traps)  |
+| r181→r182 | `PCFSoftShadowMap` deprecated for `WebGLRenderer`, use `PCFShadowMap`                  | Moot — `castShadow` is removed                               |
+| r176→r177 | `ColorManagement.toWorkingColorSpace()` → `colorSpaceToWorking()`                      | Not used directly; drei handles it                           |
 
 Nothing removes `MeshPhongMaterial`, `SphereGeometry`, `Points`, `ShaderMaterial` or `OrbitControls`.
 The guide advises stepping in increments of 10 releases; with two import sites, a direct jump is fine.
@@ -175,18 +176,18 @@ Grepped drei's source for hardcoded URLs:
 
 Each branch bases on its predecessor. Bottom of the stack targets `main`.
 
-| # | Branch | Scope |
-|---|---|---|
-| 00 | `home3d/00-plan` | This document |
-| 01 | `home3d/01-deps-upgrade` | three 0.185 / r3f 9.7 / drei 10.7.8, nothing else |
-| 02 | `home3d/02-remove-dead-code` | 5 dead components, dead title state, `useInterval` |
-| 03 | `home3d/03-fix-layering` | z-index, pointer-events, skip link, `LayoutTextFlip` |
-| 04 | `home3d/04-stars-in-r3f` | Stars + shooting stars into the scene; instanced clouds |
-| 05 | `home3d/05-scroll-dark-backdrop` | Page scrolls; dark space backdrop on home only |
-| 06 | `home3d/06-earth-rebuild` | NASA textures, sRGB fix, standard material, one sun, atmosphere |
-| 07 | `home3d/07-perf-adaptivity` | Preload, PerformanceMonitor, AdaptiveDpr, reduced motion, offscreen pause |
-| 08 | `home3d/08-recent-posts` | 3 recent blog posts + 3 recent TILs below the fold |
-| 09 | `home3d/09-globe-markers` | Belfast → Sydney markers, arc, click-to-fly |
+| #   | Branch                           | Scope                                                                     |
+| --- | -------------------------------- | ------------------------------------------------------------------------- |
+| 00  | `home3d/00-plan`                 | This document                                                             |
+| 01  | `home3d/01-deps-upgrade`         | three 0.185 / r3f 9.7 / drei 10.7.8, nothing else                         |
+| 02  | `home3d/02-remove-dead-code`     | 5 dead components, dead title state, `useInterval`                        |
+| 03  | `home3d/03-fix-layering`         | z-index, pointer-events, skip link, `LayoutTextFlip`                      |
+| 04  | `home3d/04-stars-in-r3f`         | Stars + shooting stars into the scene; instanced clouds                   |
+| 05  | `home3d/05-scroll-dark-backdrop` | Page scrolls; dark space backdrop on home only                            |
+| 06  | `home3d/06-earth-rebuild`        | NASA textures, sRGB fix, standard material, one sun, atmosphere           |
+| 07  | `home3d/07-perf-adaptivity`      | Preload, PerformanceMonitor, AdaptiveDpr, reduced motion, offscreen pause |
+| 08  | `home3d/08-recent-posts`         | 3 recent blog posts + 3 recent TILs below the fold                        |
+| 09  | `home3d/09-globe-markers`        | Belfast → Sydney markers, arc, click-to-fly                               |
 
 Ordering note: 05 lands **before** 06 deliberately — tuning a day/night terminator against a
 purple gradient that is about to be deleted would mean tuning it twice.
@@ -208,6 +209,7 @@ npm install three@0.185.1 @types/three@0.185.4 @react-three/fiber@9.7.0 @react-t
 Nothing else in this commit. An upgrade regression must not be able to hide behind a refactor.
 
 **Acceptance**
+
 - `npm ls three` → exactly one copy
 - `npm run ci` (tsc + oxlint) green
 - `npm run build` green
@@ -233,20 +235,20 @@ No behaviour is added.
 
 Establish one explicit stacking contract:
 
-| Layer | z-index | pointer-events |
-|---|---|---|
-| WebGL `<Canvas>` | `0` | `auto` |
-| `cloudsRef` tracking div | `0` | `auto` — **drei connects the event layer here** |
-| `earthRef` tracking div | `10` | `auto` — **drei connects the event layer here** |
-| Star / shooting-star layers | `auto` | **`none`** |
-| Content overlay | `20` | **`none`** |
-| Nav / links / cards inside the overlay | — | `auto` |
+| Layer                                  | z-index | pointer-events                                  |
+| -------------------------------------- | ------- | ----------------------------------------------- |
+| WebGL `<Canvas>`                       | `0`     | `auto`                                          |
+| `cloudsRef` tracking div               | `0`     | `auto` — **drei connects the event layer here** |
+| `earthRef` tracking div                | `10`    | `auto` — **drei connects the event layer here** |
+| Star / shooting-star layers            | `auto`  | **`none`**                                      |
+| Content overlay                        | `20`    | **`none`**                                      |
+| Nav / links / cards inside the overlay | —       | `auto`                                          |
 
 1. Fix `z-1` → `z-20` in `index.tsx:95`; clean the duplicated `z-2`/`z-10` in
    `CombinedThreeScene.tsx:54` (B6).
 2. Apply the pointer-events contract (B1).
 3. Skip link: add `focus:not-sr-only focus:absolute focus:z-50 focus:p-4 focus:bg-white
-   focus:text-black` in both `index.tsx` and `Layout/Layout.tsx` (B7).
+focus:text-black` in both `index.tsx` and `Layout/Layout.tsx` (B7).
 4. `LayoutTextFlip`: drop the empty `text=""` span; fix effect deps (B9); rewrite the chip's base
    styles as frosted glass (`bg-white/10 backdrop-blur border-white/20 text-white`) rather than
    relying on a `dark:` variant that never activates (B8).
@@ -308,7 +310,7 @@ page unchanged.
 1. **Texture pipeline** — `scripts/optimise-earth-textures.mjs` using `sharp`
    (pattern: `scripts/generate-og-image.js`). Downloads NASA sources, resizes, packs R/G/B,
    encodes webp. Commit outputs to `public/earth/`; delete the four old files.
-   *Download step must run outside the sandbox.*
+   _Download step must run outside the sandbox._
 2. **Colour space (B2)** — set explicitly per texture: day + night → `THREE.SRGBColorSpace`;
    packed data → leave `NoColorSpace`. Getting this backwards on the data texture is as wrong as
    the current state, so set both sides deliberately.
@@ -370,7 +372,7 @@ scrolling past the hero drops GPU usage to idle.
 1. Add `getStaticProps` to `pages/index.tsx` returning the 3 most recent blog posts and 3 most
    recent TILs. `main`'s `blog-index.tsx:67-90` has the pattern (flat-file `readdirSync` +
    `frontmatter` + `readingTime` + date sort). Factor the shared logic out rather than duplicating.
-   *Note:* the `feature/keystatic-mdx-content-components` branch replaces this with
+   _Note:_ the `feature/keystatic-mdx-content-components` branch replaces this with
    `getBlogPostEntries()` / `getTilPostEntries()` in `utils/`, which also handle
    `<dir>/index.mdx` posts. When that merges, this should adopt those utils.
 2. `components/IndexListItem.tsx` is styled for the white-card `Layout` and will not drop straight

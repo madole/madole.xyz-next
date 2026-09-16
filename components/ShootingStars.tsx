@@ -109,7 +109,7 @@ export const ShootingStars: React.FC<ShootingStarsProps> = ({
       mesh.position.set(
         fromTop ? (Math.random() - 0.5) * viewport.width : -halfWidth,
         fromTop ? halfHeight : (Math.random() - 0.5) * viewport.height,
-        0
+        0,
       );
       mesh.rotation.z = angle;
     }

@@ -35,7 +35,9 @@ const TodayILearned: React.FC<TodayILearnedProps> = (props) => {
         <>
           <RailBackLink href="/today-i-learned">All notes</RailBackLink>
           <RailBlock label="Learned">{postDate}</RailBlock>
-          {timeToRead ? <RailBlock label="Reading time">{timeToRead}</RailBlock> : null}
+          {timeToRead ? (
+            <RailBlock label="Reading time">{timeToRead}</RailBlock>
+          ) : null}
           {url ? (
             <RailBlock label="Source">
               <a
@@ -81,11 +83,11 @@ export default TodayILearned;
 
 export function getStaticPaths() {
   const filenames = fs.readdirSync(
-    path.join(process.cwd(), "content/today-i-learned")
+    path.join(process.cwd(), "content/today-i-learned"),
   );
   return {
     paths: filenames.map(
-      (filename) => "/today-i-learned/" + filename.replace(".md", "")
+      (filename) => "/today-i-learned/" + filename.replace(".md", ""),
     ),
     fallback: false,
   };
@@ -104,7 +106,7 @@ export async function getStaticProps({ params }: { params: { slug: string } }) {
   const slug = params.slug + ".md";
   const content = fs.readFileSync(
     path.join(process.cwd(), "content/today-i-learned", slug),
-    "utf8"
+    "utf8",
   );
   const data = await parseMdxContent<PostAttributes>(content, serialize);
   return { props: { data, slug: params.slug } };

@@ -121,7 +121,7 @@ const response = await fetch(
     headers: {
       Authorization: "apikey [YOUR_API_KEY]",
     },
-  }
+  },
 );
 
 if (!response.ok) {
@@ -175,7 +175,7 @@ import gtfs from "gtfs-realtime-bindings";
  * @returns A GeoJSON FeatureCollection representing the vehicle positions.
  */
 export const parseFeedMessageToGeojson = (
-  feedMessage: gtfs.transit_realtime.FeedMessage
+  feedMessage: gtfs.transit_realtime.FeedMessage,
 ): FeatureCollection<Point, gtfs.transit_realtime.IFeedEntity> => {
   // Map over the entities in the FeedMessage.
   const features = feedMessage.entity

@@ -7,7 +7,11 @@ const RssFeed = (props?: { reading?: boolean }) => (
       fill="none"
       viewBox="0 0 24 24"
       stroke="currentColor"
-      className={props?.reading ? "w-5 text-neutral-500 hover:text-neutral-900" : "w-8 text-white"}
+      className={
+        props?.reading
+          ? "w-5 text-neutral-500 hover:text-neutral-900"
+          : "w-8 text-white"
+      }
     >
       <path
         strokeLinecap="round"

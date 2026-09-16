@@ -61,7 +61,7 @@ const generateRss = () => {
 
   // Sorted newest first, so the head post is the last time the feed changed.
   const feed = buildFeed(
-    blogPostsMetadata.length ? new Date(blogPostsMetadata[0].date) : undefined
+    blogPostsMetadata.length ? new Date(blogPostsMetadata[0].date) : undefined,
   );
 
   blogPostsMetadata.forEach((post) => {

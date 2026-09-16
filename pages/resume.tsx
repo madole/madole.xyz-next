@@ -54,7 +54,7 @@ function Resume(): React.ReactElement {
   // New state for lightbox. The id type comes from the data so adding an
   // achievement does not need a matching edit here.
   const [openAchievement, setOpenAchievement] = useState<AchievementId | null>(
-    null
+    null,
   );
 
   useEffect(() => {
@@ -82,7 +82,7 @@ function Resume(): React.ReactElement {
   }, []);
 
   const renderExperienceSection = (
-    experience: (typeof resumeData.experience)[0]
+    experience: (typeof resumeData.experience)[0],
   ) => (
     <Column key={experience.period} title={experience.period}>
       <Card>
@@ -214,7 +214,10 @@ function Resume(): React.ReactElement {
             </button>
           </div>
         ) : null}
-        <div id="resume-board" className="resume-board h-full flex overflow-x-scroll mx-2">
+        <div
+          id="resume-board"
+          className="resume-board h-full flex overflow-x-scroll mx-2"
+        >
           <Column title="About me">
             <Card>
               <div className="pb-1 font-bold">Engineering Experience</div>
@@ -223,8 +226,10 @@ function Resume(): React.ReactElement {
                 {new Intl.NumberFormat().format(
                   differenceInCalendarYears(
                     new Date(),
-                    new Date(resumeData.aboutMe.engineeringExperience.startDate)
-                  ) * resumeData.aboutMe.engineeringExperience.hoursPerYear
+                    new Date(
+                      resumeData.aboutMe.engineeringExperience.startDate,
+                    ),
+                  ) * resumeData.aboutMe.engineeringExperience.hoursPerYear,
                 )}{" "}
                 hours
               </div>
@@ -337,7 +342,7 @@ function Resume(): React.ReactElement {
                           ))}
                         </ul>
                       </div>
-                    )
+                    ),
                   )}
                 </div>
               </CardDialog>
@@ -371,7 +376,7 @@ function Resume(): React.ReactElement {
                 openAchievement
                   ? `${
                       resumeData.achievements.find(
-                        (a) => a.id === openAchievement
+                        (a) => a.id === openAchievement,
                       )?.description
                     }`
                   : ""
@@ -384,22 +389,22 @@ function Resume(): React.ReactElement {
                   <Image
                     width={
                       resumeData.achievements.find(
-                        (a) => a.id === openAchievement
+                        (a) => a.id === openAchievement,
                       )?.lightboxImage.width || 600
                     }
                     height={
                       resumeData.achievements.find(
-                        (a) => a.id === openAchievement
+                        (a) => a.id === openAchievement,
                       )?.lightboxImage.height || 800
                     }
                     src={
                       resumeData.achievements.find(
-                        (a) => a.id === openAchievement
+                        (a) => a.id === openAchievement,
                       )?.image.src || ""
                     }
                     alt={
                       resumeData.achievements.find(
-                        (a) => a.id === openAchievement
+                        (a) => a.id === openAchievement,
                       )?.image.alt || ""
                     }
                     priority={true}

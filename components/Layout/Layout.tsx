@@ -78,9 +78,7 @@ export const Layout = (props: {
   }
 
   return (
-    <div
-      className={`flex flex-col ${styles.backgroundPattern} items-center`}
-    >
+    <div className={`flex flex-col ${styles.backgroundPattern} items-center`}>
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-white focus:px-4 focus:py-2 focus:text-black"

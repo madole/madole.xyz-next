@@ -55,8 +55,8 @@ slug: '${slug}'
       console.log(
         `Blog post created at file://${path.join(
           import.meta.dirname,
-          `../content/blog/${slug}.mdx`
-        )}`
+          `../content/blog/${slug}.mdx`,
+        )}`,
       );
     });
   } else if (type.type === "TIL") {
@@ -81,8 +81,8 @@ slug: '${slug}'
       console.log(
         `Today I learned post created at file://${path.join(
           import.meta.dirname,
-          `../content/today-i-learned/${slug}.md`
-        )}`
+          `../content/today-i-learned/${slug}.md`,
+        )}`,
       );
     });
   }

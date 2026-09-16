@@ -78,7 +78,9 @@ export function IndexListItem(props: Props): React.ReactElement {
           {title}
         </Link>
         {excerpt ? (
-          <div className="text-[15px] leading-relaxed text-neutral-600">{excerpt}</div>
+          <div className="text-[15px] leading-relaxed text-neutral-600">
+            {excerpt}
+          </div>
         ) : null}
         <Tags tags={tags} />
       </div>

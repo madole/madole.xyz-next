@@ -80,14 +80,14 @@ function firstLine(body: string): string | null {
 
 export function getStaticProps() {
   const filenames = fs.readdirSync(
-    path.join(process.cwd(), "content/today-i-learned")
+    path.join(process.cwd(), "content/today-i-learned"),
   );
   const postsMetadata = filenames
     .map((filename) => {
       // use frontmatter to read the titles of each blog post
       const file = fs.readFileSync(
         path.join(process.cwd(), "content/today-i-learned", filename),
-        "utf8"
+        "utf8",
       );
       const data = frontmatter<{
         title: string;

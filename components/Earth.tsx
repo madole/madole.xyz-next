@@ -55,7 +55,7 @@ function patchShader(
   source: string,
   anchor: string,
   replacement: string,
-  label: string
+  label: string,
 ): string {
   if (!source.includes(anchor)) {
     const message =
@@ -70,7 +70,7 @@ function patchShader(
 
 const Earth: React.FC = () => {
   const maxAnisotropy = useThree((state) =>
-    state.gl.capabilities.getMaxAnisotropy()
+    state.gl.capabilities.getMaxAnisotropy(),
   );
 
   const { day, night, brc } = useTexture({
@@ -141,11 +141,11 @@ const Earth: React.FC = () => {
           shader.vertexShader,
           "#include <common>",
           "#include <common>\nvarying vec3 vEarthWorldNormal;",
-          "vertex varying declaration"
+          "vertex varying declaration",
         ),
         "#include <worldpos_vertex>",
         "#include <worldpos_vertex>\nvEarthWorldNormal = normalize(mat3(modelMatrix) * objectNormal);",
-        "vertex world normal"
+        "vertex world normal",
       );
 
       // onBeforeCompile runs before three resolves #include directives
@@ -156,10 +156,10 @@ const Earth: React.FC = () => {
           shader.fragmentShader,
           "#include <common>",
           "#include <common>\nuniform vec3 uSunDirection;\nvarying vec3 vEarthWorldNormal;",
-          "fragment uniform declaration"
+          "fragment uniform declaration",
         ),
         "#include <emissivemap_fragment>",
-          /* glsl */ `
+        /* glsl */ `
           #ifdef USE_EMISSIVEMAP
             vec4 emissiveColor = texture2D( emissiveMap, vEmissiveMapUv );
             float sunAlignment = dot( normalize( vEarthWorldNormal ), uSunDirection );
@@ -169,7 +169,7 @@ const Earth: React.FC = () => {
             totalEmissiveRadiance *= emissiveColor.rgb * nightMask;
           #endif
           `,
-        "night lights terminator mask"
+        "night lights terminator mask",
       );
     };
 
@@ -206,7 +206,7 @@ const Earth: React.FC = () => {
           diffuseColor.a *= texture2D( alphaMap, vAlphaMapUv ).b;
         #endif
         `,
-        "cloud alpha from blue channel"
+        "cloud alpha from blue channel",
       );
     };
     material.customProgramCacheKey = () => "earth-cloud-alpha-from-blue";

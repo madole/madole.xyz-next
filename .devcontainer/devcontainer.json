@@ -11,7 +11,5 @@
       "extraAllowedDomains": "fonts.googleapis.com,fonts.gstatic.com,https://eoimages.gsfc.nasa.gov"
     }
   },
-  "appPort": [
-    3000
-  ]
+  "appPort": [3000]
 }

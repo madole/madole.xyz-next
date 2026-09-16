@@ -35,8 +35,10 @@ const PointerParallax: React.FC = () => {
   useFrame((_, delta) => {
     // Frame-rate independent easing towards the target offset.
     const t = 1 - Math.exp(-PARALLAX_EASE * delta);
-    camera.position.x += (target.current.x * PARALLAX_RANGE - camera.position.x) * t;
-    camera.position.y += (target.current.y * PARALLAX_RANGE - camera.position.y) * t;
+    camera.position.x +=
+      (target.current.x * PARALLAX_RANGE - camera.position.x) * t;
+    camera.position.y +=
+      (target.current.y * PARALLAX_RANGE - camera.position.y) * t;
     camera.lookAt(0, 0, 0);
   });
 
