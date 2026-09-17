@@ -7,7 +7,10 @@ export interface HyperlinkProps {
 const Hyperlink: React.FC<HyperlinkProps> = (props) => {
   const { children, ...rest } = props;
   return (
-    <a className="text-purple-800 underline visited:text-purple-900" {...rest}>
+    <a
+      className="text-purple-800 underline visited:text-purple-900 dark:text-purple-300 dark:visited:text-purple-200"
+      {...rest}
+    >
       {children}
     </a>
   );

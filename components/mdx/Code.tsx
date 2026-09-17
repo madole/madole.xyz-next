@@ -10,7 +10,10 @@ export interface CodeProps {
 const Code = (props: CodeProps) => {
   const { children, ...rest } = props;
   return (
-    <code className="bg-sky-200 p-1 mx-1 rounded font-mono" {...rest}>
+    <code
+      className="bg-sky-200 p-1 mx-1 rounded font-mono dark:bg-sky-900 dark:text-sky-100"
+      {...rest}
+    >
       {children}
     </code>
   );

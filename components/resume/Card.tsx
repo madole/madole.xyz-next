@@ -37,7 +37,7 @@ const Card = (props: Props): React.ReactElement => {
   return (
     <div
       data-card
-      className="bg-white p-3 rounded-xl my-1 text-xs hover:bg-gray-100 shadow flex flex-col"
+      className="bg-white p-3 rounded-xl my-1 text-xs text-neutral-900 hover:bg-gray-100 shadow flex flex-col"
       draggable
       onClick={() => onClick && onClick()}
     >

@@ -11,7 +11,7 @@ export const Tags = (props: { tags?: string[] }) => {
         <li key={slug}>
           <Link
             href={`/tag/${slug}`}
-            className="text-xs font-light text-neutral-500 underline-offset-4 hover:text-neutral-900 hover:underline"
+            className="text-xs font-light text-neutral-500 underline-offset-4 hover:text-neutral-900 hover:underline dark:text-neutral-400 dark:hover:text-neutral-100"
           >
             #{name}
           </Link>

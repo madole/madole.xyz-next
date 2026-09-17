@@ -39,8 +39,8 @@ export function IndexListItem(props: Props): React.ReactElement {
       Metadata sits in its own column on desktop so the titles share one left
       edge and scan as a list. Below lg it stacks above the title.
     */
-    <div className="grid grid-cols-1 gap-1 border-t border-neutral-200 py-7 last:border-b lg:grid-cols-[190px_minmax(0,1fr)] lg:gap-8">
-      <div className="flex flex-row flex-wrap items-center gap-x-3 text-sm text-neutral-500 lg:flex-col lg:items-start lg:gap-x-0 lg:pt-1">
+    <div className="grid grid-cols-1 gap-1 border-t border-neutral-200 py-7 last:border-b dark:border-neutral-800 lg:grid-cols-[190px_minmax(0,1fr)] lg:gap-8">
+      <div className="flex flex-row flex-wrap items-center gap-x-3 text-sm text-neutral-500 dark:text-neutral-400 lg:flex-col lg:items-start lg:gap-x-0 lg:pt-1">
         <span>{postDate}</span>
         {timeToRead ? <span>{timeToRead}</span> : null}
         {source ? (
@@ -48,7 +48,7 @@ export function IndexListItem(props: Props): React.ReactElement {
             href={sourceUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 hover:text-neutral-900"
+            className="inline-flex items-center gap-1 hover:text-neutral-900 dark:hover:text-neutral-100"
           >
             {source}
             <svg
@@ -73,12 +73,12 @@ export function IndexListItem(props: Props): React.ReactElement {
       <div className="flex min-w-0 flex-col gap-1.5">
         <Link
           href={addSlashPrefix(slug)}
-          className="text-xl font-medium tracking-tight text-neutral-900 decoration-neutral-300 underline-offset-4 hover:underline"
+          className="text-xl font-medium tracking-tight text-neutral-900 decoration-neutral-300 underline-offset-4 hover:underline dark:text-neutral-100 dark:decoration-neutral-600"
         >
           {title}
         </Link>
         {excerpt ? (
-          <div className="text-[15px] leading-relaxed text-neutral-600">
+          <div className="text-[15px] leading-relaxed text-neutral-600 dark:text-neutral-300">
             {excerpt}
           </div>
         ) : null}

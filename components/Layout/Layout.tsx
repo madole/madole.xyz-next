@@ -23,10 +23,10 @@ export const Layout = (props: {
 
   if (reading) {
     return (
-      <div className="flex min-h-screen flex-col bg-[#fdfdfd] text-neutral-900">
+      <div className="flex min-h-screen flex-col bg-[#fdfdfd] text-neutral-900 dark:bg-[#0d1117] dark:text-neutral-100">
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-white focus:px-4 focus:py-2 focus:text-black"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-white focus:px-4 focus:py-2 focus:text-black dark:focus:bg-neutral-900 dark:focus:text-white"
         >
           Skip to main content
         </a>

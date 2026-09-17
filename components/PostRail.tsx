@@ -24,16 +24,17 @@ export const RailBlock = (props: {
     */
     className="
       flex flex-row items-baseline gap-1 text-sm text-neutral-600
+      dark:text-neutral-300
       max-lg:[[data-rail-fact]+&]:before:mr-1
       max-lg:[[data-rail-fact]+&]:before:text-neutral-300
       max-lg:[[data-rail-fact]+&]:before:content-['·']
       lg:flex-col lg:gap-1
     "
   >
-    <span className="hidden text-xs font-semibold uppercase tracking-[0.1em] text-neutral-500 lg:block">
+    <span className="hidden text-xs font-semibold uppercase tracking-[0.1em] text-neutral-500 dark:text-neutral-400 lg:block">
       {props.label}
     </span>
-    <span className="lg:text-neutral-600">{props.children}</span>
+    <span className="lg:text-neutral-600 dark:lg:text-neutral-300">{props.children}</span>
   </div>
 );
 
@@ -44,7 +45,7 @@ export const RailBackLink = (props: {
   <Link
     href={props.href}
     /* Takes a row of its own below lg so the meta line starts clean beneath it. */
-    className="mb-3 inline-flex basis-full items-center gap-1.5 text-sm text-neutral-500 hover:text-neutral-900 lg:mb-0 lg:basis-auto"
+    className="mb-3 inline-flex basis-full items-center gap-1.5 text-sm text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100 lg:mb-0 lg:basis-auto"
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -76,8 +77,8 @@ export const RailTags = (props: {
       from the copy above. On desktop it is placed back into the rail column
       and the rule would cut across the margin, so it is dropped there.
     */
-    <div className="flex flex-col gap-2 border-t border-neutral-200 pt-6 lg:gap-1 lg:border-0 lg:pt-0">
-      <span className="hidden text-xs font-semibold uppercase tracking-[0.1em] text-neutral-500 lg:block">
+    <div className="flex flex-col gap-2 border-t border-neutral-200 pt-6 dark:border-neutral-800 lg:gap-1 lg:border-0 lg:pt-0">
+      <span className="hidden text-xs font-semibold uppercase tracking-[0.1em] text-neutral-500 dark:text-neutral-400 lg:block">
         Tags
       </span>
       <ul className="flex flex-row flex-wrap gap-x-3 gap-y-1 lg:flex-col lg:gap-1.5">
@@ -85,7 +86,7 @@ export const RailTags = (props: {
           <li key={slug}>
             <Link
               href={`/tag/${slug}`}
-              className="text-sm text-neutral-600 underline-offset-4 hover:text-neutral-900 hover:underline"
+              className="text-sm text-neutral-600 underline-offset-4 hover:text-neutral-900 hover:underline dark:text-neutral-300 dark:hover:text-neutral-100"
             >
               #{name}
             </Link>

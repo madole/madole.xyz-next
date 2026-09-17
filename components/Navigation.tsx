@@ -2,6 +2,7 @@ import * as React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { MobileMenu, MobileMenuLink } from "./MobileMenu";
+import { ThemeToggle } from "./ThemeToggle";
 
 const NAV_LINKS: MobileMenuLink[] = [
   { href: "/blog-index", label: "Blog", match: "/blog" },
@@ -42,7 +43,7 @@ export const Navigation = (props?: { variant?: "dark" | "light" }) => {
           <nav className="hidden items-center gap-6 md:flex">
             <Link
               href="/"
-              className="text-sm text-neutral-500 hover:text-neutral-900"
+              className="text-sm text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
             >
               Home
             </Link>
@@ -55,8 +56,8 @@ export const Navigation = (props?: { variant?: "dark" | "light" }) => {
                   aria-current={isActive ? "page" : undefined}
                   className={
                     isActive
-                      ? "border-b-2 border-neutral-900 pb-0.5 text-sm font-medium text-neutral-900"
-                      : "text-sm text-neutral-500 hover:text-neutral-900"
+                      ? "border-b-2 border-neutral-900 pb-0.5 text-sm font-medium text-neutral-900 dark:border-neutral-100 dark:text-neutral-100"
+                      : "text-sm text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
                   }
                 >
                   {link.label}
@@ -65,7 +66,10 @@ export const Navigation = (props?: { variant?: "dark" | "light" }) => {
             })}
           </nav>
 
-          <MobileMenu links={NAV_LINKS} pathname={pathname} />
+          <div className="flex items-center gap-1">
+            <ThemeToggle />
+            <MobileMenu links={NAV_LINKS} pathname={pathname} />
+          </div>
         </div>
       </header>
     );

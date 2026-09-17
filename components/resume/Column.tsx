@@ -20,7 +20,7 @@ const Column = (props: Props) => {
     <div data-column={title} className="max-h-9/10">
       <div className="bg-gray-200 rounded-xl p-3 m-2 cursor-pointer flex flex-col max-h-almost-full ">
         <div className="flex justify-between">
-          <div className="font-bold p-1">{title}</div>
+          <div className="font-bold p-1 text-neutral-900">{title}</div>
           <div className="hover:bg-gray-400 rounded-sm h-8 w-8 flex justify-center align-center">
             <div className="font-bold text-gray-600 leading-snug">...</div>
           </div>

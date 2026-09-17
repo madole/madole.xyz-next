@@ -9,7 +9,7 @@ const RssFeed = (props?: { reading?: boolean }) => (
       stroke="currentColor"
       className={
         props?.reading
-          ? "w-5 text-neutral-500 hover:text-neutral-900"
+          ? "w-5 text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
           : "w-8 text-white"
       }
     >
@@ -26,15 +26,15 @@ const RssFeed = (props?: { reading?: boolean }) => (
 function Footer(props?: { reading?: boolean }): React.ReactElement {
   if (props?.reading) {
     return (
-      <footer className="border-t border-neutral-200">
-        <div className="mx-auto flex w-full max-w-[1060px] items-center justify-between px-6 py-7 text-sm text-neutral-500 md:px-14">
+      <footer className="border-t border-neutral-200 dark:border-neutral-800">
+        <div className="mx-auto flex w-full max-w-[1060px] items-center justify-between px-6 py-7 text-sm text-neutral-500 dark:text-neutral-400 md:px-14">
           <span>&copy; {2021} by Madole.</span>
           <div className="flex items-center gap-5">
             <a
               href="https://github.com/madole"
               target="_blank"
               rel="noreferrer"
-              className="hover:text-neutral-900"
+              className="hover:text-neutral-900 dark:hover:text-neutral-100"
             >
               GitHub
             </a>

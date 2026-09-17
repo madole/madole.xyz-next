@@ -61,10 +61,10 @@ export default function BlogPost(props: Props): React.ReactElement {
           tags={tags}
         />
       </Head>
-      <h1 className="mb-8 max-w-[680px] text-balance text-4xl font-semibold tracking-tight text-neutral-900 md:text-[44px] md:leading-[1.1]">
+      <h1 className="mb-8 max-w-[680px] text-balance text-4xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-100 md:text-[44px] md:leading-[1.1]">
         {title}
       </h1>
-      <article className="prose prose-neutral max-w-[680px] break-words text-pretty prose-a:font-normal prose-a:text-neutral-900 prose-a:underline prose-a:decoration-neutral-300 prose-a:underline-offset-4 hover:prose-a:decoration-neutral-900">
+      <article className="prose prose-neutral max-w-[680px] break-words text-pretty prose-a:font-normal prose-a:text-neutral-900 prose-a:underline prose-a:decoration-neutral-300 prose-a:underline-offset-4 hover:prose-a:decoration-neutral-900 dark:prose-invert dark:prose-a:text-neutral-100 dark:prose-a:decoration-neutral-600 dark:hover:prose-a:decoration-neutral-100">
         {/* @ts-ignore */}
         <MDXRemote {...body} />
       </article>

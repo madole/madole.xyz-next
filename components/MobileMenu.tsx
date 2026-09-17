@@ -70,9 +70,13 @@ export const MobileMenu = (props: {
     globals.css.
   */
   const closedBarColor =
-    barTone === "light" ? "text-white" : "text-neutral-900";
-  const linkClass = "py-2 text-base text-neutral-500 hover:text-neutral-900";
-  const activeLinkClass = "py-2 text-base font-medium text-neutral-900";
+    barTone === "light"
+      ? "text-white"
+      : "text-neutral-900 dark:text-neutral-100";
+  const linkClass =
+    "py-2 text-base text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100";
+  const activeLinkClass =
+    "py-2 text-base font-medium text-neutral-900 dark:text-neutral-100";
 
   return (
     /*
@@ -109,7 +113,7 @@ export const MobileMenu = (props: {
           the wrapper this renders into must span the full width - both nav
           variants give it one.
         */
-        className="nav-menu absolute inset-x-0 top-full z-40 flex-col gap-1 border-b border-neutral-200 bg-[#fdfdfd] px-6 pb-4 shadow-sm"
+        className="nav-menu absolute inset-x-0 top-full z-40 flex-col gap-1 border-b border-neutral-200 bg-[#fdfdfd] px-6 pb-4 shadow-sm dark:border-neutral-800 dark:bg-[#0d1117]"
       >
         {includeHome ? (
           <Link href="/" onClick={() => setOpen(false)} className={linkClass}>
