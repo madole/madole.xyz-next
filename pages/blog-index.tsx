@@ -42,7 +42,7 @@ const BlogIndex: React.FC<BlogIndexProps> = (props) => {
           <div className="flex items-center gap-4">
             <Link
               href="/tags"
-              className="text-sm text-neutral-400 underline-offset-4 hover:text-neutral-900 hover:underline"
+              className="text-sm text-neutral-400 underline-offset-4 hover:text-neutral-900 hover:underline dark:text-neutral-500 dark:hover:text-neutral-100"
             >
               Tags
             </Link>
@@ -50,7 +50,7 @@ const BlogIndex: React.FC<BlogIndexProps> = (props) => {
               href="feed://madole.xyz/rss.atom"
               title="RSS"
               aria-label="RSS feed"
-              className="text-neutral-500 hover:text-neutral-900"
+              className="text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
             >
               <RssIcon />
             </a>

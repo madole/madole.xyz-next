@@ -45,7 +45,7 @@ const TodayILearned: React.FC<TodayILearnedProps> = (props) => {
                 title={url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="underline-offset-4 hover:text-neutral-900 hover:underline"
+                className="underline-offset-4 hover:text-neutral-900 hover:underline dark:hover:text-neutral-100"
               >
                 Read more
               </a>

@@ -59,7 +59,7 @@ const TagPage: React.FC<TagPageProps> = (props) => {
         action={
           <Link
             href="/blog-index"
-            className="text-sm text-neutral-500 hover:text-neutral-900"
+            className="text-sm text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
           >
             All posts
           </Link>

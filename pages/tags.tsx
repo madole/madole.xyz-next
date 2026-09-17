@@ -30,7 +30,7 @@ const TagsPage: React.FC<TagsPageProps> = (props) => {
         action={
           <Link
             href="/blog-index"
-            className="text-sm text-neutral-500 hover:text-neutral-900"
+            className="text-sm text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
           >
             All posts
           </Link>
@@ -46,10 +46,10 @@ const TagsPage: React.FC<TagsPageProps> = (props) => {
           <li key={slug}>
             <Link
               href={`/tag/${slug}`}
-              className="inline-flex items-baseline gap-1.5 text-xl font-medium tracking-tight text-neutral-900 decoration-neutral-300 underline-offset-4 hover:underline"
+              className="inline-flex items-baseline gap-1.5 text-xl font-medium tracking-tight text-neutral-900 decoration-neutral-300 underline-offset-4 hover:underline dark:text-neutral-100 dark:decoration-neutral-600"
             >
               #{name}
-              <span className="text-sm font-normal text-neutral-400">
+              <span className="text-sm font-normal text-neutral-400 dark:text-neutral-500">
                 {count}
               </span>
             </Link>
