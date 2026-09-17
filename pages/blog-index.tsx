@@ -9,6 +9,7 @@ import { IndexListItem } from "../components/IndexListItem";
 import { IndexHeader } from "../components/IndexHeader";
 import { Layout } from "../components/Layout/Layout";
 import RssIcon from "../components/RSSIcon";
+import { ThemeToggle } from "../components/ThemeToggle";
 
 interface Post {
   title: string;
@@ -54,6 +55,7 @@ const BlogIndex: React.FC<BlogIndexProps> = (props) => {
             >
               <RssIcon />
             </a>
+            <ThemeToggle className="-mx-2" />
           </div>
         }
       />

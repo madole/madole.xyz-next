@@ -7,6 +7,7 @@ import readingTime from "reading-time";
 import { IndexHeader } from "../components/IndexHeader";
 import { IndexListItem } from "../components/IndexListItem";
 import { Layout } from "../components/Layout/Layout";
+import { ThemeToggle } from "../components/ThemeToggle";
 
 export interface TodayILearnedProps {
   postsMetadata: {
@@ -34,6 +35,7 @@ const TodayILearned: React.FC<TodayILearnedProps> = (props) => {
       <IndexHeader
         title="Today I learned"
         subtitle={`${postsMetadata.length} notes`}
+        action={<ThemeToggle className="-mx-2" />}
       />
       <div>
         {postsMetadata.map((post) => (

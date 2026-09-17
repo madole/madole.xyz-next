@@ -8,6 +8,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { IndexHeader } from "../../components/IndexHeader";
 import { Layout } from "../../components/Layout/Layout";
+import { ThemeToggle } from "../../components/ThemeToggle";
 import { tagItems } from "../../utils/tags";
 
 function readBlogPosts(): {
@@ -57,12 +58,15 @@ const TagPage: React.FC<TagPageProps> = (props) => {
           blogPostsMetadata.length === 1 ? "post" : "posts"
         }`}
         action={
-          <Link
-            href="/blog-index"
-            className="text-sm text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
-          >
-            All posts
-          </Link>
+          <div className="flex items-center gap-4">
+            <Link
+              href="/blog-index"
+              className="text-sm text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
+            >
+              All posts
+            </Link>
+            <ThemeToggle className="-mx-2" />
+          </div>
         }
       />
       <div>

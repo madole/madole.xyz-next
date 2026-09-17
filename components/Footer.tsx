@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ThemeToggle } from "./ThemeToggle";
 
 const RssFeed = (props?: { reading?: boolean }) => (
   <Link href={"/rss.xml"} aria-label="RSS feed">
@@ -28,7 +29,7 @@ function Footer(props?: { reading?: boolean }): React.ReactElement {
     return (
       <footer className="border-t border-neutral-200 dark:border-neutral-800">
         <div className="mx-auto flex w-full max-w-[1060px] items-center justify-between px-6 py-7 text-sm text-neutral-500 dark:text-neutral-400 md:px-14">
-          <span>&copy; {2021} by Madole.</span>
+          <span>&copy; {new Date().getFullYear()} by Madole.</span>
           <div className="flex items-center gap-5">
             <a
               href="https://github.com/madole"
@@ -39,6 +40,7 @@ function Footer(props?: { reading?: boolean }): React.ReactElement {
               GitHub
             </a>
             <RssFeed reading />
+            <ThemeToggle />
           </div>
         </div>
       </footer>
@@ -46,7 +48,7 @@ function Footer(props?: { reading?: boolean }): React.ReactElement {
   }
   return (
     <div className="mb-3 font-thin text-white flex flex-col items-center">
-      &copy; {2021} by Madole.
+      &copy; {new Date().getFullYear()} by Madole.
       <br />
       <a href="https://github.com/madole" target="_blank" rel="noreferrer">
         GitHub Repository

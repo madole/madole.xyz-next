@@ -6,6 +6,7 @@ import path from "path";
 import React from "react";
 import { IndexHeader } from "../components/IndexHeader";
 import { Layout } from "../components/Layout/Layout";
+import { ThemeToggle } from "../components/ThemeToggle";
 import { tagItems } from "../utils/tags";
 
 interface PostAttributes {
@@ -28,12 +29,15 @@ const TagsPage: React.FC<TagsPageProps> = (props) => {
         title="Tags"
         subtitle={`${tags.length} tags`}
         action={
-          <Link
-            href="/blog-index"
-            className="text-sm text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
-          >
-            All posts
-          </Link>
+          <div className="flex items-center gap-4">
+            <Link
+              href="/blog-index"
+              className="text-sm text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
+            >
+              All posts
+            </Link>
+            <ThemeToggle className="-mx-2" />
+          </div>
         }
       />
       {/*
@@ -41,7 +45,7 @@ const TagsPage: React.FC<TagsPageProps> = (props) => {
         its capitals), while the link and the page it points at share one slug
         from utils/tags. Counts are folded in from every tagged post.
       */}
-      <ul className="flex flex-wrap gap-x-6 gap-y-3">
+      <ul className="flex flex-wrap gap-x-6 gap-y-3 border-t border-neutral-200 pt-7 dark:border-neutral-800">
         {tags.map(({ name, slug, count }) => (
           <li key={slug}>
             <Link
