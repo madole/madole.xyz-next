@@ -28,11 +28,11 @@ export const Navigation = (props?: { variant?: "dark" | "light" }) => {
   const isLight = (props?.variant ?? "dark") === "light";
 
   const idleLink = isLight
-    ? "text-sm text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
-    : "text-sm text-white/75 hover:text-white";
+    ? "text-base text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
+    : "text-base text-white/75 hover:text-white";
   const activeLink = isLight
-    ? "border-b-2 border-neutral-900 pb-0.5 text-sm font-medium text-neutral-900 dark:border-neutral-100 dark:text-neutral-100"
-    : "border-b-2 border-white pb-0.5 text-sm font-medium text-white";
+    ? "border-b-2 border-neutral-900 pb-0.5 text-base font-medium text-neutral-900 dark:border-neutral-100 dark:text-neutral-100"
+    : "border-b-2 border-white pb-0.5 text-base font-medium text-white";
 
   const linkClass = (isActive: boolean) => (isActive ? activeLink : idleLink);
 
