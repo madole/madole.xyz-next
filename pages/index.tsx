@@ -80,11 +80,16 @@ const Index: React.FC = () => {
         globals.css paints html/body with the site-wide purple gradient. The
         homepage is the only page that wants deep space behind it, and a wrapper
         alone is not enough - overscroll would still rubber-band to purple.
+
+        The homepage is a single viewport and must not scroll, so scrolling is
+        locked here (scoped to this page) rather than globally.
       */}
       <style jsx global>{`
         html,
         body {
           background: #0c0722;
+          overflow: hidden;
+          overscroll-behavior: none;
         }
       `}</style>
 
