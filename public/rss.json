@@ -11,6 +11,18 @@
     },
     "items": [
         {
+            "id": "https://madole.xyz/blog/every-engineer-should-do-a-stint-in-a-startup-and-in-a-consultancy-in-that-order",
+            "content_html": "<p>I&#39;ve worked in a few different industries and for companies that came in different shapes and sizes. I think every software engineer should\ndo a startup and a consultancy in that order to fast-track their career &amp; personal development.</p>\n<h2>Why Join a</h2>\n",
+            "url": "https://madole.xyz/blog/every-engineer-should-do-a-stint-in-a-startup-and-in-a-consultancy-in-that-order",
+            "title": "Every engineer should do a stint in a startup and in a consultancy, in that order",
+            "summary": "Reading time: 10 min read",
+            "date_modified": "2026-09-24T00:04:55.440Z",
+            "author": {
+                "name": "Andrew McDowell",
+                "url": "https://madole.xyz"
+            }
+        },
+        {
             "id": "https://madole.xyz/blog/claude-code-fixed-my-wifi",
             "content_html": "<p>I have an old MacBook Pro 2016 Intel version that I was hoping to breathe some life back into. At the same time\nI wanted to give the most hyped Linux distro <a href=\"https://omarchy.org/\">Omarchy</a> a go. I love an opportunity to kill two birds with one stone </p>\n",
             "url": "https://madole.xyz/blog/claude-code-fixed-my-wifi",
