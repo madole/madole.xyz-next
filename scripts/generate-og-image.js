@@ -5,7 +5,7 @@ const yaml = require("js-yaml");
 const frontMatter = require("front-matter");
 
 const TITLE_LINE_SPACING = 8;
-const SITE_NAME_SPACING = 5;
+const SITE_NAME_GAP = 7;
 
 const [slug, imageUrl] = process.argv.slice(2);
 
@@ -59,6 +59,10 @@ const generateImage = async () => {
       return lines;
     }, []);
 
+    const blockSpan =
+      (splitNewLineTitle.length - 1) * TITLE_LINE_SPACING + SITE_NAME_GAP;
+    const startY = 50 - blockSpan / 2;
+
     const svgText = `
       <svg width="${width}" height="${height}">
       <style>
@@ -74,24 +78,24 @@ const generateImage = async () => {
         font-family: sans-serif;
         }
       </style>
-      <!-- Decorative Corners -->
-      <rect x="32" y="32" width="8" height="40" fill="#fff" />
-      <rect x="32" y="32" width="40" height="8" fill="#fff" />
-      <rect x="${width - 40 - 32}" y="32" width="40" height="8" fill="#fff" />
-      <rect x="${width - 32 - 8}" y="32" width="8" height="40" fill="#fff" />
-      <rect x="32" y="${height - 40 - 32}" width="8" height="40" fill="#fff" />
-      <rect x="32" y="${height - 32 - 8}" width="40" height="8" fill="#fff" />
-      <rect x="${width - 40 - 32}" y="${height - 32 - 8}" width="40" height="8" fill="#fff" />
-      <rect x="${width - 32 - 8}" y="${height - 40 - 32}" width="8" height="40" fill="#fff" />
       <g style="background: rgba(0, 0, 0, 0.5);">
         <rect x="0" y="0" width="${width}" height="${height}" fill="rgba(0,0,0,0.4)" />
+        <!-- Decorative Corners -->
+        <rect x="32" y="32" width="8" height="40" fill="#fff" />
+        <rect x="32" y="32" width="40" height="8" fill="#fff" />
+        <rect x="${width - 40 - 32}" y="32" width="40" height="8" fill="#fff" />
+        <rect x="${width - 32 - 8}" y="32" width="8" height="40" fill="#fff" />
+        <rect x="32" y="${height - 40 - 32}" width="8" height="40" fill="#fff" />
+        <rect x="32" y="${height - 32 - 8}" width="40" height="8" fill="#fff" />
+        <rect x="${width - 40 - 32}" y="${height - 32 - 8}" width="40" height="8" fill="#fff" />
+        <rect x="${width - 32 - 8}" y="${height - 40 - 32}" width="8" height="40" fill="#fff" />
         ${splitNewLineTitle
           .map(
             (line, i) =>
-              `<text x="50%" y="${50 + i * TITLE_LINE_SPACING}%" dominant-baseline="middle" text-anchor="middle" class="title">${line.toUpperCase()}</text>`,
+              `<text x="50%" y="${startY + i * TITLE_LINE_SPACING}%" dominant-baseline="middle" text-anchor="middle" class="title">${line.toUpperCase()}</text>`,
           )
           .join("\n")}
-        <text x="50%" y="${60 + splitNewLineTitle.length * SITE_NAME_SPACING}%" dominant-baseline="middle" text-anchor="middle" class="site-name">MADOLE.XYZ</text>
+        <text x="50%" y="${startY + (splitNewLineTitle.length - 1) * TITLE_LINE_SPACING + SITE_NAME_GAP}%" dominant-baseline="middle" text-anchor="middle" class="site-name">MADOLE.XYZ</text>
       </g>
       </svg>
     `;
