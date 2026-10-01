@@ -251,47 +251,56 @@ const HintRocket: React.FC<HintRocketProps> = ({ onDone }) => {
   });
 
   return (
-    <group ref={groupRef} position={[0, -100, FLIGHT_Z]} scale={TOW_SCALE}>
-      {/* The background view carries only a dim ambient light for the clouds;
-          the hull needs a key light to read as a solid. */}
+    <>
+      {/* Outside the moving group on purpose. A directional light's direction
+          is its world position minus its target, and the target is the world
+          origin, so lighting parented to the tow would swing round as the
+          ship crossed the screen - the hull lit from a different angle at
+          each end of an otherwise identical pass. */}
       <RocketLight />
 
-      <group ref={shipRef} scale={SHIP_SCALE} rotation={[0, 0, HEADING_RIGHT]}>
-        <RocketMesh flameRef={flameRef} />
-      </group>
+      <group ref={groupRef} position={[0, -100, FLIGHT_Z]} scale={TOW_SCALE}>
+        <group
+          ref={shipRef}
+          scale={SHIP_SCALE}
+          rotation={[0, 0, HEADING_RIGHT]}
+        >
+          <RocketMesh flameRef={flameRef} />
+        </group>
 
-      {/* Tow rope, from the nozzle back to the banner's leading edge */}
-      <mesh
-        position={[NOZZLE_OFFSET - ROPE_LENGTH / 2, 0, 0]}
-        rotation={[0, 0, Math.PI / 2]}
-      >
-        <cylinderGeometry args={[ROPE_RADIUS, ROPE_RADIUS, ROPE_LENGTH, 6]} />
-        <meshBasicMaterial color={ROPE_COLOR} toneMapped={false} />
-      </mesh>
+        {/* Tow rope, from the nozzle back to the banner's leading edge */}
+        <mesh
+          position={[NOZZLE_OFFSET - ROPE_LENGTH / 2, 0, 0]}
+          rotation={[0, 0, Math.PI / 2]}
+        >
+          <cylinderGeometry args={[ROPE_RADIUS, ROPE_RADIUS, ROPE_LENGTH, 6]} />
+          <meshBasicMaterial color={ROPE_COLOR} toneMapped={false} />
+        </mesh>
 
-      <mesh
-        ref={bannerRef}
-        position={[NOZZLE_OFFSET - ROPE_LENGTH - BANNER_WIDTH / 2, 0, 0]}
-      >
-        <planeGeometry
-          args={[
-            BANNER_WIDTH,
-            BANNER_HEIGHT,
-            BANNER_SEGMENTS_X,
-            BANNER_SEGMENTS_Y,
-          ]}
-        />
-        {/* Unlit so the words stay evenly readable, and double sided because
+        <mesh
+          ref={bannerRef}
+          position={[NOZZLE_OFFSET - ROPE_LENGTH - BANNER_WIDTH / 2, 0, 0]}
+        >
+          <planeGeometry
+            args={[
+              BANNER_WIDTH,
+              BANNER_HEIGHT,
+              BANNER_SEGMENTS_X,
+              BANNER_SEGMENTS_Y,
+            ]}
+          />
+          {/* Unlit so the words stay evenly readable, and double sided because
             the ripple turns parts of it away from the camera. */}
-        <meshBasicMaterial
-          map={texture}
-          transparent
-          side={DoubleSide}
-          depthWrite={false}
-          toneMapped={false}
-        />
-      </mesh>
-    </group>
+          <meshBasicMaterial
+            map={texture}
+            transparent
+            side={DoubleSide}
+            depthWrite={false}
+            toneMapped={false}
+          />
+        </mesh>
+      </group>
+    </>
   );
 };
 
