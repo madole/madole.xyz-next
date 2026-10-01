@@ -181,6 +181,38 @@ function worldToScreen(
   return out.set(((_ndc.x + 1) / 2) * width, ((1 - _ndc.y) / 2) * height);
 }
 
+/**
+ * A point on the orbit for a given angle: an ellipse in screen space round
+ * the globe's centre, pushed to a depth that swings from in front of the
+ * planet at the bottom of the ellipse to behind it at the top - the near side
+ * of a ring seen from slightly above.
+ *
+ * At module scope rather than as a closure inside useFrame, so no function
+ * object is allocated per frame; everything it needs is passed in.
+ */
+function orbitPoint(
+  angle: number,
+  anchor: EarthAnchor,
+  camera: Camera,
+  width: number,
+  height: number,
+  out: Vector3,
+): Vector3 {
+  const r = anchor.radius * ORBIT_RADIUS_FACTOR;
+  const sx = anchor.cx + r * Math.cos(angle);
+  const sy = anchor.cy - r * ORBIT_SQUASH * Math.sin(angle);
+  const z = ORBIT_Z_MID - ORBIT_Z_AMP * Math.sin(angle);
+  return screenToWorldAtZ(camera, sx, sy, width, height, z, out);
+}
+
+/** Heading along the ellipse, from its screen-space derivative (y up). */
+function orbitHeading(angle: number, direction: number): number {
+  return Math.atan2(
+    ORBIT_SQUASH * Math.cos(angle) * direction,
+    -Math.sin(angle) * direction,
+  );
+}
+
 export interface RocketProps {
   /** Once true the rocket ignores input, flies off the top and calls onExited. */
   leaving: boolean;
@@ -366,32 +398,9 @@ const Rocket: React.FC<RocketProps> = ({
     const vel = velocity.current;
     const earth = anchor.current;
 
-    /**
-     * A point on the orbit for a given angle: an ellipse in screen space round
-     * the globe's centre, pushed to a depth that swings from in front of the
-     * planet at the bottom of the ellipse to behind it at the top - the near
-     * side of a ring seen from slightly above.
-     */
-    const orbitPoint = (angle: number, out: Vector3) => {
-      const r = earth.radius * ORBIT_RADIUS_FACTOR;
-      const sx = earth.cx + r * Math.cos(angle);
-      const sy = earth.cy - r * ORBIT_SQUASH * Math.sin(angle);
-      const z = ORBIT_Z_MID - ORBIT_Z_AMP * Math.sin(angle);
-      return screenToWorldAtZ(camera, sx, sy, width, height, z, out);
-    };
-
-    /** Heading along the ellipse, from its screen-space derivative (y up). */
-    const orbitHeading = (angle: number) => {
-      const d = orbitDirection.current;
-      return Math.atan2(
-        ORBIT_SQUASH * Math.cos(angle) * d,
-        -Math.sin(angle) * d,
-      );
-    };
-
     // Full-depth trail back on for the coast phases.
-      orbitDepth.current = null;
-      prevPosition.current.copy(ship.position);
+    orbitDepth.current = null;
+    prevPosition.current.copy(ship.position);
 
     if (phase.current === "launching") {
       elapsed.current += dt;
@@ -442,18 +451,32 @@ const Rocket: React.FC<RocketProps> = ({
         elapsed.current += dt;
         const t = Math.min(1, elapsed.current / CAPTURE_DURATION);
         orbitAngle.current += orbitDirection.current * ORBIT_SPEED * dt;
-        orbitPoint(orbitAngle.current, orbitTarget.current);
+        orbitPoint(
+          orbitAngle.current,
+          earth,
+          camera,
+          width,
+          height,
+          orbitTarget.current,
+        );
         ship.position.lerpVectors(
           captureStart.current,
           orbitTarget.current,
           easeInOutCubic(t),
         );
-        heading.current = orbitHeading(orbitAngle.current);
+        heading.current = orbitHeading(orbitAngle.current, orbitDirection.current);
         if (t >= 1) phase.current = "orbiting";
       } else {
         orbitAngle.current += orbitDirection.current * ORBIT_SPEED * dt;
-        orbitPoint(orbitAngle.current, ship.position);
-        heading.current = orbitHeading(orbitAngle.current);
+        orbitPoint(
+          orbitAngle.current,
+          earth,
+          camera,
+          width,
+          height,
+          ship.position,
+        );
+        heading.current = orbitHeading(orbitAngle.current, orbitDirection.current);
       }
       // Project the trail onto the flight plane while on the orbit; see the
       // block that writes trailAnchor at the end of the frame.

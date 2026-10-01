@@ -1,12 +1,7 @@
 import { useFrame } from "@react-three/fiber";
 import { useRef, type RefObject } from "react";
 import type { MeshLineGeometry } from "@react-three/drei";
-import {
-  AdditiveBlending,
-  Color,
-  Material,
-  ShaderMaterial,
-} from "three";
+import { AdditiveBlending, Color, Material, ShaderMaterial } from "three";
 
 /**
  * Frames a Trail needs before its line is worth showing.
