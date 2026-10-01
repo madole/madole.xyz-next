@@ -1,5 +1,5 @@
 import React from "react";
-import { AdditiveBlending, Group, Mesh } from "three";
+import { AdditiveBlending, Group } from "three";
 
 const HULL_COLOR = "#eef2f8";
 const NOSE_COLOR = "#ff5a5f";
@@ -8,11 +8,23 @@ const NOZZLE_COLOR = "#3a3f4b";
 const WINDOW_COLOR = "#7fd0ff";
 const FLAME_COLOR = "#ffb347";
 
+/** Where the nozzle hangs below the hull centre, in ship-local units. */
+const NOZZLE_OFFSET_Y = -0.32;
+/** Half the nozzle's height: the mouth, and so the exhaust anchor, is this far below it. */
+const NOZZLE_HALF_HEIGHT = 0.05;
+
+const FLAME_RADIUS = 0.08;
+const FLAME_LENGTH = 0.32;
+
 export interface RocketMeshProps {
   /** The nozzle group. Exhaust trails anchor here. */
   nozzleRef?: React.RefObject<Group | null>;
-  /** The flame cone, scaled per frame to burn or idle. */
-  flameRef?: React.RefObject<Mesh | null>;
+  /**
+   * The flame group, scaled per frame to burn or idle. Pivoted on the nozzle
+   * mouth so scaling stretches the flame downwards instead of sliding it in
+   * and out of the nozzle.
+   */
+  flameRef?: React.RefObject<Group | null>;
 }
 
 /**
@@ -69,9 +81,9 @@ const RocketMesh: React.FC<RocketMeshProps> = ({ nozzleRef, flameRef }) => (
     })}
 
     {/* Nozzle; exhaust trails anchor here */}
-    <group ref={nozzleRef} position={[0, -0.32, 0]}>
+    <group ref={nozzleRef} position={[0, NOZZLE_OFFSET_Y, 0]}>
       <mesh>
-        <cylinderGeometry args={[0.07, 0.1, 0.1, 16]} />
+        <cylinderGeometry args={[0.07, 0.1, NOZZLE_HALF_HEIGHT * 2, 16]} />
         <meshStandardMaterial
           color={NOZZLE_COLOR}
           roughness={0.7}
@@ -79,18 +91,23 @@ const RocketMesh: React.FC<RocketMeshProps> = ({ nozzleRef, flameRef }) => (
         />
       </mesh>
 
-      {/* Flame: an inverted cone, additive so it glows over the sky */}
-      <mesh ref={flameRef} position={[0, -0.2, 0]} rotation={[Math.PI, 0, 0]}>
-        <coneGeometry args={[0.08, 0.32, 12]} />
-        <meshBasicMaterial
-          color={FLAME_COLOR}
-          transparent
-          opacity={0.9}
-          depthWrite={false}
-          blending={AdditiveBlending}
-          toneMapped={false}
-        />
-      </mesh>
+      {/* Flame: an inverted cone, additive so it glows over the sky. The
+          extra group puts the scale pivot on the nozzle mouth, so the base
+          stays welded to the nozzle however far the caller stretches it and
+          only the tip extends. */}
+      <group ref={flameRef} position={[0, -NOZZLE_HALF_HEIGHT, 0]}>
+        <mesh position={[0, -FLAME_LENGTH / 2, 0]} rotation={[Math.PI, 0, 0]}>
+          <coneGeometry args={[FLAME_RADIUS, FLAME_LENGTH, 12]} />
+          <meshBasicMaterial
+            color={FLAME_COLOR}
+            transparent
+            opacity={0.9}
+            depthWrite={false}
+            blending={AdditiveBlending}
+            toneMapped={false}
+          />
+        </mesh>
+      </group>
     </group>
   </>
 );

@@ -162,7 +162,7 @@ export interface HintRocketProps {
 const HintRocket: React.FC<HintRocketProps> = ({ onDone }) => {
   const groupRef = useRef<Group>(null);
   const shipRef = useRef<Group>(null);
-  const flameRef = useRef<Mesh>(null);
+  const flameRef = useRef<Group>(null);
   const bannerRef = useRef<Mesh>(null);
   const texture = useBannerTexture(HINT_TEXT);
 

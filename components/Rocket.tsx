@@ -8,7 +8,6 @@ import {
   Group,
   Material,
   MathUtils,
-  Mesh,
   PerspectiveCamera,
   ShaderMaterial,
   Vector2,
@@ -206,7 +205,7 @@ const Rocket: React.FC<RocketProps> = ({
   const shipRef = useRef<Group>(null);
   const rollRef = useRef<Group>(null);
   const nozzleRef = useRef<Group>(null);
-  const flameRef = useRef<Mesh>(null);
+  const flameRef = useRef<Group>(null);
   const trailRef = useRef<MeshLineGeometry>(null);
 
   const phase = useRef<Phase>("launching");
