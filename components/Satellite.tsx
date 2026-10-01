@@ -6,11 +6,10 @@ import {
   Color,
   DataTexture,
   Group,
-  Material,
   RGBAFormat,
-  ShaderMaterial,
   SRGBColorSpace,
 } from "three";
+import { useTrailStyle } from "../hooks/useTrailStyle";
 
 /** Seconds for one full orbit. */
 const ORBIT_PERIOD = 9;
@@ -51,7 +50,6 @@ const TRAIL_WIDTH = 0.6;
  */
 const TRAIL_LENGTH = 12;
 const TRAIL_DECAY = 1;
-const TRAIL_WARMUP_FRAMES = Math.ceil((TRAIL_LENGTH * 10) / TRAIL_DECAY);
 
 /**
  * Radial falloff used as the glow sprite. Built once at 64px, which is ample
@@ -110,59 +108,18 @@ const Satellite: React.FC<SatelliteProps> = ({ orbitRadius }) => {
   const trailRef = useRef<MeshLineGeometry>(null);
   const glowTexture = useGlowTexture(GLOW_COLOR);
 
-  /**
-   * Trail's material is memoised on the canvas size, so it is rebuilt from
-   * defaults on every resize and any styling applied once in an effect is
-   * silently lost. Reapplying on identity change costs a reference comparison
-   * per frame and survives that rebuild.
-   */
-  const styledMaterial = useRef<Material | null>(null);
-  const frameCount = useRef(0);
+  // Warm-up and material upkeep, shared with the rocket's trail.
+  useTrailStyle(trailRef, {
+    head: TRAIL_HEAD_COLOR,
+    tail: TRAIL_TAIL_COLOR,
+    length: TRAIL_LENGTH,
+    decay: TRAIL_DECAY,
+  });
 
   useFrame((_, delta) => {
     // Clamp so a backgrounded tab returning after a long pause does not jump.
     const step = Math.min(delta, 0.1);
     if (orbitRef.current) orbitRef.current.rotation.y += ORBIT_SPEED * step;
-
-    const trail = trailRef.current;
-    if (!trail) return;
-
-    /**
-     * Trail seeds its buffer from the target's *local* position, so until every
-     * seeded point has been shifted out the line runs from a stale point near
-     * the pole to the satellite. Counting frames rather than seconds because
-     * the buffer drains per frame.
-     */
-    if (frameCount.current <= TRAIL_WARMUP_FRAMES) {
-      frameCount.current += 1;
-      trail.visible = false;
-      return;
-    }
-    trail.visible = true;
-
-    const material = trail.material;
-    if (material === styledMaterial.current) return;
-    if (!(material instanceof ShaderMaterial)) return;
-
-    // Additive over the night sky, and depth-tested so the globe occludes the
-    // trail as the satellite passes behind it. The atmosphere shell writes no
-    // depth, so only the surface occludes - which is what we want.
-    material.transparent = true;
-    material.depthWrite = false;
-    material.blending = AdditiveBlending;
-    // The canvas tone maps with ACES, whose toe would swallow the tail.
-    material.toneMapped = false;
-
-    // MeshLine's own gradient: mix(gradient[0], gradient[1], counters), where
-    // counters runs 0 at the oldest point to 1 at the head. `attenuation` only
-    // tapers width; this is what fades the tail out.
-    material.uniforms.useGradient.value = 1;
-    material.uniforms.gradient.value = [
-      new Color(TRAIL_TAIL_COLOR),
-      new Color(TRAIL_HEAD_COLOR),
-    ];
-
-    styledMaterial.current = material;
   });
 
   return (

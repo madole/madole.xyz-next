@@ -2,17 +2,14 @@ import { Trail, type MeshLineGeometry } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import React, { useEffect, useRef } from "react";
 import {
-  AdditiveBlending,
   Camera,
-  Color,
   Group,
-  Material,
   MathUtils,
   PerspectiveCamera,
-  ShaderMaterial,
   Vector2,
   Vector3,
 } from "three";
+import { useTrailStyle } from "../hooks/useTrailStyle";
 import { EARTH_RADIUS } from "./Earth";
 import RocketMesh from "./RocketMesh";
 import {
@@ -125,12 +122,6 @@ const TRAIL_WIDTH = 0.8;
  */
 const TRAIL_LENGTH = 8;
 const TRAIL_DECAY = 2;
-/**
- * Trail seeds its buffer from the target's *local* position, so for the first
- * buffer's worth of frames the line runs from the wrong place. Hidden until
- * every seeded point has drained, exactly as the satellite does.
- */
-const TRAIL_WARMUP_FRAMES = Math.ceil((TRAIL_LENGTH * 10) / TRAIL_DECAY);
 
 type Phase = "launching" | "flying" | "capturing" | "orbiting" | "exiting";
 
@@ -237,13 +228,19 @@ const Rocket: React.FC<RocketProps> = ({
   const flameRef = useRef<Group>(null);
   const trailRef = useRef<MeshLineGeometry>(null);
 
+  // Warm-up and material upkeep, shared with the satellite's trail.
+  useTrailStyle(trailRef, {
+    head: TRAIL_HEAD_COLOR,
+    tail: TRAIL_TAIL_COLOR,
+    length: TRAIL_LENGTH,
+    decay: TRAIL_DECAY,
+  });
+
   const phase = useRef<Phase>("launching");
   const elapsed = useRef(0);
   const velocity = useRef(new Vector2(0, 0));
   const heading = useRef(UP_HEADING);
   const held = useRef(new Set<string>());
-  const frameCount = useRef(0);
-  const styledMaterial = useRef<Material | null>(null);
   const exited = useRef(false);
   /** Barrel roll: elapsed seconds into the current roll, and whether one is running. */
   const rollElapsed = useRef(0);
@@ -570,32 +567,6 @@ const Rocket: React.FC<RocketProps> = ({
         base * flicker,
       );
     }
-
-    const trail = trailRef.current;
-    if (!trail) return;
-    if (frameCount.current <= TRAIL_WARMUP_FRAMES) {
-      frameCount.current += 1;
-      trail.visible = false;
-      return;
-    }
-    trail.visible = true;
-
-    const material = trail.material;
-    if (material === styledMaterial.current) return;
-    if (!(material instanceof ShaderMaterial)) return;
-    // Same treatment as the satellite trail: additive, no depth write, and
-    // MeshLine's own gradient to fade the tail. Reapplied whenever Trail
-    // rebuilds its material on resize.
-    material.transparent = true;
-    material.depthWrite = false;
-    material.blending = AdditiveBlending;
-    material.toneMapped = false;
-    material.uniforms.useGradient.value = 1;
-    material.uniforms.gradient.value = [
-      new Color(TRAIL_TAIL_COLOR),
-      new Color(TRAIL_HEAD_COLOR),
-    ];
-    styledMaterial.current = material;
   });
 
   return (
