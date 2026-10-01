@@ -66,16 +66,30 @@ const RocketMesh: React.FC<RocketMeshProps> = ({ nozzleRef, flameRef }) => (
       <meshStandardMaterial color={NOSE_COLOR} roughness={0.5} />
     </mesh>
 
-    {/* Porthole, facing the camera */}
-    <mesh position={[0, 0.08, 0.11]}>
-      <sphereGeometry args={[0.05, 12, 12]} />
-      <meshStandardMaterial
-        color={WINDOW_COLOR}
-        emissive={WINDOW_COLOR}
-        emissiveIntensity={0.8}
-        roughness={0.2}
-      />
-    </mesh>
+    {/* Porthole. Two spheres back to back rather than one: a single sphere
+        is front-face only, so during a barrel roll it shows as a hole in the
+        hull for as long as the camera is behind it. Mirrored, it reads as a
+        window from either side, which is what the roll needs. */}
+    <group position={[0, 0.08, 0.11]}>
+      <mesh>
+        <sphereGeometry args={[0.05, 12, 12]} />
+        <meshStandardMaterial
+          color={WINDOW_COLOR}
+          emissive={WINDOW_COLOR}
+          emissiveIntensity={0.8}
+          roughness={0.2}
+        />
+      </mesh>
+      <mesh position={[0, 0, -0.07]} scale={0.85}>
+        <sphereGeometry args={[0.05, 12, 12]} />
+        <meshStandardMaterial
+          color={WINDOW_COLOR}
+          emissive={WINDOW_COLOR}
+          emissiveIntensity={0.8}
+          roughness={0.2}
+        />
+      </mesh>
+    </group>
 
     {/* Three fins, one swept back on each visible side and one behind */}
     {[0, 1, 2].map((i) => {
@@ -119,6 +133,26 @@ const RocketMesh: React.FC<RocketMeshProps> = ({ nozzleRef, flameRef }) => (
         </mesh>
       </group>
     </group>
+  </>
+);
+
+/**
+ * Lighting for the ship, shared by both rockets that fly it.
+ *
+ * The background view carries only a dim ambient light, which is all the
+ * clouds need, so the key light lives with the rocket and exists only while
+ * one is on screen.
+ *
+ * The fill matters as much as the key. A single light from the front leaves
+ * everything behind the ship pure black, so the silhouette disappears
+ * entirely through the second half of a barrel roll - the hull stops being a
+ * solid object and becomes a shape cut out of the stars.
+ */
+export const RocketLight: React.FC = () => (
+  <>
+    <directionalLight position={[2, 3, 5]} intensity={2.2} />
+    {/* Weak, from behind and below, to keep the far side readable. */}
+    <directionalLight position={[-2, -1, -4]} intensity={0.35} />
   </>
 );
 

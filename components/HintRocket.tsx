@@ -9,7 +9,11 @@ import {
   SRGBColorSpace,
 } from "three";
 import { HINT_TEXT } from "../hooks/useRocketHint";
-import RocketMesh, { NOZZLE_OFFSET_Y, NOSE_COLOR } from "./RocketMesh";
+import RocketMesh, {
+  NOZZLE_OFFSET_Y,
+  NOSE_COLOR,
+  RocketLight,
+} from "./RocketMesh";
 import { FLIGHT_Z } from "./sceneConstants";
 import { useFlightPlane } from "../hooks/useFlightPlane";
 
@@ -250,7 +254,7 @@ const HintRocket: React.FC<HintRocketProps> = ({ onDone }) => {
     <group ref={groupRef} position={[0, -100, FLIGHT_Z]} scale={TOW_SCALE}>
       {/* The background view carries only a dim ambient light for the clouds;
           the hull needs a key light to read as a solid. */}
-      <directionalLight position={[2, 3, 5]} intensity={2.2} />
+      <RocketLight />
 
       <group ref={shipRef} scale={SHIP_SCALE} rotation={[0, 0, HEADING_RIGHT]}>
         <RocketMesh flameRef={flameRef} />

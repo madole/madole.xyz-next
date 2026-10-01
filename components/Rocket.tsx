@@ -6,7 +6,7 @@ import { useArrowKeys } from "../hooks/useArrowKeys";
 import { useEarthAnchor, type EarthAnchor } from "../hooks/useEarthAnchor";
 import { useFlightPlane } from "../hooks/useFlightPlane";
 import { useTrailStyle } from "../hooks/useTrailStyle";
-import RocketMesh from "./RocketMesh";
+import RocketMesh, { RocketLight } from "./RocketMesh";
 import { FLIGHT_DISTANCE, FLIGHT_Z } from "./sceneConstants";
 
 /**
@@ -573,10 +573,7 @@ const Rocket: React.FC<RocketProps> = ({
 
   return (
     <group>
-      {/* The background view only carries a dim ambient light, which is all
-          the clouds need. The hull wants a key light to read as a solid, and
-          it lives here so it exists only while the rocket does. */}
-      <directionalLight position={[2, 3, 5]} intensity={2.2} />
+      <RocketLight />
 
       {/* The trail tracks a proxy rather than the nozzle itself: during an
           orbit the nozzle swings in depth, and a ribbon sampled at those
