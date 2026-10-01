@@ -55,6 +55,16 @@ const HEADING_MIN_SPEED = 0.15;
 /** How fast z eases back to the flight plane after leaving orbit, per second. */
 const DEPTH_RETURN_RATE = 5;
 
+/**
+ * Floor on the frame delta. Escaping an orbit recovers velocity by dividing
+ * the frame's movement by dt, and two frames can land in the same clock tick.
+ * A true zero there means 0 / 0, which is NaN rather than zero velocity, and
+ * NaN then poisons the ship position for good - it stops rendering and never
+ * recovers. A hundredth of a millisecond is far below anything visible, but
+ * keeps the divisor finite so a zero-length step reads as zero speed.
+ */
+const MIN_FRAME_DT = 0.0001;
+
 /** Seconds a full barrel roll takes when B is pressed. */
 const ROLL_DURATION = 0.75;
 
@@ -326,8 +336,10 @@ const Rocket: React.FC<RocketProps> = ({
 
     const camera = state.camera as PerspectiveCamera;
     const { width, height } = state.size;
-    // Clamp so a backgrounded tab returning after a long pause does not jump.
-    const dt = Math.min(delta, 0.1);
+    // Capped so a backgrounded tab returning after a long pause does not
+    // jump, and floored so a zero-length step cannot divide by zero. See
+    // MIN_FRAME_DT.
+    const dt = Math.min(Math.max(delta, MIN_FRAME_DT), 0.1);
     // Extent of the flight plane. The camera's aspect is the view's own.
     const halfH =
       FLIGHT_DISTANCE * Math.tan(MathUtils.degToRad(camera.fov / 2));
@@ -393,7 +405,15 @@ const Rocket: React.FC<RocketProps> = ({
           (ship.position.x - prevPosition.current.x) / dt,
           (ship.position.y - prevPosition.current.y) / dt,
         );
-        if (vel.length() > MAX_SPEED) vel.setLength(MAX_SPEED);
+        // Belt and braces alongside MIN_FRAME_DT: the velocity is finite here
+        // but a bad reading would still be unrecoverable, because NaN is not
+        // > MAX_SPEED and so would skip the clamp below and poison the ship
+        // position for good.
+        if (!Number.isFinite(vel.lengthSq())) {
+          vel.set(0, 0);
+        } else if (vel.length() > MAX_SPEED) {
+          vel.setLength(MAX_SPEED);
+        }
       } else if (phase.current === "capturing") {
         elapsed.current += dt;
         const t = Math.min(1, elapsed.current / CAPTURE_DURATION);
