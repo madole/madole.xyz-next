@@ -1,22 +1,13 @@
 import { Trail, type MeshLineGeometry } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import React, { useEffect, useRef } from "react";
-import {
-  Camera,
-  Group,
-  PerspectiveCamera,
-  Vector2,
-  Vector3,
-} from "three";
+import { useCallback, useEffect, useRef } from "react";
+import { Camera, Group, PerspectiveCamera, Vector2, Vector3 } from "three";
+import { useArrowKeys } from "../hooks/useArrowKeys";
+import { useEarthAnchor, type EarthAnchor } from "../hooks/useEarthAnchor";
 import { useFlightPlane } from "../hooks/useFlightPlane";
 import { useTrailStyle } from "../hooks/useTrailStyle";
 import RocketMesh from "./RocketMesh";
-import {
-  EARTH_RADIUS,
-  FLIGHT_DISTANCE,
-  FLIGHT_Z,
-  VIEW_UNITS_PER_HALF_HEIGHT,
-} from "./sceneConstants";
+import { FLIGHT_DISTANCE, FLIGHT_Z } from "./sceneConstants";
 
 /**
  * The orbit dips to z=-1 (6 units from the camera) on its far half, well
@@ -113,17 +104,6 @@ const TRAIL_LENGTH = 8;
 const TRAIL_DECAY = 2;
 
 type Phase = "launching" | "flying" | "capturing" | "orbiting" | "exiting";
-
-const ARROW_KEYS = new Set(["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"]);
-
-/** Where the globe sits on screen, in CSS px with y down, as the DOM reports it. */
-interface EarthAnchor {
-  valid: boolean;
-  cx: number;
-  cy: number;
-  /** Projected radius of the globe in CSS px. */
-  radius: number;
-}
 
 function easeOutCubic(t: number): number {
   return 1 - (1 - t) ** 3;
@@ -284,7 +264,7 @@ const Rocket: React.FC<RocketProps> = ({
   const rollElapsed = useRef(0);
   const rolling = useRef(false);
 
-  const anchor = useRef<EarthAnchor>({ valid: false, cx: 0, cy: 0, radius: 0 });
+  const anchor = useEarthAnchor(earthTrackRef);
   /** Cleared on capture and escape; set again once the rocket leaves the ring. */
   const captureArmed = useRef(true);
   const orbitAngle = useRef(0);
@@ -298,6 +278,15 @@ const Rocket: React.FC<RocketProps> = ({
   const screenPos = useRef(new Vector2());
   const orbitTarget = useRef(new Vector3());
 
+  /**
+   * Starts a barrel roll, restarting it if one is already running. Stable
+   * across renders so the key listener never has to re-subscribe.
+   */
+  const startRoll = useCallback(() => {
+    rolling.current = true;
+    rollElapsed.current = 0;
+  }, []);
+
   useEffect(() => {
     if (leaving && phase.current !== "exiting") {
       phase.current = "exiting";
@@ -306,87 +295,14 @@ const Rocket: React.FC<RocketProps> = ({
   }, [leaving]);
 
   /**
-   * Where the globe is on screen. The Earth's tracking div is absolute inside
-   * the hero, so it moves on scroll while this canvas is fixed; the rect is
-   * re-read on scroll and resize rather than every frame, which would force a
-   * layout each time.
-   *
-   * The globe's radius in px follows from the Earth view's camera geometry,
-   * shared as VIEW_UNITS_PER_HALF_HEIGHT.
-   *
-   * The rect is in viewport coordinates while state.size - used by the orbit
-   * and the capture ring - is in canvas pixels. Those agree only because the
-   * background view this rocket flies in is a fixed, full-screen element; if
-   * that ever stops being true, both have to be converted to a common space.
+   * Arrow keys to fly, B to barrel roll. A held set the frame callback reads,
+   * so movement does not depend on key-repeat timing.
    */
-  useEffect(() => {
-    const track = earthTrackRef.current;
-    if (!track) return;
-
-    const measure = () => {
-      const rect = track.getBoundingClientRect();
-      const a = anchor.current;
-      a.cx = rect.left + rect.width / 2;
-      a.cy = rect.top + rect.height / 2;
-      a.radius =
-        (EARTH_RADIUS / VIEW_UNITS_PER_HALF_HEIGHT) * (rect.height / 2);
-      a.valid =
-        rect.width > 0 &&
-        rect.bottom > 0 &&
-        rect.top < window.innerHeight &&
-        rect.right > 0 &&
-        rect.left < window.innerWidth;
-    };
-    measure();
-    window.addEventListener("resize", measure);
-    window.addEventListener("scroll", measure, { passive: true });
-    return () => {
-      window.removeEventListener("resize", measure);
-      window.removeEventListener("scroll", measure);
-    };
-  }, [earthTrackRef]);
-
-  /**
-   * Arrow keys are read as a held set and consumed in useFrame, so movement
-   * is frame-rate independent and does not depend on key-repeat timing.
-   * preventDefault only while the rocket is mounted: otherwise arrows would
-   * stop scrolling the page for everyone, and Lighthouse would never see this
-   * listener anyway because the component is not mounted until activation.
-   *
-   * B is a one-shot barrel roll rather than a held control, so it is handled
-   * on keydown and restarts the tween if pressed again mid-roll.
-   */
-  useEffect(() => {
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.ctrlKey || event.metaKey || event.altKey) return;
-      if (event.key.toLowerCase() === "b") {
-        if (phase.current === "exiting") return;
-        rolling.current = true;
-        rollElapsed.current = 0;
-        return;
-      }
-      if (!ARROW_KEYS.has(event.key)) return;
-      event.preventDefault();
-      // Recorded in every phase, consumed only while flying: a key pressed
-      // during the launch tween would otherwise never register, since a held
-      // key sends no further keydown until it repeats.
-      held.current.add(event.key);
-    };
-    const onKeyUp = (event: KeyboardEvent) => {
-      held.current.delete(event.key);
-    };
-    // A key held while the window loses focus never sends keyup.
-    const onBlur = () => held.current.clear();
-
-    window.addEventListener("keydown", onKeyDown);
-    window.addEventListener("keyup", onKeyUp);
-    window.addEventListener("blur", onBlur);
-    return () => {
-      window.removeEventListener("keydown", onKeyDown);
-      window.removeEventListener("keyup", onKeyUp);
-      window.removeEventListener("blur", onBlur);
-    };
-  }, []);
+  useArrowKeys({
+    held,
+    onRoll: startRoll,
+    enabled: () => phase.current !== "exiting",
+  });
 
   useFrame((state) => {
     const ship = shipRef.current;
@@ -466,7 +382,10 @@ const Rocket: React.FC<RocketProps> = ({
           orbitTarget.current,
           easeInOutCubic(t),
         );
-        heading.current = orbitHeading(orbitAngle.current, orbitDirection.current);
+        heading.current = orbitHeading(
+          orbitAngle.current,
+          orbitDirection.current,
+        );
         if (t >= 1) phase.current = "orbiting";
       } else {
         orbitAngle.current += orbitDirection.current * ORBIT_SPEED * dt;
@@ -478,7 +397,10 @@ const Rocket: React.FC<RocketProps> = ({
           height,
           ship.position,
         );
-        heading.current = orbitHeading(orbitAngle.current, orbitDirection.current);
+        heading.current = orbitHeading(
+          orbitAngle.current,
+          orbitDirection.current,
+        );
       }
       // Project the trail onto the flight plane while on the orbit; see the
       // block that writes trailAnchor at the end of the frame.
