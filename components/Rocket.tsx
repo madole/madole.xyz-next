@@ -43,7 +43,26 @@ const DEPTH_SCALE_POWER = 0.5;
 const THRUST = 10;
 /** Exponential velocity decay per second; higher stops sooner. */
 const DRAG = 2.4;
+/**
+ * Ceiling on speed, and a deliberate headroom above what thrust can reach.
+ *
+ * Drag is applied every frame while thrust is applied every frame, so the
+ * two balance at THRUST / DRAG = 4.17 and the rocket settles there no matter
+ * which way it is held - diagonals included, since the input is normalised.
+ * The clamp below therefore never fires during ordinary flight; 4.5 is not
+ * meant to be the top speed, it is the backstop.
+ *
+ * It earns its keep on the hand-off out of an orbit, where the velocity is
+ * recovered from the orbital path rather than earned through thrust and can
+ * start well above anything the player could reach.
+ */
 const MAX_SPEED = 4.5;
+/**
+ * Ceiling on the departure climb, as a multiple of MAX_SPEED. Separate from
+ * the flight ceiling because it is a different thing: one is a backstop on
+ * speed the player earned, this one sets how hard the rocket leaves.
+ */
+const EXIT_SPEED_CAP = MAX_SPEED * 1.3;
 /** Velocity kept (and reversed) when the rocket hits the edge of the view. */
 const EDGE_BOUNCE = 0.35;
 /** Keeps the nose inside the view rather than the origin. */
@@ -385,7 +404,10 @@ const Rocket: React.FC<RocketProps> = ({
       }
     } else if (phase.current === "exiting") {
       vel.x *= Math.exp(-DRAG * dt);
-      vel.y = Math.min(MAX_SPEED * 1.3, vel.y + EXIT_SPEED * dt * 2);
+      // Leaves faster than the player can fly, so the departure reads as the
+      // engines taking over rather than the rocket straining. The margin over
+      // MAX_SPEED is a floor on the exit, not a cap anyone can reach.
+      vel.y = Math.min(EXIT_SPEED_CAP, vel.y + EXIT_SPEED * dt * 2);
       ship.position.x += vel.x * dt;
       ship.position.y += vel.y * dt;
       ship.position.z +=
