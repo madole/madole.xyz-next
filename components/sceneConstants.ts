@@ -16,7 +16,24 @@ export const VIEW_CAMERA_Z = 5;
  * the value is easy to misremember as r3f's 75 degree default Canvas camera.
  */
 export const VIEW_FOV = 50;
+/**
+ * Radius of the globe, in the Earth view's world units.
+ *
+ * Lives here rather than in Earth because the rocket needs it to work out how
+ * large the globe is on screen, and sceneConstants is the one module both
+ * views are meant to share. Exporting it from Earth instead would tie the
+ * rocket's lazily-loaded chunk to the module that owns texture fetching and
+ * the night-lights shader.
+ */
+export const EARTH_RADIUS = 1.5;
 
+/**
+ * World units spanned by half the height of either view, from the camera's
+ * geometry. Anything that has to convert between world units and the globe's
+ * size on screen - the rocket's capture ring, its orbit - divides by this.
+ */
+export const VIEW_UNITS_PER_HALF_HEIGHT =
+  VIEW_CAMERA_Z * Math.tan((VIEW_FOV / 2) * (Math.PI / 180));
 /**
  * Depth the rocket flies at, in the background view's world units.
  *

@@ -1,11 +1,7 @@
 import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
 import { MathUtils, type PerspectiveCamera } from "three";
-import {
-  FLIGHT_DISTANCE,
-  VIEW_CAMERA_Z,
-  VIEW_FOV,
-} from "../components/sceneConstants";
+import { FLIGHT_DISTANCE, VIEW_FOV } from "../components/sceneConstants";
 
 /**
  * Largest frame delta the flight maths will integrate over. A backgrounded tab
@@ -19,9 +15,8 @@ const MAX_FRAME_DT = 0.1;
  */
 const MIN_FRAME_DT = 0.0001;
 
-/** Half the field of view as a sine/cosine pair, computed once. */
-const HALF_FOV = MathUtils.degToRad(VIEW_FOV / 2);
-const TAN_HALF_FOV = Math.tan(HALF_FOV);
+/** Tangent of the half field of view, computed once. */
+const TAN_HALF_FOV = Math.tan(MathUtils.degToRad(VIEW_FOV / 2));
 
 export interface FlightPlane {
   /** Clamped frame delta in seconds. */
@@ -59,17 +54,3 @@ export function useFlightPlane(): FlightPlane {
 
   return plane.current;
 }
-
-/**
- * Half the flight plane's height in world units, for code that needs it
- * outside a frame callback - the hint rocket's starting position, for one.
- */
-export function flightPlaneHalfHeight(): number {
-  return FLIGHT_DISTANCE * TAN_HALF_FOV;
-}
-
-/**
- * Conversion from a view's half-height in world units to its half-height in
- * CSS pixels, for anything sized against the drawn globe.
- */
-export const VIEW_UNITS_PER_HALF_HEIGHT = VIEW_CAMERA_Z * TAN_HALF_FOV;

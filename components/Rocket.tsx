@@ -4,20 +4,18 @@ import React, { useEffect, useRef } from "react";
 import {
   Camera,
   Group,
-  MathUtils,
   PerspectiveCamera,
   Vector2,
   Vector3,
 } from "three";
 import { useFlightPlane } from "../hooks/useFlightPlane";
 import { useTrailStyle } from "../hooks/useTrailStyle";
-import { EARTH_RADIUS } from "./Earth";
 import RocketMesh from "./RocketMesh";
 import {
+  EARTH_RADIUS,
   FLIGHT_DISTANCE,
   FLIGHT_Z,
-  VIEW_CAMERA_Z,
-  VIEW_FOV,
+  VIEW_UNITS_PER_HALF_HEIGHT,
 } from "./sceneConstants";
 
 /**
@@ -313,21 +311,25 @@ const Rocket: React.FC<RocketProps> = ({
    * re-read on scroll and resize rather than every frame, which would force a
    * layout each time.
    *
-   * The globe's radius in px follows from the Earth view's camera geometry:
-   * the view's half-height covers VIEW_CAMERA_Z * tan(fov / 2) world units.
+   * The globe's radius in px follows from the Earth view's camera geometry,
+   * shared as VIEW_UNITS_PER_HALF_HEIGHT.
+   *
+   * The rect is in viewport coordinates while state.size - used by the orbit
+   * and the capture ring - is in canvas pixels. Those agree only because the
+   * background view this rocket flies in is a fixed, full-screen element; if
+   * that ever stops being true, both have to be converted to a common space.
    */
   useEffect(() => {
     const track = earthTrackRef.current;
     if (!track) return;
-    const halfFov = MathUtils.degToRad(VIEW_FOV / 2);
-    const unitsPerHalfHeight = VIEW_CAMERA_Z * Math.tan(halfFov);
 
     const measure = () => {
       const rect = track.getBoundingClientRect();
       const a = anchor.current;
       a.cx = rect.left + rect.width / 2;
       a.cy = rect.top + rect.height / 2;
-      a.radius = (EARTH_RADIUS / unitsPerHalfHeight) * (rect.height / 2);
+      a.radius =
+        (EARTH_RADIUS / VIEW_UNITS_PER_HALF_HEIGHT) * (rect.height / 2);
       a.valid =
         rect.width > 0 &&
         rect.bottom > 0 &&
