@@ -11,7 +11,7 @@ import {
   SRGBColorSpace,
 } from "three";
 import { HINT_TEXT } from "../hooks/useRocketHint";
-import RocketMesh from "./RocketMesh";
+import RocketMesh, { NOZZLE_OFFSET_Y, NOSE_COLOR } from "./RocketMesh";
 import { FLIGHT_DISTANCE, FLIGHT_Z } from "./sceneConstants";
 
 /** World units per second. About a third of the view width per second: readable at a glance. */
@@ -37,8 +37,12 @@ const ROLL_SPEED = 1.3;
 const TOW_SCALE = 0.4;
 
 const SHIP_SCALE = 0.55;
-/** Where the nozzle ends up once the ship is turned to point along +X. */
-const NOZZLE_OFFSET = -0.32 * SHIP_SCALE;
+/**
+ * Where the nozzle ends up once the ship is turned to point along +X. Read
+ * from RocketMesh rather than restated, so the rope stays attached to the
+ * nozzle if the ship is ever rebuilt.
+ */
+const NOZZLE_OFFSET = NOZZLE_OFFSET_Y * SHIP_SCALE;
 const ROPE_LENGTH = 0.3;
 const ROPE_RADIUS = 0.008;
 const ROPE_COLOR = "#cfd6e4";
@@ -70,7 +74,8 @@ const TEXTURE_HEIGHT = Math.round(
   (TEXTURE_WIDTH * BANNER_HEIGHT) / BANNER_WIDTH,
 );
 const BANNER_FILL = "#f6f1e4";
-const BANNER_STRIPE = "#ff5a5f";
+/** Matches the rocket's nose, so the banner reads as painted by the ship. */
+const BANNER_STRIPE = NOSE_COLOR;
 const BANNER_INK = "#171436";
 
 /**

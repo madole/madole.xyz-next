@@ -2,14 +2,24 @@ import React from "react";
 import { AdditiveBlending, Group } from "three";
 
 const HULL_COLOR = "#eef2f8";
-const NOSE_COLOR = "#ff5a5f";
+/**
+ * Exported because the hint rocket paints its banner stripes to match. Two
+ * copies of a hex value drift apart the first time someone retunes one.
+ */
+export const NOSE_COLOR = "#ff5a5f";
 const FIN_COLOR = "#ff5a5f";
 const NOZZLE_COLOR = "#3a3f4b";
 const WINDOW_COLOR = "#7fd0ff";
 const FLAME_COLOR = "#ffb347";
 
-/** Where the nozzle hangs below the hull centre, in ship-local units. */
-const NOZZLE_OFFSET_Y = -0.32;
+/**
+ * Where the nozzle hangs below the hull centre, in ship-local units.
+ *
+ * Exported because the hint rocket hangs its tow rope off the nozzle. It used
+ * to hardcode the same -0.32, which meant nudging the nozzle here silently
+ * detached the banner from the rope without any type or lint error.
+ */
+export const NOZZLE_OFFSET_Y = -0.32;
 /** Half the nozzle's height: the mouth, and so the exhaust anchor, is this far below it. */
 const NOZZLE_HALF_HEIGHT = 0.05;
 
