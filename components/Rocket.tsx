@@ -9,6 +9,7 @@ import {
   Vector2,
   Vector3,
 } from "three";
+import { useFlightPlane } from "../hooks/useFlightPlane";
 import { useTrailStyle } from "../hooks/useTrailStyle";
 import { EARTH_RADIUS } from "./Earth";
 import RocketMesh from "./RocketMesh";
@@ -70,16 +71,6 @@ const TURN_RATE = 8;
 const HEADING_MIN_SPEED = 0.15;
 /** How fast z eases back to the flight plane after leaving orbit, per second. */
 const DEPTH_RETURN_RATE = 5;
-
-/**
- * Floor on the frame delta. Escaping an orbit recovers velocity by dividing
- * the frame's movement by dt, and two frames can land in the same clock tick.
- * A true zero there means 0 / 0, which is NaN rather than zero velocity, and
- * NaN then poisons the ship position for good - it stops rendering and never
- * recovers. A hundredth of a millisecond is far below anything visible, but
- * keeps the divisor finite so a zero-length step reads as zero speed.
- */
-const MIN_FRAME_DT = 0.0001;
 
 /** Seconds a full barrel roll takes when B is pressed. */
 const ROLL_DURATION = 0.75;
@@ -155,6 +146,7 @@ function angleDelta(from: number, to: number): number {
 // Module-level scratch so the per-frame maths never allocates.
 const _ray = new Vector3();
 const _ndc = new Vector3();
+const _exhaust = new Vector3();
 
 /**
  * World point where the camera ray through a screen position (CSS px, y down)
@@ -227,6 +219,19 @@ const Rocket: React.FC<RocketProps> = ({
   const nozzleRef = useRef<Group>(null);
   const flameRef = useRef<Group>(null);
   const trailRef = useRef<MeshLineGeometry>(null);
+  /**
+   * Stand-in for the nozzle as the trail's target. Trail samples this
+   * object's world position, so pointing it at a proxy in the flight plane is
+   * what keeps the ribbon off the orbit's depth swing.
+   */
+  const trailAnchor = useRef<Group>(null);
+  /**
+   * Ratio of flight-plane depth to the nozzle's current depth, used to project
+   * the trail back onto the rocket's screen position. Null disables the
+   * projection, so free flight - which already sits in the flight plane -
+   * needs no correction and the trail stays exactly where it was.
+   */
+  const orbitDepth = useRef<number | null>(null);
 
   // Warm-up and material upkeep, shared with the satellite's trail.
   useTrailStyle(trailRef, {
@@ -235,6 +240,9 @@ const Rocket: React.FC<RocketProps> = ({
     length: TRAIL_LENGTH,
     decay: TRAIL_DECAY,
   });
+
+  // Clamped frame delta and the extent of the plane the rocket flies in.
+  const flight = useFlightPlane();
 
   const phase = useRef<Phase>("launching");
   const elapsed = useRef(0);
@@ -346,20 +354,15 @@ const Rocket: React.FC<RocketProps> = ({
     };
   }, []);
 
-  useFrame((state, delta) => {
+  useFrame((state) => {
     const ship = shipRef.current;
     if (!ship) return;
 
     const camera = state.camera as PerspectiveCamera;
     const { width, height } = state.size;
-    // Capped so a backgrounded tab returning after a long pause does not
-    // jump, and floored so a zero-length step cannot divide by zero. See
-    // MIN_FRAME_DT.
-    const dt = Math.min(Math.max(delta, MIN_FRAME_DT), 0.1);
-    // Extent of the flight plane. The camera's aspect is the view's own.
-    const halfH =
-      FLIGHT_DISTANCE * Math.tan(MathUtils.degToRad(camera.fov / 2));
-    const halfW = halfH * camera.aspect;
+    // Clamped delta and the flight plane's extent, refreshed by the hook
+    // above before this callback runs.
+    const { dt, halfH, halfW } = flight;
     const vel = velocity.current;
     const earth = anchor.current;
 
@@ -386,7 +389,9 @@ const Rocket: React.FC<RocketProps> = ({
       );
     };
 
-    prevPosition.current.copy(ship.position);
+    // Full-depth trail back on for the coast phases.
+      orbitDepth.current = null;
+      prevPosition.current.copy(ship.position);
 
     if (phase.current === "launching") {
       elapsed.current += dt;
@@ -450,6 +455,11 @@ const Rocket: React.FC<RocketProps> = ({
         orbitPoint(orbitAngle.current, ship.position);
         heading.current = orbitHeading(orbitAngle.current);
       }
+      // Project the trail onto the flight plane while on the orbit; see the
+      // block that writes trailAnchor at the end of the frame.
+      const nozzleDepth = camera.position.z - ship.position.z;
+      orbitDepth.current =
+        nozzleDepth > 0.01 ? FLIGHT_DISTANCE / nozzleDepth : null;
     }
 
     if (phase.current === "flying") {
@@ -551,20 +561,65 @@ const Rocket: React.FC<RocketProps> = ({
       SHIP_SCALE * (distance / FLIGHT_DISTANCE) ** DEPTH_SCALE_POWER,
     );
 
-    // Flame: long while thrusting or launching, a flicker otherwise.
+    // Flame: long while thrusting or launching, a flicker otherwise, and cut
+    // entirely once the engines are shut down for the orbit.
+    //
+    // Coast phases are the exception. The rocket is under its own momentum
+    // there, so there is no flame to draw, and leaving the idle cone visible
+    // put a second tongue of fire under the ship alongside the exhaust trail
+    // - two apparently separate trails, because the trail is what actually
+    // shows the orbital path and the cone just hangs off the nozzle. The
+    // trail alone is both truthful and the thing worth reading.
     const flame = flameRef.current;
     if (flame) {
-      const burning =
-        phase.current === "launching" ||
-        phase.current === "exiting" ||
-        rolling.current ||
-        (phase.current === "flying" && held.current.size > 0);
-      const base = burning ? 1 : 0.35;
-      const flicker = 0.85 + 0.15 * Math.sin(state.clock.elapsedTime * 47);
-      flame.scale.set(
-        base * flicker,
-        base * (0.9 + 0.3 * flicker),
-        base * flicker,
+      const current = phase.current;
+      const coasting = current === "orbiting" || current === "capturing";
+      flame.visible = !coasting;
+      if (!coasting) {
+        const burning =
+          current === "launching" ||
+          current === "exiting" ||
+          rolling.current ||
+          (current === "flying" && held.current.size > 0);
+        const base = burning ? 1 : 0.35;
+        const flicker = 0.85 + 0.15 * Math.sin(state.clock.elapsedTime * 47);
+        flame.scale.set(
+          base * flicker,
+          base * (0.9 + 0.3 * flicker),
+          base * flicker,
+        );
+      }
+    }
+
+    // Hold the exhaust ribbon at flight-plane depth.
+    //
+    // drei's Trail records world positions, and the orbit swings z across its
+    // whole range, so the ribbon sampled the full depth of the ellipse: at the
+    // front of the orbit three quarters of it ended up behind the globe, and
+    // the trail vanished under the planet just as the rocket came into view.
+    // Measured in the running scene, 35 of 40 points sat behind the Earth
+    // while the rocket itself was in front at z=1.1.
+    //
+    // The depth swing exists to hide the rocket behind the globe on the far
+    // pass, and it does that through the shared depth buffer. The trail wants
+    // none of it. Projecting the nozzle's x and y into the flight plane keeps
+    // the ribbon on the rocket's screen position - the parallax is what the
+    // offset is compensating for - while the ship keeps its real depth and
+    // still disappears when it should.
+    //
+    // The proxy is driven every frame, not only in orbit, so that leaving
+    // orbit hands the trail straight back to the rocket's real position.
+    const nozzle = nozzleRef.current;
+    const exhaustProxy = trailAnchor.current;
+    if (nozzle && exhaustProxy) {
+      const world = nozzle.getWorldPosition(_exhaust);
+      // A scale of 1 leaves the point where it is; the orbit applies the
+      // parallax correction that puts it back on the rocket's screen position.
+      const correction = orbitDepth.current ?? 1;
+      exhaustProxy.position.set(
+        world.x * correction,
+        world.y * correction,
+        orbitDepth.current === null ? world.z : FLIGHT_Z,
       );
     }
   });
@@ -576,11 +631,15 @@ const Rocket: React.FC<RocketProps> = ({
           it lives here so it exists only while the rocket does. */}
       <directionalLight position={[2, 3, 5]} intensity={2.2} />
 
+      {/* The trail tracks a proxy rather than the nozzle itself: during an
+          orbit the nozzle swings in depth, and a ribbon sampled at those
+          depths dives behind the globe. The proxy sits in the flight plane. */}
+      <group ref={trailAnchor} />
       <Trail
         ref={trailRef}
         /* drei types target as RefObject<Object3D>, predating React 19's
            RefObject<T | null>. The ref is set before Trail reads it. */
-        target={nozzleRef as React.RefObject<Group>}
+        target={trailAnchor as React.RefObject<Group>}
         width={TRAIL_WIDTH}
         length={TRAIL_LENGTH}
         decay={TRAIL_DECAY}

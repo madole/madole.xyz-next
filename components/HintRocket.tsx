@@ -4,15 +4,14 @@ import {
   CanvasTexture,
   DoubleSide,
   Group,
-  MathUtils,
   Mesh,
-  PerspectiveCamera,
   PlaneGeometry,
   SRGBColorSpace,
 } from "three";
 import { HINT_TEXT } from "../hooks/useRocketHint";
 import RocketMesh, { NOZZLE_OFFSET_Y, NOSE_COLOR } from "./RocketMesh";
-import { FLIGHT_DISTANCE, FLIGHT_Z } from "./sceneConstants";
+import { FLIGHT_Z } from "./sceneConstants";
+import { useFlightPlane } from "../hooks/useFlightPlane";
 
 /** World units per second. About a third of the view width per second: readable at a glance. */
 const SPEED = 1.1;
@@ -184,15 +183,15 @@ const HintRocket: React.FC<HintRocketProps> = ({ onDone }) => {
   const towLength =
     (Math.abs(NOZZLE_OFFSET) + ROPE_LENGTH + BANNER_WIDTH) * TOW_SCALE + 0.5;
 
-  useFrame((state, delta) => {
+  // Clamped frame delta and the extent of the plane the tow flies in, the same
+  // numbers the playable rocket uses so both stay in one depth.
+  const flight = useFlightPlane();
+
+  useFrame((state) => {
     const group = groupRef.current;
     if (!group) return;
 
-    const camera = state.camera as PerspectiveCamera;
-    const dt = Math.min(delta, 0.1);
-    const halfH =
-      FLIGHT_DISTANCE * Math.tan(MathUtils.degToRad(camera.fov / 2));
-    const halfW = halfH * camera.aspect;
+    const { dt, halfH, halfW } = flight;
     const time = state.clock.elapsedTime;
 
     // Start off the left edge, far enough out that the banner is off too.
