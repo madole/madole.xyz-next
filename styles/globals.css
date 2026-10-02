@@ -40,6 +40,29 @@ article a[href^="http"] {
   vertical-align: bottom;
 }
 
+/*
+ * Glossary abbreviations. The browser default for `abbr[title]` is a dotted
+ * underline; we want a lighter dashed rule to read as "hover me" without
+ * competing with the prose. `cursor: help` signals the tooltip. `dfn` wraps
+ * these to mark the defining instance, but it renders italic by default,
+ * which we don't want, so it's reset to upright.
+ */
+.prose abbr[title] {
+  text-decoration: underline dashed;
+  text-decoration-color: rgb(163 163 163);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  cursor: help;
+}
+
+.dark .prose abbr[title] {
+  text-decoration-color: rgb(115 115 115);
+}
+
+.prose dfn {
+  font-style: normal;
+}
+
 * {
   box-sizing: border-box;
 }
